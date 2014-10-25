@@ -1,7 +1,7 @@
 var dominos=require("../dominos-pizza-api");
 
 dominos.track.phone(
-    2024561111, //phone number
+    2024561111, //phone number pizza is associated with
     function(pizzaData){ //callback to run when api returns
         console.log('\n\n########################\nTracking pizza by phone\n########################\n',pizzaData,'\n############\n');
     }

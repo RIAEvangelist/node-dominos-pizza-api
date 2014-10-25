@@ -1,6 +1,6 @@
 {
   "name": "dominos",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "API for domino's Pizza",
   "main": "dominos-pizza-api.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/RIAEvangelist/node-dominos-pizza-api.git"
+  },
+  "dependencies": {
+    "xml2json": "~0.5.1"
   },
   "keywords": [
     "Dominos",
@@ -20,5 +23,9 @@
   "license": "DBAD",
   "bugs": {
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
-  }
+  },
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {}
 }
