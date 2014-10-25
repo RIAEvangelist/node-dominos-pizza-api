@@ -1,0 +1,1 @@
+cmd_Release/libexpat.a := ln -f "Release/obj.target/deps/libexpat/libexpat.a" "Release/libexpat.a" 2>/dev/null || (rm -rf "Release/libexpat.a" && cp -af "Release/obj.target/deps/libexpat/libexpat.a" "Release/libexpat.a")

@@ -1,0 +1,24 @@
+{
+  "name": "dominos",
+  "version": "0.0.1",
+  "description": "API for domino's Pizza",
+  "main": "dominos-pizza-api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RIAEvangelist/node-dominos-pizza-api.git"
+  },
+  "keywords": [
+    "Dominos",
+    "Domino's",
+    "Pizza",
+    "API"
+  ],
+  "author": "Brandon Nozaki Miller",
+  "license": "DBAD",
+  "bugs": {
+    "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
+  }
+}
