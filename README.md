@@ -14,6 +14,7 @@ Finding Nearby Domino's Locations
 |--------|----|-------|--------|
 |address|full or partial address string|null|true|
 |callback|function to pass the api result to|null|true|
+|type|Delivery, Carryout, all| all | false|
 
 ### By Postal Code
 *** this yeilds the least accurate information ***
@@ -64,6 +65,12 @@ Domino's Store Info
 
 Menu for Specific Domino's Store Location
 ====
+
+|argument|type|default|required|
+|--------|----|-------|--------|
+|storeID|string or int|null|true|
+|callback|function to pass the api result to|null|true|
+|lang|language string|en|false|
 
     //Get Menu for Store #4336
     dominos.store.menu(
