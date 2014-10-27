@@ -112,3 +112,72 @@ Tracking Domino's Pizza
             console.log(pizzaData)
         }
     );
+
+Domino's Pizza Orders
+====
+Three classes exist to get orders started,
+
+|Class|Description|
+|-----|-----------|
+|dominos.class.Order|creates a basic order object|
+|dominos.class.Product|creates a basic product with a quantity of 1|
+|dominos.class.Payment|creates a basic credit card payment object|
+
+### creating an order
+
+    var order=new dominos.class.Order();
+    order.Order.Phone='2024561111';
+    order.Order.FirstName='Barack';
+    order.Order.LastName='Obama';
+    order.Order.Email='CommanderInChief@whitehouse.gov';
+
+### creating a product and adding it to the order :
+
+    var product=new dominos.class.Product();
+    product.Code='14SCREEN' //14" Hand Tossed Cheese Pizza
+    order.Order.Products.push(product);
+
+
+### Validating an Order 
+This step is ***Strongly** recommended 
+
+    dominos.order.validate(
+        order,
+        function(data){
+            console.log(data);
+        }
+    );
+
+### Validating an Order 
+This step is ***Strongly** recommended 
+
+    dominos.order.validate(
+        order,
+        function(data){
+            console.log(data);
+        }
+    );
+
+### Price an Order 
+
+    dominos.order.price(
+        order,
+        function(data){
+            console.log(data);
+        }
+    );
+
+### Place an Order 
+
+    var cardInfo=new dominos.class.Payment();
+    cardInfo.Amount=42.50; //get amount from dominos.order.price request (data.result.Order.Amounts.Customer)
+    
+    cardInfo.Number='4444888888888888';
+    cardInfo.CardType='VISA';
+    cardInfo.Expiration='1017';
+    cardInfo.SecurityCode='189';
+    cardInfo.PostalCode='20500';
+    
+    order.Order.Payments.push(cardInfo);
+    
+    dominos.order.place(order,orderPlaced);

@@ -11,6 +11,55 @@ api.store.menu='https://order.dominos.com/power/store/${storeID}/menu?lang=${lan
 api.order={};
 api.order.validate='https://order.dominos.com/power/validate-order';
 api.order.price='https://order.dominos.com/power/price-order';
+api.order.place='https://order.dominos.com/power/place-order';
+
+function validateOrder(order, callback) {
+    if( !order || !callback){
+        if(callback)
+            callback(
+                APIError("An order object,  and callback are required to validate the order")
+            );
+        return;
+    }
+    
+    postJSONAPI(
+        api.order.validate,
+        order,
+        callback
+    );
+}
+
+function priceOrder(order, callback) {
+    if( !order || !callback){
+        if(callback)
+            callback(
+                APIError("An order object,  and callback are required to price an order")
+            );
+        return;
+    }
+    
+    postJSONAPI(
+        api.order.price,
+        order,
+        callback
+    );
+}
+
+function placeOrder(order, callback) {
+    if( !order || !callback){
+        if(callback)
+            callback(
+                APIError("An order object,  and callback are required to place an order")
+            );
+        return;
+    }
+    
+    postJSONAPI(
+        api.order.place,
+        order,
+        callback
+    );
+}
 
 function findStores(address, callback, type) {
     if( !address || !callback){
@@ -67,7 +116,7 @@ function getStoreMenu(storeID, callback, lang) {
         lang='en';
     
     requestJSONAPI(
-        api.store.info.replace(
+        api.store.menu.replace(
             '${storeID}',
             storeID
         ).replace(
@@ -105,6 +154,56 @@ function trackPizzaByID(storeID, orderKey, callback) {
     trackPizza(
         api.track+"StoreID="+storeID+"&OrderKey="+orderKey,
         callback
+    );
+}
+
+function postJSONAPI(url,order,callback){
+    if(typeof order!= "string")
+        order=JSON.stringify(order);
+    
+    request.post(
+        {
+            uri:url,
+            headers:{
+                Referer:'https://order.dominos.com/en/pages/order/',
+                "Content-Type": 'application/json'
+            },
+            body:order
+        },
+        function (error, response, body) {
+            var data={
+                success:true
+            };
+            
+            if (error){
+                data.success=false;
+                data.error=error;
+                callback(data);
+                return;
+            }
+            
+            if (response.statusCode !== 200){
+                data.success=false;
+                data.error={
+                    message:'HTML Status Code Error',
+                    code:response.statusCode
+                };
+                callback(data);
+                return;
+            }
+            
+            try{
+                data.result=JSON.parse(body);
+            }catch(err){
+                data.success=false;
+                data.error={
+                    message:'Could not parse API return',
+                    err:err
+                };
+            }
+            
+            callback(data);
+        }
     );
 }
 
@@ -236,8 +335,7 @@ function Order(){
                 "City": "",
                 "Region": "",
                 "PostalCode": "",
-                "Type": "",
-                "OrganizationName": ""
+                "Type": "House" //House or Business
             },
             "Coupons": [],
             "CustomerID": "",
@@ -259,19 +357,33 @@ function Order(){
             "Tags": {},
             "Version": "1.0",
             "NoCombine": true,
-            "Partners": {}
+            "Partners": {},
+            "NewUser": true,
+            "metaData": {}
         }
     }
 }
 
 function Product(){
     return {
-        "Code": false,
-        "Qty": 1,
-        "ID": false,
+        "Code": "", //get from store menu
+        "Qty": 1, //default value
+        "ID": false, //will be populated during validate
         "isNew": true,
         "Options": {}
     }
+}
+
+function Payment(){
+    return {
+        "Type": "CreditCard",
+        "Amount": 0,
+        "Number": "",
+        "CardType": "",//uppercase
+        "Expiration": "",//digits only
+        "SecurityCode": "",
+        "PostalCode": ""
+    }        
 }
 
 function APIError(message){
@@ -286,7 +398,8 @@ function APIError(message){
 module.exports={
     class:{
         Order:Order,
-        Product:Product
+        Product:Product,
+        Payment:Payment
     },
     track:{
         phone:trackPizzaByPhone,
@@ -296,5 +409,10 @@ module.exports={
         find:findStores,
         info:getStoreInfo,
         menu:getStoreMenu
+    },
+    order:{
+        validate:validateOrder,
+        price:priceOrder,
+        place:placeOrder
     }
 };
