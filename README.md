@@ -170,7 +170,9 @@ This step is ***Strongly** recommended
 ### Place an Order 
 
     var cardInfo=new dominos.class.Payment();
-    cardInfo.Amount=42.50; //get amount from dominos.order.price request (data.result.Order.Amounts.Customer)
+    cardInfo.Amount=42.50; 
+    //get amount from dominos.order.price request 
+    //data.result.Order.Amounts.Customer
     
     cardInfo.Number='4444888888888888';
     cardInfo.CardType='VISA';
