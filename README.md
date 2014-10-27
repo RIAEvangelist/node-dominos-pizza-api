@@ -1,6 +1,5 @@
-node-dominos-pizza-api
-======================
-
+Node Domino's API
+====
 This is a node.js wrapper for the Domino's pizza APIs
 
 Install Domino's API
@@ -17,7 +16,7 @@ Finding Nearby Domino's Locations
 |type|Delivery, Carryout, all| all | false|
 
 ### By Postal Code
-*** this yeilds the least accurate information ***
+***this yields the least accurate information***
 
     dominos.store.find(
         '20500',
@@ -27,7 +26,7 @@ Finding Nearby Domino's Locations
     );
 
 ### By City and Postal Code
-*** this yeilds less accurate information but is better than just using the postal code ***
+***this yields less accurate information but is better than just using the postal code***
     
     dominos.store.find(
         'Beverly Hills 90210',
@@ -37,7 +36,7 @@ Finding Nearby Domino's Locations
     );
 
 ### Using Full or Nearly Full Address
-*** this yeilds the best information and sorts stores by actual distance ***
+***this yields the best information and sorts stores by actual distance***
 
     dominos.store.find(
         '1600 Pennsylvania Ave NW, 20500',
@@ -168,6 +167,15 @@ This step is ***Strongly** recommended
     );
 
 ### Place an Order 
+Before you can place an order you must create a payment method and add it to the order :
+
+|paramater|type|required|default|
+|---------|----|--------|-------|
+|Amount|Float|true|0|
+|Number|Credit Card Number Int/String|true||
+|CardType|String|true||
+|Expiration|Digits only Int/String|true||
+|SecurityCode|Int/String|true||
 
     var cardInfo=new dominos.class.Payment();
     cardInfo.Amount=42.50; 
@@ -181,5 +189,24 @@ This step is ***Strongly** recommended
     cardInfo.PostalCode='20500';
     
     order.Order.Payments.push(cardInfo);
+
+
+Then you can place the order and catch placement failures :
     
-    dominos.order.place(order,orderPlaced);
+    dominos.order.place(
+        order,
+        function(data){
+            console.log(data);
+
+            if(data.result.Order.Status==-1){
+                console.log(
+                    '\n###### NO PIZZA FOR YOU! ######\n',
+                    orderData.result.Order.StatusItems,
+                    '\n#########################\n\n'
+                );
+                return;
+            }
+
+        }
+    );
+
