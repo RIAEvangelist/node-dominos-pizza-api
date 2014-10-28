@@ -1,10 +1,12 @@
 Node Domino's API
 ====
-This is a node.js wrapper for the Domino's pizza APIs
+This is a node.js wrapper for the Domino's pizza API's
 
 Install Domino's API
 ====
 npm install dominos
+
+[NPM Stats for dominos api](https://nodei.co/npm/dominos.png?downloads=true&downloadRank=true&stars=true)
 
 Finding Nearby Domino's Locations
 ====

@@ -5,8 +5,9 @@
         <group>
             <file>file:/home/bmiller/git/node-dominos-pizza-api/README.md</file>
             <file>file:/home/bmiller/git/node-dominos-pizza-api/example/dominos-store-data.js</file>
+            <file>file:/home/bmiller/git/node-dominos-pizza-api/example/order-dominos-pizza.js</file>
             <file>file:/home/bmiller/git/node-dominos-pizza-api/dominos-pizza-api.js</file>
-            <file>file:/home/bmiller/git/node-dominos-pizza-api/License.md</file>
+            <file>file:/home/bmiller/git/node-dominos-pizza-api/example/track-dominos-pizza.js</file>
         </group>
     </open-files>
 </project-private>
