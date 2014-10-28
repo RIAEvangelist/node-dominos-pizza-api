@@ -2,6 +2,8 @@ Node Domino's API
 ====
 This is a node.js wrapper for the Domino's pizza API's
 
+This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). 
+
 Install Domino's API
 ====
 npm install dominos
