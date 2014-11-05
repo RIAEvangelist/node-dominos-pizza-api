@@ -105,6 +105,7 @@ function getStoreInfo(storeID, callback) {
 
 function getStoreMenu(storeID, callback, lang) {
     if( !storeID || !callback){
+        console.log(storeID,123)
         if(callback)
             callback(
                 APIError("A storeID, and callback are required to get a store menu")
