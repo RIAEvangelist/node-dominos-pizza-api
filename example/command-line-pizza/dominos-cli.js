@@ -69,20 +69,36 @@ rl.on(
                 return;
             }
             
-            var lowerChunk=data.split(' ');
-            chunk=chunk.split(' ');
+            if(data.indexOf('order ')>-1){
+                order(data.slice(data.indexOf('order ')+6),true);
+                return;
+            }
             
-            switch(lowerChunk[0]){
-                case 'order'   :
-                    orderPizza(data);
-                    break;
-                    break;
+            if(data.indexOf('help')>-1){
+                help();
+                return;
             }
             
             rl.prompt();
         }
     }
 );
+
+function help(){
+    var commands=[
+        'find closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
+        'find near'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
+        'menu for closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
+        'full menu for closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
+        'menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
+        'full menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
+        'order'.bgCyan+' {comma deliminated list of items codes}'.info+' *not implemented yet //get item codes from menu'
+    ];
+    
+    for(var i in commands){
+        console.log(commands[i]+'\n');
+    }
+}
 
 
 /*
@@ -227,12 +243,7 @@ function findStores(address, closest){
     );
 }
 
-function orderPizza(pizza){
-    var order ={};
-    
-    if(pizza.indexOf('large')){
-        
-    }
-    
-    
+function order(items){
+    var items=items.split(',');
+    console.log(items);
 }
