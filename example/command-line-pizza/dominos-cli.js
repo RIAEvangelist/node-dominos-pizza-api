@@ -28,6 +28,7 @@ readline.clearScreenDown(process.stdout);
 rl.setPrompt('Pizza> ');
 rl.prompt();
 
+var order=new dominos.class.Order();
 
 rl.on(
     'line', 
@@ -50,12 +51,12 @@ rl.on(
             }
             
             if(data.indexOf('full menu for closest')>-1){
-                showClosestMenu(data.slice(data.indexOf('full menu for closest')+21));
+                findStores(data.slice(data.indexOf('full menu for closest')+21),true,false,true);
                 return;
             }
             
             if(data.indexOf('menu for closest')>-1){
-                showClosestMenu(data.slice(data.indexOf('menu for closest')+16),true);
+                findStores(data.slice(data.indexOf('menu for closest')+16),true,true);
                 return;
             }
             
@@ -70,7 +71,7 @@ rl.on(
             }
             
             if(data.indexOf('order ')>-1){
-                order(data.slice(data.indexOf('order ')+6),true);
+                orderPizza(data.slice(data.indexOf('order ')+6),true);
                 return;
             }
             
@@ -109,6 +110,7 @@ function help(){
 
 function showMenu(storeID,quick){
     console.log('Fetching menu for '+storeID.info+'...');
+    order.Order.StoreID=storeID
     rl.prompt();
     
     dominos.store.menu(
@@ -195,7 +197,7 @@ function showMenu(storeID,quick){
     );
 }
 
-function findStores(address, closest){
+function findStores(address, closest, menu, fullMenu){
     console.log('Looking for stores near '+address.info+'...');
     rl.prompt();
     
@@ -203,6 +205,7 @@ function findStores(address, closest){
         address, 
         function(storeData){
             var openStores=[];
+            order.Order.Address=storeData.result.Address;
             
             for(var i in storeData.result.Stores){
                 if(storeData.result.Stores[i].IsOpen && 
@@ -222,10 +225,11 @@ function findStores(address, closest){
             
             if(closest){
                 count=1;
+                order.Order.StoreID=openStores[0].StoreID
             }
             console.log('\n');
             for(var i=0; i<count; i++){
-                var store=storeData.result.Stores[i];
+                var store=openStores[i];
                 
                 console.log(
                     '###############################################################\n'.blue+
@@ -239,11 +243,54 @@ function findStores(address, closest){
             }
             
             rl.prompt();
+            
+            if(!menu && !fullMenu)
+                return;
+            
+            if(menu){
+                showMenu(
+                    openStores[0].StoreID,
+                    true
+                );
+                return;
+            }
+            
+            if(fullMenu){
+                showMenu(
+                    openStores[0].StoreID
+                );
+                return;
+            }
         }
     );
 }
 
-function order(items){
+function orderPizza(items){
     var items=items.split(',');
-    console.log(items);
+    for(var i=0; i<items.length; i++){
+        //create a new product to add to the order
+        var product=new dominos.class.Product();
+
+        //set the product code using the random item key 
+        product.Code=items[i].trim();
+
+        //add the item to the order
+        order.Order.Products.push(product);
+    }
+    
+    console.log(order);
+    
+    if(!order.Order.Address.Street){
+        rl.question(
+            'what is the full address for delivery?',
+            validateOrder
+        );
+        return;
+    }
+    
+    
+}
+
+function validateOrder(address){
+    console.log(address);
 }
