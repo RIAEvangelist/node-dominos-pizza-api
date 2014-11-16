@@ -323,7 +323,12 @@ vows.describe('node-expat').addBatch({
 	    p.parse('');
 	    assert.ok(true, "Did not segfault");
 	},
-
+    'Escaping of ampersands': function() {
+	    expect('<e>foo &amp; bar</e>',
+		[['startElement', 'e', {}],
+		['text', 'foo & bar'],
+		['endElement', 'e']])
+    },
 	'parsing twice the same document with the same parser instance should be fine': 'reset() not yet implemented'
 	/*function() {
 	   var p = new expat.Parser("UTF-8");
