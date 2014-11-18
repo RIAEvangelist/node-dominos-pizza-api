@@ -197,6 +197,25 @@ function showMenu(storeID,quick){
     );
 }
 
+function validateAddress(address){
+    console.log(address);
+    dominos.store.find(
+        address, 
+        function(storeData){
+            order.Order.Address=storeData.result.Address;
+            if(!order.Order.Address.Street){
+                rl.question(
+                    'Not a valid address.'.red+' What is the full address for delivery?',
+                    validateAddress
+                );
+                return;
+            }
+            
+            validateOrder(order);
+        }
+    );
+}
+
 function findStores(address, closest, menu, fullMenu){
     console.log('Looking for stores near '+address.info+'...');
     rl.prompt();
@@ -278,19 +297,207 @@ function orderPizza(items){
         order.Order.Products.push(product);
     }
     
-    console.log(order);
-    
     if(!order.Order.Address.Street){
         rl.question(
             'what is the full address for delivery?',
-            validateOrder
+            validateAddress
         );
         return;
     }
     
-    
+    validateOrder();
 }
 
-function validateOrder(address){
-    console.log(address);
+function validateOrder(){
+    if(!order.Order.FirstName){
+        rl.question(
+            'First Name?',
+            function(data){
+                order.Order.FirstName=data;
+                validateOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.LastName){
+        rl.question(
+            'Last Name?',
+            function(data){
+                order.Order.LastName=data;
+                validateOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Email){
+        rl.question(
+            'E-Mail?',
+            function(data){
+                order.Order.Email=data;
+                validateOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Phone){
+        rl.question(
+            'Phone number?',
+            function(data){
+                order.Order.Phone=data;
+                validateOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Phone){
+        rl.question(
+            'Phone number?',
+            function(data){
+                order.Order.Phone=data;
+                validateOrder();
+            }
+        );
+        return;
+    }
+    
+    dominos.order.validate(
+        order,
+        validatedOrder
+    );
+}
+
+function validatedOrder(data){
+    order=orderData.result;
+    
+    dominos.order.price(
+        order,
+        pricedOrder
+    );
+}
+
+function pricedOrder(priceData) {
+    console.log(priceData.result.Order.Amounts);
+    
+    var cardInfo = new dominos.class.Payment();
+    cardInfo.Amount = priceData.result.Order.Amounts.Customer;
+    order.Order.Payments.push(cardInfo);
+    
+    placeOrder();
+}
+
+function validateCC(number){
+    var re = {
+        visa        : /^4[0-9]{12}(?:[0-9]{3})?$/,
+        mastercard  : /^5[1-5][0-9]{14}$/,
+        amex        : /^3[47][0-9]{13}$/,
+        diners      : /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+        discover    : /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+        jcb         : /^(?:2131|1800|35\d{3})\d{11}$/,
+        enroute     : /^(?:2014|2149)\d{11}$/
+    };
+    
+    if (re.visa.test(number))
+        return 'VISA';
+   
+    if (re.mastercard.test(number))
+        return 'MASTERCARD';
+    
+    if (re.amex.test(number))
+        return 'AMEX';
+    
+    if (re.diners.test(number))
+        return 'DINERS';
+    
+    if (re.discover.test(number))
+        return 'DISCOVER';
+    
+    if (re.jcb.test(number))
+        return 'JCB';
+    
+    if (re.enroute.test(number))
+        return 'JCB';
+    
+    return "";
+}
+
+function placeOrder(){
+    if(!order.Order.Payments[0].Number){
+        rl.question(
+            'Credit Card Number?',
+            function(data){
+                order.Order.Payments[0].Number = data;
+                order.Order.Payments[0].CardType = validateCC(data);
+                placeOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Payments[0].Expiration){
+        rl.question(
+            'Credit Card Expiration?',
+            function(data){
+                order.Order.Payments[0].Expiration = data.replace(/\D/g,'');
+                placeOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Payments[0].SecurityCode){
+        rl.question(
+            'Credit Card Security Code or CVV (3 or 4 digit code on card)?',
+            function(data){
+                order.Order.Payments[0].SecurityCode = data;
+                placeOrder();
+            }
+        );
+        return;
+    }
+    
+    if(!order.Order.Payments[0].PostalCode){
+        rl.question(
+            'Postal Code?',
+            function(data){
+                order.Order.Payments[0].PostalCode = data;
+                placeOrder();
+            }
+        );
+        rl.write(order.Order.Address.PostalCode);
+        return;
+    }
+
+    dominos.order.place(order, orderPlaced);
+}
+
+function orderPlaced(data){
+    order=data.result;
+    if(orderData.result.Order.Status==-1){
+        console.log(order.Order.CorrectiveAction);
+        rl.prompt();
+        return;
+    }    
+    
+    trackOrder();
+}
+
+function trackOrder(){
+    dominos.track.orderKey(
+        order.Order.OrderID,
+        order.Order.StoreID,
+        function(pizzaData){
+            readline.cursorTo(process.stdout, 0, 0);
+            readline.clearScreenDown(process.stdout);
+            
+            console.log(JSON.stringify(pizzaData.orders));
+            setTimeout(
+                trackOrder,
+                15000
+            );
+        }
+    );
 }

@@ -95,7 +95,12 @@ function orderPlaced(orderData){
     
     //incase it fails check the StatusItems
     if(orderData.result.Order.Status==-1){
-        console.log('\n###### NO PIZZA FOR YOU! ######\n',orderData.result.Order.StatusItems,'\n#########################\n\n');
+        console.log(
+            '\n###### NO PIZZA FOR YOU! ######\n',
+            orderData.result.Order.StatusItems,'\n',
+            orderData.Order.CorrectiveAction,
+            '\n#########################\n\n'
+        );
         return;
     }
     
