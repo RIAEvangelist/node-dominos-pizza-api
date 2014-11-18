@@ -93,7 +93,7 @@ function help(){
         'full menu for closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
         'menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
         'full menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
-        'order'.bgCyan+' {comma deliminated list of items codes}'.info+' *not implemented yet //get item codes from menu'
+        'order'.bgCyan+' {comma deliminated list of item codes}'.info+' //get item codes from menu'
     ];
     
     for(var i in commands){
