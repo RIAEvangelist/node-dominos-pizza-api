@@ -1,105 +1,112 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+var EventEmitter = require('events').EventEmitter
+var util = require('util')
 // Only support nodejs v0.6 and on so no need to look for older module location
-var expat = require('bindings')('node_expat');
-var Stream = require('stream').Stream;
+var expat = require('bindings')('node_expat')
+var Stream = require('stream').Stream
 
 var Parser = function(encoding) {
-  this.parser = new expat.Parser(encoding);
-  this.parser.emit = this.emit.bind(this);
+  this.encoding = encoding
+  this._getNewParser()
+  this.parser.emit = this.emit.bind(this)
 
-  //stream API
-  this.writable = true;
-  this.readable = true;
-};
-util.inherits(Parser, Stream);
+  // Stream API
+  this.writable = true
+  this.readable = true
+}
+util.inherits(Parser, Stream)
+
+Parser.prototype._getNewParser = function() {
+    this.parser = new expat.Parser(this.encoding)
+}
 
 Parser.prototype.parse = function(buf, isFinal) {
-  return this.parser.parse(buf, isFinal);
-};
+  return this.parser.parse(buf, isFinal)
+}
 
 Parser.prototype.setEncoding = function(encoding) {
-  return this.parser.setEncoding(encoding);
-};
+  this.encoding = encoding
+  return this.parser.setEncoding(this.encoding)
+}
 
 Parser.prototype.setUnknownEncoding = function(map, convert) {
-  return this.parser.setUnknownEncoding(map, convert);
-};
+  return this.parser.setUnknownEncoding(map, convert)
+}
 
 Parser.prototype.getError = function() {
-  return this.parser.getError();
-};
+  return this.parser.getError()
+}
 Parser.prototype.stop = function() {
-  return this.parser.stop();
-};
+  return this.parser.stop()
+}
 Parser.prototype.pause = function() {
-  return this.stop();
-};
+  return this.stop()
+}
 Parser.prototype.resume = function() {
-  return this.parser.resume();
-};
+  return this.parser.resume()
+}
 
 Parser.prototype.destroy = function() {
-  this.parser.stop();
-  this.end();
-};
+  this.parser.stop()
+  this.end()
+}
 
 Parser.prototype.destroySoon = function() {
-  this.destroy();
-};
+  this.destroy()
+}
 
 Parser.prototype.write = function(data) {
-    var error, result;
+    var error, result
     try {
-	result = this.parse(data);
+	result = this.parse(data)
 	if (!result)
-	    error = this.getError();
+	    error = this.getError()
     } catch (e) {
-	error = e;
+	error = e
     }
     if (error) {
-	this.emit('error', error);
-	this.emit('close');
+        this.emit('error', error)
+        this.emit('close')
     }
-    return result;
-};
+    return result
+}
 
 Parser.prototype.end = function(data) {
-    var error, result;
+    var error, result
     try {
-	result = this.parse(data || "", true);
+	result = this.parse(data || '', true)
 	if (!result)
-	    error = this.getError();
+      error = this.getError()
     } catch (e) {
-	error = e;
+      error = e
     }
 
-    if (!error)
-	this.emit('end');
-    else
-	this.emit('error', error);
-    this.emit('close');
-};
+    if (!error) {
+	  this.emit('end')
+    } else {
+	  this.emit('error', error)
+    }
+    this.emit('close')
+}
 
 Parser.prototype.reset = function() {
-    return this.parser.reset();
-};
+    return this.parser.reset()
+}
 Parser.prototype.getCurrentLineNumber = function() {
-    return this.parser.getCurrentLineNumber();
-};
+    return this.parser.getCurrentLineNumber()
+}
 Parser.prototype.getCurrentColumnNumber = function() {
-    return this.parser.getCurrentColumnNumber();
-};
+    return this.parser.getCurrentColumnNumber()
+}
 Parser.prototype.getCurrentByteIndex = function() {
-    return this.parser.getCurrentByteIndex();
-};
+    return this.parser.getCurrentByteIndex()
+}
 
-//Exports
-
-exports.Parser = Parser;
+exports.Parser = Parser
 
 exports.createParser = function(cb) {
-  var parser = new Parser();
-  if(cb)  { parser.on('startElement', cb); }
-  return parser;
-};
+  var parser = new Parser()
+  if (cb) {
+      parser.on('startElement', cb)
+  }
+  return parser
+}

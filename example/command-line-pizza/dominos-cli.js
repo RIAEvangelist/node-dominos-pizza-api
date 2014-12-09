@@ -75,6 +75,12 @@ rl.on(
                 return;
             }
             
+            if(data.indexOf('track ')>-1){
+                order.Order.Phone=data.slice(data.indexOf('track ')+6).trim();
+                trackOrder();
+                return;
+            }            
+            
             if(data.indexOf('help')>-1){
                 help();
                 return;
@@ -291,7 +297,7 @@ function orderPizza(items){
         var product=new dominos.class.Product();
 
         //set the product code using the random item key 
-        product.Code=items[i].trim();
+        product.Code=items[i].trim().toUpperCase();
 
         //add the item to the order
         order.Order.Products.push(product);
@@ -304,6 +310,8 @@ function orderPizza(items){
         );
         return;
     }
+    
+    console.log(order.Order.Products);
     
     validateOrder();
 }
@@ -371,7 +379,8 @@ function validateOrder(){
 }
 
 function validatedOrder(data){
-    order=orderData.result;
+    console.log(JSON.stringify(data));
+    order=data.result;
     
     dominos.order.price(
         order,
@@ -380,7 +389,7 @@ function validatedOrder(data){
 }
 
 function pricedOrder(priceData) {
-    console.log(priceData.result.Order.Amounts);
+    console.log(priceData);
     
     var cardInfo = new dominos.class.Payment();
     cardInfo.Amount = priceData.result.Order.Amounts.Customer;
@@ -476,7 +485,8 @@ function placeOrder(){
 
 function orderPlaced(data){
     order=data.result;
-    if(orderData.result.Order.Status==-1){
+    if(data.result.Order.Status==-1){
+        console.log(JSON.stringify(data));
         console.log(order.Order.CorrectiveAction);
         rl.prompt();
         return;
@@ -486,14 +496,24 @@ function orderPlaced(data){
 }
 
 function trackOrder(){
-    dominos.track.orderKey(
-        order.Order.OrderID,
-        order.Order.StoreID,
+    dominos.track.phone(
+        order.Order.Phone,
         function(pizzaData){
             readline.cursorTo(process.stdout, 0, 0);
             readline.clearScreenDown(process.stdout);
             
             console.log(JSON.stringify(pizzaData.orders));
+            console.log(
+                pizzaData.orders.OrderStatus.OrderDescription.bgCyan,
+                'status : '+pizzaData.orders.OrderStatus.OrderStatus.bgGreen
+            );
+            
+            if(typeof pizzaData.orders.OrderStatus.DriverName == 'string'){
+                console.log(
+                    'Driver Name : '+pizzaData.orders.OrderStatus.DriverName.bgGreen
+                );
+            }
+        
             setTimeout(
                 trackOrder,
                 15000
