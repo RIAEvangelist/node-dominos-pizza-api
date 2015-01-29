@@ -11,7 +11,8 @@
     "url": "git://github.com/RIAEvangelist/node-dominos-pizza-api.git"
   },
   "dependencies": {
-    "xml2json": "^0.5.1"
+    "xml2json": "^0.5.1",
+    "request": "^2.50.0"
   },
   "keywords": [
     "Dominos",
