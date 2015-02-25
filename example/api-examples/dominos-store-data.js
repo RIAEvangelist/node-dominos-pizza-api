@@ -16,6 +16,15 @@ dominos.store.find(
     }
 );
 
+//Get stores near an exact multi-line address, they will be sorted by distance
+dominos.store.find(
+    ['1600 Pennsylvania Ave NW', 'Washington, DC 20500'], //address to search for nearby stores
+    function(storeData){ //callback to run when api returns
+        console.log('\n\n########################\nDomino\'s Near Multi-Line Address Sorted by distance\n########################\n', storeData,  '\n-------------------------\n', storeData.result.Stores,'\n############\n');
+    }
+);
+
+
 //Get Store Info for Store #4336
 dominos.store.info(
     4336, //storeID
