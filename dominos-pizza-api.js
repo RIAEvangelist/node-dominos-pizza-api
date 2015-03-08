@@ -4,7 +4,7 @@ var api={};
 api.track="https://trkweb.dominos.com/orderstorage/GetTrackerData?"
 
 api.store={};
-api.store.find='https://order.dominos.com/power/store-locator?s=${address}&type=${type}';
+api.store.find='https://order.dominos.com/power/store-locator?s=${line1}&c=${line2}&type=${type}';
 api.store.info='https://order.dominos.com/power/store/${storeID}/profile';
 api.store.menu='https://order.dominos.com/power/store/${storeID}/menu?lang=${lang}&structured=true';
 
@@ -73,10 +73,16 @@ function findStores(address, callback, type) {
     if(!type)
         type='all';
     
+    if(typeof address== "string")
+        address = [address, ' '];
+
     requestJSONAPI(
         api.store.find.replace(
-            '${address}',
-            encodeURI(address)
+            '${line1}',
+            encodeURI(address[0])
+        ).replace(
+            '${line2}',
+            encodeURI(address[1])
         ).replace(
             '${type}',
             type
