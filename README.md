@@ -8,9 +8,9 @@ Install Domino's API
 ====
 npm install dominos
 
-![NPM Stats for dominos api](https://nodei.co/npm/dominos.png?downloads=true&downloadRank=true&stars=true)
-![NPM Download Graph for dominos api](https://nodei.co/npm-dl/dominos.png?months=6&height=3)
-
+[![NPM Stats for dominos api](https://nodei.co/npm/dominos.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dominos)
+[![NPM Download Graph for dominos api](https://nodei.co/npm-dl/dominos.png?months=6&height=3)](https://www.npmjs.com/package/dominos)
+[![dominos api package quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)
 Finding Nearby Domino's Locations
 ====
 
