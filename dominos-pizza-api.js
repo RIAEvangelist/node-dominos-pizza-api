@@ -1,4 +1,4 @@
-var request = require('request');
+var httpJson = require('./src/http-json');
 var parser = require('xml2json');
 var api={};
 api.track="https://trkweb.dominos.com/orderstorage/GetTrackerData?"
@@ -21,12 +21,8 @@ function validateOrder(order, callback) {
             );
         return;
     }
-    
-    postJSONAPI(
-        api.order.validate,
-        order,
-        callback
-    );
+
+    httpJson.post(api.order.validate, order, callback);
 }
 
 function priceOrder(order, callback) {
@@ -37,12 +33,8 @@ function priceOrder(order, callback) {
             );
         return;
     }
-    
-    postJSONAPI(
-        api.order.price,
-        order,
-        callback
-    );
+
+    httpJson.post(api.order.price, order, callback);
 }
 
 function placeOrder(order, callback) {
@@ -53,12 +45,8 @@ function placeOrder(order, callback) {
             );
         return;
     }
-    
-    postJSONAPI(
-        api.order.place,
-        order,
-        callback
-    );
+
+    httpJson.post(api.order.place, order, callback);
 }
 
 function findStores(address, callback, type) {
@@ -76,19 +64,11 @@ function findStores(address, callback, type) {
     if(typeof address== "string")
         address = [address, ' '];
 
-    requestJSONAPI(
-        api.store.find.replace(
-            '${line1}',
-            encodeURI(address[0])
-        ).replace(
-            '${line2}',
-            encodeURI(address[1])
-        ).replace(
-            '${type}',
-            type
-        ),
-        callback
-    );
+    var url = api.store.find.replace('${line1}', encodeURI(address[0]))
+                            .replace('${line2}', encodeURI(address[1]))
+                            .replace('${type}', type);
+
+    httpJson.get(url, callback);
 }
 
 function getStoreInfo(storeID, callback) {
@@ -99,14 +79,8 @@ function getStoreInfo(storeID, callback) {
             );
         return;
     }
-    
-    requestJSONAPI(
-        api.store.info.replace(
-            '${storeID}',
-            storeID
-        ),
-        callback
-    );
+
+    httpJson.get(api.store.info.replace('${storeID}', storeID), callback);
 }
 
 function getStoreMenu(storeID, callback, lang) {
@@ -120,18 +94,12 @@ function getStoreMenu(storeID, callback, lang) {
     }
     
     if(!lang)
-        lang='en';
-    
-    requestJSONAPI(
-        api.store.menu.replace(
-            '${storeID}',
-            storeID
-        ).replace(
-            '${lang}',
-            lang
-        ),
-        callback
-    );
+        lang = 'en';
+
+    var url = api.store.menu.replace('${storeID}', storeID)
+                            .replace('${lang}', lang);
+
+    httpJson.get(url, callback);
 }
 
 function trackPizzaByPhone(phone, callback) {
@@ -142,11 +110,8 @@ function trackPizzaByPhone(phone, callback) {
             );
         return;
     }
-    
-    trackPizza(
-        api.track+"Phone=" + phone,
-        callback
-    );
+
+    trackPizza(api.track + "Phone=" + phone, callback);
 }
 
 function trackPizzaByID(storeID, orderKey, callback) {
@@ -158,108 +123,10 @@ function trackPizzaByID(storeID, orderKey, callback) {
         return;
     }
     
-    trackPizza(
-        api.track+"StoreID="+storeID+"&OrderKey="+orderKey,
-        callback
-    );
+    trackPizza(api.track + "StoreID=" + storeID + "&OrderKey=" + orderKey, callback);
 }
 
-function postJSONAPI(url,order,callback){
-    if(typeof order!= "string")
-        order=JSON.stringify(order);
-    
-    request.post(
-        {
-            uri:url,
-            headers:{
-                Referer:'https://order.dominos.com/en/pages/order/',
-                "Content-Type": 'application/json'
-            },
-            body:order
-        },
-        function (error, response, body) {
-            var data={
-                success:true
-            };
-            
-            if (error){
-                data.success=false;
-                data.error=error;
-                callback(data);
-                return;
-            }
-            
-            if (response.statusCode !== 200){
-                data.success=false;
-                data.error={
-                    message:'HTML Status Code Error',
-                    code:response.statusCode
-                };
-                callback(data);
-                return;
-            }
-            
-            try{
-                data.result=JSON.parse(body);
-            }catch(err){
-                data.success=false;
-                data.error={
-                    message:'Could not parse API return',
-                    err:err
-                };
-            }
-            
-            callback(data);
-        }
-    );
-}
-
-function requestJSONAPI(url,callback){
-    request.get(
-        {
-            uri:url,
-            headers:{
-                'Referer':'https://order.dominos.com/en/pages/order/'
-            }
-        },
-        function (error, response, body) {
-            var data={
-                success:true
-            };
-            
-            if (error){
-                data.success=false;
-                data.error=error;
-                callback(data);
-                return;
-            }
-            
-            if (response.statusCode !== 200){
-                data.success=false;
-                data.error={
-                    message:'HTML Status Code Error',
-                    code:response.statusCode
-                };
-                callback(data);
-                return;
-            }
-            
-            try{
-                data.result=JSON.parse(body);
-            }catch(err){
-                data.success=false;
-                data.error={
-                    message:'Could not parse API return',
-                    err:err
-                };
-            }
-            
-            callback(data);
-        }
-    );
-}
-
-function trackPizza(url,callback){
+function trackPizza(url, callback){
     request.get(
         url,
         function (error, response, body) {
@@ -402,24 +269,24 @@ function APIError(message){
     }
 }
 
-module.exports={
-    class:{
-        Order:Order,
-        Product:Product,
-        Payment:Payment
+module.exports= {
+    class: {
+        Order: Order,
+        Product: Product,
+        Payment: Payment
     },
-    track:{
-        phone:trackPizzaByPhone,
-        orderKey:trackPizzaByID
+    track: {
+        phone: trackPizzaByPhone,
+        orderKey: trackPizzaByID
     },
-    store:{
-        find:findStores,
-        info:getStoreInfo,
-        menu:getStoreMenu
+    store: {
+        find: findStores,
+        info: getStoreInfo,
+        menu: getStoreMenu
     },
-    order:{
-        validate:validateOrder,
-        price:priceOrder,
-        place:placeOrder
+    order: {
+        validate: validateOrder,
+        price: priceOrder,
+        place: placeOrder
     }
 };
