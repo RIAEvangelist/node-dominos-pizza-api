@@ -1,7 +1,10 @@
-var urls = require('urls.json');
+var urls = require('./urls.json');
+var httpJson = require('./http-json');
 
-function Order(Customer, Address, Store) {
-    this.Address = Address;
+exports = function(parameters) {
+    var Customer = parameters.Customer;
+
+    this.Address = parameters.Address;
     this.Coupons = [];
     this.CustomerID = Customer.ID;
     this.Email = Customer.Email;
@@ -18,7 +21,7 @@ function Order(Customer, Address, Store) {
     this.Products = [];
     this.ServiceMethod = "Delivery";
     this.SourceOrganizationURI = "order.dominos.com";
-    this.StoreID = Store.ID;
+    this.StoreID = parameters.Store.ID;
     this.Tags = {};
     this.Version = "1.0";
     this.NoCombine = true;

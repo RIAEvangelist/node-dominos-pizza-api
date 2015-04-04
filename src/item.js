@@ -1,7 +1,7 @@
-/**
- * Created by Maddie on 4/1/2015.
- */
-
-function Item() {
-
+function Item(parameters) {
+    this.Code = parameters.code;
+    this.Qty = parameters.quantity;
+    this.ID = false;
+    this.isNew = true;
+    this.Options = parameters.options;
 }
