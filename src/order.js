@@ -41,10 +41,11 @@ Order.prototype.removeItem = function(Item) {  //Remove product from Order
   }
 };
 
-Order.prototype.validateOrder = function(callback) {  //Validate Order
+Order.prototype.validate = function(callback) {  //Validate Order
   if( !order || !callback) {
       if(callback) {
         callback({
+          success: false,
           message: "Order object is required!"
         });
       }
@@ -54,13 +55,12 @@ Order.prototype.validateOrder = function(callback) {  //Validate Order
   httpJson.post(urls.order.validate, JSON.stringify(this), callback);
 };
 
-Order.prototype.priceOrder = function(callback) {
+Order.prototype.price = function(callback) {
   if( !order || !callback) {
       if(callback) {
         callback({
-          error: {
-            message: "Order object is required!"
-          }
+          success: false
+          message: "Order object is required!"
         });
       }
       return;
@@ -68,10 +68,11 @@ Order.prototype.priceOrder = function(callback) {
 
   httpJson.post(urls.order.price, JSON.stringify(this), callback);
 };
-Order.prototype.placeOrder = function(callback) {
+Order.prototype.place = function(callback) {
   if( !order || !callback) {
       if(callback) {
         callback({
+          success: false,
           message: "Order object is required!"
         });
       }

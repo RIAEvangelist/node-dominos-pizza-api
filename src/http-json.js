@@ -15,17 +15,17 @@ exports.post = function(url, req, callback) {
 
     http.post(requestBody, function (error, res, body) {
             if (error) {
-                callback({ success: false, error: error });
+                callback({
+                  success: false,
+                  message: error
+                });
                 return;
             }
 
             if (res.statusCode !== 200) {
                 callback({
                     success: false,
-                    error: {
-                        message: 'HTML Status Code Error',
-                        code: res.statusCode
-                    }
+                    message: 'HTML Status Code Error ' + res.statusCode,
                 });
                 return;
             }
@@ -36,13 +36,10 @@ exports.post = function(url, req, callback) {
                     result: JSON.parse(body)
                 });
             }
-            catch(err){
+            catch(error){
                 callback({
                     success: false,
-                    error: {
-                        message: 'Could not parse API return',
-                        err: err
-                    }
+                    message: error,
                 });
             }
 
@@ -54,24 +51,21 @@ exports.get = function(url, callback){
     var requestBody = {
         uri: url,
         headers: {
-            'Referer':'https://order.dominos.com/en/pages/order/'
+            'Referer': 'https://order.dominos.com/en/pages/order/'
         }
     };
     http.get(requestBody, function (error, res, body) {
             if (error){  //If request errored out.
                 callback({
                     success: false,
-                    error: error
+                    message: error
                 });
                 return;
             }
             if (res.statusCode !== 200){  //If request didn't error but response isn't status code 200.
                 callback({
                     success: false,
-                    error: {
-                        message: 'HTML Status Code Error',
-                        code: res.statusCode
-                    }
+                    message: 'HTML Status Code Error ' + res.statusCode,
                 });
                 return;
             }
@@ -82,13 +76,10 @@ exports.get = function(url, callback){
                     result: JSON.parse(body)
                 });
             }
-            catch(err) {  //If successful but parsing errored.
+            catch(error) {  //If successful but parsing errored.
                 callback({
-                    success: false,
-                    error: {
-                        message: 'Could not parse API return',
-                        err: err
-                    }
+                  success: false,
+                  message: error,
                 });
             }
         }

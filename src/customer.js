@@ -1,3 +1,6 @@
+var urls = require('./urls.json');
+var httpJson = require('./http-json');
+
 exports = function(parameters) {
     this.ID = "";
     this.firstName = parameters.firstName;
@@ -6,24 +9,22 @@ exports = function(parameters) {
     this.address = parameters.Address;
 }
 
-Customer.prototype.findNearbyStores = function(address, callback, type) {
+Customer.prototype.findNearbyStores = function(address, pickUpType, callback) {
     if( !address || !callback){
         if(callback)
-            callback(
-                APIError("At least a partial address ( minimum accepted is zipcode ),  and callback are required to find stores")
-            );
+            callback({
+              success: false,
+              message: "At least a partial address (minimum accepted is zipcode) is required to find stores")
+            });
         return;
     }
 
-    if(!type)
-        type='all';
-
-    if(typeof address== "string")
+    if(typeof address == "string")
         address = [address, ' '];
 
-    var url = api.store.find.replace('${line1}', encodeURI(address[0]))
+    var url = urls.store.find.replace('${line1}', encodeURI(address[0]))
         .replace('${line2}', encodeURI(address[1]))
-        .replace('${type}', type);
+        .replace('${type}', pickUpType);
 
     httpJson.get(url, callback);
 };

@@ -8,9 +8,10 @@ exports = function() {
 Store.prototype.getInfo = function(callback) {
     if( !storeID || !callback){
         if(callback)
-            callback(
-                APIError("A storeID, and callback are required to get store info")
-            );
+            callback({
+                success: false,
+                message: "A storeID, and callback are required to get store info"
+            });
         return;
     }
 
@@ -20,9 +21,10 @@ Store.prototype.getInfo = function(callback) {
 Store.prototype.getMenu = function(callback, lang) {
     if( !storeID || !callback){
         if(callback)
-            callback(
-                APIError("A storeID, and callback are required to get a store menu")
-            );
+            callback({
+                success: false,
+                message: "A storeID, and callback are required to get a store menu"
+            });
         return;
     }
 

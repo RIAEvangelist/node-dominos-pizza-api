@@ -5,9 +5,8 @@ exports.byPhone = function(phone, callback) {
     if( !phone || !callback) {
         if(callback) {
             callback({
-                error: {
-                    message: "Phone is required!"
-                }
+                success: false,
+                message: "Phone is required!"
             });
         }
         return;
@@ -19,9 +18,10 @@ exports.byPhone = function(phone, callback) {
 exports.byId = function(storeID, orderKey, callback) {
     if(!storeID || !orderKey || !callback){
         if(callback)
-            callback(
-                APIError("storeID, orderKey, and callback are all required to get pizza info using the orderKey")
-            );
+            callback({
+                success: false,
+                message: "storeID, orderKey, and callback are all required to get pizza info using the orderKey"
+            });
         return;
     }
 
@@ -35,7 +35,7 @@ exports.byUrl = function(url, callback){
             if (error) {
                 callback({
                     success: false,
-                    error: error
+                    message: error
                 });
                 return;
             }
@@ -43,10 +43,7 @@ exports.byUrl = function(url, callback){
             if (response.statusCode !== 200){
                 callback({
                     success: false,
-                    error: {
-                        message:'HTML Status Code Error',
-                        code:response.statusCode
-                    }
+                    message:'HTML Status Code Error ' + response.statusCode,
                 });
                 return;
             }
@@ -64,10 +61,8 @@ exports.byUrl = function(url, callback){
             if(!result['soap:Envelope']){
                 callback({
                     success: false,
-                    error: {
-                        message: 'API soap:Envelope not present',
-                        data: result
-                    }
+                    message: 'API soap:Envelope not present',
+                    data: result
                 });
                 return;
             }
@@ -75,10 +70,8 @@ exports.byUrl = function(url, callback){
             if(!result['soap:Envelope']['soap:Body']){
                 callback({
                     success: false,
-                    error: {
-                        message: 'API soap:Body not present',
-                        data: result
-                    }
+                    message: 'API soap:Body not present',
+                    data: result
                 });
                 return;
             }
@@ -86,10 +79,8 @@ exports.byUrl = function(url, callback){
             if(!result['soap:Envelope']['soap:Body'].GetTrackerDataResponse){
                 callback({
                     success: false,
-                    error: {
-                        message:'API GetTrackerDataResponse not present',
-                        data: result
-                    }
+                    message:'API GetTrackerDataResponse not present',
+                    data: result
                 });
                 return;
             }
