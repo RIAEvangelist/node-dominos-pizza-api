@@ -16,5 +16,6 @@ module.exports = {
     Customer: require('./src/Customer'),
     Store: require('./src/Store'),
     Track: require('./src/Track'),
+    Item: require('./src/Item'),
     Payment: Payment
 };

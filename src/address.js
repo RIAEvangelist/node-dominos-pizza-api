@@ -4,7 +4,7 @@ exports = function(parameters) {
     this.Region = parameters.region;
     this.PostalCode = parameters.postalCode;
     this.Type = "House";
-}
+};
 
 Address.prototype.parseCityStateZip = function(locationString) {
     return "";  //Not implemented, yet.

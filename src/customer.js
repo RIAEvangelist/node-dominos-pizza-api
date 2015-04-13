@@ -6,16 +6,18 @@ exports = function(parameters) {
     this.firstName = parameters.firstName;
     this.lastName = parameters.lastName;
     this.email = parameters.email;
-    this.address = parameters.Address;
-}
+    this.address = parameters.address;
+    this.phone = parameters.phone;
+};
 
 Customer.prototype.findNearbyStores = function(address, pickUpType, callback) {
-    if( !address || !callback){
-        if(callback)
+    if(!address || !callback) {
+        if(callback) {
             callback({
               success: false,
-              message: "At least a partial address (minimum accepted is zipcode) is required to find stores")
+              message: "At least a partial address (minimum accepted is zipcode) is required to find stores"
             });
+        }
         return;
     }
 
