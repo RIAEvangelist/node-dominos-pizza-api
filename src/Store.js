@@ -3,7 +3,7 @@ var urls = require('./urls.json');
 
 var Store = function() {
     this.ID = "";
-};
+}
 
 Store.prototype.getInfo = function(callback) {
     if( !storeID || !callback){
@@ -55,4 +55,4 @@ Store.prototype.findNearbyStores = function(address, pickUpType, callback) {
     httpJson.get(url, callback);
 };
 
-exports = Store;
+module.exports = Store;

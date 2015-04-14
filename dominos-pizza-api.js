@@ -12,7 +12,6 @@ function Payment() {  //Probably going to change this so no bother in making its
 
 module.exports = {
     Order: require('./src/Order'),
-    Product: require('./src/Product'),
     Customer: require('./src/Customer'),
     Store: require('./src/Store'),
     Track: require('./src/Track'),

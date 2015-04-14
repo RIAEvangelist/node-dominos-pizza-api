@@ -1,6 +1,6 @@
 var http = require('request');
 
-exports.post = function(url, req, callback) {
+module.exports.post = function(url, req, callback) {
     if(typeof req !=  "string")
         req = JSON.stringify(req);
 
@@ -47,7 +47,7 @@ exports.post = function(url, req, callback) {
     );
 }
 
-exports.get = function(url, callback){
+module.exports.get = function(url, callback){
     var requestBody = {
         uri: url,
         headers: {

@@ -10,4 +10,4 @@ Address.prototype.parseCityStateZip = function(locationString) {
     return "";  //Not implemented, yet.
 };
 
-exports = Address;
+module.exports = Address;

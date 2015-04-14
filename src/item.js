@@ -6,4 +6,4 @@ var Item = function(parameters) {
     this.Options = parameters.options;
 }
 
-exports = Item;
+module.exports = Item;

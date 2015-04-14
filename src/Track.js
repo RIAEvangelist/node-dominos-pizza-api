@@ -1,7 +1,7 @@
 var urls = require('./urls.json');
 var request = require('request');
 
-exports.byPhone = function(phone, callback) {
+module.exports.byPhone = function(phone, callback) {
     if( !phone || !callback) {
         if(callback) {
             callback({
@@ -15,7 +15,7 @@ exports.byPhone = function(phone, callback) {
     this.byUrl(urls.track + "Phone=" + phone, callback);
 };
 
-exports.byId = function(storeID, orderKey, callback) {
+module.exports.byId = function(storeID, orderKey, callback) {
     if(!storeID || !orderKey || !callback){
         if(callback)
             callback({
@@ -28,7 +28,7 @@ exports.byId = function(storeID, orderKey, callback) {
     this.byUrl(urls.track + "StoreID=" + storeID + "&OrderKey=" + orderKey, callback);
 };
 
-exports.byUrl = function(url, callback){
+module.exports.byUrl = function(url, callback){
     request.get(
         url,
         function (error, response, body) {

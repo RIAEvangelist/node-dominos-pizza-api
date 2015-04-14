@@ -18,4 +18,4 @@ Customer.prototype.findNearbyStores = function(callback) {
     httpJson.get(url, callback);
 };
 
-exports = Customer;
+module.exports = Customer;

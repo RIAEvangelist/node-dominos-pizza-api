@@ -1,6 +1,6 @@
 var urls = require('./urls.json');
 var httpJson = require('./http-json');
-var config = require('../../conf/config.json');
+var config = require('../../../conf/config.json');
 var stripe = require('stripe')(
 	"%STRIPE_API_KEY%".replace("%STRIPE_API_KEY%", config.stripe_key)
 );
@@ -150,4 +150,4 @@ Order.prototype.place = function(stripeToken, callback) {
 	});
 };
 
-exports = Order;
+module.exports = Order;
