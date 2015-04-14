@@ -1,4 +1,4 @@
-exports = function(parameters) {
+var Address = function(parameters) {
     this.Street = parameters.street;
     this.City = parameters.city;
     this.Region = parameters.region;
@@ -9,3 +9,5 @@ exports = function(parameters) {
 Address.prototype.parseCityStateZip = function(locationString) {
     return "";  //Not implemented, yet.
 };
+
+exports = Address;

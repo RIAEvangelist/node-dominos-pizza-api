@@ -5,7 +5,7 @@ var stripe = require('stripe')(
 	"%STRIPE_API_KEY%".replace("%STRIPE_API_KEY%", config.stripe_key)
 );
 
-exports = function(parameters) {
+var Order = function(parameters) {
 	if(parameters.customer) {
 		var Customer = parameters.customer;
 
@@ -149,3 +149,5 @@ Order.prototype.place = function(stripeToken, callback) {
 		}
 	});
 };
+
+exports = Order;
