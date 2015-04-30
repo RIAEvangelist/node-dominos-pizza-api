@@ -1,3 +1,5 @@
+'use strict';
+
 var urls = require('./urls.json');
 var httpJson = require('./http-json');
 var config = require('../../../conf/config.json');
@@ -21,8 +23,8 @@ var Order = function(parameters) {
 		this.OrderID = "";
 		this.OrderMethod = "Web";
 		this.OrderTaker = "";
-		this.Payments = [config.payment];  //All orders paid with one credit card
-		this.Phone = Customer.phone;
+		this.Payments = [];  //All orders paid with one credit card
+		this.Phone = "6366998620";
 		this.Products = [];
 		this.ServiceMethod = "Delivery";
 		this.SourceOrganizationURI = "order.dominos.com";
@@ -33,7 +35,6 @@ var Order = function(parameters) {
 		this.Partners = {};
 		this.NewUser = true;
 		this.metaData = {};
-		this.maxAllowedTip = parameters.maxAllowedTip;  //Expected in decimal form, not integer
 	}
 	if(parameters.order) {
 		var prevOrder = parameters.order;
@@ -50,8 +51,8 @@ var Order = function(parameters) {
 		this.OrderID = "";
 		this.OrderMethod = "Web";
 		this.OrderTaker = "";
-		this.Payments = [config.payment];
-		this.Phone = prevOrder.Phone;
+		this.Payments = [];
+		this.Phone = "6366998620";
 		this.Products = [];
 		this.ServiceMethod = "Delivery";
 		this.SourceOrganizationURI = "order.dominos.com";
@@ -62,7 +63,6 @@ var Order = function(parameters) {
 		this.Partners = {};
 		this.NewUser = true;
 		this.metaData = {};
-		this.maxAllowedTip = prevOrder.maxAllowedTip;  //Expected in decimal form, not integer
 	}
 };
 
@@ -80,15 +80,16 @@ Order.prototype.removeItem = function(Item) {  //Remove product from Order
 Order.prototype.validate = function(callback) {  //Validate Order
   if(!this.Products || !callback) {
 	  if(callback) {
-		callback({
-		  success: false,
-		  message: "At least one product must be added!"
-		});
+			callback({
+			  success: false,
+			  message: "At least one product must be added!"
+			});
 	  }
 	  return;
   }
 
   httpJson.post(urls.order.validate, JSON.stringify(this), function(response) {
+	  console.log(response);
 	  if(response.success) {
 		  console.log(response.result);
 	  }
@@ -98,15 +99,16 @@ Order.prototype.validate = function(callback) {  //Validate Order
 Order.prototype.price = function(callback) {
   if(!this.Products || !callback) {
 	  if(callback) {
-		callback({
-		  success: false,
-		  message: "At least one product must be added!"
-		});
+			callback({
+			  success: false,
+			  message: "At least one product must be added!"
+			});
 	  }
 	  return;
   }
 
   httpJson.post(urls.order.price, JSON.stringify(this), function(response) {
+	  console.log(response);
 	  if(response.success) {
 		  console.log(response.result);
 	  }

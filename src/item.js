@@ -1,3 +1,5 @@
+'use strict';
+
 var Item = function(parameters) {
     this.Code = parameters.code;
     this.Qty = parameters.quantity;

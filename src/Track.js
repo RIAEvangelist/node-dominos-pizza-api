@@ -1,3 +1,5 @@
+'use strict';
+
 var urls = require('./urls.json');
 var request = require('request');
 

@@ -12,7 +12,6 @@ module.exports.post = function(url, req, callback) {
         },
         body: req
     };
-
     http.post(requestBody, function (error, res, body) {
             if (error) {
                 callback({
@@ -25,7 +24,7 @@ module.exports.post = function(url, req, callback) {
             if (res.statusCode !== 200) {
                 callback({
                     success: false,
-                    message: 'HTML Status Code Error ' + res.statusCode,
+                    message: 'HTML Status Code Error ' + res.statusCode
                 });
                 return;
             }
@@ -39,7 +38,7 @@ module.exports.post = function(url, req, callback) {
             catch(error){
                 callback({
                     success: false,
-                    message: error,
+                    message: error
                 });
             }
 
@@ -65,7 +64,7 @@ module.exports.get = function(url, callback){
             if (res.statusCode !== 200){  //If request didn't error but response isn't status code 200.
                 callback({
                     success: false,
-                    message: 'HTML Status Code Error ' + res.statusCode,
+                    message: 'HTML Status Code Error ' + res.statusCode
                 });
                 return;
             }
@@ -79,7 +78,7 @@ module.exports.get = function(url, callback){
             catch(error) {  //If successful but parsing errored.
                 callback({
                   success: false,
-                  message: error,
+                  message: error
                 });
             }
         }
