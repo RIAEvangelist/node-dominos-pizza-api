@@ -1,6 +1,6 @@
 {
   "name": "pizzapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API for Domino's pizza",
   "main": "dominos-pizza-api.js",
   "scripts": {
