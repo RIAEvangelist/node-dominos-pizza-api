@@ -2,9 +2,8 @@
 
 var urls = require('./urls.json');
 var httpJson = require('./http-json');
-var config = require('../../../conf/config.json');
 var stripe = require('stripe')(
-	"%STRIPE_API_KEY%".replace("%STRIPE_API_KEY%", config.stripe_key)
+	"%STRIPE_API_KEY%".replace("%STRIPE_API_KEY%", process.env.STRIPE_TEST)
 );
 
 var Order = function(parameters) {
@@ -61,8 +60,6 @@ var Order = function(parameters) {
 		this.Version = "1.0";
 		this.NoCombine = true;
 		this.Partners = {};
-		this.NewUser = true;
-		this.metaData = {};
 	}
 };
 

@@ -5,7 +5,7 @@ var Item = function(parameters) {
     this.Qty = parameters.quantity;
     this.ID = false;
     this.isNew = true;
-    this.Options = parameters.options;
+    this.Options = parameters.options != '';
 }
 
 module.exports = Item;
