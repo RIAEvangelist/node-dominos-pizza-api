@@ -1,16 +1,13 @@
-Node Domino's API
+PizzaPI API
 ====
 This is a node.js wrapper for the Domino's pizza API's
 
-This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). 
+This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
-Install Domino's API
+Install PizzaPI
 ====
-npm install dominos
+npm install pizzapi
 
-[![NPM Stats for dominos api](https://nodei.co/npm/dominos.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dominos)
-[![NPM Download Graph for dominos api](https://nodei.co/npm-dl/dominos.png?months=6&height=3)](https://www.npmjs.com/package/dominos)
-[![dominos api package quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)
 Finding Nearby Domino's Locations
 ====
 
@@ -23,8 +20,9 @@ Finding Nearby Domino's Locations
 ### By Postal Code
 ***this yields the least accurate information***
 
-    dominos.store.find(
-        '20500',
+    pizzapi.Util.findNearbyStores(
+        '63102',
+        'Delivery',
         function(storeData){
             console.log(storeData);
         }
@@ -32,9 +30,10 @@ Finding Nearby Domino's Locations
 
 ### By City and Postal Code
 ***this yields less accurate information but is better than just using the postal code***
-    
-    dominos.store.find(
-        'Beverly Hills 90210',
+
+    pizzapi.Util.findNearbyStores(
+        'St. Louis, MO, 63102',
+        'Delivery',
         function(storeData){
             console.log(storeData);
         }
@@ -43,8 +42,9 @@ Finding Nearby Domino's Locations
 ### Using Full or Nearly Full Address
 ***this yields the best information and sorts stores by actual distance***
 
-    dominos.store.find(
-        '1600 Pennsylvania Ave NW, 20500',
+    pizzapi.Util.findNearbyStores(
+        '700 Clark Ave, St. Louis, MO, 63102',
+        'Delivery',
         function(storeData){
             console.log(storeData);
         }
@@ -60,7 +60,7 @@ Domino's Store Info
 
 
     //Get Store Info for Store #4336
-    dominos.store.info(
+    Store.getInfo(
         4336,
         function(storeData){
             console.log(storeData);
@@ -77,7 +77,7 @@ Menu for Specific Domino's Store Location
 |lang|language string|en|false|
 
     //Get Menu for Store #4336
-    dominos.store.menu(
+    Store.getMenu(
         4336,
         function(storeData){
             console.log(storeData);
@@ -94,7 +94,7 @@ Tracking Domino's Pizza
 |phone|Phone number string or int|null|true|
 |callback|function to pass the api result to|null|true|
 
-    dominos.track.phone(
+    pizzapi.Track.byPhone(
         2024561111,
         function(pizzaData){
             console.log(pizzaData);
@@ -109,7 +109,7 @@ Tracking Domino's Pizza
 |storeID|sting or int|null|true|
 |callback|function to pass the api result to|null|true|
 
-    dominos.track.orderKey(
+    pizzapi.Track.byId(
         123456,
         12345,
         function(pizzaData){
@@ -129,89 +129,41 @@ Three classes exist to get orders started,
 
 ### creating an order
 
-    var order=new dominos.class.Order();
-    order.Order.Phone='2024561111';
-    order.Order.FirstName='Barack';
-    order.Order.LastName='Obama';
-    order.Order.Email='CommanderInChief@whitehouse.gov';
+  var thePresident = new pizzapi.Customer({
+      firstName: 'Barack',
+      lastName: 'Obama',
+      address: '700 Pennsylvania Avenue, Washington, DC...',
+      email: 'barack@whitehouse.gov'
+    });
+  var order = new pizzapi.Order({
+      customer: thePresident,
+      storeID: '4336'
+    });
 
-### creating a product and adding it to the order :
+### Adding a product to the order :
 
-    var product=new dominos.class.Product();
-    product.Code='14SCREEN' //14" Hand Tossed Cheese Pizza
-    order.Order.Products.push(product);
+  order.addItem(new pizzapi.Item({
+      code: '14SCREEN',
+      options: {},
+      quantity: 1
+    }));
 
+### Validating an Order
+This step is ***Strongly** recommended
 
-### Validating an Order 
-This step is ***Strongly** recommended 
+  order.validate(function(result) {
+      console.log("We did it!");
+    });
 
-    dominos.order.validate(
-        order,
-        function(data){
-            console.log(data);
-        }
-    );
+### Price an Order
 
-### Validating an Order 
-This step is ***Strongly** recommended 
+  order.price(function(result) {
+      console.log("Price!")
+    });
 
-    dominos.order.validate(
-        order,
-        function(data){
-            console.log(data);
-        }
-    );
+### Place an Order
+Order placing takes a Stripe token to minimize the amount of work you must do. This also helps to comply with PCI. At least one item must've been added to place an order.
 
-### Price an Order 
-
-    dominos.order.price(
-        order,
-        function(data){
-            console.log(data);
-        }
-    );
-
-### Place an Order 
-Before you can place an order you must create a payment method and add it to the order :
-
-|paramater|type|required|default|
-|---------|----|--------|-------|
-|Amount|Float|true|0|
-|Number|Credit Card Number Int/String|true||
-|CardType|String|true||
-|Expiration|Digits only Int/String|true||
-|SecurityCode|Int/String|true||
-
-    var cardInfo=new dominos.class.Payment();
-    cardInfo.Amount=42.50; 
-    //get amount from dominos.order.price request 
-    //data.result.Order.Amounts.Customer
-    
-    cardInfo.Number='4444888888888888';
-    cardInfo.CardType='VISA';
-    cardInfo.Expiration='1017';
-    cardInfo.SecurityCode='189';
-    cardInfo.PostalCode='20500';
-    
-    order.Order.Payments.push(cardInfo);
-
-
-Then you can place the order and catch placement failures :
-    
-    dominos.order.place(
-        order,
-        function(data){
-            console.log(data);
-
-            if(data.result.Order.Status==-1){
-                console.log(
-                    '\n###### NO PIZZA FOR YOU! ######\n',
-                    orderData.result.Order.StatusItems,
-                    '\n#########################\n\n'
-                );
-                return;
-            }
-
-        }
-    );
-
+  order.place(stripeToken, function(result) {
+      console.log("Order placed!");
+    })
