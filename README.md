@@ -129,41 +129,41 @@ Three classes exist to get orders started,
 
 ### creating an order
 
-  var thePresident = new pizzapi.Customer({
-      firstName: 'Barack',
-      lastName: 'Obama',
-      address: '700 Pennsylvania Avenue, Washington, DC...',
-      email: 'barack@whitehouse.gov'
-    });
-  var order = new pizzapi.Order({
-      customer: thePresident,
-      storeID: '4336'
-    });
+    var thePresident = new pizzapi.Customer({
+        firstName: 'Barack',
+        lastName: 'Obama',
+        address: '700 Pennsylvania Avenue, Washington, DC...',
+        email: 'barack@whitehouse.gov'
+      });
+    var order = new pizzapi.Order({
+        customer: thePresident,
+        storeID: '4336'
+      });
 
 ### Adding a product to the order :
 
-  order.addItem(new pizzapi.Item({
-      code: '14SCREEN',
-      options: {},
-      quantity: 1
-    }));
+    order.addItem(new pizzapi.Item({
+        code: '14SCREEN',
+        options: {},
+        quantity: 1
+      }));
 
 ### Validating an Order
 This step is ***Strongly** recommended
 
-  order.validate(function(result) {
-      console.log("We did it!");
-    });
+    order.validate(function(result) {
+        console.log("We did it!");
+      });
 
 ### Price an Order
 
-  order.price(function(result) {
-      console.log("Price!")
-    });
+    order.price(function(result) {
+        console.log("Price!")
+      });
 
 ### Place an Order
 Order placing takes a Stripe token to minimize the amount of work you must do. This also helps to comply with PCI. At least one item must've been added to place an order.
 
-  order.place(stripeToken, function(result) {
-      console.log("Order placed!");
-    })
+    order.place(stripeToken, function(result) {
+        console.log("Order placed!");
+      });
