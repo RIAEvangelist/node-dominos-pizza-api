@@ -7,7 +7,7 @@ var stripe = require('stripe')(
 );
 
 var Order = function(parameters) {
-  if(parameters.customer) {
+  if(parameters["customer"]) {
     var Customer = parameters.customer;
 
     this.Address = Customer.address;
@@ -25,6 +25,8 @@ var Order = function(parameters) {
     this.Payments = [];  //All orders paid with one credit card
     this.Phone = "";
     this.Products = [];
+    this.Market = '';
+    this.Currency = '';
     this.ServiceMethod = "Delivery";
     this.SourceOrganizationURI = "order.dominos.com";
     this.StoreID = parameters.storeID;
@@ -34,10 +36,17 @@ var Order = function(parameters) {
     this.Partners = {};
     this.NewUser = true;
     this.metaData = {};
-  }
-  if(parameters.order) {
-    var prevOrder = parameters.order;
+    this.Amounts = {};
+    this.BusinessDate = '';
+    this.EstimatedWaitMinutes = '';
+    this.PriceOrderTime = '';
+    this.AmountsBreakdown;
 
+    return this;
+  }
+  if(parameters["Order"]) {
+    var prevOrder = parameters.Order;
+    console.log(prevOrder);
     this.Address = prevOrder.Address;
     this.Coupons = [];
     this.CustomerID = prevOrder.CustomerID;
@@ -47,12 +56,14 @@ var Order = function(parameters) {
     this.LastName = prevOrder.LastName;
     this.LanguageCode = "en";
     this.OrderChannel = "OLO";
-    this.OrderID = "";
+    this.OrderID = prevOrder.OrderID;
     this.OrderMethod = "Web";
     this.OrderTaker = null;
     this.Payments = [];
     this.Phone = "";
-    this.Products = [];
+    this.Products = prevOrder.Products;
+    this.Market = prevOrder.Market;
+    this.Currency = prevOrder.Currency;
     this.ServiceMethod = "Delivery";
     this.SourceOrganizationURI = "order.dominos.com";
     this.StoreID = prevOrder.StoreID;
@@ -60,6 +71,13 @@ var Order = function(parameters) {
     this.Version = "1.0";
     this.NoCombine = true;
     this.Partners = {};
+    this.Amounts = prevOrder.Amounts ? prevOrder.Amounts : {};
+    this.BusinessDate = prevOrder.BusinessDate ? prevOrder.BusinessDate : '';
+    this.EstimatedWaitMinutes = prevOrder.EstimatedWaitMinutes ? prevOrder.EstimatedWaitMinutes : '';
+    this.PriceOrderTime = prevOrder.PriceOrderTime ? prevOrder.PriceOrderTime : '';
+    this.AmountsBreakdown = prevOrder.AmountsBreakdown ? prevOrder.AmountsBreakdown : {};
+
+    return this;
   }
 };
 
@@ -85,12 +103,12 @@ Order.prototype.validate = function(callback) {  //Validate Order
     return;
   }
 
-  httpJson.post(urls.order.validate, JSON.stringify(this), function(response) {
-    console.log(response);
-    if(response.success) {
-      console.log(response.result);
-    }
+  //Blame Dominos, this isn't my doing.
+  var stringified = JSON.stringify({
+    "Order" : this
   });
+
+  httpJson.post(urls.order.validate, stringified, callback);
 };
 
 Order.prototype.price = function(callback) {
@@ -104,12 +122,12 @@ Order.prototype.price = function(callback) {
     return;
   }
 
-  httpJson.post(urls.order.price, JSON.stringify(this), function(response) {
-    console.log(response);
-    if(response.success) {
-      console.log(response.result);
-    }
+  var stringified = JSON.stringify({
+    "Order" : this
   });
+
+  httpJson.post(urls.order.price, stringified, callback);
+
 };
 
 Order.prototype.place = function(stripeToken, callback) {
