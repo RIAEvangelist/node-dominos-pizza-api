@@ -8,6 +8,13 @@ Install PizzaPI
 ====
 npm install pizzapi
 
+Examples
+====
+
+A few basic examples are packaged with the API but I haven't written any in-depth examples yet.
+
+For a more detailed / complicated example, see [PizzaGiver](https://github.com/madelinecameron/PizzaGiver)
+
 Finding Nearby Domino's Locations
 ====
 
@@ -55,13 +62,11 @@ Domino's Store Info
 
 |argument|type|default|required|
 |--------|----|-------|--------|
-|storeID|string or int|null|true|
 |callback|function to pass the api result to|null|true|
 
 
     //Get Store Info for Store #4336
     Store.getInfo(
-        4336,
         function(storeData){
             console.log(storeData);
         }
@@ -72,13 +77,10 @@ Menu for Specific Domino's Store Location
 
 |argument|type|default|required|
 |--------|----|-------|--------|
-|storeID|string or int|null|true|
 |callback|function to pass the api result to|null|true|
-|lang|language string|en|false|
 
     //Get Menu for Store #4336
     Store.getMenu(
-        4336,
         function(storeData){
             console.log(storeData);
         }
@@ -125,7 +127,6 @@ Three classes exist to get orders started,
 |-----|-----------|
 |dominos.class.Order|creates a basic order object|
 |dominos.class.Product|creates a basic product with a quantity of 1|
-|dominos.class.Payment|creates a basic credit card payment object|
 
 ### creating an order
 
