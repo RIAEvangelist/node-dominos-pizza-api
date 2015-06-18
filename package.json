@@ -1,41 +1,57 @@
 {
-  "name": "pizzapi",
-  "version": "0.0.5",
-  "description": "API for Domino's pizza",
-  "main": "dominos-pizza-api.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/madelinecameron/PizzaPI.git"
-  },
-  "dependencies": {
-    "xml2json": "^0.5.1",
-    "request": "^2.50.0"
-  },
-  "keywords": [
-    "Dominos",
-    "Domino's",
-    "Pizza",
-    "API"
-  ],
-  "author": {
-    "name": "Madeline Cameron",
-    "email": "madeline@madelinecameron.net",
-    "url": "http://madelinecameron.net"
-  },
-  "license": "DBAD",
-  "bugs": {
-    "url": "https://github.com/madelinecameron/PizzaPI/issues"
-  },
-  "directories": {
-    "example": "example"
-  },
-  "devDependencies": {
-    "colors": "^1.0.3",
-    "request": "^2.50.0",
-    "xml2json": "^0.5.1"
-  },
-  "homepage": "https://github.com/madelinecameron/PizzaPI"
+    "name": "pizzapi",
+    "version": "0.0.5",
+    "description": "node js API for Domino's pizza",
+    "main": "dominos-pizza-api.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
+    },
+    "dependencies": {
+        "xml2json": "^0.5.1",
+        "request": "^2.50.0"
+    },
+    "keywords": [
+        "Dominos",
+        "Domino's",
+        "Pizza",
+        "API",
+        "Pie"
+    ],
+    "author": {
+        "name": "Brandon Miller",
+        "email": "brandon@diginow.it"
+    },
+    "contributors":[
+        {
+            "name": "Madeline Cameron",
+            "email": "madeline@madelinecameron.net",
+            "url": "http://madelinecameron.net"
+        },
+        {
+            "name": "Adrian Sida"
+        },
+        {
+            "name": "Victor Quinn"
+        },
+        {
+            "name": "Matt Cotter"
+        }
+    ],
+    "license": "DBAD",
+    "bugs": {
+        "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
+    },
+    "directories": {
+        "example": "example"
+    },
+    "devDependencies": {
+        "colors": "^1.0.3",
+        "request": "^2.50.0",
+        "xml2json": "^0.5.1"
+    },
+    "homepage": "https://github.com/madelinecameron/PizzaPI"
 }

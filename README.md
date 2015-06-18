@@ -1,6 +1,6 @@
 PizzaPI API
 ====
-This is a node.js wrapper for the Domino's pizza API's
+This is a node.js wrapper for the Domino's pizza APIs
 
 This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
@@ -8,12 +8,20 @@ Install PizzaPI
 ====
 npm install pizzapi
 
+Contributing
+====
+
+1. Pull or Fork code. 
+2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
+3. be awesome!
+
+
 Examples
 ====
 
 A few basic examples are packaged with the API but I haven't written any in-depth examples yet.
 
-For a more detailed / complicated example, see [PizzaGiver](https://github.com/madelinecameron/PizzaGiver)
+For a more detailed / complicated example, see the awesome [PizzaGiver](https://github.com/madelinecameron/PizzaGiver)
 
 Finding Nearby Domino's Locations
 ====
@@ -168,3 +176,10 @@ Order placing takes a Stripe token to minimize the amount of work you must do. T
     order.place(stripeToken, function(result) {
         console.log("Order placed!");
       });
+
+## Original module
+Depricated due to massive overhauling by @madelinecameron  
+Still in npm for use of last version in production as dominos-pizza-api
+
+` npm install dominos-pizza-api `
+

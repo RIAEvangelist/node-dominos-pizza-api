@@ -28,9 +28,11 @@ var pizzapi = require("../../dominos-pizza-api");
 // );
 
 //Get Store Info for Store #4336
-var Store = new pizzapi.Store({
-  ID: 4336
-});
+var Store = new pizzapi.Store(
+    {
+        ID: 4336
+    }
+);
 
 console.log(Store);
 
