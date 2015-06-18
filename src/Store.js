@@ -8,11 +8,11 @@ var Store = function() {
 };
 
 Store.prototype.getInfo = function(callback) {
-    if( !storeID || !callback){
+    if(!callback){
         if(callback)
             callback({
                 success: false,
-                message: "A storeID, and callback are required to get store info"
+                message: "A callback is required to get store info"
             });
         return;
     }
@@ -21,11 +21,11 @@ Store.prototype.getInfo = function(callback) {
 };
 
 Store.prototype.getMenu = function(callback, lang) {
-    if( !storeID || !callback){
+    if(!callback){
         if(callback)
             callback({
                 success: false,
-                message: "A storeID, and callback are required to get a store menu"
+                message: "A callback is required to get a store menu"
             });
         return;
     }

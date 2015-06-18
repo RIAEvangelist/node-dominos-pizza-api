@@ -1,7 +1,11 @@
 'use strict';
 
 var Address = function(parameters) {
-    this.Type = "House";
+
+    if(!this.Type){
+        this.Type = "House";
+    }
+
     if(parameters.Zip) {
         console.log("No Parse!");
         this.Street = parameters.Street;
@@ -16,10 +20,29 @@ var Address = function(parameters) {
 
 Address.prototype.parse = function(locationString) {
     var splitAddress = locationString.split(',');
-    this.Street = splitAddress[0].trim();
-    this.City = splitAddress[1].trim();
-    this.Region = splitAddress[2].trim();
-    this.PostalCode = splitAddress[3].trim();
+
+    for(var i in splitAddress){
+        splitAddress[i]=splitAddress[i].trim();
+    }
+
+    this.Street = splitAddress[0];
+    this.City = splitAddress[1];
+    this.Region = splitAddress[2];
+    this.PostalCode = splitAddress[3];
+
+    this.Line1 = '';
+    this.Line2 = '';
+
+    if(this.City){
+        this.Line2 = this.City.concat(
+            this.Region,
+            this.Region
+        );
+    }
+
+    if(this.Street){
+        this.Line1 = this.Street.toString();
+    }
 };
 
 module.exports = Address;
