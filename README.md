@@ -223,7 +223,7 @@ At least one item must've been added to place an order.
 
 ## Original module
 Depricated due to massive overhauling by @madelinecameron  
-Still in npm for use of last version in production as dominos-pizza-api
+Still in npm for use of last version in production as dominos
 
 ` npm install dominos `
 
