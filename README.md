@@ -8,6 +8,14 @@ Install PizzaPI
 ====
 npm install pizzapi
 
+Contributing
+====
+
+1. Pull or Fork code. 
+2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
+3. be awesome!
+
+
 Examples
 ====
 
