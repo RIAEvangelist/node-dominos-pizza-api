@@ -1,14 +1,14 @@
 {
-  "name": "dominos",
-  "version": "0.1.2",
-  "description": "API for domino's Pizza",
+  "name": "pizzapi",
+  "version": "0.0.5",
+  "description": "API for Domino's pizza",
   "main": "dominos-pizza-api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/RIAEvangelist/node-dominos-pizza-api.git"
+    "url": "git://github.com/madelinecameron/PizzaPI.git"
   },
   "dependencies": {
     "xml2json": "^0.5.1",
@@ -20,10 +20,14 @@
     "Pizza",
     "API"
   ],
-  "author": "Brandon Nozaki Miller",
+  "author": {
+    "name": "Madeline Cameron",
+    "email": "madeline@madelinecameron.net",
+    "url": "http://madelinecameron.net"
+  },
   "license": "DBAD",
   "bugs": {
-    "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
+    "url": "https://github.com/madelinecameron/PizzaPI/issues"
   },
   "directories": {
     "example": "example"
@@ -33,5 +37,5 @@
     "request": "^2.50.0",
     "xml2json": "^0.5.1"
   },
-  "homepage": "https://github.com/RIAEvangelist/node-dominos-pizza-api"
+  "homepage": "https://github.com/madelinecameron/PizzaPI"
 }

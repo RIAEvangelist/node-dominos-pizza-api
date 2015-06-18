@@ -1,0 +1,86 @@
+var http = require('request');
+
+module.exports.post = function(url, req, callback) {
+    if(typeof req !=  "string")
+        req = JSON.stringify(req);
+
+    var requestBody = {
+        uri: url,
+        headers: {
+            Referer:'https://order.dominos.com/en/pages/order/',
+            "Content-Type": 'application/json'
+        },
+        body: req
+    };
+    http.post(requestBody, function (error, res, body) {
+            if (error) {
+                callback({
+                  success: false,
+                  message: error
+                });
+                return;
+            }
+
+            if (res.statusCode !== 200) {
+                callback({
+                    success: false,
+                    message: 'HTML Status Code Error ' + res.statusCode
+                });
+                return;
+            }
+
+            try {
+                callback({
+                    success: true,
+                    result: JSON.parse(body)
+                });
+            }
+            catch(error){
+                callback({
+                    success: false,
+                    message: error
+                });
+            }
+
+        }
+    );
+}
+
+module.exports.get = function(url, callback){
+    var requestBody = {
+        uri: url,
+        headers: {
+            'Referer': 'https://order.dominos.com/en/pages/order/'
+        }
+    };
+    http.get(requestBody, function (error, res, body) {
+            if (error){  //If request errored out.
+                callback({
+                    success: false,
+                    message: error
+                });
+                return;
+            }
+            if (res.statusCode !== 200){  //If request didn't error but response isn't status code 200.
+                callback({
+                    success: false,
+                    message: 'HTML Status Code Error ' + res.statusCode
+                });
+                return;
+            }
+
+            try {  //If request is successful
+                callback({
+                    success: true,
+                    result: JSON.parse(body)
+                });
+            }
+            catch(error) {  //If successful but parsing errored.
+                callback({
+                  success: false,
+                  message: error
+                });
+            }
+        }
+    );
+}
