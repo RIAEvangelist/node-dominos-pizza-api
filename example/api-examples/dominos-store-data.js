@@ -28,9 +28,11 @@ pizzapi.Util.findNearbyStores(
 );
 
 //Get Store Info for Store #4336
-var Store = new pizzapi.Store({
-  ID: 4336
-});
+var Store = new pizzapi.Store(
+    {
+        ID: 4336
+    }
+);
 
 Store.getInfo(
     function(storeData){
