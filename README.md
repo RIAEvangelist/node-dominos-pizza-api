@@ -1,10 +1,15 @@
 PizzaPI API
 ====
-This is a node.js wrapper for the Domino's pizza APIs
-<br>
+This is a node.js wrapper for the Domino's pizza APIs.
+The original npm module ` dominos ` has stopped being maintained and will remain at it's last stable release. For new applications please use this new npm module ` pizzapi `.
+
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
+
+[![NPM Stats for dominos api](https://nodei.co/npm/pizzapi.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/pizzapi)
+[![NPM Download Graph for dominos api](https://nodei.co/npm-dl/pizzapi.png?months=6&height=3)](https://www.npmjs.com/package/pizzapi)
+
 
 Install PizzaPI
 ====
@@ -183,5 +188,8 @@ Order placing takes a Stripe token to minimize the amount of work you must do. T
 Depricated due to massive overhauling by @madelinecameron  
 Still in npm for use of last version in production as dominos-pizza-api
 
-` npm install dominos-pizza-api `
+` npm install dominos `
 
+[![NPM Stats for dominos api](https://nodei.co/npm/dominos.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dominos)
+[![NPM Download Graph for dominos api](https://nodei.co/npm-dl/dominos.png?months=6&height=3)](https://www.npmjs.com/package/dominos)
+[![dominos api package quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)
