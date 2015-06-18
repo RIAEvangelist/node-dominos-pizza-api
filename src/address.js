@@ -16,10 +16,10 @@ var Address = function(parameters) {
 
 Address.prototype.parse = function(locationString) {
     var splitAddress = locationString.split(',');
-    this.Street = splitAddress[0];
-    this.City = splitAddress[1];
-    this.Region = splitAddress[2];
-    this.PostalCode = splitAddress[3];
+    this.Street = splitAddress[0].trim();
+    this.City = splitAddress[1].trim();
+    this.Region = splitAddress[2].trim();
+    this.PostalCode = splitAddress[3].trim();
 };
 
 module.exports = Address;
