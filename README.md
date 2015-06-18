@@ -5,11 +5,12 @@ The original npm module ` dominos ` has stopped being maintained and will remain
 
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
 [![NPM Stats for dominos api](https://nodei.co/npm/pizzapi.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/pizzapi)
 [![NPM Download Graph for dominos api](https://nodei.co/npm-dl/pizzapi.png?months=6&height=3)](https://www.npmjs.com/package/pizzapi)
 
+
+This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
 Install PizzaPI
 ====
