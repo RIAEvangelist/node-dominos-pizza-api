@@ -5,6 +5,7 @@ var httpJson = require('./http-json');
 
 var Customer = function(parameters) {
     this.ID = '';
+     // These are named with camelCase because Dominos API uses this format
     this.firstName = parameters.firstName;
     this.lastName = parameters.lastName;
     this.email = parameters.email;

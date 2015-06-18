@@ -14,12 +14,15 @@ describe('Order', function() {
         Street: "900 Clark Street",
         City: "St. Louis",
         Region: "MO",
-        Zip: "63102"
+        PostalCode: "63102",
+        Type: "House"
       };
 
       var cardsStadium = new Address(addressParams);
       expect(cardsStadium).not.to.be.null;
-      expect(cardsStadium).to.eql(addressParams);  // Expect to be deeply equal
+      expect(cardsStadium.Street).to.equal(addressParams.Street);
+      expect(cardsStadium.City).to.equal(addressParams.City);
+      expect(cardsStadium.Region).to.equal(addressParams.Region);
 
       var customerParams = {
         firstName: "Fred",
@@ -37,8 +40,11 @@ describe('Order', function() {
       });
 
       expect(order).not.to.be.null;
-      expect(order.customer).to.eql(fredBird);  // Expect to be deeply equal
-      expect(order.storeID).to.equal('4336');
+      expect(order.Address).to.equal(fredBird.address);
+      expect(order.ServiceMethod).to.equal("Delivery");
+      expect(order.StoreID).to.equal(4336);
+
+      done();
     });
 
     it('should add a pizza', function(done) {
@@ -46,7 +52,7 @@ describe('Order', function() {
         Street: "900 Clark Street",
         City: "St. Louis",
         Region: "MO",
-        Zip: "63102"
+        PostalCode: "63102"
       };
 
       var cardsStadium = new Address(addressParams);
@@ -66,21 +72,23 @@ describe('Order', function() {
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: {},  // Cheese pizza
+        options: '',  // Cheese pizza
         quantity: 1
       }));
 
       var itemParams = {
         Code: '14SCREEN',
-        Options: { "C": {"1/1": "1"}, "X": {"1/1": "1"} },
         Qty: 1,
         ID: 1,
-        isNew: true
+        isNew: true,
+        Options: { 'C': {'1/1': '1'}, 'X': { '1/1': '1'}}
       };
 
       expect(order.Products).not.to.be.empty;
       expect(order.Products).to.include(itemParams);
+      expect(order.Products[0].Qty).to.equal(itemParams.Qty);
 
+      done();
     });
 
     it('should validate order', function(done) {
@@ -88,7 +96,7 @@ describe('Order', function() {
         Street: "900 Clark Street",
         City: "St. Louis",
         Region: "MO",
-        Zip: "63102"
+        PostalCode: "63102"
       };
 
       var cardsStadium = new Address(addressParams);
@@ -108,15 +116,18 @@ describe('Order', function() {
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: {},  // Cheese pizza
+        options: '',  // Cheese pizza
         quantity: 1
       }));
 
       order.validate(function(result) {
         var results = result.result;
 
-        expect(results).to.exist;
-        expect(results.OrderID).not.to.be("");
+        expect(results.Order).to.exist;
+        expect(results.Order.OrderID).to.not.eql("");
+
+        done();
+
       });
 
     });
@@ -126,7 +137,7 @@ describe('Order', function() {
         Street: "900 Clark Street",
         City: "St. Louis",
         Region: "MO",
-        Zip: "63102"
+        PostalCode: "63102"
       };
 
       var cardsStadium = new Address(addressParams);
@@ -152,13 +163,18 @@ describe('Order', function() {
 
       order.validate(function(result) {
         order = new Order(result.result);
-
+          console.log("new order: \n");
+          console.dir(order);
           order.price(function(result) {
-            var priceResults = result.result;
+            var priceResults = result.result.Order;
+            console.log("Price results!: \n");
+            console.dir(priceResults.Products);
 
             expect(priceResults).to.exist;
             expect(results.Amounts).not.to.be({});
             expect(results.EstimatedWaitMinutes).not.to.be('');
+
+            done();
           });
       });
 

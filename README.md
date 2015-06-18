@@ -19,7 +19,7 @@ npm install pizzapi
 Contributing
 ====
 
-1. Pull or Fork code. 
+1. Pull or Fork code.
 2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
 3. be awesome!
 
@@ -166,6 +166,7 @@ Three classes exist to get orders started,
 
 ### creating an order
 
+<<<<<<< HEAD
     var pizzapi=require('pizzapi');
     
     var thePresident = new pizzapi.Customer(
@@ -180,7 +181,8 @@ Three classes exist to get orders started,
     var order = new pizzapi.Order(
         {
             customer: thePresident,
-            storeID: myStore.ID
+            storeID: myStore.ID,
+            deliveryMethod: 'Delivery' //(or 'Carryout')
         }
     );
 
