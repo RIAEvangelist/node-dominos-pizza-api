@@ -1,7 +1,7 @@
 PizzaPI API
 ====
 This is a node.js wrapper for the Domino's pizza APIs.
-The original npm module ` dominos ` has stopped being maintained and will remain at it's last stable release. For new applications please use this new npm module ` pizzapi `.
+The original npm module ` dominos ` has stopped being maintained and will remain at it's last stable release. For new applications please use this new npm module ` pizzapi `. [See the pretty PizzaPI documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
