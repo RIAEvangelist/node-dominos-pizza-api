@@ -1,12 +1,22 @@
 PizzaPI API
 ====
 This is a node.js wrapper for the Domino's pizza APIs
+<br>
+[![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
 Install PizzaPI
 ====
 npm install pizzapi
+
+Contributing
+====
+
+1. Pull or Fork code. 
+2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
+3. be awesome!
+
 
 Examples
 ====
