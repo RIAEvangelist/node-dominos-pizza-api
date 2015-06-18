@@ -14,10 +14,19 @@ var findNearbyStores = function(address, pickUpType, callback) {
         return;
     }
 
-    console.log(address);
+    var parsedAddress;
+    if(address.indexOf(',') != -1) {
+      var street = address.substring(0, address.indexOf(','));
+      console.log(street);
+      parsedAddress = [ street, address.substring(address.indexOf(',') + 1).trim()]
 
-    var url = urls.store.find.replace('${line1}', encodeURI(address[0]))
-        .replace('${line2}', encodeURI(address[1]))
+      console.log(parsedAddress)
+    }
+    else {  // If there is no comma, it is a ZIP code
+      parsedAddress = [ '', address]
+    }
+    var url = urls.store.find.replace('${line1}', encodeURI(parsedAddress[0]))
+        .replace('${line2}', encodeURI(parsedAddress[1]))
         .replace('${type}', pickUpType);
 
     httpJson.get(url, callback);
