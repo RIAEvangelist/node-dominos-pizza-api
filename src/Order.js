@@ -2,9 +2,11 @@
 
 var urls = require('./urls.json');
 var httpJson = require('./http-json');
+/* just commenting out for the moment to get things working and discuss benifits of requiring stripe in the public module.
 var stripe = require('stripe')(
   "%STRIPE_API_KEY%".replace("%STRIPE_API_KEY%", process.env.STRIPE_TEST)
 );
+*/
 
 var Order = function(parameters) {
   if(parameters["customer"]) {
@@ -44,7 +46,7 @@ var Order = function(parameters) {
 
     return this;
   }
-  if(parameters["Order"]) {
+  if(parameters["Order"]) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
     console.log(prevOrder);
     this.Address = prevOrder.Address;
@@ -88,7 +90,7 @@ Order.prototype.addItem = function(Item) {  //Add product to Order
 Order.prototype.removeItem = function(Item) {  //Remove product from Order
   var index = this.Products.indexOf(Item);
   if(index != -1) {
-  this.Products.splice(index, 1);
+    this.Products.splice(index, 1);
   }
 };
 
@@ -139,6 +141,9 @@ Order.prototype.place = function(stripeToken, callback) {
             })
         }
     }
+
+/* just commenting out for the moment to discuss what the stripe implementation os for
+
   stripe.charges.create({
     amount: (this.Price * this.maxAllowedTip * 100) + 50,  //Stripe uses cents, not dollars...
     currency: "USD",
@@ -159,6 +164,8 @@ Order.prototype.place = function(stripeToken, callback) {
       console.log("Stripe payment succeeded for order");
     }
   });
+
+*/
 
   httpJson.post(urls.order.place, JSON.stringify(this), function(response) {
     if(response.success) {

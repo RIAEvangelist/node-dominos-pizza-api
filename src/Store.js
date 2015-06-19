@@ -9,10 +9,11 @@ var Store = function(parameters) {
 
 Store.prototype.getInfo = function(callback) {
     if( !this.ID || !callback){
+    if(!callback){
         if(callback)
             callback({
                 success: false,
-                message: "A storeID, and callback are required to get store info"
+                message: "A callback is required to get store info"
             });
         return;
     }
@@ -25,7 +26,7 @@ Store.prototype.getMenu = function(callback, lang) {
         if(callback)
             callback({
                 success: false,
-                message: "A storeID, and callback are required to get a store menu"
+                message: "A callback is required to get a store menu"
             });
         return;
     }

@@ -4,6 +4,7 @@ var urls = require('./urls.json');
 var httpJson = require('./http-json');
 
 var Customer = function(parameters) {
+    // These are named with camelCaps because Dominos 'demands' this format
     this.ID = "";
     this.firstName = parameters.firstName;
     this.lastName = parameters.lastName;

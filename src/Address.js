@@ -1,25 +1,57 @@
 'use strict';
 
+var util = require('util');
+
 var Address = function(parameters) {
-    this.Type = "House";
-    if(parameters.Zip) {
-        console.log("No Parse!");
-        this.Street = parameters.Street;
-        this.City = parameters.City;
-        this.Region = parameters.Region;
-        this.PostalCode = parameters.Zip;
+    if(util.isArray(parameters)) {
+      this.Street = parameters[0];
+      this.City = parameters[1];
+      this.Region = parameters[2];
+      this.PostalCode = parameters[3];
     }
     else {
-        this.parse(parameters);
+      if(parameters.PostalCode) {
+          this.Street = parameters.Street;
+          this.City = parameters.City;
+          this.Region = parameters.Region;
+          this.PostalCode = parameters.PostalCode;
+      }
+      else {
+          this.parse(parameters);
+      }
+    }
+    if(!this.Type){
+        this.Type = "House";
     }
 };
 
 Address.prototype.parse = function(locationString) {
     var splitAddress = locationString.split(',');
-    this.Street = splitAddress[0].trim();
-    this.City = splitAddress[1].trim();
-    this.Region = splitAddress[2].trim();
-    this.PostalCode = splitAddress[3].trim();
+
+    for(var i in splitAddress){
+        splitAddress[i] = splitAddress[i].trim();
+    }
+
+    this.Street = splitAddress[0];
+    this.City = splitAddress[1];
+    this.Region = splitAddress[2];
+    this.PostalCode = splitAddress[3];
+
+    return;
 };
+
+Address.prototype.getAddressLines = function() {
+  var line1 = '';
+  var line2 = '';
+
+  if(this.Street) {
+    line1 = this.Street;
+    line2 = this.City + "," + this.Region + "," + this.PostalCode;
+  }
+  else {
+    line2 = (this.City ? this.City + "," : "") + (this.Region ? this.Region + "," : "") + this.PostalCode;
+  }
+  return [ line1, line2 ]
+}
 
 module.exports = Address;
