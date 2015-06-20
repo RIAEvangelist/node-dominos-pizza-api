@@ -166,7 +166,6 @@ Three classes exist to get orders started,
 
 ### creating an order
 
-<<<<<<< HEAD
     var pizzapi=require('pizzapi');
     
     var thePresident = new pizzapi.Customer(

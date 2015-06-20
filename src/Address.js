@@ -30,39 +30,40 @@ Address.prototype.parse = function(locationString) {
         splitAddress[i] = splitAddress[i].trim();
     }
 
-    switch (splitAddress.length) {
-        case 1:
-            this.PostalCode = splitAddress[0];
-            break;
-        case 2:
-            this.Region = splitAddress[0];
-            this.PostalCode = splitAddress[1];
-            break;
-        case 3:
-            this.City = splitAddress[0];
-            this.Region = splitAddress[1]
-            this.PostalCode = splitAddress[2];
-            break;
-        case 4:
-            this.Street = splitAddress[0];
-            this.City = splitAddress[1];
-            this.Region = splitAddress[2];
-            this.PostalCode = splitAddress[3];
+    switch(splitAddress.length) {
+      case 1:
+        this.PostalCode = splitAddress[0];
+        break;
+      case 2:
+        this.Region = splitAddress[0];
+        this.PostalCode = splitAddress[1];
+        break;
+      case 3:
+        this.City = splitAddress[0];
+        this.Region = splitAddress[1]
+        this.PostalCode = splitAddress[2];
+        break;
+      case 4:
+        this.Street = splitAddress[0];
+        this.City = splitAddress[1];
+        this.Region = splitAddress[2];
+        this.PostalCode = splitAddress[3];
     }
 };
 
 Address.prototype.getAddressLines = function() {
-    var line1 = "";
-    var line2 = "";
+  var line1 = "";
+  var line2 = "";
 
-    if (this.Street) {
-        line1 = this.Street;
-        line2 = this.City + "," + this.Region + "," + this.PostalCode;
-    } else {
-        line2 = String((this.City ? this.City + "," : "") + (this.Region ? this.Region + "," : "") + this.PostalCode);
-    }
+  if(this.Street) {
+    line1 = this.Street;
+    line2 = this.City + "," + this.Region + "," + this.PostalCode;
+  }
+  else {
+    line2 = String((this.City ? this.City + "," : "") + (this.Region ? this.Region + "," : "") + this.PostalCode);
+  }
 
-    return [line1, line2]
+  return [ line1, line2 ]
 }
 
 module.exports = Address;
