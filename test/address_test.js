@@ -15,10 +15,6 @@ describe('Address', function() {
       };
       var address = new Address(jsonObj);
       expect(address).not.to.be.null;
-      console.dir(address);
-      console.log("\n\n");
-      console.dir(jsonObj);
-      console.log(address === jsonObj);
       expect(address.Street).to.equal(jsonObj.Street);
       expect(address.City).to.equal(jsonObj.City);
       expect(address.Region).to.equal(jsonObj.Region);
@@ -36,13 +32,35 @@ describe('Address', function() {
 
     done();
   })
-  it('should return lines to pass to findNearbyStores', function(done) {
+  it('should return full address to pass to findNearbyStores', function(done) {
     var address = new Address("123 Easy Street, St.Louis, MO, 63105");
     var addressLines = address.getAddressLines();
 
     expect(addressLines).to.have.length(2);
     expect(addressLines[0]).to.equal("123 Easy Street");
-    expect(addressLines[1]).to.equal("St.Louis,MO,63015");
+    expect(addressLines[1].trim()).to.equal(address.City + "," + address.Region + "," + address.PostalCode);
+
+    done();
+
+  })
+  it('should return zip code to pass to findNearbyStores', function(done) {
+    var address = new Address("63105");
+    var addressLines = address.getAddressLines();
+
+    expect(addressLines).to.have.length(2);
+    expect(addressLines[0]).to.equal('');
+    expect(addressLines[1]).to.equal(address.PostalCode);
+
+    done();
+
+  })
+  it('should return city, state, zip to pass to findNearbyStores', function(done) {
+    var address = new Address("St. Louis, MO, 63105");
+    var addressLines = address.getAddressLines();
+
+    expect(addressLines).to.have.length(2);
+    expect(addressLines[0]).to.equal('');
+    expect(addressLines[1]).to.equal(address.City + "," + address.Region + "," + address.PostalCode);
 
     done();
 

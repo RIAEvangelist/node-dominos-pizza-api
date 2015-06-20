@@ -24,12 +24,12 @@ var Order = function(parameters) {
     this.OrderID = "";
     this.OrderMethod = "Web";
     this.OrderTaker = null;
-    this.Payments = [];  //All orders paid with one credit card
+    this.Payments = [];
     this.Phone = "";
     this.Products = [];
     this.Market = '';
     this.Currency = '';
-    this.ServiceMethod = "Delivery";
+    this.ServiceMethod = parameters.deliveryMethod ? parameters.deliveryMethod : "Delivery";
     this.SourceOrganizationURI = "order.dominos.com";
     this.StoreID = parameters.storeID;
     this.Tags = {};
@@ -48,7 +48,7 @@ var Order = function(parameters) {
   }
   if(parameters["Order"]) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
-    console.log(prevOrder);
+    
     this.Address = prevOrder.Address;
     this.Coupons = [];
     this.CustomerID = prevOrder.CustomerID;
@@ -167,11 +167,7 @@ Order.prototype.place = function(stripeToken, callback) {
 
 */
 
-  httpJson.post(urls.order.place, JSON.stringify(this), function(response) {
-    if(response.success) {
-      console.log(response.result);
-    }
-  });
+  httpJson.post(urls.order.place, JSON.stringify(this), callback);
 };
 
 module.exports = Order;

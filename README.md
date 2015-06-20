@@ -13,7 +13,7 @@ npm install pizzapi
 Contributing
 ====
 
-1. Pull or Fork code. 
+1. Pull or Fork code.
 2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
 3. be awesome!
 
@@ -148,7 +148,8 @@ Three classes exist to get orders started,
       });
     var order = new pizzapi.Order({
         customer: thePresident,
-        storeID: '4336'
+        storeID: '4336',
+        deliveryMethod: 'Delivery' (or 'Carryout')
       });
 
 ### Adding a product to the order :
@@ -184,4 +185,3 @@ Depricated due to massive overhauling by @madelinecameron
 Still in npm for use of last version in production as dominos-pizza-api
 
 ` npm install dominos-pizza-api `
-

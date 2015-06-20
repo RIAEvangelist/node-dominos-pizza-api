@@ -10,8 +10,6 @@ describe('Utilities', function() {
             util.findNearbyStores('900 Clark Ave, St. Louis, MO, 63102', 'Delivery', function(result) {
                 expect(result).to.exist;
                 expect(result.result.Stores).to.have.length.above(0);
-
-                done();
             });
         });
 
@@ -19,8 +17,6 @@ describe('Utilities', function() {
             util.findNearbyStores('900 Clark Ave, St. Louis, MO, 63102', 'Carryout', function(result) {
                 expect(result).to.exist;
                 expect(result.result.Stores).to.have.length.above(0);
-
-                done();
             });
         })
     })
