@@ -33,9 +33,14 @@ Address.prototype.parse = function(locationString) {
         splitAddress[i] = splitAddress[i].trim();
     }
 
+    //need better intellegence for auto determining address parts
     switch(splitAddress.length) {
       case 1:
-        this.PostalCode = splitAddress[0];
+        this.PostalCode = Number(splitAddress[0]);
+
+        if(!this.PostalCode){
+            this.City=splitAddress[0];
+        }
         break;
       case 2:
         this.Region = splitAddress[0];
