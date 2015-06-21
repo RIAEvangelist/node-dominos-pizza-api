@@ -4,7 +4,7 @@ var httpJson = require('./http-json');
 var urls = require('./urls.json');
 
 var Store = function() {
-    this.ID = "";
+    this.ID = '';
 };
 
 Store.prototype.getInfo = function(callback) {
@@ -12,7 +12,7 @@ Store.prototype.getInfo = function(callback) {
         if(callback)
             callback({
                 success: false,
-                message: "A callback is required to get store info"
+                message: 'A callback is required to get store info'
             });
         return;
     }
@@ -25,7 +25,7 @@ Store.prototype.getMenu = function(callback, lang) {
         if(callback)
             callback({
                 success: false,
-                message: "A callback is required to get a store menu"
+                message: 'A callback is required to get a store menu'
             });
         return;
     }
