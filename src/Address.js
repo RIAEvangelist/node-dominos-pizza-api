@@ -71,7 +71,7 @@ Address.prototype.getAddressLines = function() {
     lines.line1=line1;
     lines.line2=line2;
 
-    return
+    return lines;
 }
 
 module.exports = Address;
