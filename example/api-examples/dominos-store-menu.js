@@ -11,12 +11,10 @@ pizzapi.Util.findNearbyStores(
             }
         );
 
-        console.log('\n\n##################\nFirst Store Object\n##################\n\n',Store);
-
-        //Get Info for first store
-        Store.getInfo(
+        //Get Menu for first store
+        Store.getMenu(
             function(storeData) {
-                console.log('\n\n##################\nFirst Store Info\n##################\n\n',storeData.result);
+                console.log('\n\n##################\nFirst Store Menu\n##################\n\n',storeData.result);
             }
         );
     }
