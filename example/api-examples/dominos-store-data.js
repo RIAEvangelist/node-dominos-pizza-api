@@ -1,4 +1,4 @@
-var pizzapi = require("../../dominos-pizza-api");
+var pizzapi = require('../../dominos-pizza-api');
 
 // //Get stores by postal code, distance is not as accurate this way
 // pizzapi.Util.findNearbyStores(
