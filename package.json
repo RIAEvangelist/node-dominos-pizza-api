@@ -10,10 +10,6 @@
         "type": "git",
         "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
     },
-    "dependencies": {
-        "xml2json": "^0.5.1",
-        "request": "^2.50.0"
-    },
     "keywords": [
         "Dominos",
         "Domino's",
@@ -44,12 +40,15 @@
     "directories": {
         "example": "example"
     },
+
+    "dependencies": {
+        "xml2json": "^0.5.1",
+        "request": "^2.50.0"
+    },
     "devDependencies": {
         "chai": "^3.0.0",
         "colors": "^1.0.3",
-        "mocha": "^2.2.5",
-        "request": "^2.50.0",
-        "xml2json": "^0.5.1"
+        "mocha": "^2.2.5"
     },
     "homepage": "https://github.com/madelinecameron/PizzaPI"
 }
