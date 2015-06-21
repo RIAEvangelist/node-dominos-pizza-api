@@ -17,17 +17,20 @@ var findNearbyStores = function(address, pickUpType, callback) {
         return;
     }
 
-    var addressLines = new Address(address).getAddressLines();
+    var address = new Address(address)
+    var addressLines=address.getAddressLines();
+
+    console.log(address,addressLines);
 
     var url = urls.store.find.replace(
         '${line1}',
         encodeURI(
-          addressLines[0]
+          addressLines.line1
         )
     ).replace(
         '${line2}',
         encodeURI(
-          addressLines[1]
+          addressLines.line2
         )
     ).replace(
         '${type}',

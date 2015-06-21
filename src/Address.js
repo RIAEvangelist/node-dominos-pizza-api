@@ -17,7 +17,12 @@ var Address = function(parameters) {
         this.PostalCode = parameters[3];
     }
 
-    if (typeof paramaters == 'string') {
+    if (typeof paramaters == 'number') {
+        parameters+='';
+    }
+
+
+    if (typeof parameters == 'string') {
         this.parse(parameters);
     }
 
