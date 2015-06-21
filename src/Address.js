@@ -21,7 +21,7 @@ var Address = function(parameters) {
         this.parse(parameters);
     }
 
-    if (!paramaters.Type) {
+    if (!parameters.Type) {
         this.Type = 'House';
     }
 };
