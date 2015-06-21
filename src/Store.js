@@ -3,17 +3,19 @@
 var httpJson = require('./http-json');
 var urls = require('./urls.json');
 
-var Store = function() {
-    this.ID = '';
+var Store = function(parameters) {
+    this.ID = parameters.ID;
 };
 
 Store.prototype.getInfo = function(callback) {
-    if(!callback){
+    if( !this.ID || !callback){
         if(callback)
-            callback({
-                success: false,
-                message: 'A callback is required to get store info'
-            });
+            callback(
+                {
+                    success: false,
+                    message: 'A callback is required to get store info'
+                }
+            );
         return;
     }
 
@@ -21,7 +23,7 @@ Store.prototype.getInfo = function(callback) {
 };
 
 Store.prototype.getMenu = function(callback, lang) {
-    if(!callback){
+    if( !this.ID || !callback){
         if(callback)
             callback({
                 success: false,
