@@ -20,12 +20,12 @@ var Order = function(parameters) {
     this.OrderMethod = 'Web';
     this.OrderTaker = null;
     this.Payments = [];
-    this.Phone = "";
+    this.Phone = '';
     this.Products = [];
     this.Market = '';
     this.Currency = '';
-    this.ServiceMethod = parameters.deliveryMethod ? parameters.deliveryMethod : "Delivery";
-    this.SourceOrganizationURI = "order.dominos.com";
+    this.ServiceMethod = parameters.deliveryMethod ? parameters.deliveryMethod : 'Delivery';
+    this.SourceOrganizationURI = 'order.dominos.com';
     this.StoreID = parameters.storeID;
     this.Tags = {};
     this.Version = '1.0';
@@ -41,7 +41,7 @@ var Order = function(parameters) {
 
     return this;
   }
-  if(parameters["Order"]) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
+  if(parameters['Order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
     
     this.Address = prevOrder.Address;
