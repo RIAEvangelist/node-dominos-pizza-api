@@ -3,7 +3,7 @@
 var util = require('util');
 
 var Address = function(parameters) {
-    if(typeof paramaters == 'object' && parameters.PostalCode){
+    if (typeof paramaters == 'object' && parameters.PostalCode) {
         this.Street = parameters.Street;
         this.City = parameters.City;
         this.Region = parameters.Region;
@@ -17,7 +17,7 @@ var Address = function(parameters) {
         this.PostalCode = parameters[3];
     }
 
-    if(typeof paramaters == 'string'){
+    if (typeof paramaters == 'string') {
         this.parse(parameters);
     }
 
@@ -34,44 +34,44 @@ Address.prototype.parse = function(locationString) {
     }
 
     //need better intellegence for auto determining address parts
-    switch(splitAddress.length) {
-      case 1:
-        this.PostalCode = Number(splitAddress[0]);
+    switch (splitAddress.length) {
+        case 1:
+            this.PostalCode = Number(splitAddress[0]);
 
-        if(!this.PostalCode){
-            this.City=splitAddress[0];
-        }
-        break;
-      case 2:
-        this.Region = splitAddress[0];
-        this.PostalCode = splitAddress[1];
-        break;
-      case 3:
-        this.City = splitAddress[0];
-        this.Region = splitAddress[1]
-        this.PostalCode = splitAddress[2];
-        break;
-      case 4:
-        this.Street = splitAddress[0];
-        this.City = splitAddress[1];
-        this.Region = splitAddress[2];
-        this.PostalCode = splitAddress[3];
+            if (!this.PostalCode) {
+                this.City = splitAddress[0];
+            }
+            break;
+        case 2:
+            this.Region = splitAddress[0];
+            this.PostalCode = splitAddress[1];
+            break;
+        case 3:
+            this.City = splitAddress[0];
+            this.Region = splitAddress[1]
+            this.PostalCode = splitAddress[2];
+            break;
+        case 4:
+            this.Street = splitAddress[0];
+            this.City = splitAddress[1];
+            this.Region = splitAddress[2];
+            this.PostalCode = splitAddress[3];
     }
 };
 
 Address.prototype.getAddressLines = function() {
-  var line1 = '';
-  var line2 = '';
+    var line1 = (this.Street ? this.Street : '');
+    var line2 = new String(
+        (this.City ? this.City + ',' : '') +
+        (this.Region ? this.Region + ',' : '') +
+        this.PostalCode
+    );
 
-  if(this.Street) {
-    line1 = this.Street;
-    line2 = this.City + ',' + this.Region + ',' + this.PostalCode;
-  }
-  else {
-    line2 = String((this.City ? this.City + ',' : '') + (this.Region ? this.Region + ',' : '') + this.PostalCode);
-  }
+    var lines=[line1, line2];
+    lines.line1=line1;
+    lines.line2=line2;
 
-  return [ line1, line2 ]
+    return
 }
 
 module.exports = Address;
