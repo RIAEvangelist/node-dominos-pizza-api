@@ -3,23 +3,26 @@
 var util = require('util');
 
 var Address = function(parameters) {
+    if(typeof paramaters == 'object' && parameters.PostalCode){
+        this.Street = parameters.Street;
+        this.City = parameters.City;
+        this.Region = parameters.Region;
+        this.PostalCode = parameters.PostalCode;
+    }
+
     if (util.isArray(parameters)) {
         this.Street = parameters[0];
         this.City = parameters[1];
         this.Region = parameters[2];
         this.PostalCode = parameters[3];
-    } else {
-        if (parameters.PostalCode) {
-            this.Street = parameters.Street;
-            this.City = parameters.City;
-            this.Region = parameters.Region;
-            this.PostalCode = parameters.PostalCode;
-        } else {
-            this.parse(parameters);
-        }
     }
-    if (!this.Type) {
-        this.Type = "House";
+
+    if(typeof paramaters == 'string'){
+        this.parse(parameters);
+    }
+
+    if (!paramaters.Type) {
+        this.Type = 'House';
     }
 };
 
@@ -52,15 +55,15 @@ Address.prototype.parse = function(locationString) {
 };
 
 Address.prototype.getAddressLines = function() {
-  var line1 = "";
-  var line2 = "";
+  var line1 = '';
+  var line2 = '';
 
   if(this.Street) {
     line1 = this.Street;
-    line2 = this.City + "," + this.Region + "," + this.PostalCode;
+    line2 = this.City + ',' + this.Region + ',' + this.PostalCode;
   }
   else {
-    line2 = String((this.City ? this.City + "," : "") + (this.Region ? this.Region + "," : "") + this.PostalCode);
+    line2 = String((this.City ? this.City + ',' : '') + (this.Region ? this.Region + ',' : '') + this.PostalCode);
   }
 
   return [ line1, line2 ]
