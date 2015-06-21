@@ -8,13 +8,13 @@ module.exports.byPhone = function(phone, callback) {
         if(callback) {
             callback({
                 success: false,
-                message: "Phone is required!"
+                message: 'Phone is required!'
             });
         }
         return;
     }
 
-    this.byUrl(urls.track + "Phone=" + phone, callback);
+    this.byUrl(urls.track + 'Phone=' + phone, callback);
 };
 
 module.exports.byId = function(storeID, orderKey, callback) {
@@ -22,12 +22,12 @@ module.exports.byId = function(storeID, orderKey, callback) {
         if(callback)
             callback({
                 success: false,
-                message: "storeID, orderKey, and callback are all required to get pizza info using the orderKey"
+                message: 'storeID, orderKey, and callback are all required to get pizza info using the orderKey'
             });
         return;
     }
 
-    this.byUrl(urls.track + "StoreID=" + storeID + "&OrderKey=" + orderKey, callback);
+    this.byUrl(urls.track + 'StoreID=' + storeID + '&OrderKey=' + orderKey, callback);
 };
 
 module.exports.byUrl = function(url, callback){

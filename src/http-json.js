@@ -1,14 +1,14 @@
 var http = require('request');
 
 module.exports.post = function(url, req, callback) {
-    if(typeof req !=  "string")
+    if(typeof req !=  'string')
         req = JSON.stringify(req);
 
     var requestBody = {
         uri: url,
         headers: {
             Referer:'https://order.dominos.com/en/pages/order/',
-            "Content-Type": 'application/json'
+            'Content-Type': 'application/json'
         },
         body: req
     };

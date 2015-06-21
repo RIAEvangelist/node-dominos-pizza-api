@@ -10,7 +10,7 @@ var findNearbyStores = function(address, pickUpType, callback) {
             callback(
                 {
                     success: false,
-                    message: "At least a partial address (minimum accepted is zipcode) is required to find stores"
+                    message: 'At least a partial address (minimum accepted is zipcode) is required to find stores'
                 }
             );
         }

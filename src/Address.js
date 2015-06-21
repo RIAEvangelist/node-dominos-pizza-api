@@ -3,11 +3,11 @@
 var Address = function(parameters) {
 
     if(!this.Type){
-        this.Type = "House";
+        this.Type = 'House';
     }
 
     if(parameters.Zip) {
-        console.log("No Parse!");
+        console.log('No Parse!');
         this.Street = parameters.Street;
         this.City = parameters.City;
         this.Region = parameters.Region;
