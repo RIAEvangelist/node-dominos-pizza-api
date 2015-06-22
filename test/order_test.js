@@ -11,11 +11,11 @@ describe('Order', function() {
   describe('Creation', function() {
     it('should create Customer', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
-        Region: "MO",
-        PostalCode: "63102",
-        Type: "House"
+        Street: '900 Clark Street',
+        City: 'St. Louis',
+        Region: 'MO',
+        PostalCode: '63102',
+        Type: 'House'
       };
 
       var cardsStadium = new Address(addressParams);
@@ -25,11 +25,11 @@ describe('Order', function() {
       expect(cardsStadium.Region).to.equal(addressParams.Region);
 
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
+        firstName: 'Fred',
+        lastName: 'Bird',
+        email: 'fred@cardinals.are.hackers',
         address: cardsStadium,
-        phone: "1-800-Fredd"
+        phone: '1-800-Fredd'
       };
 
       var fredBird = new Customer(customerParams);
@@ -41,7 +41,7 @@ describe('Order', function() {
 
       expect(order).not.to.be.null;
       expect(order.Address).to.equal(fredBird.address);
-      expect(order.ServiceMethod).to.equal("Delivery");
+      expect(order.ServiceMethod).to.equal('Delivery');
       expect(order.StoreID).to.equal(4336);
 
       done();
@@ -49,19 +49,19 @@ describe('Order', function() {
 
     it('should add a pizza', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
-        Region: "MO",
-        PostalCode: "63102"
+        Street: '900 Clark Street',
+        City: 'St. Louis',
+        Region: 'MO',
+        PostalCode: '63102'
       };
 
       var cardsStadium = new Address(addressParams);
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
+        firstName: 'Fred',
+        lastName: 'Bird',
+        email: 'fred@cardinals.are.hackers',
         address: cardsStadium,
-        phone: "1-800-Fredd"
+        phone: '1-800-Fredd'
       };
 
       var fredBird = new Customer(customerParams);
@@ -93,19 +93,19 @@ describe('Order', function() {
 
     it('should validate order', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
-        Region: "MO",
-        PostalCode: "63102"
+        Street: '900 Clark Street',
+        City: 'St. Louis',
+        Region: 'MO',
+        PostalCode: '63102'
       };
 
       var cardsStadium = new Address(addressParams);
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
+        firstName: 'Fred',
+        lastName: 'Bird',
+        email: 'fred@cardinals.are.hackers',
         address: cardsStadium,
-        phone: "1-800-Fredd"
+        phone: '1-800-Fredd'
       };
 
       var fredBird = new Customer(customerParams);
@@ -124,7 +124,7 @@ describe('Order', function() {
         var results = result.result;
 
         expect(results.Order).to.exist;
-        expect(results.Order.OrderID).to.not.eql("");
+        expect(results.Order.OrderID).to.not.eql('');
 
         done();
 
@@ -134,19 +134,19 @@ describe('Order', function() {
 
     it('should price order', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
-        Region: "MO",
-        PostalCode: "63102"
+        Street: '900 Clark Street',
+        City: 'St. Louis',
+        Region: 'MO',
+        PostalCode: '63102'
       };
 
       var cardsStadium = new Address(addressParams);
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
+        firstName: 'Fred',
+        lastName: 'Bird',
+        email: 'fred@cardinals.are.hackers',
         address: cardsStadium,
-        phone: "1-800-Fredd"
+        phone: '1-800-Fredd'
       };
 
       var fredBird = new Customer(customerParams);
@@ -163,12 +163,12 @@ describe('Order', function() {
 
       order.validate(function(result) {
         order = new Order(result.result);
-          console.log("new order: \n");
-          console.dir(order);
+          console.log('new order: \n');
+          //console.dir(order);
           order.price(function(result) {
             var priceResults = result.result.Order;
-            console.log("Price results!: \n");
-            console.dir(priceResults.Products);
+            console.log('Price results!: \n');
+            //console.dir(priceResults.Products);
 
             expect(priceResults).to.exist;
             expect(results.Amounts).not.to.be({});
