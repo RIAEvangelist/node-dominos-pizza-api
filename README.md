@@ -35,7 +35,7 @@ For a more detailed / complicated example, see the awesome [PizzaGiver](https://
 
 Testing
 ====
-Simpley run ` npm test `
+Simply run ` npm test `
 if you have issues with this you may want to try installing mocha globally like this : ` npm install -g mocha `
 
 -OR for manual testing-
