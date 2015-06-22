@@ -226,9 +226,8 @@ function findStores(address, closest, menu, fullMenu){
         address,
         'Delivery',
         function(storeData){
-            console.log(storeData)
             var openStores=[];
-            order.Order.Address=storeData.result.Address;
+            order.Address=new pizzapi.Address(storeData.result.Address);
 
             for(var i in storeData.result.Stores){
                 if(storeData.result.Stores[i].IsOpen &&
