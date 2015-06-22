@@ -4,43 +4,35 @@
     "description": "node js API for Domino's pizza",
     "main": "dominos-pizza-api.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
-    },
-    "dependencies": {
-        "xml2json": "^0.5.1",
-        "request": "^2.50.0"
     },
     "keywords": [
         "Dominos",
         "Domino's",
         "Pizza",
         "API",
-        "Pie"
+        "Pie",
+        "PizzaPI"
     ],
     "author": {
         "name": "Brandon Miller",
         "email": "brandon@diginow.it"
     },
-    "contributors":[
-        {
-            "name": "Madeline Cameron",
-            "email": "madeline@madelinecameron.net",
-            "url": "http://madelinecameron.net"
-        },
-        {
-            "name": "Adrian Sida"
-        },
-        {
-            "name": "Victor Quinn"
-        },
-        {
-            "name": "Matt Cotter"
-        }
-    ],
+    "contributors": [{
+        "name": "Madeline Cameron",
+        "email": "madeline@madelinecameron.net",
+        "url": "http://madelinecameron.net"
+    }, {
+        "name": "Adrian Sida"
+    }, {
+        "name": "Victor Quinn"
+    }, {
+        "name": "Matt Cotter"
+    }],
     "license": "DBAD",
     "bugs": {
         "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
@@ -48,10 +40,15 @@
     "directories": {
         "example": "example"
     },
+
+    "dependencies": {
+        "xml2json": "^0.5.1",
+        "request": "^2.50.0"
+    },
     "devDependencies": {
+        "chai": "^3.0.0",
         "colors": "^1.0.3",
-        "request": "^2.50.0",
-        "xml2json": "^0.5.1"
+        "mocha": "^2.2.5"
     },
     "homepage": "https://github.com/madelinecameron/PizzaPI"
 }
