@@ -22,17 +22,22 @@
         "name": "Brandon Miller",
         "email": "brandon@diginow.it"
     },
-    "contributors": [{
-        "name": "Madeline Cameron",
-        "email": "madeline@madelinecameron.net",
-        "url": "http://madelinecameron.net"
-    }, {
-        "name": "Adrian Sida"
-    }, {
-        "name": "Victor Quinn"
-    }, {
-        "name": "Matt Cotter"
-    }],
+    "contributors": [
+        {
+            "name": "Madeline Cameron",
+            "email": "madeline@madelinecameron.net",
+            "url": "http://madelinecameron.net"
+        },
+        {
+            "name": "Adrian Sida"
+        },
+        {
+            "name": "Victor Quinn"
+        },
+        {
+            "name": "Matt Cotter"
+        }
+    ],
     "license": "DBAD",
     "bugs": {
         "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
