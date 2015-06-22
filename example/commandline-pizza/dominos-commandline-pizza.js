@@ -112,13 +112,17 @@ function help(){
 
 function showMenu(storeID,quick){
     console.log('Fetching menu for '+storeID.info+'...');
-    order.Order.StoreID=storeID
+    order.StoreID=storeID
     rl.prompt();
 
-    pizzapi.store.menu(
-        storeID,
-        function(data){
+    var store=new pizzapi.Store(
+        {
+            ID:storeID
+        }
+    );
 
+    store.getMenu(
+        function(data){
             if(quick){
                 console.log(
                     '\n##########################\n'.blue,
@@ -204,8 +208,8 @@ function validateAddress(address){
     pizzapi.store.find(
         address,
         function(storeData){
-            order.Order.Address=storeData.result.Address;
-            if(!order.Order.Address.Street){
+            order.Address=storeData.result.Address;
+            if(!order.Address.Street){
                 rl.question(
                     'Not a valid address.'.red+' What is the full address for delivery?',
                     validateAddress
@@ -247,7 +251,7 @@ function findStores(address, closest, menu, fullMenu){
 
             if(closest){
                 count=1;
-                order.Order.StoreID=openStores[0].StoreID
+                order.StoreID=openStores[0].StoreID
             }
             console.log('\n');
             for(var i=0; i<count; i++){
@@ -297,10 +301,10 @@ function orderPizza(items){
         product.Code=items[i].trim();
 
         //add the item to the order
-        order.Order.Products.push(product);
+        order.Products.push(product);
     }
 
-    if(!order.Order.Address.Street){
+    if(!order.Address.Street){
         rl.question(
             'what is the full address for delivery?',
             validateAddress
@@ -312,55 +316,55 @@ function orderPizza(items){
 }
 
 function validateOrder(){
-    if(!order.Order.FirstName){
+    if(!order.FirstName){
         rl.question(
             'First Name?',
             function(data){
-                order.Order.FirstName=data;
+                order.FirstName=data;
                 validateOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.LastName){
+    if(!order.LastName){
         rl.question(
             'Last Name?',
             function(data){
-                order.Order.LastName=data;
+                order.LastName=data;
                 validateOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Email){
+    if(!order.Email){
         rl.question(
             'E-Mail?',
             function(data){
-                order.Order.Email=data;
+                order.Email=data;
                 validateOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Phone){
+    if(!order.Phone){
         rl.question(
             'Phone number?',
             function(data){
-                order.Order.Phone=data;
+                order.Phone=data;
                 validateOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Phone){
+    if(!order.Phone){
         rl.question(
             'Phone number?',
             function(data){
-                order.Order.Phone=data;
+                order.Phone=data;
                 validateOrder();
             }
         );
@@ -387,7 +391,7 @@ function pricedOrder(priceData) {
 
     var cardInfo = new pizzapi.Payment();
     cardInfo.Amount = priceData.result.Order.Amounts.Customer;
-    order.Order.Payments.push(cardInfo);
+    order.Payments.push(cardInfo);
 
     placeOrder();
 }
@@ -428,49 +432,49 @@ function validateCC(number){
 }
 
 function placeOrder(){
-    if(!order.Order.Payments[0].Number){
+    if(!order.Payments[0].Number){
         rl.question(
             'Credit Card Number?',
             function(data){
-                order.Order.Payments[0].Number = data;
-                order.Order.Payments[0].CardType = validateCC(data);
+                order.Payments[0].Number = data;
+                order.Payments[0].CardType = validateCC(data);
                 placeOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Payments[0].Expiration){
+    if(!order.Payments[0].Expiration){
         rl.question(
             'Credit Card Expiration?',
             function(data){
-                order.Order.Payments[0].Expiration = data.replace(/\D/g,'');
+                order.Payments[0].Expiration = data.replace(/\D/g,'');
                 placeOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Payments[0].SecurityCode){
+    if(!order.Payments[0].SecurityCode){
         rl.question(
             'Credit Card Security Code or CVV (3 or 4 digit code on card)?',
             function(data){
-                order.Order.Payments[0].SecurityCode = data;
+                order.Payments[0].SecurityCode = data;
                 placeOrder();
             }
         );
         return;
     }
 
-    if(!order.Order.Payments[0].PostalCode){
+    if(!order.Payments[0].PostalCode){
         rl.question(
             'Postal Code?',
             function(data){
-                order.Order.Payments[0].PostalCode = data;
+                order.Payments[0].PostalCode = data;
                 placeOrder();
             }
         );
-        rl.write(order.Order.Address.PostalCode);
+        rl.write(order.Address.PostalCode);
         return;
     }
 
@@ -480,7 +484,7 @@ function placeOrder(){
 function orderPlaced(data){
     order=data.result;
     if(orderData.result.Order.Status==-1){
-        console.log(order.Order.CorrectiveAction);
+        console.log(order.CorrectiveAction);
         rl.prompt();
         return;
     }
@@ -490,8 +494,8 @@ function orderPlaced(data){
 
 function trackOrder(){
     pizzapi.track.orderKey(
-        order.Order.OrderID,
-        order.Order.StoreID,
+        order.OrderID,
+        order.StoreID,
         function(pizzaData){
             readline.cursorTo(process.stdout, 0, 0);
             readline.clearScreenDown(process.stdout);
