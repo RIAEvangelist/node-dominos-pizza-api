@@ -36,7 +36,8 @@ For a more detailed / complicated example, see the awesome [PizzaGiver](https://
 Testing
 ====
 
-To run the tests, run ` mocha `
+1. Install mocha ` npm install -g mocha `
+1. Run the tests ` mocha `
 
 Finding Nearby Domino's Locations
 ====
