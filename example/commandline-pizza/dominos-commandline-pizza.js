@@ -28,7 +28,9 @@ readline.clearScreenDown(process.stdout);
 rl.setPrompt('Pizza> ');
 rl.prompt();
 
-var order=false;
+var order=new pizzapi.Order(
+
+);
 
 rl.on(
     'line',
@@ -286,9 +288,6 @@ function findStores(address, closest, menu, fullMenu){
 }
 
 function orderPizza(items){
-    if(!order){
-        order=new pizzapi.Order();
-    }
     var items=items.split(',');
     for(var i=0; i<items.length; i++){
         //create a new product to add to the order
