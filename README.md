@@ -33,6 +33,11 @@ See the examples directory for simple apps and demonstrations on using the basic
 For a more detailed / complicated example, see the awesome [PizzaGiver](https://github.com/madelinecameron/PizzaGiver)
 -->
 
+Testing
+====
+
+To run the tests, run ` mocha `
+
 Finding Nearby Domino's Locations
 ====
 
