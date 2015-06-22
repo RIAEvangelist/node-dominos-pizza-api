@@ -96,11 +96,13 @@ var Address = function(parameters) {
         //need better intellegence for auto determining address parts
         switch (splitAddress.length) {
             case 1:
-                this.PostalCode = Number(splitAddress[0])+'';
+                this.PostalCode = Number(splitAddress[0]);
 
                 if (!this.PostalCode) {
+                    this.PostalCode='';
                     this.City = splitAddress[0];
                 }
+                this.PostalCode+='';
                 break;
             case 2:
                 this.Region = splitAddress[0];

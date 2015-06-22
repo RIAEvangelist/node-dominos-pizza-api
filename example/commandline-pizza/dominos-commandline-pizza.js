@@ -226,6 +226,7 @@ function findStores(address, closest, menu, fullMenu){
         address,
         'Delivery',
         function(storeData){
+            console.log(storeData)
             var openStores=[];
             order.Order.Address=storeData.result.Address;
 
