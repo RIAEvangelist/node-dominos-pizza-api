@@ -7,7 +7,7 @@ function Payment() {  //Probably going to change this so no bother in making its
         "Expiration": "",  //digits only
         "SecurityCode": "",
         "PostalCode": ""
-    }        
+    }
 }
 
 module.exports = {

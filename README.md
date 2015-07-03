@@ -56,7 +56,7 @@ Finding Nearby Domino's Locations
 ***this yields the least accurate information***
 
     var pizzapi=require('pizzapi');
-    
+
     pizzapi.Util.findNearbyStores(
         '63102',
         'Delivery',
@@ -69,7 +69,7 @@ Finding Nearby Domino's Locations
 ***this yields less accurate information but is better than just using the postal code***
 
     var pizzapi=require('pizzapi');
-    
+
     pizzapi.Util.findNearbyStores(
         'St. Louis, MO, 63102',
         'Delivery',
@@ -82,7 +82,7 @@ Finding Nearby Domino's Locations
 ***this yields the best information and sorts stores by actual distance***
 
     var pizzapi=require('pizzapi');
-    
+
     pizzapi.Util.findNearbyStores(
         '700 Clark Ave, St. Louis, MO, 63102',
         'Delivery',
@@ -103,7 +103,7 @@ Domino's Store Info
     var pizzapi=require('pizzapi');
     var myStore=new pizzapi.Store();
     myStore.ID=4336;
-    
+
     myStore.getInfo(
         function(storeData){
             console.log(storeData);
@@ -121,7 +121,7 @@ Menu for Specific Domino's Store Location
     var pizzapi=require('pizzapi');
     var myStore=new pizzapi.Store();
     myStore.ID=4336;
-    
+
     myStore.getMenu(
         function(storeData){
             console.log(storeData);
@@ -137,9 +137,9 @@ Tracking Domino's Pizza
 |--------|----|-------|--------|
 |phone|Phone number string or int|null|true|
 |callback|function to pass the api result to|null|true|
-    
+
     var pizzapi=require('pizzapi');
-    
+
     pizzapi.Track.byPhone(
         2024561111,
         function(pizzaData){
@@ -156,7 +156,7 @@ Tracking Domino's Pizza
 |callback|function to pass the api result to|null|true|
 
     var pizzapi=require('pizzapi');
-    
+
     pizzapi.Track.byId(
         123456,
         12345,
@@ -177,7 +177,7 @@ Three classes exist to get orders started,
 ### creating an order
 
     var pizzapi=require('pizzapi');
-    
+
     var thePresident = new pizzapi.Customer(
         {
             firstName: 'Barack',
@@ -186,7 +186,7 @@ Three classes exist to get orders started,
             email: 'barack@whitehouse.gov'
         }
     );
-    
+
     var order = new pizzapi.Order(
         {
             customer: thePresident,

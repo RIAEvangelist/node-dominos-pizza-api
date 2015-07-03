@@ -5,7 +5,7 @@ var httpJson = require('./http-json');
 
 var Order = function(parameters) {
     if(!parameters){
-        parameters={}
+        parameters = {}
     }
 
     this.Address = '';
@@ -98,7 +98,6 @@ Order.prototype.validate = function(callback) { //Validate Order
     var stringified = JSON.stringify({
         'Order': this
     });
-
     httpJson.post(urls.order.validate, stringified, callback);
 };
 
@@ -116,9 +115,7 @@ Order.prototype.price = function(callback) {
     var stringified = JSON.stringify({
         'Order': this
     });
-
     httpJson.post(urls.order.price, stringified, callback);
-
 };
 
 Order.prototype.place = function(stripeToken, callback) {
