@@ -94,46 +94,145 @@ describe('Order', function() {
       done();
     });
 
-    it('should validate order', function(done) {
-      var addressParams = {
-        Street: "1346 N Bishop Ave",
-        City: "Rolla",
-        Region: "MO",
-        PostalCode: "65401",
-        Type: "House"
-      };
+    describe('validate', function() {
+      it('should validate cheese pizza', function(done) {
+        var addressParams = {
+          Street: "1346 N Bishop Ave",
+          City: "Rolla",
+          Region: "MO",
+          PostalCode: "65401",
+          Type: "House"
+        };
 
-      var havener = new Address(addressParams);
+        var havener = new Address(addressParams);
 
-      var customerParams = {
-        firstName: "Joe",
-        lastName: "Miner",
-        email: "joe@mst.edu",
-        address: havener,
-        phone: "1-800-Joe"
-      };
+        var customerParams = {
+          firstName: "Joe",
+          lastName: "Miner",
+          email: "joe@mst.edu",
+          address: havener,
+          phone: "1-800-Joe"
+        };
 
-      var joeMiner = new Customer(customerParams);
+        var joeMiner = new Customer(customerParams);
 
-      var order = new Order({
-        customer: joeMiner,
-        storeID: "1546"
+        var order = new Order({
+          customer: joeMiner,
+          storeID: "1546"
+        });
+
+        order.addItem(new Item({
+          code: '14SCREEN',
+          options: '',  // Cheese pizza
+          quantity: 1
+        }));
+
+        order.validate(function(result) {
+          var results = result.result;
+          expect(results.Order).to.exist;
+          expect(results.Order.OrderID).to.not.eql("");
+
+          done();
+
+        });
+      });
+      it('should validate pepperoni pizza', function(done) {
+        var addressParams = {
+          Street: "1346 N Bishop Ave",
+          City: "Rolla",
+          Region: "MO",
+          PostalCode: "65401",
+          Type: "House"
+        };
+
+        var havener = new Address(addressParams);
+
+        var customerParams = {
+          firstName: "Joe",
+          lastName: "Miner",
+          email: "joe@mst.edu",
+          address: havener,
+          phone: "1-800-Joe"
+        };
+
+        var joeMiner = new Customer(customerParams);
+
+        var order = new Order({
+          customer: joeMiner,
+          storeID: "1546"
+        });
+
+        order.addItem(new Item({
+          code: '14SCREEN',
+          options: 'P',  // Pepperoni pizza
+          quantity: 1
+        }));
+
+        order.validate(function(result) {
+          var results = result.result;
+          expect(results.Order).to.exist;
+          expect(result.success).to.be.true;
+          expect(results.Order.OrderID).to.not.eql("");
+
+          done();
+
+        });
+      });
+      it('should validate assorted order', function(done) {
+        var addressParams = {
+          Street: "1346 N Bishop Ave",
+          City: "Rolla",
+          Region: "MO",
+          PostalCode: "65401",
+          Type: "House"
+        };
+
+        var havener = new Address(addressParams);
+
+        var customerParams = {
+          firstName: "Joe",
+          lastName: "Miner",
+          email: "joe@mst.edu",
+          address: havener,
+          phone: "1-800-Joe"
+        };
+
+        var joeMiner = new Customer(customerParams);
+
+        var order = new Order({
+          customer: joeMiner,
+          storeID: "1546"
+        });
+
+        order.addItem(new Item({
+          code: '14SCREEN',
+          options: '',  // Cheese pizza
+          quantity: 1
+        }));
+
+        order.addItem(new Item({
+          code: '14SCREEN',
+          options: 'P',  // Pepperoni pizza
+          quantity: 1
+        }));
+
+        order.addItem(new Item({
+          code: 'W08PHOTW',  //Hot wings
+          options: '',
+          quantity: 1
+        }));
+        order.validate(function(result) {
+          var results = result.result;
+          console.log(results);
+          expect(results.Order).to.exist;
+          expect(result.success).to.be.true
+          expect(results.Order.OrderID).to.not.eql("");
+
+          done();
+
+        });
       });
 
-      order.addItem(new Item({
-        code: '14SCREEN',
-        options: '',  // Cheese pizza
-        quantity: 1
-      }));
-
-      order.validate(function(result) {
-        var results = result.result;
-        expect(results.Order).to.exist;
-        expect(results.Order.OrderID).to.not.eql("");
-
-        done();
-
-      });
     });
 
     it('should price order', function(done) {

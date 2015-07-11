@@ -43,7 +43,9 @@ if you have issues with this you may want to try installing mocha globally like 
 1. Install mocha ` npm install -g mocha `
 1. Run the tests ` mocha `
 
-Finding Nearby Domino's Locations
+---
+
+Finding Stores
 ====
 
 |argument|type|default|required|
@@ -91,12 +93,14 @@ Finding Nearby Domino's Locations
         }
     );
 
-Domino's Store Info
+---
+
+Store
 ====
 
-|argument|type|default|required|
-|--------|----|-------|--------|
-|callback|function to pass the api result to|null|true|
+  |argument|type|default|required|
+  |--------|----|-------|--------|
+  |ID|Integer|null|true|
 
 
     //Get Store Info for Store #4336
@@ -110,12 +114,11 @@ Domino's Store Info
         }
     );
 
-Menu for Specific Domino's Store Location
-====
+### Store menu
 
-|argument|type|default|required|
-|--------|----|-------|--------|
-|callback|function to pass the api result to|null|true|
+  |argument|type|default|required|
+  |--------|----|-------|--------|
+  |callback|function to pass the api result to|null|true|
 
     //Get Menu for Store #4336
     var pizzapi=require('pizzapi');
@@ -128,51 +131,100 @@ Menu for Specific Domino's Store Location
         }
     );
 
-Tracking Domino's Pizza
-====
-
-### By Phone
-
+### Store info
 |argument|type|default|required|
 |--------|----|-------|--------|
-|phone|Phone number string or int|null|true|
 |callback|function to pass the api result to|null|true|
 
-    var pizzapi=require('pizzapi');
+### Friendly menu list
+  Returns a list of all items the store offers in an JSON array, formatted {Code: Friendly Name}
 
-    pizzapi.Track.byPhone(
-        2024561111,
-        function(pizzaData){
-            console.log(pizzaData);
-        }
-    );
+---
 
-### By orderKey
-
-|argument|type|default|required|
-|--------|----|-------|--------|
-|orderKey|string or int|null|true|
-|storeID|sting or int|null|true|
-|callback|function to pass the api result to|null|true|
-
-    var pizzapi=require('pizzapi');
-
-    pizzapi.Track.byId(
-        123456,
-        12345,
-        function(pizzaData){
-            console.log(pizzaData)
-        }
-    );
-
-Domino's Pizza Orders
+Address
 ====
-Three classes exist to get orders started,
+When creating a new Address object, there are many ways to instantiate the object! **Order does matter with strings and arrays.**
 
-|Class|Description|
-|-----|-----------|
-|dominos.class.Order|creates a basic order object|
-|dominos.class.Product|creates a basic product with a quantity of 1|
+The following are examples of the methods:
+
+#### By string
+```javascript
+var fullAddress = new Address('900 Clark Ave, St. Louis, MO, 63102');
+
+//or
+
+var partAddress = new Address('St. Louis, MO, 63102');
+
+//or
+
+var onlyZip = new Address('63102');
+
+//or
+
+var onlyCity = new Address('St. Louis');
+```
+
+####By JSON
+```javascript
+var jsonAddress = new Address({
+  Street: '900 Clark Ave',
+  City: 'St. Louis',
+  Region: 'MO',
+  PostalCode: 63102
+  });
+  ```
+#### By array
+```javascript
+var arrayAddress = new Address(['900 Clark Ave', 'St. Louis', 'MO', '63102']);
+```
+
+---
+
+Customer
+===
+|argument|type|default|
+|--------|----|-------|
+|address|Address|null|
+|firstName|String|''|
+|lastName|String|''|
+|email|String|''|
+|phone|String|''|
+---
+
+```javascript
+var customer = new Customer({
+  address: someAddressObj,
+  firstName: 'Barack',
+  lastName: 'Obama',
+  phone: '1-800-The-White-House',
+  email: 'br'
+})
+
+Item
+====
+|argument|type|default|
+|--------|----|-------|
+|code|String|null|
+|quantity|Integer|1|
+|options|Array|[]|
+
+```javascript
+var newItem = new Item({ code: '14SCREEN' });
+
+//and so on...
+
+```
+---
+
+Order
+====
+This is the class that every other class feeds into.
+
+|argument|type|default|
+|--------|----|-------|
+|code|String|null|
+|quantity|Integer|1|
+|options|Array|[]|
 
 ### creating an order
 
@@ -232,6 +284,46 @@ At least one item must've been added to place an order.
             console.log("Order placed!");
         }
     );
+
+---
+
+Tracking
+====
+
+    ### By Phone
+
+    |argument|type|default|required|
+    |--------|----|-------|--------|
+    |phone|Phone number string or int|null|true|
+    |callback|function to pass the api result to|null|true|
+
+        var pizzapi=require('pizzapi');
+
+        pizzapi.Track.byPhone(
+            2024561111,
+            function(pizzaData){
+                console.log(pizzaData);
+            }
+        );
+
+    ### By orderKey
+
+    |argument|type|default|required|
+    |--------|----|-------|--------|
+    |orderKey|string or int|null|true|
+    |storeID|sting or int|null|true|
+    |callback|function to pass the api result to|null|true|
+
+        var pizzapi=require('pizzapi');
+
+        pizzapi.Track.byId(
+            123456,
+            12345,
+            function(pizzaData){
+                console.log(pizzaData)
+            }
+        );
+
 
 ## Original module
 Depricated due to massive overhauling by @madelinecameron  
