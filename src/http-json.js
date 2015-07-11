@@ -68,18 +68,21 @@ module.exports.get = function(url, callback){
                 return;
             }
 
-            try {  //If request is successful
-                callback({
-                    success: true,
-                    result: JSON.parse(body)
-                });
+            try {
+                var parsed = JSON.parse(body);
             }
-            catch(error) {  //If successful but parsing errored.
-                callback({
+            catch(error){
+              console.log(error);
+              return callback({
                   success: false,
                   message: error
-                });
+              });
             }
+
+            return callback({
+                success: true,
+                result: parsed
+            });
         }
     );
 }

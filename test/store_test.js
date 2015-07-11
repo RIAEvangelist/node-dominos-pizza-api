@@ -48,7 +48,7 @@ describe('Store', function() {
     newStore.getFriendlyNames(function(mapping) {
       expect(mapping).to.exist;
       expect(mapping.result).to.exist;
-      expect(menu.result).to.have.length.above(1);
+      expect(mapping.result).to.have.length.above(1);
 
       done();
     });
