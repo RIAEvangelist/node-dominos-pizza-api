@@ -52,7 +52,8 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "colors": "^1.0.3",
-    "mocha": "^2.2.5",
+    "lodash": "^3.10.0",
+    "mocha": "^2.2.5"
   },
   "homepage": "https://github.com/madelinecameron/PizzaPI"
 }
