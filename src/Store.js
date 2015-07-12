@@ -60,9 +60,10 @@ Store.prototype.getFriendlyNames = function(callback, lang) {
 
   httpJson.get(url, function(result) {
     var itemMapping = [];
-    _.forEach(result.result.Variants, function(value, key) {
-      var json = {};  //Because JS is weird. You can't use variables as keys.
-      json[key] = value.Name
+    var keys = Object.keys(result.result.Variants);
+    keys.forEach(function(key) {
+      var json = {};
+      json[result.result.Variants[key].Name] = key
       itemMapping.push(json);
     });
 
