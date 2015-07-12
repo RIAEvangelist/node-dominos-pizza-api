@@ -56,89 +56,120 @@ Finding Stores
 
 ### By Postal Code
 ***this yields the least accurate information***
+```javascript
+var pizzapi=require('pizzapi');
 
-    var pizzapi=require('pizzapi');
-
-    pizzapi.Util.findNearbyStores(
-        '63102',
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
+pizzapi.Util.findNearbyStores(
+    '63102',))
+    'Delivery',
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### By City and Postal Code
 ***this yields less accurate information but is better than just using the postal code***
+```javascript
+var pizzapi=require('pizzapi');
 
-    var pizzapi=require('pizzapi');
-
-    pizzapi.Util.findNearbyStores(
-        'St. Louis, MO, 63102',
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
+pizzapi.Util.findNearbyStores(
+    'St. Louis, MO, 63102',
+    'Delivery',
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### Using Full or Nearly Full Address
 ***this yields the best information and sorts stores by actual distance***
+```javascript
+var pizzapi=require('pizzapi');
 
-    var pizzapi=require('pizzapi');
-
-    pizzapi.Util.findNearbyStores(
-        '700 Clark Ave, St. Louis, MO, 63102',
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
+pizzapi.Util.findNearbyStores(
+    '700 Clark Ave, St. Louis, MO, 63102',
+    'Delivery',
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ---
 
 Store
 ====
 
-  |argument|type|default|required|
-  |--------|----|-------|--------|
-  |ID|Integer|null|true|
+|argument|type|default|required|
+|--------|----|-------|--------|
+|ID|Integer|null|true|
 
+```javascript
+//Get Store Info for Store #4336
+var pizzapi=require('pizzapi');
+var myStore=new pizzapi.Store();
+myStore.ID=4336;
 
-    //Get Store Info for Store #4336
-    var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
-
-    myStore.getInfo(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
+myStore.getInfo(
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### Store menu
 
-  |argument|type|default|required|
-  |--------|----|-------|--------|
-  |callback|function to pass the api result to|null|true|
+|argument|type|default|required|
+|--------|----|-------|--------|
+|callback|function|null|true|
+```javascript
+//Get Menu for Store #4336
+var pizzapi=require('pizzapi');
+var myStore=new pizzapi.Store();
+myStore.ID=4336;
 
-    //Get Menu for Store #4336
-    var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
-
-    myStore.getMenu(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
+myStore.getMenu(
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### Store info
 |argument|type|default|required|
 |--------|----|-------|--------|
-|callback|function to pass the api result to|null|true|
+|callback|function|null|true|
+```javascript
+//Get Info for Store #4336
+var pizzapi=require('pizzapi');
+var myStore=new pizzapi.Store();
+myStore.ID=4336;
+
+myStore.getInfo(
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### Friendly menu list
+|argument|type|default|required|
+|--------|----|-------|--------|
+|callback|function|null|true|
   Returns a list of all items the store offers in an JSON array, formatted {Code: Friendly Name}
+```javascript
+//Get friendly name menu for Store #4336
+var pizzapi=require('pizzapi');
+var myStore=new pizzapi.Store();
+myStore.ID=4336;
 
+myStore.getFriendlyNames(
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 ---
 
 Address
@@ -164,7 +195,7 @@ var onlyZip = new Address('63102');
 var onlyCity = new Address('St. Louis');
 ```
 
-####By JSON
+#### By JSON
 ```javascript
 var jsonAddress = new Address({
   Street: '900 Clark Ave',
@@ -199,6 +230,8 @@ var customer = new Customer({
   phone: '1-800-The-White-House',
   email: 'br'
 })
+```
+---
 
 Item
 ====
@@ -227,103 +260,107 @@ This is the class that every other class feeds into.
 |options|Array|[]|
 
 ### creating an order
+```javascript
+var pizzapi=require('pizzapi');
 
-    var pizzapi=require('pizzapi');
+var thePresident = new pizzapi.Customer(
+    {
+        firstName: 'Barack',
+        lastName: 'Obama',
+        address: '700 Pennsylvania Avenue, Washington, DC',
+        email: 'barack@whitehouse.gov'
+    }
+);
 
-    var thePresident = new pizzapi.Customer(
-        {
-            firstName: 'Barack',
-            lastName: 'Obama',
-            address: '700 Pennsylvania Avenue, Washington, DC',
-            email: 'barack@whitehouse.gov'
-        }
-    );
-
-    var order = new pizzapi.Order(
-        {
-            customer: thePresident,
-            storeID: myStore.ID,
-            deliveryMethod: 'Delivery' //(or 'Carryout')
-        }
-    );
-
+var order = new pizzapi.Order(
+    {
+        customer: thePresident,
+        storeID: myStore.ID,
+        deliveryMethod: 'Delivery' //(or 'Carryout')
+    }
+);
+```
+ 
 ### Adding a product to the order :
-
-    order.addItem(
-        new pizzapi.Item(
-            {
-                code: '14SCREEN',
-                options: {},
-                quantity: 1
-            }
-        )
-    );
+```javascript
+order.addItem(
+    new pizzapi.Item(
+        {
+            code: '14SCREEN',
+            options: [],
+            quantity: 1
+        }
+    )
+);
+```
 
 ### Validating an Order
-This step is ***Strongly** recommended
-
-    order.validate(
-        function(result) {
-            console.log("We did it!");
-        }
-    );
+This step is **Strongly** recommended
+```javascript
+order.validate(
+    function(result) {
+        console.log("We did it!");
+    }
+);
+```
 
 ### Price an Order
-
-    order.price(
-        function(result) {
-            console.log("Price!")
-        }
-    );
+```javascript
+order.price(
+    function(result) {
+        console.log("Price!")
+    }
+);
+```
 
 ### Place an Order
 At least one item must've been added to place an order.
-
-    order.place(
-        function(result) {
-            console.log("Order placed!");
-        }
-    );
-
+```javascript
+order.place(
+    function(result) {
+        console.log("Order placed!");
+    }
+);
+```
 ---
 
 Tracking
 ====
 
-    ### By Phone
+### By Phone
 
-    |argument|type|default|required|
-    |--------|----|-------|--------|
-    |phone|Phone number string or int|null|true|
-    |callback|function to pass the api result to|null|true|
+|argument|type|default|required|
+|--------|----|-------|--------|
+|phone|Phone number string or int|null|true|
+|callback|function to pass the api result to|null|true|
+```javascript
+var pizzapi=require('pizzapi');
 
-        var pizzapi=require('pizzapi');
+pizzapi.Track.byPhone(
+    2024561111,
+    function(pizzaData){
+        console.log(pizzaData);
+    }
+);
+```
+### By orderKey
 
-        pizzapi.Track.byPhone(
-            2024561111,
-            function(pizzaData){
-                console.log(pizzaData);
-            }
-        );
+|argument|type|default|required|
+|--------|----|-------|--------|
+|orderKey|string or int|null|true|
+|storeID|sting or int|null|true|
+|callback|function to pass the api result to|null|true|
+```javascript
+var pizzapi=require('pizzapi');
 
-    ### By orderKey
-
-    |argument|type|default|required|
-    |--------|----|-------|--------|
-    |orderKey|string or int|null|true|
-    |storeID|sting or int|null|true|
-    |callback|function to pass the api result to|null|true|
-
-        var pizzapi=require('pizzapi');
-
-        pizzapi.Track.byId(
-            123456,
-            12345,
-            function(pizzaData){
-                console.log(pizzaData)
-            }
-        );
-
+pizzapi.Track.byId(
+    123456,
+    12345,
+    function(pizzaData){
+        console.log(pizzaData)
+    }
+);
+```
 
 ## Original module
 Depricated due to massive overhauling by @madelinecameron  
