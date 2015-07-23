@@ -72,6 +72,17 @@ var Order = function(parameters) {
     return this;
 };
 
+Order.prototype.addCoupon = function(Coupon) { //Add coupon to Order
+    this.Coupons.push(Coupon)
+};
+
+Order.prototype.removeCoupon = function(Coupon) { //Remove coupon from Order
+    var index = this.Coupons.indexOf(Coupon);
+    if (index != -1) {
+        this.Coupons.splice(index, 1);
+    }
+};
+
 Order.prototype.addItem = function(Item) { //Add product to Order
     this.Products.push(Item)
 };
