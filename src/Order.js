@@ -20,7 +20,7 @@ var Order = function(parameters) {
     this.OrderMethod = 'Web';
     this.OrderTaker = null;
     this.Payments = [];
-    this.Phone = '';
+    this.Phone = Customer.phone;
     this.Products = [];
     this.Market = '';
     this.Currency = '';
@@ -43,7 +43,7 @@ var Order = function(parameters) {
   }
   if(parameters['Order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
-    
+
     this.Address = prevOrder.Address;
     this.Coupons = [];
     this.CustomerID = prevOrder.CustomerID;
@@ -57,7 +57,7 @@ var Order = function(parameters) {
     this.OrderMethod = 'Web';
     this.OrderTaker = null;
     this.Payments = [];
-    this.Phone = '';
+    this.Phone = prevOrder.Phone;
     this.Products = prevOrder.Products;
     this.Market = prevOrder.Market;
     this.Currency = prevOrder.Currency;
