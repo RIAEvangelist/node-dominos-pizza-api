@@ -2,7 +2,6 @@
 
 var httpJson = require('./http-json');
 var urls = require('./urls.json');
-var _ = require('lodash');
 
 var Store = function(parameters) {
     this.ID = parameters.ID;
