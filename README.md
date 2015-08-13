@@ -51,8 +51,10 @@ Finding Stores
 |argument|type|default|required|
 |--------|----|-------|--------|
 |address|full or partial address string|null|true|
-|callback|function to pass the api result to|null|true|
 |type|Delivery, Carryout, all| all | false|
+|callback|function to pass the api result to|null|true|
+
+Note: the 'address' parameter is passed to the Address class. This means any formatting that works for Address will work being passed here. This means you can pass JSON, array or string.
 
 ### By Postal Code
 ***this yields the least accurate information***
@@ -280,7 +282,7 @@ var order = new pizzapi.Order(
     }
 );
 ```
- 
+
 ### Adding a product to the order :
 ```javascript
 order.addItem(
