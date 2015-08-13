@@ -51,7 +51,7 @@ Finding Stores
 |argument|type|default|required|
 |--------|----|-------|--------|
 |address|full or partial address string|null|true|
-|type|Delivery, Carryout, all| all | false|
+|type|Delivery, Carryout, all| all | true|
 |callback|function to pass the api result to|null|true|
 
 Note: the 'address' parameter is passed to the Address class. This means any formatting that works for Address will work being passed here. This means you can pass JSON, array or string.
