@@ -5,8 +5,8 @@ var Item = function(parameters) {
     if(!parameters){
         parameters={}
     }
-    this.Code = parameters.code;
-    this.Qty = parameters.quantity ? parameters.quantity : 1;
+    this.Code = parameters.code||null;
+    this.Qty = parameters.quantity||1;
     this.ID = 1;
     this.isNew = true;
     this.Options = { 'C': {'1/1': '1'}, 'X': {'1/1': '1'} };
