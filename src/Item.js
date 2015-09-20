@@ -2,6 +2,9 @@
 
 
 var Item = function(parameters) {
+    if(!parameters){
+        parameters={}
+    }
     this.Code = parameters.code;
     this.Qty = parameters.quantity ? parameters.quantity : 1;
     this.ID = 1;
