@@ -299,7 +299,7 @@ function orderPizza(items){
         item.Code=items[i].trim();
 
         //add the item to the order
-        order.Products.push(product);
+        order.Products.push(item);
     }
 
     if(!order.Address.Street){
