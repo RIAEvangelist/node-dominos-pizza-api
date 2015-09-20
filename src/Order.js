@@ -43,7 +43,7 @@ var Order = function(parameters) {
   }
   if(parameters['Order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
-    
+
     this.Address = prevOrder.Address;
     this.Coupons = [];
     this.CustomerID = prevOrder.CustomerID;
@@ -128,16 +128,20 @@ Order.prototype.price = function(callback) {
 };
 
 Order.prototype.place = function(stripeToken, callback) {
-    if(!this.Products || !callback) {
-        if(callback) {
-            callback({
-                success: false,
-                message: 'At least one product must be added!'
-            })
-        }
-    }
+  if(!this.Products || !callback) {
+      if(callback) {
+          callback({
+              success: false,
+              message: 'At least one product must be added!'
+          })
+      }
+  }
 
-  httpJson.post(urls.order.place, JSON.stringify(this), callback);
+  var stringified = JSON.stringify({
+    'Order' : this
+  });
+
+  httpJson.post(urls.order.place, stringified, callback);
 };
 
 module.exports = Order;

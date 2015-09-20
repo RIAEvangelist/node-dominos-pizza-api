@@ -11,63 +11,66 @@ describe('Order', function() {
   describe('Creation', function() {
     it('should create Customer', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
         Region: "MO",
-        PostalCode: "63102",
+        PostalCode: "65401",
         Type: "House"
       };
 
-      var cardsStadium = new Address(addressParams);
-      expect(cardsStadium).not.to.be.null;
-      expect(cardsStadium.Street).to.equal(addressParams.Street);
-      expect(cardsStadium.City).to.equal(addressParams.City);
-      expect(cardsStadium.Region).to.equal(addressParams.Region);
+      var havener = new Address(addressParams);
+      expect(havener).not.to.be.null;
+      expect(havener.Street).to.equal(addressParams.Street);
+      expect(havener.City).to.equal(addressParams.City);
+      expect(havener.Region).to.equal(addressParams.Region);
 
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
-        address: cardsStadium,
-        phone: "1-800-Fredd"
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
       };
 
-      var fredBird = new Customer(customerParams);
+      var joeMiner = new Customer(customerParams);
 
       var order = new Order({
-        customer: fredBird,
-        storeID: 4336
+        customer: joeMiner,
+        storeID: "1546"
       });
 
       expect(order).not.to.be.null;
-      expect(order.Address).to.equal(fredBird.address);
+      expect(order.Address).to.equal(joeMiner.address);
       expect(order.ServiceMethod).to.equal("Delivery");
-      expect(order.StoreID).to.equal(4336);
+      expect(order.StoreID).to.equal("1546");
 
       done();
     });
 
     it('should add a pizza', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
         Region: "MO",
-        PostalCode: "63102"
+        PostalCode: "65401",
+        Type: "House"
       };
 
-      var cardsStadium = new Address(addressParams);
+      var havener = new Address(addressParams);
+
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
-        address: cardsStadium,
-        phone: "1-800-Fredd"
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
       };
 
-      var fredBird = new Customer(customerParams);
+      var joeMiner = new Customer(customerParams);
+
       var order = new Order({
-        customer: fredBird,
-        storeID: 4336
+        customer: joeMiner,
+        storeID: "1546"
       });
 
       order.addItem(new Item({
@@ -90,94 +93,191 @@ describe('Order', function() {
 
       done();
     });
-
-    it('should validate order', function(done) {
+  });
+  describe('Validate', function() {
+    it('should validate cheese pizza', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
         Region: "MO",
-        PostalCode: "63102"
+        PostalCode: "65401",
+        Type: "House"
       };
 
-      var cardsStadium = new Address(addressParams);
+      var havener = new Address(addressParams);
+
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
-        address: cardsStadium,
-        phone: "1-800-Fredd"
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
       };
 
-      var fredBird = new Customer(customerParams);
+      var joeMiner = new Customer(customerParams);
+
       var order = new Order({
-        customer: fredBird,
-        storeID: 4336
+        customer: joeMiner,
+        storeID: "1546"
       });
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: '',  // Cheese pizza
+        options: [],  // Cheese pizza
         quantity: 1
       }));
 
       order.validate(function(result) {
         var results = result.result;
-
         expect(results.Order).to.exist;
         expect(results.Order.OrderID).to.not.eql("");
 
         done();
 
       });
-
     });
-
-    it('should price order', function(done) {
+    it('should validate pepperoni pizza', function(done) {
       var addressParams = {
-        Street: "900 Clark Street",
-        City: "St. Louis",
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
         Region: "MO",
-        PostalCode: "63102"
+        PostalCode: "65401",
+        Type: "House"
       };
 
-      var cardsStadium = new Address(addressParams);
+      var havener = new Address(addressParams);
+
       var customerParams = {
-        firstName: "Fred",
-        lastName: "Bird",
-        email: "fred@cardinals.are.hackers",
-        address: cardsStadium,
-        phone: "1-800-Fredd"
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
       };
 
-      var fredBird = new Customer(customerParams);
+      var joeMiner = new Customer(customerParams);
+
       var order = new Order({
-        customer: fredBird,
-        storeID: 4336
+        customer: joeMiner,
+        storeID: "1546"
       });
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: {},  // Cheese pizza
+        options: ['P'],  // Pepperoni pizza
         quantity: 1
       }));
 
       order.validate(function(result) {
-        order = new Order(result.result);
-          console.log("new order: \n");
-          console.dir(order);
-          order.price(function(result) {
-            var priceResults = result.result.Order;
-            console.log("Price results!: \n");
-            console.dir(priceResults.Products);
+        var results = result.result;
+        expect(results.Order).to.exist;
+        expect(result.success).to.be.true;
+        expect(results.Order.OrderID).to.not.eql("");
 
-            expect(priceResults).to.exist;
-            expect(results.Amounts).not.to.be({});
-            expect(results.EstimatedWaitMinutes).not.to.be('');
+        done();
 
-            done();
-          });
+      });
+    });
+    it('should validate assorted order', function(done) {
+      var addressParams = {
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
+        Region: "MO",
+        PostalCode: "65401",
+        Type: "House"
+      };
+
+      var havener = new Address(addressParams);
+
+      var customerParams = {
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
+      };
+
+      var joeMiner = new Customer(customerParams);
+
+      var order = new Order({
+        customer: joeMiner,
+        storeID: "1546"
       });
 
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: [],  // Cheese pizza
+        quantity: 1
+      }));
+
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: ['P'],  // Pepperoni pizza
+        quantity: 1
+      }));
+
+      order.addItem(new Item({
+        code: 'W08PHOTW',  //Hot wings
+        options: [],
+        quantity: 1
+      }));
+      order.validate(function(result) {
+        var results = result.result;
+        
+        expect(results.Order).to.exist;
+        expect(result.success).to.be.true
+        expect(results.Order.OrderID).to.not.eql("");
+
+        done();
+
+      });
     });
   });
+  describe('Price', function() {
+    it('should price order', function(done) {
+      var addressParams = {
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
+        Region: "MO",
+        PostalCode: "65401",
+        Type: "House"
+      };
+
+      var havener = new Address(addressParams);
+
+      var customerParams = {
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
+      };
+
+      var joeMiner = new Customer(customerParams);
+
+      var order = new Order({
+        customer: joeMiner,
+        storeID: "1546"
+      });
+
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: [],  // Cheese pizza
+        quantity: 1
+      }));
+
+      order.validate(function(result) {
+        var newOrder = new Order(result.result);
+        newOrder.price(function(result) {
+          var priceResults = result.result.Order;
+
+          expect(priceResults).to.exist;
+          expect(priceResults.Amounts).not.to.eql({});
+          expect(priceResults.EstimatedWaitMinutes).not.to.eql('');
+
+          done();
+        });
+      });
+    });
+  })
 });
