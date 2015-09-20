@@ -28,9 +28,7 @@ readline.clearScreenDown(process.stdout);
 rl.setPrompt('Pizza> ');
 rl.prompt();
 
-var order=new pizzapi.Order(
-
-);
+var order=new pizzapi.Order();
 
 rl.on(
     'line',
@@ -89,13 +87,13 @@ rl.on(
 
 function help(){
     var commands=[
-        'find closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
-        'find near'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
-        'menu for closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
-        'full menu for closest'.bgCyan+' {address info}'.info+' //can be full address city and state, postal code etc...',
-        'menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
-        'full menu for'.bgCyan+' {storeID}'.info+' //get store id as part of a find closest or find near request',
-        'order'.bgCyan+' {comma deliminated list of item codes}'.info+' //get item codes from menu'
+        'find closest'.bgCyan+' {address info}'.info+' can be full or partial address city and state, postal code etc...',
+        'find near'.bgCyan+' {address info}'.info+' can be full or partial address city and state, postal code etc...',
+        'menu for closest'.bgCyan+' {address info}'.info+' can be full or partital address city and state, postal code etc...',
+        'full menu for closest'.bgCyan+' {address info}'.info+' can be full or partial address city and state, postal code etc...',
+        'menu for'.bgCyan+' {storeID}'.info+' get store id as part of a find closest or find near request',
+        'full menu for'.bgCyan+' {storeID}'.info+' get store id as part of a find closest or find near request',
+        'order'.bgCyan+' {comma deliminated list of item codes} \nexample:\norder PXC_14SCREEN, 2LSPRITE'.info+' !!!!get item codes from menu'
     ];
 
     for(var i in commands){
@@ -130,16 +128,16 @@ function showMenu(storeID,quick){
                     '\n##########################\n'.blue
                 );
                 for(var i in data.result.PreconfiguredProducts){
-                    var product=data.result.PreconfiguredProducts[i];
+                    var item=data.result.PreconfiguredProducts[i];
                     console.log(
                         '\n'.blue+
                         (
                             (
-                                product.Name.bold+' : '+
-                                product.Code+'\n'
+                                item.Name.bold+' : '+
+                                item.Code+'\n'
                             ).menuTitle+
-                            product.Description+'\n'+
-                            product.Size
+                            item.Description+'\n'+
+                            item.Size
                         ).menuItem.white
                     );
                 };
@@ -172,29 +170,29 @@ function showMenu(storeID,quick){
                         );
 
                         for(var k in data.result[menuPortions[j]][i]){
-                            var product=data.result[menuPortions[j]][i][k];
+                            var item=data.result[menuPortions[j]][i][k];
                             console.log(
                                 '(+)'+(
                                     (
-                                        product.Name.bold+' : '+
-                                        product.Code+'\n'
+                                        item.Name.bold+' : '+
+                                        item.Code+'\n'
                                     ).menuTitle+
-                                    product.Description+'\n'+
-                                    product.Size
+                                    item.Description+'\n'+
+                                    item.Size
                                 ).menuItem.white
                             );
                         }
                         continue;
                     }
-                    var product=data.result[menuPortions[j]][i];
+                    var item=data.result[menuPortions[j]][i];
                     console.log(
                         '(+)'+(
                             (
-                                product.Name.bold+' : '+
-                                product.Code+'\n'
+                                item.Name.bold+' : '+
+                                item.Code+'\n'
                             ).menuTitle+
-                            product.Description+'\n'+
-                            product.Size
+                            item.Description+'\n'+
+                            item.Size
                         ).menuItem.white
                     );
                 };
@@ -294,11 +292,11 @@ function findStores(address, closest, menu, fullMenu){
 function orderPizza(items){
     var items=items.split(',');
     for(var i=0; i<items.length; i++){
-        //create a new product to add to the order
-        var product=new pizzapi.Product();
+        //create a new item to add to the order
+        var item=new pizzapi.Item();
 
-        //set the product code using the random item key
-        product.Code=items[i].trim();
+        //set the item code using the random item key
+        item.Code=items[i].trim();
 
         //add the item to the order
         order.Products.push(product);
