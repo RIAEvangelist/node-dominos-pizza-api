@@ -122,7 +122,7 @@ var Address = function(parameters) {
     };
 
     function getAddressLines() {
-        var line1 = (this.Street ? this.Street : '');
+        var line1 = this.Street||'';
         var line2 = (this.City ? this.City + ',' : '') +
             (this.Region ? this.Region + ',' : '') +
             this.PostalCode
