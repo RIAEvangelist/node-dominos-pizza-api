@@ -4,6 +4,9 @@ var urls = require('./urls.json');
 var httpJson = require('./http-json');
 
 var Order = function(parameters) {
+  if(!parameters){
+      parameters={}
+  }
   //default order
   this.Address = '';
   this.Coupons = [];
