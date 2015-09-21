@@ -50,7 +50,7 @@ var Order = function(parameters) {
     this.LastName = Customer.lastName;
     return this;
   }
-  if(parameters['Order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
+  if(parameters['Order'] || parameters['order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
     var Customer = parameters.customer;
 
@@ -164,7 +164,7 @@ Order.prototype.mergeResponse = function(callback,response){
     }
 }
 
-Order.prototype.PaymentObject(){
+Order.prototype.PaymentObject=function(){
     Object.defineProperties(
         this,
         {
