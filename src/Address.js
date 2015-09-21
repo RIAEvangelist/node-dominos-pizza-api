@@ -93,31 +93,87 @@ var Address = function(parameters) {
             splitAddress[i] = splitAddress[i].trim();
         }
 
+        this.PostalCode=Number(splitAddress[splitAddress.length-1])
+
         //need better intellegence for auto determining address parts
+        //added some, should externalize it
+        //while not perfect, it does seem to get most of the right stuff
+        //in the right places and get the right address back from dominos.
         switch (splitAddress.length) {
             case 1:
-                this.PostalCode = Number(splitAddress[0]);
-
                 if (!this.PostalCode) {
                     this.PostalCode='';
                     this.City = splitAddress[0];
                 }
-                this.PostalCode+='';
                 break;
             case 2:
-                this.Region = splitAddress[0];
-                this.PostalCode = splitAddress[1];
+                if(splitAddress[0].length<3){
+                    this.Region = splitAddress[0];
+                }else{
+                    this.City = splitAddress[0];
+                }
+                if (!this.PostalCode) {
+                    if(splitAddress[1].length>2){
+                        if(this.City){
+                            this.Street = this.City;
+                        }
+                        this.City = splitAddress[1];
+                    }else{
+                        if(this.Region){
+                            this.City=this.Region;
+                        }
+                        this.Region = splitAddress[1];
+                    }
+                }
                 break;
             case 3:
-                this.City = splitAddress[0];
-                this.Region = splitAddress[1]
-                this.PostalCode = splitAddress[2];
+                if(splitAddress[0].length<3){
+                    this.Region = splitAddress[0];
+                }else{
+                    this.City = splitAddress[0];
+                }
+
+                if(splitAddress[1].length<3){
+                    if(this.Region){
+                        if(this.City){
+                            this.Street = this.City;
+                        }
+                        this.City=this.Region;
+                    }
+                    this.Region = splitAddress[1];
+                }else{
+                    if(this.City){
+                        this.Street = this.City;
+                    }
+                    this.City = splitAddress[1];
+                }
+
+                if (!this.PostalCode) {
+                    if(splitAddress[2].length<3){
+                        if(this.Region){
+                            if(this.City){
+                                this.Street = this.City;
+                            }
+                            this.City=this.Region;
+                        }
+                        this.Region = splitAddress[2];
+                    }else{
+                        if(this.City){
+                            this.Street = this.City;
+                        }
+                        this.City = splitAddress[1];
+                    }
+                }
                 break;
             case 4:
                 this.Street = splitAddress[0];
                 this.City = splitAddress[1];
                 this.Region = splitAddress[2];
                 this.PostalCode = splitAddress[3];
+        }
+
+        if (!this.PostalCode) {
+            this.PostalCode='';
         }
     };
 
