@@ -4,6 +4,8 @@ var fs          = require('fs'),
     colors      = require('colors'),
     pizzapi     = require('../../dominos-pizza-api.js');
 
+var util=require('util');
+
 colors.setTheme(
     {
         menuItem    : 'bgCyan',
@@ -218,6 +220,37 @@ function validateAddress(address){
                 return;
             }
 
+            if(!order.StoreID){
+                console.log(
+                    'You have not viewed any store\'s Menu, so you will get your order from the closest open store which delivers.\n'
+                    +'And you\'ll like it!'.red
+                );
+            }
+
+            pizzapi.Util.findNearbyStores(
+                order.Address,
+                'Delivery',
+                function(storeData){
+                    var openStores=[];
+
+                    for(var i in storeData.result.Stores){
+                        if(storeData.result.Stores[i].IsOpen &&
+                            storeData.result.Stores[i].IsOnlineNow &&
+                            storeData.result.Stores[i].ServiceIsOpen.Delivery
+                        ){
+                            order.StoreID=storeData.result.Stores[i].StoreID;
+                            break;
+                        }
+                    }
+
+                    if(!order.StoreID){
+                        console.log('No Open Stores allowing delivery right now for the specified location'.bgRed.black.bold);
+                        throw('NO PIZZA FOR YOU! Look at a menu next time!');
+                        return;
+                    }
+                }
+            );
+
             validateOrder();
         }
     );
@@ -308,13 +341,15 @@ function orderPizza(items){
     var items=items.split(',');
     for(var i=0; i<items.length; i++){
         //create a new item to add to the order
-        var item=new pizzapi.Item();
-
-        //set the item code using the random item key
-        item.Code=items[i].trim();
-
-        //add the item to the order
-        order.Products.push(item);
+        order.addItem(
+            new pizzapi.Item(
+                {
+                    code: items[i].trim(),
+                    options: [],
+                    quantity: 1
+                }
+            )
+        );
     }
 
     if(!order.Address.Street){
@@ -386,7 +421,6 @@ function orderValidated(){
 }
 
 function pricedOrder() {
-    console.log(priceData.result.Order.Amounts);
 
     var cardInfo = new order.PaymentObject();
     cardInfo.Amount = order.Amounts.Customer;
@@ -481,9 +515,15 @@ function placeOrder(){
 }
 
 function orderPlaced(data){
-    order=data.result;
-    if(orderData.result.Order.Status==-1){
-        console.log(order.CorrectiveAction);
+    if(data.result.Order.Status==-1){
+        console.log('You\'r order failed to process.');
+        if(data.result.Order.StatusItems){
+            for(var i in data.result.Order.StatusItems){
+                console.log(data.result.Order.StatusItems[i]);
+            }
+        }
+        console.log('Corrective Actions from Domino\'s Pizza : '+data.result.CorrectiveAction);
+
         rl.prompt();
         return;
     }

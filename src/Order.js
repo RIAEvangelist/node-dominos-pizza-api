@@ -2,6 +2,7 @@
 
 var urls = require('./urls.json');
 var httpJson = require('./http-json');
+var util=require('util');
 
 var Order = function(parameters) {
   if(!parameters){
@@ -156,9 +157,12 @@ Order.prototype.place = function(callback) {
 
 Order.prototype.mergeResponse = function(callback,response){
     for(var key in response.result.Order){
+        if(util.isArray(response.result.Order[key])&&!response.result.Order[key].length){
+            continue;
+        }
         this[key]=response.result.Order[key];
     }
-
+    console.log(util.inspect(this.Products, { showHidden: true, depth: 5 }));
     if(callback){
         callback(response);
     }
