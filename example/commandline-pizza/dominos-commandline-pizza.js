@@ -211,8 +211,8 @@ function validateAddress(address){
             if(!order.Address.Street){
                 rl.question(
                     'Not a valid address.'.red
-                    +' use this format :'+'street, city, state, zip'.info+' with the commas.\n\n'
-                    +'What is the full address for delivery?',
+                    +' if your having trouble, try using this format :\n'+'street, city, state, zip'.info+' with the commas.\n\n'
+                    +'What is the full address for delivery? ',
                     validateAddress
                 );
                 return;
@@ -225,18 +225,24 @@ function validateAddress(address){
 
 function findStores(address, closest, menu, fullMenu){
     if(!address){
-        console.log('Need to know where to look, please provide atleast a partial address');
+        console.log('Need to know where to look, please provide atleast a zip code');
         rl.prompt();
         return;
     }
     console.log('Looking for stores near '+address.info+'...');
     rl.prompt();
+    var nearAddress=new pizzapi.Address(address);
 
+    if(!nearAddress.PostalCode){
+        console.log('Not a valid address'.red+' you must at least provide a zipcode');
+        return;
+    }
     pizzapi.Util.findNearbyStores(
-        address,
+        nearAddress,
         'Delivery',
         function(storeData){
             var openStores=[];
+            console.log(storeData);
             order.Address=new pizzapi.Address(storeData.result.Address);
 
             for(var i in storeData.result.Stores){
@@ -313,7 +319,7 @@ function orderPizza(items){
 
     if(!order.Address.Street){
         rl.question(
-            'what is the full address for delivery?',
+            'what is the full address for delivery? ',
             validateAddress
         );
         return;
@@ -328,7 +334,7 @@ function validateOrder(){
         setTimeout(
             function(){
                 rl.question(
-                    'First Name?',
+                    'First Name? ',
                     function(data){
                         order.FirstName=data;
                         validateOrder();
@@ -341,7 +347,7 @@ function validateOrder(){
 
     if(!order.LastName){
         rl.question(
-            'Last Name?',
+            'Last Name? ',
             function(data){
                 order.LastName=data;
                 validateOrder();
@@ -352,7 +358,7 @@ function validateOrder(){
 
     if(!order.Email){
         rl.question(
-            'E-Mail?',
+            'E-Mail? ',
             function(data){
                 order.Email=data;
                 validateOrder();
@@ -363,7 +369,7 @@ function validateOrder(){
 
     if(!order.Phone){
         rl.question(
-            'Phone number?',
+            'Phone number? ',
             function(data){
                 order.Phone=data;
                 validateOrder();
@@ -372,28 +378,14 @@ function validateOrder(){
         return;
     }
 
-    if(!order.Phone){
-        rl.question(
-            'Phone number?',
-            function(data){
-                order.Phone=data;
-                validateOrder();
-            }
-        );
-        return;
-    }
-
-    order.validate(validatedOrder);
+    order.validate(
+        //looses scope from http request so keep this==order
+        //pass its own function as the callback
+        order.price.bind(order)
+    );
 }
 
-function validatedOrder(data){
-    console.log('got price')
-    order=orderData.result;
-
-    order.price(pricedOrder);
-}
-
-function pricedOrder(priceData) {
+function pricedOrder() {
     console.log(priceData.result.Order.Amounts);
 
     var cardInfo = new pizzapi.Payment();
@@ -441,7 +433,7 @@ function validateCC(number){
 function placeOrder(){
     if(!order.Payments[0].Number){
         rl.question(
-            'Credit Card Number?',
+            'Credit Card Number? ',
             function(data){
                 order.Payments[0].Number = data;
                 order.Payments[0].CardType = validateCC(data);
@@ -453,7 +445,7 @@ function placeOrder(){
 
     if(!order.Payments[0].Expiration){
         rl.question(
-            'Credit Card Expiration?',
+            'Credit Card Expiration? ',
             function(data){
                 order.Payments[0].Expiration = data.replace(/\D/g,'');
                 placeOrder();
@@ -464,7 +456,7 @@ function placeOrder(){
 
     if(!order.Payments[0].SecurityCode){
         rl.question(
-            'Credit Card Security Code or CVV (3 or 4 digit code on card)?',
+            'Credit Card Security Code or CVV (3 or 4 digit code on card)? ',
             function(data){
                 order.Payments[0].SecurityCode = data;
                 placeOrder();
@@ -475,7 +467,7 @@ function placeOrder(){
 
     if(!order.Payments[0].PostalCode){
         rl.question(
-            'Postal Code?',
+            'Postal Code? ',
             function(data){
                 order.Payments[0].PostalCode = data;
                 placeOrder();
