@@ -197,30 +197,38 @@ function showMenu(storeID,quick){
                     );
                 };
             }
+            rl.prompt();
         }
     );
 }
 
 function validateAddress(address){
-    console.log(address);
+    var address=new pizzapi.Address(address);
     pizzapi.Util.findNearbyStores(
         address,
         function(storeData){
             order.Address=storeData.result.Address;
             if(!order.Address.Street){
                 rl.question(
-                    'Not a valid address.'.red+' What is the full address for delivery?',
+                    'Not a valid address.'.red
+                    +' use this format :'+'street, city, state, zip'.info+' with the commas.\n\n'
+                    +'What is the full address for delivery?',
                     validateAddress
                 );
                 return;
             }
 
-            validateOrder(order);
+            validateOrder();
         }
     );
 }
 
 function findStores(address, closest, menu, fullMenu){
+    if(!address){
+        console.log('Need to know where to look, please provide atleast a partial address');
+        rl.prompt();
+        return;
+    }
     console.log('Looking for stores near '+address.info+'...');
     rl.prompt();
 
@@ -276,6 +284,7 @@ function findStores(address, closest, menu, fullMenu){
                     openStores[0].StoreID,
                     true
                 );
+                rl.prompt();
                 return;
             }
 
@@ -314,13 +323,18 @@ function orderPizza(items){
 }
 
 function validateOrder(){
+    //console.log('validating order');
     if(!order.FirstName){
-        rl.question(
-            'First Name?',
-            function(data){
-                order.FirstName=data;
-                validateOrder();
-            }
+        setTimeout(
+            function(){
+                rl.question(
+                    'First Name?',
+                    function(data){
+                        order.FirstName=data;
+                        validateOrder();
+                    }
+                );
+            },100
         );
         return;
     }
@@ -369,19 +383,14 @@ function validateOrder(){
         return;
     }
 
-    pizzapi.order.validate(
-        order,
-        validatedOrder
-    );
+    order.validate(validatedOrder);
 }
 
 function validatedOrder(data){
+    console.log('got price')
     order=orderData.result;
 
-    pizzapi.order.price(
-        order,
-        pricedOrder
-    );
+    order.price(pricedOrder);
 }
 
 function pricedOrder(priceData) {
@@ -476,7 +485,7 @@ function placeOrder(){
         return;
     }
 
-    pizzapi.order.place(order, orderPlaced);
+    order.place(orderPlaced);
 }
 
 function orderPlaced(data){
@@ -491,7 +500,7 @@ function orderPlaced(data){
 }
 
 function trackOrder(){
-    pizzapi.track.orderKey(
+    pizzapi.Track.orderKey(
         order.OrderID,
         order.StoreID,
         function(pizzaData){
