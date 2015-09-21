@@ -129,7 +129,7 @@ Order.prototype.price = function(callback) {
     httpJson.post(urls.order.price, stringified, callback);
 };
 
-Order.prototype.place = function(stripeToken, callback) {
+Order.prototype.place = function(callback) {
     if (!this.Products || !callback) {
         if (callback) {
             callback({
