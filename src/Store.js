@@ -42,7 +42,7 @@ Store.prototype.getMenu = function(callback, lang) {
     httpJson.get(
         url,
         function(response) {
-            console.log(util.inspect(response.result.Stores, { showHidden: true, depth: 10 }));
+            console.log(util.inspect(response.result, { showHidden: true, depth: 10 }));
         }
     );
 };
