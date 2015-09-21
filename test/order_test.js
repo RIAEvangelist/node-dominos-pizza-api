@@ -93,8 +93,9 @@ describe('Order', function() {
 
       done();
     });
-
-    it('should validate order', function(done) {
+  });
+  describe('Validate', function() {
+    it('should validate cheese pizza', function(done) {
       var addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
@@ -122,7 +123,7 @@ describe('Order', function() {
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: '',  // Cheese pizza
+        options: [],  // Cheese pizza
         quantity: 1
       }));
 
@@ -135,7 +136,104 @@ describe('Order', function() {
 
       });
     });
+    it('should validate pepperoni pizza', function(done) {
+      var addressParams = {
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
+        Region: "MO",
+        PostalCode: "65401",
+        Type: "House"
+      };
 
+      var havener = new Address(addressParams);
+
+      var customerParams = {
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
+      };
+
+      var joeMiner = new Customer(customerParams);
+
+      var order = new Order({
+        customer: joeMiner,
+        storeID: "1546"
+      });
+
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: ['P'],  // Pepperoni pizza
+        quantity: 1
+      }));
+
+      order.validate(function(result) {
+        var results = result.result;
+        expect(results.Order).to.exist;
+        expect(result.success).to.be.true;
+        expect(results.Order.OrderID).to.not.eql("");
+
+        done();
+
+      });
+    });
+    it('should validate assorted order', function(done) {
+      var addressParams = {
+        Street: "1346 N Bishop Ave",
+        City: "Rolla",
+        Region: "MO",
+        PostalCode: "65401",
+        Type: "House"
+      };
+
+      var havener = new Address(addressParams);
+
+      var customerParams = {
+        firstName: "Joe",
+        lastName: "Miner",
+        email: "joe@mst.edu",
+        address: havener,
+        phone: "1-800-Joe"
+      };
+
+      var joeMiner = new Customer(customerParams);
+
+      var order = new Order({
+        customer: joeMiner,
+        storeID: "1546"
+      });
+
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: [],  // Cheese pizza
+        quantity: 1
+      }));
+
+      order.addItem(new Item({
+        code: '14SCREEN',
+        options: ['P'],  // Pepperoni pizza
+        quantity: 1
+      }));
+
+      order.addItem(new Item({
+        code: 'W08PHOTW',  //Hot wings
+        options: [],
+        quantity: 1
+      }));
+      order.validate(function(result) {
+        var results = result.result;
+        
+        expect(results.Order).to.exist;
+        expect(result.success).to.be.true
+        expect(results.Order.OrderID).to.not.eql("");
+
+        done();
+
+      });
+    });
+  });
+  describe('Price', function() {
     it('should price order', function(done) {
       var addressParams = {
         Street: "1346 N Bishop Ave",
@@ -164,7 +262,7 @@ describe('Order', function() {
 
       order.addItem(new Item({
         code: '14SCREEN',
-        options: {},  // Cheese pizza
+        options: [],  // Cheese pizza
         quantity: 1
       }));
 
@@ -181,5 +279,5 @@ describe('Order', function() {
         });
       });
     });
-  });
+  })
 });

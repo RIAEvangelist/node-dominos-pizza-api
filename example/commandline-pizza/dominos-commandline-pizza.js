@@ -205,7 +205,7 @@ function showMenu(storeID,quick){
 
 function validateAddress(address){
     console.log(address);
-    pizzapi.store.find(
+    pizzapi.Util.findNearbyStores(
         address,
         function(storeData){
             order.Address=storeData.result.Address;

@@ -51,7 +51,6 @@
     "example": "example"
   },
   "dependencies": {
-    "xml2json": "^0.5.1",
     "request": "^2.50.0"
   },
   "devDependencies": {
