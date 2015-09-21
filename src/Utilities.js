@@ -5,7 +5,14 @@ var urls = require('./urls.json');
 var Address = require('./Address.js');
 
 var findNearbyStores = function(address, pickUpType, callback) {
+    if(typeof pickUpType == 'function'){
+        callback=pickupType;
+        pickUpType='Delivery';
+    }
     if(!address || !callback) {
+        if(!callback){
+            throw('invalid findNearbyStores request. address and callback are required at a minimum.');
+        }
         if(callback) {
             callback(
                 {
@@ -14,7 +21,7 @@ var findNearbyStores = function(address, pickUpType, callback) {
                 }
             );
         }
-        return;
+        return false;
     }
 
     var address = new Address(address)
