@@ -41,7 +41,7 @@ Store.prototype.getMenu = function(callback, lang) {
     httpJson.get(url, callback);
 };
 
-Store.prototype.getFriendlyNames = function(callback, lang) {
+Store.prototype.getFriendlyMenu = function(callback, lang) {
   if( !this.ID || !callback){
       if(callback)
           callback({
