@@ -378,18 +378,18 @@ function validateOrder(){
         return;
     }
 
-    order.validate(
-        //looses scope from http request so keep this==order
-        //pass its own function as the callback
-        order.price.bind(order)
-    );
+    order.validate(orderValidated);
+}
+
+function orderValidated(){
+    order.price(pricedOrder);
 }
 
 function pricedOrder() {
     console.log(priceData.result.Order.Amounts);
 
-    var cardInfo = new pizzapi.Payment();
-    cardInfo.Amount = priceData.result.Order.Amounts.Customer;
+    var cardInfo = new order.PaymentObject();
+    cardInfo.Amount = order.Amounts.Customer;
     order.Payments.push(cardInfo);
 
     placeOrder();
