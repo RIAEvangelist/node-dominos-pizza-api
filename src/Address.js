@@ -98,7 +98,7 @@ var Address = function(parameters) {
         //need better intellegence for auto determining address parts
         //added some, should externalize it
         //while not perfect, it does seem to get most of the right stuff
-        //in the right places and get the right address back from dominos.
+        //in good enough places for dominos to like it.
         switch (splitAddress.length) {
             case 1:
                 if (!this.PostalCode) {
