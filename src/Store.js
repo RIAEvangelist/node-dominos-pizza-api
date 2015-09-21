@@ -3,6 +3,7 @@
 var httpJson = require('./http-json');
 var urls = require('./urls.json');
 var util=require('util');
+var fs=require('fs');
 
 var Store = function(parameters) {
     this.ID = parameters.ID;
@@ -42,8 +43,11 @@ Store.prototype.getMenu = function(callback, lang) {
     httpJson.get(
         url,
         function(response) {
-            console.log(util.inspect(response.result, { showHidden: true, depth: 10 }));
-        }
+            fs.writeFile('sampleResp/menu'+this.ID+'.json', JSON.stringify(response, null, 4), function (err) {
+              if (err) throw err;
+              console.log('It\'s saved!');
+            });
+        }.bind(this)
     );
 };
 
