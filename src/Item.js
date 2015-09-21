@@ -6,9 +6,12 @@ var Item = function(parameters) {
         parameters={}
     }
     this.Code = parameters.code||null;
-    this.Qty = parameters.quantity||1;
-    this.ID = 1;
-    this.isNew = true;
+    this.AutoRemove=false;
+    //this.Qty = parameters.quantity||1;
+    //adding product ID causes order to fail
+    //this.ID = 1;
+
+    //this.isNew = true;
     //Can not default options on items which do not support said options.
     //they get removed from order.
     //For example I'm trying to order a PM_14SCREEN (pep&mush pizza) which is a
@@ -17,7 +20,7 @@ var Item = function(parameters) {
     //Also, cant add cheese to a sprite ;)
     //
     //this.Options = { 'C': {'1/1': '1'}, 'X': {'1/1': '1'} };
-    this.Options = {}
+    //this.Options = {};
     if(parameters.options) {
     	var _this = this;
     	parameters.options.forEach(function(value) {
