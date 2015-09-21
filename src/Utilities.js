@@ -6,7 +6,7 @@ var Address = require('./Address.js');
 
 var findNearbyStores = function(address, pickUpType, callback) {
     if(typeof pickUpType == 'function'){
-        callback=pickupType;
+        callback=pickUpType;
         pickUpType='Delivery';
     }
     if(!address || !callback) {
