@@ -40,15 +40,18 @@ Store.prototype.getMenu = function(callback, lang) {
     var url = urls.store.menu.replace('${storeID}', this.ID)
         .replace('${lang}', lang);
 
-    httpJson.get(
-        url,
-        function(response) {
-            fs.writeFile('sampleResp/menu'+this.ID+'.json', JSON.stringify(response, null, 4), function (err) {
-              if (err) throw err;
-              console.log('It\'s saved!');
-            });
-        }.bind(this)
-    );
+
+    httpJson.get(url, callback);
+
+    // httpJson.get(
+    //     url,
+    //     function(response) {
+    //         // fs.writeFile('sampleResp/menu'+this.ID+'.json', JSON.stringify(response, null, 4), function (err) {
+    //         //   if (err) throw err;
+    //         //   console.log('It\'s saved!');
+    //         // });
+    //     }
+    // );
 };
 
 Store.prototype.getFriendlyNames = function(callback, lang) {
