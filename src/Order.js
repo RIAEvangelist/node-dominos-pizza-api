@@ -137,7 +137,7 @@ Order.prototype.price = function(callback) {
   httpJson.post(urls.order.price, stringified, this.mergeResponse.bind(this,callback));
 };
 
-Order.prototype.place = function(stripeToken, callback) {
+Order.prototype.place = function(callback) {
   if(!this.Products || !callback) {
       if(callback) {
           callback({
@@ -162,6 +162,49 @@ Order.prototype.mergeResponse = function(callback,response){
     if(callback){
         callback(response);
     }
+}
+
+Order.prototype.PaymentObject(){
+    Object.defineProperties(
+        this,
+        {
+            "Type": {
+                writable:false,
+                enumerable:true,
+                value:"CreditCard"
+            },
+            "Amount":  {
+                writable:true,
+                enumerable:true,
+                value:0
+            },
+            "Number":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            },
+            "CardType":  {
+                writable:true,
+                enumerable:true,
+                value:""//uppercase
+            },
+            "Expiration":  {
+                writable:true,
+                enumerable:true,
+                value:""//digits only
+            },
+            "SecurityCode":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            },
+            "PostalCode":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            }
+        }
+    );
 }
 
 module.exports = Order;
