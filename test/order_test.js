@@ -11,6 +11,7 @@ var joeNumber='800joeMine';
 var joeMail='joe@mst.edu';
 
 describe('Order', function() {
+  this.timeout(15000);
   describe('Creation', function() {
     it('should create Customer', function(done) {
       var addressParams = {
