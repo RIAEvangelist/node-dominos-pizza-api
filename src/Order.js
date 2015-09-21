@@ -105,7 +105,7 @@ Order.prototype.validate = function(callback) {  //Validate Order
     if(callback) {
       callback({
         success: false,
-        message: 'At least one product must be added!'
+        message: 'At least one Item must be added!'
       });
     }
     return;
@@ -116,7 +116,7 @@ Order.prototype.validate = function(callback) {  //Validate Order
     'Order' : this
   });
 
-  httpJson.post(urls.order.validate, stringified, callback);
+  httpJson.post(urls.order.validate, stringified, this.mergeResponse.bind(this,callback));
 };
 
 Order.prototype.price = function(callback) {
@@ -124,7 +124,7 @@ Order.prototype.price = function(callback) {
     if(callback) {
       callback({
         success: false,
-        message: 'At least one product must be added!'
+        message: 'At least one Item must be added!'
       });
     }
     return;
@@ -134,8 +134,7 @@ Order.prototype.price = function(callback) {
     'Order' : this
   });
 
-  httpJson.post(urls.order.price, stringified, callback);
-
+  httpJson.post(urls.order.price, stringified, this.mergeResponse.bind(this,callback));
 };
 
 Order.prototype.place = function(stripeToken, callback) {
@@ -154,5 +153,15 @@ Order.prototype.place = function(stripeToken, callback) {
 
   httpJson.post(urls.order.place, stringified, callback);
 };
+
+Order.prototype.mergeResponse = function(callback,response){
+    for(var key in response){
+        this[key]=response[key];
+    }
+
+    if(callback){
+        callback(response);
+    }
+}
 
 module.exports = Order;
