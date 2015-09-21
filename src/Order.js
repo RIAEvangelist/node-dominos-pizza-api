@@ -155,8 +155,8 @@ Order.prototype.place = function(stripeToken, callback) {
 };
 
 Order.prototype.mergeResponse = function(callback,response){
-    for(var key in response){
-        this[key]=response[key];
+    for(var key in response.result.Order){
+        this[key]=response.result.Order[key];
     }
 
     if(callback){
