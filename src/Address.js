@@ -175,6 +175,8 @@ var Address = function(parameters) {
         if (!this.PostalCode) {
             this.PostalCode='';
         }
+        //converts to string if number
+        this.PostalCode+='';
     };
 
     function getAddressLines() {
