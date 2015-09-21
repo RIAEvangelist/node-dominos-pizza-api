@@ -275,9 +275,7 @@ function findStores(address, closest, menu, fullMenu){
         'Delivery',
         function(storeData){
             var openStores=[];
-            var store=new pizzapi.Store({ID:'8386'});
-            store.getMenu(function(data){});
-            return;
+
             order.Address=new pizzapi.Address(storeData.result.Address);
 
             for(var i in storeData.result.Stores){
