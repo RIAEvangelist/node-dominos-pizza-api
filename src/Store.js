@@ -2,6 +2,7 @@
 
 var httpJson = require('./http-json');
 var urls = require('./urls.json');
+var util=require('util');
 
 var Store = function(parameters) {
     this.ID = parameters.ID;
@@ -38,7 +39,12 @@ Store.prototype.getMenu = function(callback, lang) {
     var url = urls.store.menu.replace('${storeID}', this.ID)
         .replace('${lang}', lang);
 
-    httpJson.get(url, callback);
+    httpJson.get(
+        url,
+        function(response) {
+            console.log(util.inspect(response.result.Stores, { showHidden: true, depth: 10 }));
+        }
+    );
 };
 
 Store.prototype.getFriendlyNames = function(callback, lang) {
