@@ -444,8 +444,16 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
     var pizzapi=require('dominos');
 
+    var cardNumber='4100123422343234';
+
     var cardInfo = new order.PaymentObject();
     cardInfo.Amount = order.Amounts.Customer;
+    cardInfo.Number = cardNumber;
+    cardInfo.CardType = order.validateCC(cardNumber);
+    cardInfo.Expiration = '0115';//  01/15 just the numbers "01/15".replace(/\D/g,'');
+    cardInfo.SecurityCode = '777';
+    cardInfo.PostalCode = '90210'; // Billing Zipcode
+
     order.Payments.push(cardInfo);
 
     order.place(
