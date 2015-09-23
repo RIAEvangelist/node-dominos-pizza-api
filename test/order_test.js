@@ -84,6 +84,7 @@ describe('Order', function() {
       }));
 
       var itemParams = {
+        AutoRemove: false,
         Code: '14SCREEN',
         Qty: 1,
         ID: 1,
