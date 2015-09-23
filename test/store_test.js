@@ -40,7 +40,7 @@ describe('Store', function() {
       done();
     });
   });
-  it('should get all friendly names', function(done) {
+  it('should get all friendly item names from menu', function(done) {
     var newStore = new Store({
       ID: 1546
     });

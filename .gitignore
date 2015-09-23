@@ -3,3 +3,4 @@
 /node_modules/
 .idea/
 node-dominos-pizza-api.iml
+*brackets.json
