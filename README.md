@@ -97,6 +97,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 ***this yields less accurate information but is better than just using the postal code***
 
 ```javascript
+
     var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
     pizzapi.Util.findNearbyStores(
@@ -106,6 +107,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
             console.log(storeData);
         }
     );
+    
 ```
 
 ### Using Full or Nearly Full Address

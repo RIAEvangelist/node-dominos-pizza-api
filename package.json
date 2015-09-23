@@ -1,7 +1,7 @@
 {
   "name": "dominos",
   "payment=disallowed-name": "pizzapi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node js API for Domino's pizza",
   "main": "dominos-pizza-api.js",
   "scripts": {
