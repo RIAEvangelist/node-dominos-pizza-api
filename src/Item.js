@@ -16,10 +16,9 @@ var Item = function(parameters) {
     this.Options = { 'C': {'1/1': '1'}, 'X': {'1/1': '1'} };
 
     if(parameters.options) {
-    	var _this = this;
-    	parameters.options.forEach(function(value) {
-			_this.Options[value] = { '1/1': '1' };
-    	});
+        for (var i=0; i<parameters.options.length; i++) {
+            this.Options[parameters.options[i]] = { '1/1': '1' };
+        }
     }
 }
 
