@@ -7,7 +7,11 @@ var Order = require('../src/Order');
 var Address = require('../src/Address');
 var Item = require('../src/Item');
 
+var joeNumber='800joeMine';
+var joeMail='joe@mst.edu';
+
 describe('Order', function() {
+  this.timeout(15000);
   describe('Creation', function() {
     it('should create Customer', function(done) {
       var addressParams = {
@@ -27,9 +31,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
@@ -61,9 +65,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
@@ -109,9 +113,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
@@ -150,9 +154,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
@@ -192,9 +196,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
@@ -223,7 +227,7 @@ describe('Order', function() {
       }));
       order.validate(function(result) {
         var results = result.result;
-        
+
         expect(results.Order).to.exist;
         expect(result.success).to.be.true
         expect(results.Order.OrderID).to.not.eql("");
@@ -248,9 +252,9 @@ describe('Order', function() {
       var customerParams = {
         firstName: "Joe",
         lastName: "Miner",
-        email: "joe@mst.edu",
+        email: joeMail,
         address: havener,
-        phone: "1-800-Joe"
+        phone: joeNumber
       };
 
       var joeMiner = new Customer(customerParams);
