@@ -10,8 +10,8 @@ var Item = function(parameters) {
     if(parameters.options) {
     	var _this = this;
     	parameters.options.forEach(function(value) {
-      	_this.Options[value] = { '1/1': '1' };
-    	})
+			_this.Options[value] = { '1/1': '1' };
+    	});
     }
 }
 
