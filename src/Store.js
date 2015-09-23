@@ -4,6 +4,7 @@ var httpJson = require('./http-json');
 var urls = require('./urls.json');
 var util=require('util');
 var fs=require('fs');
+var Menu=require('./Menu.js');
 
 var Store = function(parameters) {
     this.ID = parameters.ID;
@@ -24,7 +25,11 @@ Store.prototype.getInfo = function(callback) {
     httpJson.get(urls.store.info.replace('${storeID}', this.ID), callback);
 };
 
-Store.prototype.getMenu = function(callback, lang) {
+Store.prototype.getMenu = function(callback, lang, noCache) {
+    if (this.cachedMenu && !noCache) {
+        callback(this.cachedMenu.getRaw(),this.cachedMenu); //TODO as below, break compatibility by removing first parameter
+        return;
+    }
     if( !this.ID || !callback){
         if(callback)
             callback({
@@ -41,17 +46,22 @@ Store.prototype.getMenu = function(callback, lang) {
         .replace('${lang}', lang);
 
 
-    httpJson.get(url, callback);
+    httpJson.get(url,(function(jsonObj) {
+        this.cachedMenu = new Menu(jsonObj);
+        callback(jsonObj,this.cachedMenu); //TODO break compatibility by removing first parameter
+    }).bind(this));
 
-    // httpJson.get(
-    //     url,
-    //     function(response) {
-    //         // fs.writeFile('sampleResp/menu'+this.ID+'.json', JSON.stringify(response, null, 4), function (err) {
-    //         //   if (err) throw err;
-    //         //   console.log('It\'s saved!');
-    //         // });
-    //     }
-    // );
+    /*
+    httpJson.get(
+        url,
+        (function(response) {
+            fs.writeFile('sampleResp/menu'+this.ID+'.json', JSON.stringify(response, null, 4), function (err) {
+                if (err) throw err;
+                console.log('It\'s saved!');
+            });
+        }).bind(this)
+    );
+    */
 };
 
 Store.prototype.getFriendlyNames = function(callback, lang) {

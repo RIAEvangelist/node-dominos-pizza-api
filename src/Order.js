@@ -173,7 +173,7 @@ Order.prototype.mergeResponse = function(callback,response){
         }
         this[key]=response.result.Order[key];
     }
-    console.log(util.inspect(this.Products, { showHidden: true, depth: 5 }));
+    //console.log(util.inspect(this.Products, { showHidden: true, depth: 5 }));
     if(callback){
         callback(response);
     }
