@@ -45,7 +45,7 @@ describe('Store', function() {
       ID: 1546
     });
 
-    newStore.getFriendlyMenu(function(mapping) {
+    newStore.getFriendlyNames(function(mapping) {
       expect(mapping).to.exist;
       expect(mapping.result).to.exist;
       expect(mapping.result).to.have.length.above(1);
