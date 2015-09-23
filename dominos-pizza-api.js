@@ -5,6 +5,6 @@ module.exports = {
     Store: require('./src/Store'),
     Track: require('./src/Track'),
     Item: require('./src/Item'),
-	Coupon: require('./src/Coupon'),
+    Coupon: require('./src/Coupon'),
     Util: require('./src/Utilities'),
 };
