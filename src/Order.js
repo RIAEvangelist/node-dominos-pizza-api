@@ -180,39 +180,38 @@ Order.prototype.mergeResponse = function(callback,response){
 }
 
 Order.prototype.validateCC=function(number){
-        var re = {
-            visa        : /^4[0-9]{12}(?:[0-9]{3})?$/,
-            mastercard  : /^5[1-5][0-9]{14}$/,
-            amex        : /^3[47][0-9]{13}$/,
-            diners      : /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
-            discover    : /^6(?:011|5[0-9]{2})[0-9]{12}$/,
-            jcb         : /^(?:2131|1800|35\d{3})\d{11}$/,
-            enroute     : /^(?:2014|2149)\d{11}$/
-        };
+    var re = {
+        visa        : /^4[0-9]{12}(?:[0-9]{3})?$/,
+        mastercard  : /^5[1-5][0-9]{14}$/,
+        amex        : /^3[47][0-9]{13}$/,
+        diners      : /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+        discover    : /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+        jcb         : /^(?:2131|1800|35\d{3})\d{11}$/,
+        enroute     : /^(?:2014|2149)\d{11}$/
+    };
 
-        if (re.visa.test(number))
-            return 'VISA';
+    if (re.visa.test(number))
+        return 'VISA';
 
-        if (re.mastercard.test(number))
-            return 'MASTERCARD';
+    if (re.mastercard.test(number))
+        return 'MASTERCARD';
 
-        if (re.amex.test(number))
-            return 'AMEX';
+    if (re.amex.test(number))
+        return 'AMEX';
 
-        if (re.diners.test(number))
-            return 'DINERS';
+    if (re.diners.test(number))
+        return 'DINERS';
 
-        if (re.discover.test(number))
-            return 'DISCOVER';
+    if (re.discover.test(number))
+        return 'DISCOVER';
 
-        if (re.jcb.test(number))
-            return 'JCB';
+    if (re.jcb.test(number))
+        return 'JCB';
 
-        if (re.enroute.test(number))
-            return 'JCB';
+    if (re.enroute.test(number))
+        return 'JCB';
 
-        return "";
-    }
+    return "";
 }
 
 Order.prototype.PaymentObject=function(){
