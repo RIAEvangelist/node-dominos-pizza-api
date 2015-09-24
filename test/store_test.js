@@ -34,8 +34,8 @@ describe('Store', function() {
 
     newStore.getMenu(function(menu) {
       expect(menu).to.exist;
-      expect(menu.result).to.exist;
-      expect(menu.result.Misc.StoreID).to.equal('1546');
+      expect(menu.getRaw().result).to.exist;
+      expect(menu.getRaw().result.Misc.StoreID).to.equal('1546');
 
       done();
     });

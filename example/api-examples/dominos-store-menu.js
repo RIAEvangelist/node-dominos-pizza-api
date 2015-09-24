@@ -12,7 +12,7 @@ pizzapi.Util.findNearbyStores(
         );
 
         //Get Menu for first store
-        Store.getMenu(function(raw,menu) {
+        Store.getMenu(function(menu) {
             function printCategory(showItems,category,depth) {
                 if (!depth) depth = 0;
                 var indent = Array(depth+1).join("  ");

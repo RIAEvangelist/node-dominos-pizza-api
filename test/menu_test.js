@@ -13,10 +13,8 @@ describe('Menu', function() {
   describe('ParseMenu', function() {
     it('should parse menu', function(done) {
         var store = new Store({ID: testStore});
-        store.getMenu(function(raw,menu) {
-            expect(raw).not.to.be.null;
+        store.getMenu(function(menu) {
             expect(menu).not.to.be.null;
-            
             
             expect(menu.getFoodCategory()).not.to.be.null;
             expect(menu.getCouponCategory()).not.to.be.null;

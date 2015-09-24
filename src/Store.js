@@ -27,7 +27,7 @@ Store.prototype.getInfo = function(callback) {
 
 Store.prototype.getMenu = function(callback, lang, noCache) {
     if (this.cachedMenu && !noCache) {
-        callback(this.cachedMenu.getRaw(),this.cachedMenu); //TODO as below, break compatibility by removing first parameter
+        callback(this.cachedMenu); //TODO as below, break compatibility by removing first parameter
         return;
     }
     if( !this.ID || !callback){
@@ -48,7 +48,7 @@ Store.prototype.getMenu = function(callback, lang, noCache) {
 
     httpJson.get(url,(function(jsonObj) {
         this.cachedMenu = new Menu(jsonObj);
-        callback(jsonObj,this.cachedMenu); //TODO break compatibility by removing first parameter
+        callback(this.cachedMenu); //TODO break compatibility by removing first parameter
     }).bind(this));
 
     /*
