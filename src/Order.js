@@ -49,6 +49,7 @@ var Order = function(parameters) {
     this.Email = Customer.email;
     this.FirstName = Customer.firstName;
     this.LastName = Customer.lastName;
+    this.Phone = Customer.phone;
     return this;
   }
   if(parameters['Order'] || parameters['order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
