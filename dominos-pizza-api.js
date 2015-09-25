@@ -7,4 +7,8 @@ module.exports = {
     Item: require('./src/Item'),
     Coupon: require('./src/Coupon'),
     Util: require('./src/Utilities'),
+    
+    Menu: require('./src/Menu'),
+    MenuItem: require('./src/MenuItem'),
+    MenuCategory: require('./src/MenuCategory'),
 };
