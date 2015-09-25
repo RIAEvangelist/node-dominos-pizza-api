@@ -122,7 +122,8 @@ function showMenu(storeID,quick){
     );
 
     store.getMenu(
-        function(data){
+        function(menu){
+            var data = menu.getRaw();
             if(quick){
                 console.log(
                     '\n##########################\n'.blue,
