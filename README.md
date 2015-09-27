@@ -2,7 +2,7 @@ Domino's PizzAPI
 ====
 This is a node.js wrapper for the Domino's pizza APIs.
 The ` dominos ` module is the latest release and ` pizzapi ` should provide the dev release from our pizzapi development branch this branch is maintained by [madelinecameron](https://github.com/madelinecameron).  
-[See the pretty PizzaPI documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
+[See the pretty PizzAPI documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -107,7 +107,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
             console.log(storeData);
         }
     );
-    
+
 ```
 
 ### Using Full or Nearly Full Address
