@@ -1,32 +1,32 @@
 Domino's PizzAPI
 ====
 This is a node.js wrapper for the Domino's pizza APIs.
-The ` dominos ` module is the latest release and ` pizzapi ` should provide the dev release from our pizzapi development branch this branch is maintained by [madelinecameron](https://github.com/madelinecameron).  
+The ` dominos ` module is the latest release and ` pizzapi ` should provide the dev release from our pizzapi development branch this branch is maintained by [madelinecameron](https://github.com/madelinecameron).
 [See the pretty PizzaPI documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-__PAYMENT-SUPPORTED-MODULE__  
+__PAYMENT-SUPPORTED-MODULE__
 This module will pass payment information directly from the customer to Domino's Pizza for Domino's Pizza to process.
 
-npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)  
+npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)
 ![dominos npm version](https://img.shields.io/npm/v/dominos.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/dominos.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/dominos.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/dominos.svg)
 
 [![RIAEvangelist](https://avatars3.githubusercontent.com/u/369041?v=3&s=100)](https://github.com/RIAEvangelist)
 
-GitHub info :  
+GitHub info :
 [![node-dominos-pizza-api GitHub Release](https://img.shields.io/github/release/RIAEvangelist/node-dominos-pizza-api.svg) ![GitHub license node-dominos-pizza-api license](https://img.shields.io/github/license/RIAEvangelist/node-dominos-pizza-api.svg) ![open issues for node-dominos-pizza-api on GitHub](https://img.shields.io/github/issues/RIAEvangelist/node-dominos-pizza-api.svg)](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 ---
 
-__PAYMENT-DISSALLOWED-MODULE__  
+__PAYMENT-DISSALLOWED-MODULE__
 
-For individuals who wish to test without the risk of actually purchasing [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo and module have created the npm pizzapi module it is the same as the ` dominos ` module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.  
+For individuals who wish to test without the risk of actually purchasing [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo and module have created the npm pizzapi module it is the same as the ` dominos ` module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.
 
-[See npm trends and stats for pizzapi](http://npm-stat.com/charts.html?package=pizzapi&author=&from=&to=)  
-![pizzapi npm version](https://img.shields.io/npm/v/pizzapi.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/pizzapi.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/pizzapi.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/pizzapi.svg)  
+[See npm trends and stats for pizzapi](http://npm-stat.com/charts.html?package=pizzapi&author=&from=&to=)
+![pizzapi npm version](https://img.shields.io/npm/v/pizzapi.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/pizzapi.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/pizzapi.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/pizzapi.svg)
 
-[![madelinecameron](https://avatars3.githubusercontent.com/u/3712472?v=3&s=100)](https://github.com/madelinecameron)  
+[![madelinecameron](https://avatars3.githubusercontent.com/u/3712472?v=3&s=100)](https://github.com/madelinecameron)
 
 ---
 
@@ -81,49 +81,47 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 ### By Postal Code
 ***this yields the least accurate information***
 
-    ```javascript
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+```javascript
+var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    pizzapi.Util.findNearbyStores(
-        '63102',))
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-    ```
+pizzapi.Util.findNearbyStores(
+    '63102',))
+    'Delivery',
+    function(storeData){
+        console.log(storeData);
+    }
+);
+```
 
 ### By City and Postal Code
 ***this yields less accurate information but is better than just using the postal code***
 
 ```javascript
 
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    pizzapi.Util.findNearbyStores(
-        'St. Louis, MO, 63102',
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-    
+  pizzapi.Util.findNearbyStores(
+      'St. Louis, MO, 63102',
+      'Delivery',
+      function(storeData){
+          console.log(storeData);
+      }
+  );
 ```
 
 ### Using Full or Nearly Full Address
 ***this yields the best information and sorts stores by actual distance***
 
 ```javascript
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    pizzapi.Util.findNearbyStores(
-        '700 Clark Ave, St. Louis, MO, 63102',
-        'Delivery',
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-
+  pizzapi.Util.findNearbyStores(
+      '700 Clark Ave, St. Louis, MO, 63102',
+      'Delivery',
+      function(storeData){
+          console.log(storeData);
+      }
+  );
 ```
 
 ---
@@ -136,17 +134,17 @@ Store
 |ID      |Integer|null|true    |
 
 ```javascript
-    //Get Store Info for Store #4336
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
+  //Get Store Info for Store #4336
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var myStore=new pizzapi.Store();
+  myStore.ID=4336;
 
-    myStore.getInfo(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-    ```
+  myStore.getInfo(
+      function(storeData){
+          console.log(storeData);
+      }
+  );
+```
 
 ### Store menu
 
@@ -156,17 +154,16 @@ Store
 
 ```javascript
 
-    //Get Menu for Store #4336
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
+  //Get Menu for Store #4336
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var myStore=new pizzapi.Store();
+  myStore.ID=4336;
 
-    myStore.getMenu(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-
+  myStore.getMenu(
+      function(storeData){
+          console.log(storeData);
+      }
+  );
 ```
 
 ### Store info
@@ -176,17 +173,16 @@ Store
 
 ```javascript
 
-    //Get Info for Store #4336
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
+  //Get Info for Store #4336
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var myStore=new pizzapi.Store();
+  myStore.ID=4336;
 
-    myStore.getInfo(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-
+  myStore.getInfo(
+      function(storeData){
+          console.log(storeData);
+      }
+  );
 ```
 
 ### Friendly menu list
@@ -198,17 +194,16 @@ Returns a list of all items the store offers in an JSON array, formatted {Code: 
 
 ```javascript
 
-    //Get friendly name menu for Store #4336
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-    var myStore=new pizzapi.Store();
-    myStore.ID=4336;
+  //Get friendly name menu for Store #4336
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var myStore=new pizzapi.Store();
+  myStore.ID=4336;
 
-    myStore.getFriendlyNames(
-        function(storeData){
-            console.log(storeData);
-        }
-    );
-
+  myStore.getFriendlyNames(
+      function(storeData){
+          console.log(storeData);
+      }
+  );
 ```
 
 ---
@@ -223,23 +218,23 @@ The following are examples of the methods:
 
 ```javascript
 
-    var fullAddress = new Address('900 Clark Ave, St. Louis, MO, 63102');
+  var fullAddress = new Address('900 Clark Ave, St. Louis, MO, 63102');
 
-    //or
+  //or
 
-    var partAddress = new Address('St. Louis, MO, 63102');
+  var partAddress = new Address('St. Louis, MO, 63102');
 
-    //or
+  //or
 
-    var stateAndZip = new Address('St. Louis, 63102');
+  var stateAndZip = new Address('St. Louis, 63102');
 
-    //or
+  //or
 
-    var cityAndZip = new Address('St. Louis, 63102');
+  var cityAndZip = new Address('St. Louis, 63102');
 
-    //only zip
+  //only zip
 
-    var onlyZip = new Address('63102');
+  var onlyZip = new Address('63102');
 
 ```
 
@@ -247,14 +242,14 @@ The following are examples of the methods:
 
 ```javascript
 
-    var jsonAddress = new Address(
-        {
-            Street: '900 Clark Ave',
-            City: 'St. Louis',
-            Region: 'MO',
-            PostalCode: 63102
-        }
-    );
+  var jsonAddress = new Address(
+      {
+          Street: '900 Clark Ave',
+          City: 'St. Louis',
+          Region: 'MO',
+          PostalCode: 63102
+      }
+  );
 
 ```
 
@@ -262,7 +257,7 @@ The following are examples of the methods:
 
 ```javascript
 
-    var arrayAddress = new Address(['900 Clark Ave', 'St. Louis', 'MO', '63102']);
+  var arrayAddress = new Address(['900 Clark Ave', 'St. Louis', 'MO', '63102']);
 
 ```
 
@@ -283,15 +278,15 @@ Customer
 
 ```javascript
 
-    var customer = new Customer(
-        {
-            address: someAddressObj,
-            firstName: 'Barack',
-            lastName: 'Obama',
-            phone: '1-800-The-White-House',
-            email: 'br'
-        }
-    )
+  var customer = new Customer(
+      {
+          address: someAddressObj,
+          firstName: 'Barack',
+          lastName: 'Obama',
+          phone: '1-800-The-White-House',
+          email: 'br'
+      }
+  )
 
 ```
 ---
@@ -308,13 +303,12 @@ You can get the codes from one of the menu requests.
 
 ```javascript
 
-    var newItem = new Item(
-        {
-            code: '14SCREEN'
-        }
-    );
-
-//and so on...
+  var newItem = new Item(
+    {
+        code: '14SCREEN'
+    }
+  );
+  //and so on...
 
 ```
 ---
@@ -334,40 +328,40 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    var thePresident = new pizzapi.Customer(
-        {
-            firstName: 'Barack',
-            lastName: 'Obama',
-            address: '700 Pennsylvania Avenue, Washington, DC',
-            email: 'barack@whitehouse.gov'
-        }
-    );
+  var thePresident = new pizzapi.Customer(
+      {
+          firstName: 'Barack',
+          lastName: 'Obama',
+          address: '700 Pennsylvania Avenue, Washington, DC',
+          email: 'barack@whitehouse.gov'
+      }
+  );
 
-    var order = new pizzapi.Order(
-        {
-            customer: thePresident,
+  var order = new pizzapi.Order(
+      {
+          customer: thePresident,
 
-            //optional set the store ID right away
-            storeID: myStore.ID,
+          //optional set the store ID right away
+          storeID: myStore.ID,
 
-            deliveryMethod: 'Delivery' //(or 'Carryout')
-        }
-    );
+          deliveryMethod: 'Delivery' //(or 'Carryout')
+      }
+  );
 
-    //or
+  //or
 
-    var order = new pizzapi.Order();
+  var order = new pizzapi.Order();
 
-    order.FirstName=data;
-    order.LastName=data;
-    order.Email=data;
-    order.Phone=data;
+  order.FirstName=data;
+  order.LastName=data;
+  order.Email=data;
+  order.Phone=data;
 
-    //and if you want to update the store id just :
+  //and if you want to update the store id just :
 
-    order.StoreID=myStore.ID;
+  order.StoreID=myStore.ID;
 
 ```
 
@@ -375,23 +369,23 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-    var anotherIdenticalOrder = new pizzapi.Order(
-        {
-            order:order
-            //or
-            //Order:order
-            //because domino's pizza web API returns pascal case...
-        }
-    );
+  var anotherIdenticalOrder = new pizzapi.Order(
+      {
+          order:order
+          //or
+          //Order:order
+          //because domino's pizza web API returns pascal case...
+      }
+  );
 
-    //or create a duplicate order WITH different customer params
+  //or create a duplicate order WITH different customer params
 
-    var order = new pizzapi.Order(
-        {
-            customer: thePresident,
-            deliveryMethod: 'Delivery' //(or 'Carryout')
-        }
-    );
+  var order = new pizzapi.Order(
+      {
+          customer: thePresident,
+          deliveryMethod: 'Delivery' //(or 'Carryout')
+      }
+  );
 
 ```
 
@@ -399,15 +393,15 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-    order.addItem(
-        new pizzapi.Item(
-            {
-                code: '14SCREEN',
-                options: [],
-                quantity: 1
-            }
-        )
-    );
+  order.addItem(
+      new pizzapi.Item(
+          {
+              code: '14SCREEN',
+              options: [],
+              quantity: 1
+          }
+      )
+  );
 
 ```
 
@@ -416,11 +410,11 @@ This step is **Strongly** recommended
 
 ```javascript
 
-    order.validate(
-        function(result) {
-            console.log("We did it!");
-        }
-    );
+  order.validate(
+      function(result) {
+          console.log("We did it!");
+      }
+  );
 
 ```
 
@@ -428,11 +422,11 @@ This step is **Strongly** recommended
 
 ```javascript
 
-    order.price(
-        function(result) {
-            console.log("Price!")
-        }
-    );
+  order.price(
+      function(result) {
+          console.log("Price!")
+      }
+  );
 
 ```
 
@@ -444,25 +438,25 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ```javascript
 
-    var pizzapi=require('dominos');
+  var pizzapi=require('dominos');
 
-    var cardNumber='4100123422343234';
+  var cardNumber='4100123422343234';
 
-    var cardInfo = new order.PaymentObject();
-    cardInfo.Amount = order.Amounts.Customer;
-    cardInfo.Number = cardNumber;
-    cardInfo.CardType = order.validateCC(cardNumber);
-    cardInfo.Expiration = '0115';//  01/15 just the numbers "01/15".replace(/\D/g,'');
-    cardInfo.SecurityCode = '777';
-    cardInfo.PostalCode = '90210'; // Billing Zipcode
+  var cardInfo = new order.PaymentObject();
+  cardInfo.Amount = order.Amounts.Customer;
+  cardInfo.Number = cardNumber;
+  cardInfo.CardType = order.validateCC(cardNumber);
+  cardInfo.Expiration = '0115';//  01/15 just the numbers "01/15".replace(/\D/g,'');
+  cardInfo.SecurityCode = '777';
+  cardInfo.PostalCode = '90210'; // Billing Zipcode
 
-    order.Payments.push(cardInfo);
+  order.Payments.push(cardInfo);
 
-    order.place(
-        function(result) {
-            console.log("Order placed!");
-        }
-    );
+  order.place(
+      function(result) {
+          console.log("Order placed!");
+      }
+  );
 
 ```
 
@@ -470,14 +464,14 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ```javascript
 
-    // if you want no accidental purchase or liability use the pizzapi module!
-    var pizzapi=require('pizzapi');
+  // if you want no accidental purchase or liability use the pizzapi module!
+  var pizzapi=require('pizzapi');
 
-    order.place(
-        function(result) {
-            console.log("Order placed!");
-        }
-    );
+  order.place(
+      function(result) {
+          console.log("Order placed!");
+      }
+  );
 
 ```
 
@@ -495,14 +489,14 @@ Tracking
 
 ```javascript
 
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    pizzapi.Track.byPhone(
-        2024561111,
-        function(pizzaData){
-            console.log(pizzaData);
-        }
-    );
+  pizzapi.Track.byPhone(
+      2024561111,
+      function(pizzaData){
+          console.log(pizzaData);
+      }
+  );
 
 ```
 
@@ -516,15 +510,15 @@ Tracking
 
 ```javascript
 
-    var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
 
-    pizzapi.Track.byId(
-        123456,
-        12345,
-        function(pizzaData){
-            console.log(pizzaData)
-        }
-    );
+  pizzapi.Track.byId(
+      123456,
+      12345,
+      function(pizzaData){
+          console.log(pizzaData)
+      }
+  );
 
 ```
 
