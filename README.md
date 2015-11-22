@@ -82,7 +82,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 ***this yields the least accurate information***
 
 ```javascript
-var pizzapi = require('dominos'); // or without payment option use var pizzapi=require('pizzapi');
+var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
 pizzapi.Util.findNearbyStores(
     '63102',))
