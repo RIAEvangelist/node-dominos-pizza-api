@@ -82,7 +82,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 ***this yields the least accurate information***
 
 ```javascript
-var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+var pizzapi = require('dominos'); // or without payment option use var pizzapi=require('pizzapi');
 
 pizzapi.Util.findNearbyStores(
     '63102',))
@@ -98,7 +98,7 @@ pizzapi.Util.findNearbyStores(
 
 ```javascript
 
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   pizzapi.Util.findNearbyStores(
       'St. Louis, MO, 63102',
@@ -113,7 +113,7 @@ pizzapi.Util.findNearbyStores(
 ***this yields the best information and sorts stores by actual distance***
 
 ```javascript
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   pizzapi.Util.findNearbyStores(
       '700 Clark Ave, St. Louis, MO, 63102',
@@ -135,8 +135,8 @@ Store
 
 ```javascript
   //Get Store Info for Store #4336
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-  var myStore=new pizzapi.Store();
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var myStore = new pizzapi.Store();
   myStore.ID=4336;
 
   myStore.getInfo(
@@ -155,9 +155,9 @@ Store
 ```javascript
 
   //Get Menu for Store #4336
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-  var myStore=new pizzapi.Store();
-  myStore.ID=4336;
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var myStore = new pizzapi.Store();
+  myStore.ID = 4336;
 
   myStore.getMenu(
       function(storeData){
@@ -174,9 +174,9 @@ Store
 ```javascript
 
   //Get Info for Store #4336
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-  var myStore=new pizzapi.Store();
-  myStore.ID=4336;
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var myStore = new pizzapi.Store();
+  myStore.ID = 4336;
 
   myStore.getInfo(
       function(storeData){
@@ -195,9 +195,9 @@ Returns a list of all items the store offers in an JSON array, formatted {Code: 
 ```javascript
 
   //Get friendly name menu for Store #4336
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
-  var myStore=new pizzapi.Store();
-  myStore.ID=4336;
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var myStore = new pizzapi.Store();
+  myStore.ID = 4336;
 
   myStore.getFriendlyNames(
       function(storeData){
@@ -328,7 +328,7 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   var thePresident = new pizzapi.Customer(
       {
@@ -354,14 +354,14 @@ This is the class that every other class feeds into.
 
   var order = new pizzapi.Order();
 
-  order.FirstName=data;
-  order.LastName=data;
-  order.Email=data;
-  order.Phone=data;
+  order.FirstName = data;
+  order.LastName = data;
+  order.Email = data;
+  order.Phone = data;
 
   //and if you want to update the store id just :
 
-  order.StoreID=myStore.ID;
+  order.StoreID = myStore.ID;
 
 ```
 
@@ -438,9 +438,9 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ```javascript
 
-  var pizzapi=require('dominos');
+  var pizzapi = require('dominos');
 
-  var cardNumber='4100123422343234';
+  var cardNumber = '4100123422343234';
 
   var cardInfo = new order.PaymentObject();
   cardInfo.Amount = order.Amounts.Customer;
@@ -465,7 +465,7 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 ```javascript
 
   // if you want no accidental purchase or liability use the pizzapi module!
-  var pizzapi=require('pizzapi');
+  var pizzapi = require('pizzapi');
 
   order.place(
       function(result) {
@@ -489,7 +489,7 @@ Tracking
 
 ```javascript
 
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   pizzapi.Track.byPhone(
       2024561111,
@@ -510,7 +510,7 @@ Tracking
 
 ```javascript
 
-  var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   pizzapi.Track.byId(
       123456,
