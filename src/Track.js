@@ -2,6 +2,7 @@
 
 var urls = require('./urls.json');
 var request = require('request');
+var parser = require('xml2json');
 
 module.exports.byPhone = function(phone, callback) {
     if( !phone || !callback) {
@@ -45,12 +46,12 @@ module.exports.byUrl = function(url, callback){
             if (response.statusCode !== 200){
                 callback({
                     success: false,
-                    message:'HTML Status Code Error ' + response.statusCode,
+                    message:'HTML Status Code Error ' + response.statusCode
                 });
                 return;
             }
 
-            result = parser.toJson(
+            var result = parser.toJson(
                 body,
                 {
                     coerce: false,
