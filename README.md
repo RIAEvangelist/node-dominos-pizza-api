@@ -82,6 +82,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 ***this yields the least accurate information***
 
 ```javascript
+
 var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
 pizzapi.Util.findNearbyStores(
@@ -91,6 +92,7 @@ pizzapi.Util.findNearbyStores(
         console.log(storeData);
     }
 );
+
 ```
 
 ### By City and Postal Code
@@ -113,6 +115,7 @@ pizzapi.Util.findNearbyStores(
 ***this yields the best information and sorts stores by actual distance***
 
 ```javascript
+
   var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
   pizzapi.Util.findNearbyStores(
@@ -122,6 +125,7 @@ pizzapi.Util.findNearbyStores(
           console.log(storeData);
       }
   );
+
 ```
 
 ---
@@ -134,6 +138,7 @@ Store
 |ID      |Integer|null|true    |
 
 ```javascript
+
   //Get Store Info for Store #4336
   var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
   var myStore = new pizzapi.Store();
@@ -144,6 +149,7 @@ Store
           console.log(storeData);
       }
   );
+
 ```
 
 ### Store menu
@@ -164,6 +170,7 @@ Store
           console.log(storeData);
       }
   );
+
 ```
 
 ### Store info
@@ -183,6 +190,7 @@ Store
           console.log(storeData);
       }
   );
+
 ```
 
 ### Friendly menu list
@@ -204,6 +212,7 @@ Returns a list of all items the store offers in an JSON array, formatted {Code: 
           console.log(storeData);
       }
   );
+
 ```
 
 ---
