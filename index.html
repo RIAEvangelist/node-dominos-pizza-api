@@ -34,32 +34,32 @@
 <a id="dominos-pizzapi" class="anchor" href="#dominos-pizzapi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Domino's PizzAPI</h1>
 
 <p>This is a node.js wrapper for the Domino's pizza APIs.
-The <code>dominos</code> module is the latest release and <code>pizzapi</code> should provide the dev release from our pizzapi development branch this branch is maintained by <a href="https://github.com/madelinecameron">madelinecameron</a>.<br>
+The <code>dominos</code> module is the latest release and <code>pizzapi</code> should provide the dev release from our pizzapi development branch this branch is maintained by <a href="https://github.com/madelinecameron">madelinecameron</a>.
 <a href="http://riaevangelist.github.io/node-dominos-pizza-api/">See the pretty PizzaPI documentation</a></p>
 
 <p><a href="https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api"></a></p>
 
-<p><strong>PAYMENT-SUPPORTED-MODULE</strong><br>
+<p><strong>PAYMENT-SUPPORTED-MODULE</strong>
 This module will pass payment information directly from the customer to Domino's Pizza for Domino's Pizza to process.</p>
 
-<p>npm dominos info :  <a href="http://npm-stat.com/charts.html?package=dominos&amp;author=&amp;from=&amp;to=">See npm trends and stats for dominos</a><br>
+<p>npm dominos info :  <a href="http://npm-stat.com/charts.html?package=dominos&amp;author=&amp;from=&amp;to=">See npm trends and stats for dominos</a>
 <img src="https://img.shields.io/npm/v/dominos.svg" alt="dominos npm version"> <img src="https://img.shields.io/node/v/pizzapi.svg" alt="supported node version for pizzapi"> <img src="https://img.shields.io/npm/dt/dominos.svg" alt="total npm downloads for pizzapi"> <img src="https://img.shields.io/npm/dm/dominos.svg" alt="monthly npm downloads for pizzapi"> <img src="https://img.shields.io/npm/l/dominos.svg" alt="npm licence for pizzapi"></p>
 
 <p><a href="https://github.com/RIAEvangelist"><img src="https://avatars3.githubusercontent.com/u/369041?v=3&amp;s=100" alt="RIAEvangelist"></a></p>
 
-<p>GitHub info :<br>
+<p>GitHub info :
 <a href="http://riaevangelist.github.io/node-dominos-pizza-api/"><img src="https://img.shields.io/github/release/RIAEvangelist/node-dominos-pizza-api.svg" alt="node-dominos-pizza-api GitHub Release"> <img src="https://img.shields.io/github/license/RIAEvangelist/node-dominos-pizza-api.svg" alt="GitHub license node-dominos-pizza-api license"> <img src="https://img.shields.io/github/issues/RIAEvangelist/node-dominos-pizza-api.svg" alt="open issues for node-dominos-pizza-api on GitHub"></a></p>
 
 <hr>
 
-<p><strong>PAYMENT-DISSALLOWED-MODULE</strong>  </p>
+<p><strong>PAYMENT-DISSALLOWED-MODULE</strong></p>
 
-<p>For individuals who wish to test without the risk of actually purchasing <a href="https://github.com/madelinecameron">@madelinecameron</a>, a major contributor to this repo and module have created the npm pizzapi module it is the same as the <code>dominos</code> module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.  </p>
+<p>For individuals who wish to test without the risk of actually purchasing <a href="https://github.com/madelinecameron">@madelinecameron</a>, a major contributor to this repo and module have created the npm pizzapi module it is the same as the <code>dominos</code> module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.</p>
 
-<p><a href="http://npm-stat.com/charts.html?package=pizzapi&amp;author=&amp;from=&amp;to=">See npm trends and stats for pizzapi</a><br>
-<img src="https://img.shields.io/npm/v/pizzapi.svg" alt="pizzapi npm version"> <img src="https://img.shields.io/node/v/pizzapi.svg" alt="supported node version for pizzapi"> <img src="https://img.shields.io/npm/dt/pizzapi.svg" alt="total npm downloads for pizzapi"> <img src="https://img.shields.io/npm/dm/pizzapi.svg" alt="monthly npm downloads for pizzapi"> <img src="https://img.shields.io/npm/l/pizzapi.svg" alt="npm licence for pizzapi">  </p>
+<p><a href="http://npm-stat.com/charts.html?package=pizzapi&amp;author=&amp;from=&amp;to=">See npm trends and stats for pizzapi</a>
+<img src="https://img.shields.io/npm/v/pizzapi.svg" alt="pizzapi npm version"> <img src="https://img.shields.io/node/v/pizzapi.svg" alt="supported node version for pizzapi"> <img src="https://img.shields.io/npm/dt/pizzapi.svg" alt="total npm downloads for pizzapi"> <img src="https://img.shields.io/npm/dm/pizzapi.svg" alt="monthly npm downloads for pizzapi"> <img src="https://img.shields.io/npm/l/pizzapi.svg" alt="npm licence for pizzapi"></p>
 
-<p><a href="https://github.com/madelinecameron"><img src="https://avatars3.githubusercontent.com/u/3712472?v=3&amp;s=100" alt="madelinecameron"></a>  </p>
+<p><a href="https://github.com/madelinecameron"><img src="https://avatars3.githubusercontent.com/u/3712472?v=3&amp;s=100" alt="madelinecameron"></a></p>
 
 <hr>
 
@@ -146,18 +146,17 @@ if you have issues with this you may want to try installing mocha globally like 
 
 <p><strong><em>this yields the least accurate information</em></strong></p>
 
-<pre><code>```javascript
-var pizzapi=require('dominos'); // or without payment option : var pizzapi=require('pizzapi');
+<div class="highlight highlight-source-js"><pre>
+<span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-pizzapi.Util.findNearbyStores(
-    '63102',))
-    'Delivery',
-    function(storeData){
-        console.log(storeData);
+<span class="pl-smi">pizzapi</span>.<span class="pl-c1">U</span>til.<span class="pl-en">findNearbyStores</span>(
+    <span class="pl-s"><span class="pl-pds">'</span>63102<span class="pl-pds">'</span></span>,))
+    <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span>,
+    <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
     }
 );
-```
-</code></pre>
+</pre></div>
 
 <h3>
 <a id="by-city-and-postal-code" class="anchor" href="#by-city-and-postal-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>By City and Postal Code</h3>
@@ -165,31 +164,31 @@ pizzapi.Util.findNearbyStores(
 <p><strong><em>this yields less accurate information but is better than just using the postal code</em></strong></p>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-    pizzapi.Util.findNearbyStores(
-        <span class="pl-s"><span class="pl-pds">'</span>St. Louis, MO, 63102<span class="pl-pds">'</span></span>,
-        <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span>,
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
-</pre></div>
+  <span class="pl-smi">pizzapi</span>.<span class="pl-c1">U</span>til.<span class="pl-en">findNearbyStores</span>(
+      <span class="pl-s"><span class="pl-pds">'</span>St. Louis, MO, 63102<span class="pl-pds">'</span></span>,
+      <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span>,
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );</pre></div>
 
 <h3>
 <a id="using-full-or-nearly-full-address" class="anchor" href="#using-full-or-nearly-full-address" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Full or Nearly Full Address</h3>
 
 <p><strong><em>this yields the best information and sorts stores by actual distance</em></strong></p>
 
-<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
+<div class="highlight highlight-source-js"><pre>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-    pizzapi.Util.findNearbyStores(
-        <span class="pl-s"><span class="pl-pds">'</span>700 Clark Ave, St. Louis, MO, 63102<span class="pl-pds">'</span></span>,
-        <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span>,
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
+  <span class="pl-smi">pizzapi</span>.<span class="pl-c1">U</span>til.<span class="pl-en">findNearbyStores</span>(
+      <span class="pl-s"><span class="pl-pds">'</span>700 Clark Ave, St. Louis, MO, 63102<span class="pl-pds">'</span></span>,
+      <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span>,
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );
 </pre></div>
 
 <hr>
@@ -216,36 +215,52 @@ pizzapi.Util.findNearbyStores(
 </tbody>
 </table>
 
-<div class="highlight highlight-source-js"><pre>    <span class="pl-c">//Get Store Info for Store #4336</span>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
-    <span class="pl-k">var</span> myStore<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
-    myStore.ID<span class="pl-k">=</span><span class="pl-c1">4336</span>;
+<div class="highlight highlight-source-js"><pre>
+  <span class="pl-c">//Get Store Info for Store #4336</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
+  <span class="pl-k">var</span> myStore <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
+  <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span><span class="pl-k">=</span><span class="pl-c1">4336</span>;
 
-    myStore.getInfo(
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
-    <span class="pl-s"><span class="pl-pds">`</span><span class="pl-pds">`</span><span class="pl-pds">`</span></span>
-<span class="pl-s"></span>
-<span class="pl-s">### Store menu</span>
-<span class="pl-s"></span>
-<span class="pl-s">|argument|type|default|required|</span>
-<span class="pl-s">|--------|----|-------|--------|</span>
-<span class="pl-s">|callback|function|null|true   |</span>
-<span class="pl-s"></span>
-<span class="pl-s"><span class="pl-pds">`</span><span class="pl-pds">`</span><span class="pl-pds">`</span></span>javascript
+  <span class="pl-smi">myStore</span>.<span class="pl-en">getInfo</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );
+</pre></div>
 
-    <span class="pl-c">//Get Menu for Store #4336</span>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
-    <span class="pl-k">var</span> myStore<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
-    myStore.ID<span class="pl-k">=</span><span class="pl-c1">4336</span>;
+<h3>
+<a id="store-menu" class="anchor" href="#store-menu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Store menu</h3>
 
-    myStore.getMenu(
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
+<table>
+<thead>
+<tr>
+<th>argument</th>
+<th>type</th>
+<th>default</th>
+<th>required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>null</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight highlight-source-js"><pre>
+  <span class="pl-c">//Get Menu for Store #4336</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
+  <span class="pl-k">var</span> myStore <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
+  <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span> <span class="pl-k">=</span> <span class="pl-c1">4336</span>;
+
+  <span class="pl-smi">myStore</span>.<span class="pl-en">getMenu</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );
 </pre></div>
 
 <h3>
@@ -271,16 +286,16 @@ pizzapi.Util.findNearbyStores(
 </table>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-c">//Get Info for Store #4336</span>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
-    <span class="pl-k">var</span> myStore<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
-    myStore.ID<span class="pl-k">=</span><span class="pl-c1">4336</span>;
+  <span class="pl-c">//Get Info for Store #4336</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
+  <span class="pl-k">var</span> myStore <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
+  <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span> <span class="pl-k">=</span> <span class="pl-c1">4336</span>;
 
-    myStore.getInfo(
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
+  <span class="pl-smi">myStore</span>.<span class="pl-en">getInfo</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );
 </pre></div>
 
 <h3>
@@ -308,16 +323,16 @@ pizzapi.Util.findNearbyStores(
 <p>Returns a list of all items the store offers in an JSON array, formatted {Code: Friendly Name}</p>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-c">//Get friendly name menu for Store #4336</span>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
-    <span class="pl-k">var</span> myStore<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
-    myStore.ID<span class="pl-k">=</span><span class="pl-c1">4336</span>;
+  <span class="pl-c">//Get friendly name menu for Store #4336</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
+  <span class="pl-k">var</span> myStore <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Store</span>();
+  <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span> <span class="pl-k">=</span> <span class="pl-c1">4336</span>;
 
-    myStore.getFriendlyNames(
-        <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(storeData);
-        }
-    );
+  <span class="pl-smi">myStore</span>.<span class="pl-en">getFriendlyNames</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">storeData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(storeData);
+      }
+  );
 </pre></div>
 
 <hr>
@@ -334,44 +349,44 @@ pizzapi.Util.findNearbyStores(
 </h4>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> fullAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave, St. Louis, MO, 63102<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> fullAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave, St. Louis, MO, 63102<span class="pl-pds">'</span></span>);
 
-    <span class="pl-c">//or</span>
+  <span class="pl-c">//or</span>
 
-    <span class="pl-k">var</span> partAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, MO, 63102<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> partAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, MO, 63102<span class="pl-pds">'</span></span>);
 
-    <span class="pl-c">//or</span>
+  <span class="pl-c">//or</span>
 
-    <span class="pl-k">var</span> stateAndZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, 63102<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> stateAndZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, 63102<span class="pl-pds">'</span></span>);
 
-    <span class="pl-c">//or</span>
+  <span class="pl-c">//or</span>
 
-    <span class="pl-k">var</span> cityAndZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, 63102<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> cityAndZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>St. Louis, 63102<span class="pl-pds">'</span></span>);
 
-    <span class="pl-c">//only zip</span>
+  <span class="pl-c">//only zip</span>
 
-    <span class="pl-k">var</span> onlyZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>63102<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> onlyZip <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(<span class="pl-s"><span class="pl-pds">'</span>63102<span class="pl-pds">'</span></span>);
 </pre></div>
 
 <h4>
 <a id="from-json" class="anchor" href="#from-json" aria-hidden="true"><span class="octicon octicon-link"></span></a>From JSON</h4>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> jsonAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(
-        {
-            Street<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave<span class="pl-pds">'</span></span>,
-            City<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>St. Louis<span class="pl-pds">'</span></span>,
-            Region<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>MO<span class="pl-pds">'</span></span>,
-            PostalCode<span class="pl-k">:</span> <span class="pl-c1">63102</span>
-        }
-    );
+  <span class="pl-k">var</span> jsonAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>(
+      {
+          Street<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave<span class="pl-pds">'</span></span>,
+          City<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>St. Louis<span class="pl-pds">'</span></span>,
+          Region<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>MO<span class="pl-pds">'</span></span>,
+          PostalCode<span class="pl-k">:</span> <span class="pl-c1">63102</span>
+      }
+  );
 </pre></div>
 
 <h4>
 <a id="from-array" class="anchor" href="#from-array" aria-hidden="true"><span class="octicon octicon-link"></span></a>From array</h4>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> arrayAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>([<span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>St. Louis<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>MO<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>63102<span class="pl-pds">'</span></span>]);
+  <span class="pl-k">var</span> arrayAddress <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Address</span>([<span class="pl-s"><span class="pl-pds">'</span>900 Clark Ave<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>St. Louis<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>MO<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>63102<span class="pl-pds">'</span></span>]);
 </pre></div>
 
 <hr>
@@ -419,15 +434,15 @@ pizzapi.Util.findNearbyStores(
 <hr>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> customer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Customer</span>(
-        {
-            address<span class="pl-k">:</span> someAddressObj,
-            firstName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Barack<span class="pl-pds">'</span></span>,
-            lastName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Obama<span class="pl-pds">'</span></span>,
-            phone<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>1-800-The-White-House<span class="pl-pds">'</span></span>,
-            email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>br<span class="pl-pds">'</span></span>
-        }
-    )
+  <span class="pl-k">var</span> customer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Customer</span>(
+      {
+          address<span class="pl-k">:</span> someAddressObj,
+          firstName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Barack<span class="pl-pds">'</span></span>,
+          lastName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Obama<span class="pl-pds">'</span></span>,
+          phone<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>1-800-The-White-House<span class="pl-pds">'</span></span>,
+          email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>br<span class="pl-pds">'</span></span>
+      }
+  )
 </pre></div>
 
 <hr>
@@ -465,13 +480,12 @@ pizzapi.Util.findNearbyStores(
 </table>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> newItem <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Item</span>(
-        {
-            code<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>14SCREEN<span class="pl-pds">'</span></span>
-        }
-    );
-
-<span class="pl-c">//and so on...</span>
+  <span class="pl-k">var</span> newItem <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Item</span>(
+    {
+        code<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>14SCREEN<span class="pl-pds">'</span></span>
+    }
+  );
+  <span class="pl-c">//and so on...</span>
 </pre></div>
 
 <hr>
@@ -512,78 +526,78 @@ pizzapi.Util.findNearbyStores(
 <a id="creating-an-order" class="anchor" href="#creating-an-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>creating an order</h3>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-    <span class="pl-k">var</span> thePresident <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Customer</span>(
-        {
-            firstName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Barack<span class="pl-pds">'</span></span>,
-            lastName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Obama<span class="pl-pds">'</span></span>,
-            address<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>700 Pennsylvania Avenue, Washington, DC<span class="pl-pds">'</span></span>,
-            email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>barack@whitehouse.gov<span class="pl-pds">'</span></span>
-        }
-    );
+  <span class="pl-k">var</span> thePresident <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Customer</span>(
+      {
+          firstName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Barack<span class="pl-pds">'</span></span>,
+          lastName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Obama<span class="pl-pds">'</span></span>,
+          address<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>700 Pennsylvania Avenue, Washington, DC<span class="pl-pds">'</span></span>,
+          email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>barack@whitehouse.gov<span class="pl-pds">'</span></span>
+      }
+  );
 
-    <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
-        {
-            customer<span class="pl-k">:</span> thePresident,
+  <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
+      {
+          customer<span class="pl-k">:</span> thePresident,
 
-            <span class="pl-c">//optional set the store ID right away</span>
-            storeID<span class="pl-k">:</span> myStore.ID,
+          <span class="pl-c">//optional set the store ID right away</span>
+          storeID<span class="pl-k">:</span> <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span>,
 
-            deliveryMethod<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span> <span class="pl-c">//(or 'Carryout')</span>
-        }
-    );
+          deliveryMethod<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span> <span class="pl-c">//(or 'Carryout')</span>
+      }
+  );
 
-    <span class="pl-c">//or</span>
+  <span class="pl-c">//or</span>
 
-    <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>();
+  <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>();
 
-    order.FirstName<span class="pl-k">=</span>data;
-    order.LastName<span class="pl-k">=</span>data;
-    order.Email<span class="pl-k">=</span>data;
-    order.Phone<span class="pl-k">=</span>data;
+  <span class="pl-smi">order</span>.<span class="pl-c1">F</span>irstName <span class="pl-k">=</span> data;
+  <span class="pl-smi">order</span>.<span class="pl-c1">L</span>astName <span class="pl-k">=</span> data;
+  <span class="pl-smi">order</span>.<span class="pl-c1">E</span>mail <span class="pl-k">=</span> data;
+  <span class="pl-smi">order</span>.<span class="pl-c1">P</span>hone <span class="pl-k">=</span> data;
 
-    <span class="pl-c">//and if you want to update the store id just :</span>
+  <span class="pl-c">//and if you want to update the store id just :</span>
 
-    order.StoreID<span class="pl-k">=</span>myStore.ID;
+  <span class="pl-smi">order</span>.<span class="pl-c1">S</span>toreID <span class="pl-k">=</span> <span class="pl-smi">myStore</span>.<span class="pl-c1">ID</span>;
 </pre></div>
 
 <h3>
 <a id="duplicating-an-order" class="anchor" href="#duplicating-an-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>duplicating an order</h3>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> anotherIdenticalOrder <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
-        {
-            order<span class="pl-k">:</span>order
-            <span class="pl-c">//or</span>
-            <span class="pl-c">//Order:order</span>
-            <span class="pl-c">//because domino's pizza web API returns pascal case...</span>
-        }
-    );
+  <span class="pl-k">var</span> anotherIdenticalOrder <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
+      {
+          order<span class="pl-k">:</span>order
+          <span class="pl-c">//or</span>
+          <span class="pl-c">//Order:order</span>
+          <span class="pl-c">//because domino's pizza web API returns pascal case...</span>
+      }
+  );
 
-    <span class="pl-c">//or create a duplicate order WITH different customer params</span>
+  <span class="pl-c">//or create a duplicate order WITH different customer params</span>
 
-    <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
-        {
-            customer<span class="pl-k">:</span> thePresident,
-            deliveryMethod<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span> <span class="pl-c">//(or 'Carryout')</span>
-        }
-    );
+  <span class="pl-k">var</span> order <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">pizzapi.Order</span>(
+      {
+          customer<span class="pl-k">:</span> thePresident,
+          deliveryMethod<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Delivery<span class="pl-pds">'</span></span> <span class="pl-c">//(or 'Carryout')</span>
+      }
+  );
 </pre></div>
 
 <h3>
 <a id="adding-a-product-to-the-order-" class="anchor" href="#adding-a-product-to-the-order-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding a product to the order :</h3>
 
 <div class="highlight highlight-source-js"><pre>
-    order.addItem(
-        <span class="pl-k">new</span> <span class="pl-en">pizzapi.Item</span>(
-            {
-                code<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>14SCREEN<span class="pl-pds">'</span></span>,
-                options<span class="pl-k">:</span> [],
-                quantity<span class="pl-k">:</span> <span class="pl-c1">1</span>
-            }
-        )
-    );
+  <span class="pl-smi">order</span>.<span class="pl-en">addItem</span>(
+      <span class="pl-k">new</span> <span class="pl-en">pizzapi.Item</span>(
+          {
+              code<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>14SCREEN<span class="pl-pds">'</span></span>,
+              options<span class="pl-k">:</span> [],
+              quantity<span class="pl-k">:</span> <span class="pl-c1">1</span>
+          }
+      )
+  );
 </pre></div>
 
 <h3>
@@ -592,22 +606,22 @@ pizzapi.Util.findNearbyStores(
 <p>This step is <strong>Strongly</strong> recommended</p>
 
 <div class="highlight highlight-source-js"><pre>
-    order.validate(
-        <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>We did it!<span class="pl-pds">"</span></span>);
-        }
-    );
+  <span class="pl-smi">order</span>.<span class="pl-en">validate</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>We did it!<span class="pl-pds">"</span></span>);
+      }
+  );
 </pre></div>
 
 <h3>
 <a id="price-an-order" class="anchor" href="#price-an-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price an Order</h3>
 
 <div class="highlight highlight-source-js"><pre>
-    order.price(
-        <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Price!<span class="pl-pds">"</span></span>)
-        }
-    );
+  <span class="pl-smi">order</span>.<span class="pl-en">price</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Price!<span class="pl-pds">"</span></span>)
+      }
+  );
 </pre></div>
 
 <h3>
@@ -621,39 +635,39 @@ pizzapi.Util.findNearbyStores(
 <p>You don't have to do anything for the payment, Domino's Pizza will handle all transactions.</p>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>);
 
-    <span class="pl-k">var</span> cardNumber<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>4100123422343234<span class="pl-pds">'</span></span>;
+  <span class="pl-k">var</span> cardNumber <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>4100123422343234<span class="pl-pds">'</span></span>;
 
-    <span class="pl-k">var</span> cardInfo <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">order.PaymentObject</span>();
-    cardInfo.Amount <span class="pl-k">=</span> order.Amounts.Customer;
-    cardInfo.<span class="pl-c1">Number</span> <span class="pl-k">=</span> cardNumber;
-    cardInfo.CardType <span class="pl-k">=</span> order.validateCC(cardNumber);
-    cardInfo.Expiration <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>0115<span class="pl-pds">'</span></span>;<span class="pl-c">//  01/15 just the numbers "01/15".replace(/\D/g,'');</span>
-    cardInfo.SecurityCode <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>777<span class="pl-pds">'</span></span>;
-    cardInfo.PostalCode <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>90210<span class="pl-pds">'</span></span>; <span class="pl-c">// Billing Zipcode</span>
+  <span class="pl-k">var</span> cardInfo <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">order.PaymentObject</span>();
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">A</span>mount <span class="pl-k">=</span> <span class="pl-smi">order</span>.<span class="pl-c1">A</span>mounts.<span class="pl-c1">C</span>ustomer;
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">N</span>umber <span class="pl-k">=</span> cardNumber;
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">C</span>ardType <span class="pl-k">=</span> <span class="pl-smi">order</span>.<span class="pl-en">validateCC</span>(cardNumber);
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">E</span>xpiration <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>0115<span class="pl-pds">'</span></span>;<span class="pl-c">//  01/15 just the numbers "01/15".replace(/\D/g,'');</span>
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">S</span>ecurityCode <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>777<span class="pl-pds">'</span></span>;
+  <span class="pl-smi">cardInfo</span>.<span class="pl-c1">P</span>ostalCode <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>90210<span class="pl-pds">'</span></span>; <span class="pl-c">// Billing Zipcode</span>
 
-    order.Payments.<span class="pl-c1">push</span>(cardInfo);
+  <span class="pl-smi">order</span>.<span class="pl-c1">P</span>ayments.<span class="pl-c1">push</span>(cardInfo);
 
-    order.place(
-        <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Order placed!<span class="pl-pds">"</span></span>);
-        }
-    );
+  <span class="pl-smi">order</span>.<span class="pl-en">place</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Order placed!<span class="pl-pds">"</span></span>);
+      }
+  );
 </pre></div>
 
 <h4>
 <a id="no-actual-purchase-allowed" class="anchor" href="#no-actual-purchase-allowed" aria-hidden="true"><span class="octicon octicon-link"></span></a>no actual purchase allowed</h4>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-c">// if you want no accidental purchase or liability use the pizzapi module!</span>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>pizzapi<span class="pl-pds">'</span></span>);
+  <span class="pl-c">// if you want no accidental purchase or liability use the pizzapi module!</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>pizzapi<span class="pl-pds">'</span></span>);
 
-    order.place(
-        <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Order placed!<span class="pl-pds">"</span></span>);
-        }
-    );
+  <span class="pl-smi">order</span>.<span class="pl-en">place</span>(
+      <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Order placed!<span class="pl-pds">"</span></span>);
+      }
+  );
 </pre></div>
 
 <hr>
@@ -690,14 +704,14 @@ pizzapi.Util.findNearbyStores(
 </table>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-    pizzapi.Track.byPhone(
-        <span class="pl-c1">2024561111</span>,
-        <span class="pl-k">function</span>(<span class="pl-smi">pizzaData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(pizzaData);
-        }
-    );
+  <span class="pl-smi">pizzapi</span>.<span class="pl-c1">T</span>rack.<span class="pl-en">byPhone</span>(
+      <span class="pl-c1">2024561111</span>,
+      <span class="pl-k">function</span>(<span class="pl-smi">pizzaData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(pizzaData);
+      }
+  );
 </pre></div>
 
 <h3>
@@ -735,15 +749,15 @@ pizzapi.Util.findNearbyStores(
 </table>
 
 <div class="highlight highlight-source-js"><pre>
-    <span class="pl-k">var</span> pizzapi<span class="pl-k">=</span><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option : var pizzapi=require('pizzapi');</span>
+  <span class="pl-k">var</span> pizzapi <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dominos<span class="pl-pds">'</span></span>); <span class="pl-c">// or without payment option use require('pizzapi');</span>
 
-    pizzapi.Track.byId(
-        <span class="pl-c1">123456</span>,
-        <span class="pl-c1">12345</span>,
-        <span class="pl-k">function</span>(<span class="pl-smi">pizzaData</span>){
-            <span class="pl-en">console</span><span class="pl-c1">.log</span>(pizzaData)
-        }
-    );
+  <span class="pl-smi">pizzapi</span>.<span class="pl-c1">T</span>rack.<span class="pl-en">byId</span>(
+      <span class="pl-c1">123456</span>,
+      <span class="pl-c1">12345</span>,
+      <span class="pl-k">function</span>(<span class="pl-smi">pizzaData</span>){
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(pizzaData)
+      }
+  );
 </pre></div>
 
 <p>Code, Order, Eat, Be Happy!</p>
