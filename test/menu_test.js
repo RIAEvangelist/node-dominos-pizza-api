@@ -15,20 +15,18 @@ describe('Menu', function() {
         var store = new Store({ID: testStore});
         store.getMenu(function(menu) {
             expect(menu).not.to.be.null;
-            
+
             expect(menu.getFoodCategory()).not.to.be.null;
             expect(menu.getCouponCategory()).not.to.be.null;
             expect(menu.getPreconfiguredCategory()).not.to.be.null;
 
             var pizzaItem = menu.getItemByCode("S_PIZZA");
-            expect(pizzaItem).not.to.be.null;
-            
-            expect(pizzaItem.getName().to.be.equal("Pizza"));
-            
+            expect(pizzaItem).to.not.be.null;
+
+            expect(pizzaItem.getName()).to.be.equal("Pizza");
+
             done();
         });
-        
-        done();
     });
   });
 });

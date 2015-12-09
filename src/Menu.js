@@ -3,6 +3,7 @@
 var MenuItem = require('./MenuItem');
 var MenuCategory = require('./MenuCategory');
 
+
 var Menu = function(menuData) {
     if(!menuData) {
         menuData={};
@@ -44,7 +45,7 @@ Menu.prototype.parseItems = function(parentMenuData,ParseClass) {
     return items;
 }
 
-Menu.prototype.parseMenu = function(menuData) {    
+Menu.prototype.parseMenu = function(menuData) {
     this.menuByCode = {};
     var products = this.parseItems(menuData.result.Products,MenuItem);
     var coupons = this.parseItems(menuData.result.Coupons,MenuItem);
@@ -70,7 +71,7 @@ Menu.prototype.getPreconfiguredCategory = function() {
 }
 
 Menu.prototype.getItemByCode = function(code) {
-    return this.menuByCode(code);
+    return this.menuByCode[code];
 }
 
 module.exports = Menu;
