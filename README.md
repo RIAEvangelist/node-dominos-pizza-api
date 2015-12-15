@@ -21,7 +21,7 @@ GitHub info :
 
 __PAYMENT-DISSALLOWED-MODULE__
 
-For individuals who wish to test without the risk of actually purchasing [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo and module have created the npm pizzapi module it is the same as the ` dominos ` module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.
+For individuals who wish to test without the risk of actually purchasing, [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo and module have created the npm pizzapi module it is the same as the ` dominos ` module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.
 
 [See npm trends and stats for pizzapi](http://npm-stat.com/charts.html?package=pizzapi&author=&from=&to=)
 ![pizzapi npm version](https://img.shields.io/npm/v/pizzapi.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/pizzapi.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/pizzapi.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/pizzapi.svg)
