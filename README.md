@@ -9,7 +9,8 @@ The ` dominos ` module is the latest release and ` pizzapi ` should provide the 
 __PAYMENT-SUPPORTED-MODULE__
 This module will pass payment information directly from the customer to Domino's Pizza for Domino's Pizza to process.
 
-npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)
+npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)  
+[![Package Quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)  
 ![dominos npm version](https://img.shields.io/npm/v/dominos.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/dominos.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/dominos.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/dominos.svg)
 
 [![RIAEvangelist](https://avatars3.githubusercontent.com/u/369041?v=3&s=100)](https://github.com/RIAEvangelist)
