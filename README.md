@@ -87,7 +87,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
 
 pizzapi.Util.findNearbyStores(
-    '63102',))
+    '63102',
     'Delivery',
     function(storeData){
         console.log(storeData);
