@@ -1,4 +1,6 @@
 {
+  "referer":"https://order.dominos.ca/en/pages/order/",
+  "sourceUri":"order.dominos.ca",
   "store": {
     "find": "https://order.dominos.ca/power/store-locator?s=${line1}&c=${line2}&type=${type}",
     "info": "https://order.dominos.ca/power/store/${storeID}/profile",
