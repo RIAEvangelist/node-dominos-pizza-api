@@ -7,7 +7,7 @@ module.exports.post = function(url, req, callback) {
     var requestBody = {
         uri: url,
         headers: {
-            Referer:'https://order.dominos.com/en/pages/order/',
+            Referer: 'https://order.dominos.ca/en/pages/order/',
             'Content-Type': 'application/json'
         },
         body: req
@@ -49,7 +49,7 @@ module.exports.get = function(url, callback){
     var requestBody = {
         uri: url,
         headers: {
-            'Referer': 'https://order.dominos.com/en/pages/order/'
+            'Referer': 'https://order.dominos.ca/en/pages/order/'
         }
     };
     http.get(requestBody, function (error, res, body) {

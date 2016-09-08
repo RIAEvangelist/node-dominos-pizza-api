@@ -1,13 +1,13 @@
 {
   "store": {
-    "find": "https://order.dominos.com/power/store-locator?s=${line1}&c=${line2}&type=${type}",
-    "info": "https://order.dominos.com/power/store/${storeID}/profile",
-    "menu": "https://order.dominos.com/power/store/${storeID}/menu?lang=${lang}&structured=true"
+    "find": "https://order.dominos.ca/power/store-locator?s=${line1}&c=${line2}&type=${type}",
+    "info": "https://order.dominos.ca/power/store/${storeID}/profile",
+    "menu": "https://order.dominos.ca/power/store/${storeID}/menu?lang=${lang}&structured=true"
   },
   "order": {
-    "validate": "https://order.dominos.com/power/validate-order",
-    "price": "https://order.dominos.com/power/price-order",
-    "place": "https://order.dominos.com/power/place-order"
+    "validate": "https://order.dominos.ca/power/validate-order",
+    "price": "https://order.dominos.ca/power/price-order",
+    "place": "https://order.dominos.ca/power/place-order"
   },
-  "track": "https://trkweb.dominos.com/orderstorage/GetTrackerData?"
+  "track": "https://trkweb.dominos.ca/orderstorage/GetTrackerData?"
 }
