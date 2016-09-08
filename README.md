@@ -68,6 +68,29 @@ if you have issues with this you may want to try installing mocha globally like 
 
 ---
 
+For Canada
+====
+
+Set the urls.json file to be:
+```
+{
+  "referer":"https://order.dominos.ca/en/pages/order/",
+  "sourceUri":"order.dominos.ca",
+  "store": {
+    "find": "https://order.dominos.ca/power/store-locator?s=${line1}&c=${line2}&type=${type}",
+    "info": "https://order.dominos.ca/power/store/${storeID}/profile",
+    "menu": "https://order.dominos.ca/power/store/${storeID}/menu?lang=${lang}&structured=true"
+  },
+  "order": {
+    "validate": "https://order.dominos.ca/power/validate-order",
+    "price": "https://order.dominos.ca/power/price-order",
+    "place": "https://order.dominos.ca/power/place-order"
+  },
+  "track": "https://trkweb.dominos.ca/orderstorage/GetTrackerData?"
+}
+
+```
+
 Finding Stores
 ====
 
