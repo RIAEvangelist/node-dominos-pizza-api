@@ -93,7 +93,7 @@ var Address = function(parameters) {
             splitAddress[i] = splitAddress[i].trim();
         }
 
-        this.PostalCode=Number(splitAddress[splitAddress.length-1])
+        this.PostalCode= splitAddress[splitAddress.length-1]
 
         //need better intellegence for auto determining address parts
         //added some, should externalize it

@@ -1,4 +1,5 @@
 var http = require('request');
+var urls = require('./urls.json')
 
 module.exports.post = function(url, req, callback) {
     if(typeof req !=  'string')
@@ -7,7 +8,7 @@ module.exports.post = function(url, req, callback) {
     var requestBody = {
         uri: url,
         headers: {
-            Referer:'https://order.dominos.com/en/pages/order/',
+            Referer: urls.referer,
             'Content-Type': 'application/json'
         },
         body: req
@@ -49,7 +50,7 @@ module.exports.get = function(url, callback){
     var requestBody = {
         uri: url,
         headers: {
-            'Referer': 'https://order.dominos.com/en/pages/order/'
+            'Referer': urls.referer
         }
     };
     http.get(requestBody, function (error, res, body) {
