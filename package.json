@@ -1,6 +1,5 @@
 {
   "name": "dominos",
-  "payment=disallowed-name": "pizzapi",
   "version": "2.1.1",
   "description": "node js API for Domino's pizza",
   "main": "dominos-pizza-api.js",
@@ -64,5 +63,5 @@
     "colors": "^1.0.3",
     "mocha": "^2.2.5"
   },
-  "homepage": "https://github.com/madelinecameron/PizzaPI"
+  "homepage": "https://github.com/RIAEvangelist/node-dominos-pizza-api"
 }
