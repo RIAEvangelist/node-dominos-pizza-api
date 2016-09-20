@@ -1,8 +1,7 @@
-Domino's PizzAPI
+Domino's Pizza API
 ====
-This is a node.js wrapper for the Domino's pizza APIs.
-The ` dominos ` module is the latest release and ` pizzapi ` should provide the dev release from our pizzapi development branch this branch is maintained by [madelinecameron](https://github.com/madelinecameron).
-[See the pretty PizzaPI documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
+This is a node.js API for integrating with the Domino's pizza APIs.
+[See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 [![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -11,7 +10,7 @@ This module will pass payment information directly from the customer to Domino's
 
 npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)  
 [![Package Quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)  
-![dominos npm version](https://img.shields.io/npm/v/dominos.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/dominos.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/dominos.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/dominos.svg)
+![dominos npm version](https://img.shields.io/npm/v/dominos.svg) ![supported node version for dominos api](https://img.shields.io/node/v/dominos.svg) ![total npm downloads for dominos](https://img.shields.io/npm/dt/dominos.svg) ![monthly npm downloads for dominos](https://img.shields.io/npm/dm/dominos.svg) ![npm licence for dominos](https://img.shields.io/npm/l/dominos.svg)
 
 [![RIAEvangelist](https://avatars3.githubusercontent.com/u/369041?v=3&s=100)](https://github.com/RIAEvangelist)
 
@@ -20,25 +19,17 @@ GitHub info :
 
 ---
 
-__PAYMENT-DISSALLOWED-MODULE__
-
-For individuals who wish to test without the risk of actually purchasing, [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo and module has created the npm pizzapi module it is the same as the ` dominos ` module but has no built in method to purchase, you would need to manually create the payment object to send to Domino's Pizza.
-
-[See npm trends and stats for pizzapi](http://npm-stat.com/charts.html?package=pizzapi&author=&from=&to=)  
-![pizzapi npm version](https://img.shields.io/npm/v/pizzapi.svg) ![supported node version for pizzapi](https://img.shields.io/node/v/pizzapi.svg) ![total npm downloads for pizzapi](https://img.shields.io/npm/dt/pizzapi.svg) ![monthly npm downloads for pizzapi](https://img.shields.io/npm/dm/pizzapi.svg) ![npm licence for pizzapi](https://img.shields.io/npm/l/pizzapi.svg)
-
-[![madelinecameron](https://avatars3.githubusercontent.com/u/3712472?v=3&s=100)](https://github.com/madelinecameron)
+Special thanks to : [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo.
 
 ---
 
 This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
-Install either [Dominos](https://www.npmjs.com/package/dominos) or [PizzaPI](https://www.npmjs.com/package/pizzapi) depending on your needs for placing an order.
+Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
 ====
 
-__payments are allowed and will purchase Pizza__ ` npm install dominos `
+` npm i dominos ` or ` npmi --save dominos `
 
-__no payments allowed, no actual pizza purchases__ ` npm install pizzapi `
 
 Contributing
 ====
@@ -107,7 +98,7 @@ Note: the 'address' parameter is passed to the Address class. This means any for
 
 ```javascript
 
-var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+var pizzapi = require('dominos');
 
 pizzapi.Util.findNearbyStores(
     '63102',
@@ -124,7 +115,7 @@ pizzapi.Util.findNearbyStores(
 
 ```javascript
 
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos');
 
   pizzapi.Util.findNearbyStores(
       'St. Louis, MO, 63102',
@@ -140,7 +131,7 @@ pizzapi.Util.findNearbyStores(
 
 ```javascript
 
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos'); 
 
   pizzapi.Util.findNearbyStores(
       '700 Clark Ave, St. Louis, MO, 63102',
@@ -164,7 +155,7 @@ Store
 ```javascript
 
   //Get Store Info for Store #4336
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos');
   var myStore = new pizzapi.Store();
   myStore.ID=4336;
 
@@ -185,7 +176,7 @@ Store
 ```javascript
 
   //Get Menu for Store #4336
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos'); 
   var myStore = new pizzapi.Store();
   myStore.ID = 4336;
 
@@ -205,7 +196,7 @@ Store
 ```javascript
 
   //Get Info for Store #4336
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos');
   var myStore = new pizzapi.Store();
   myStore.ID = 4336;
 
@@ -227,7 +218,7 @@ Returns a list of all items the store offers in an JSON array, formatted {Code: 
 ```javascript
 
   //Get friendly name menu for Store #4336
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos'); 
   var myStore = new pizzapi.Store();
   myStore.ID = 4336;
 
@@ -361,7 +352,7 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos');
 
   var thePresident = new pizzapi.Customer(
       {
@@ -493,21 +484,6 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ```
 
-#### no actual purchase allowed
-
-```javascript
-
-  // if you want no accidental purchase or liability use the pizzapi module!
-  var pizzapi = require('pizzapi');
-
-  order.place(
-      function(result) {
-          console.log("Order placed!");
-      }
-  );
-
-```
-
 ---
 
 Tracking
@@ -522,7 +498,7 @@ Tracking
 
 ```javascript
 
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos'); 
 
   pizzapi.Track.byPhone(
       2024561111,
@@ -543,7 +519,7 @@ Tracking
 
 ```javascript
 
-  var pizzapi = require('dominos'); // or without payment option use require('pizzapi');
+  var pizzapi = require('dominos'); 
 
   pizzapi.Track.byId(
       123456,
