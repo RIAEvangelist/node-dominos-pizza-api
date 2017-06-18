@@ -6,8 +6,8 @@ var util=require('util');
 var fs=require('fs');
 var Menu=require('./Menu.js');
 
-var Store = function(parameters) {
-    this.ID = parameters.ID;
+var Store = function(ID) {
+    this.ID = ID;
 };
 
 Store.prototype.getInfo = function(callback) {
