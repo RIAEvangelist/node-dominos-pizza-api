@@ -28,7 +28,7 @@ This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/
 Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
 ====
 
-` npm i dominos ` or ` npmi --save dominos `
+` npm i dominos ` or ` npm i --save dominos `
 
 
 Contributing
