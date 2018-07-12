@@ -358,7 +358,7 @@ This is the class that every other class feeds into.
       {
           firstName: 'Barack',
           lastName: 'Obama',
-          address: '700 Pennsylvania Avenue, Washington, DC',
+          address: '1600 Pennsylvania Avenue, Washington, DC',
           email: 'barack@whitehouse.gov'
       }
   );
