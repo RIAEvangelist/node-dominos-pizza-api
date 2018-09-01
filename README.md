@@ -156,8 +156,7 @@ Store
 
   //Get Store Info for Store #4336
   var pizzapi = require('dominos');
-  var myStore = new pizzapi.Store();
-  myStore.ID=4336;
+  var myStore = new pizzapi.Store({ ID: 4336 });
 
   myStore.getInfo(
       function(storeData){
@@ -177,8 +176,7 @@ Store
 
   //Get Menu for Store #4336
   var pizzapi = require('dominos'); 
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
+  var myStore = new pizzapi.Store({ ID: 4336 });
 
   myStore.getMenu(
       function(storeData){
@@ -197,8 +195,7 @@ Store
 
   //Get Info for Store #4336
   var pizzapi = require('dominos');
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
+  var myStore = new pizzapi.Store({ ID: 4336 });
 
   myStore.getInfo(
       function(storeData){
@@ -219,8 +216,7 @@ Returns a list of all items the store offers in an JSON array, formatted {Code: 
 
   //Get friendly name menu for Store #4336
   var pizzapi = require('dominos'); 
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
+  var myStore = new pizzapi.Store({ ID: 4336 });
 
   myStore.getFriendlyNames(
       function(storeData){
