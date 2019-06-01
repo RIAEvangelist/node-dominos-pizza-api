@@ -1,7 +1,6 @@
 'use strict';
 
-var mocha = require('mocha');
-var expect = require('chai').expect;
+
 var Address = require('../src/Address');
 
 describe('Address', function() {
@@ -14,21 +13,21 @@ describe('Address', function() {
         Type: "House"
       };
       var address = new Address(jsonObj);
-      expect(address).not.to.be.null;
-      expect(address.Street).to.equal(jsonObj.Street);
-      expect(address.City).to.equal(jsonObj.City);
-      expect(address.Region).to.equal(jsonObj.Region);
+      expect(address).not.toBeNull();
+      expect(address.Street).toEqual(jsonObj.Street);
+      expect(address.City).toEqual(jsonObj.City);
+      expect(address.Region).toEqual(jsonObj.Region);
 
       done();
    })
   it('should create Address object from string', function(done) {
     var address = new Address("123 Easy Street, St. Louis, MO, 63105");
 
-    expect(address).not.to.be.null;
-    expect(address.Street).to.equal("123 Easy Street");
-    expect(address.City).to.equal("St. Louis");
-    expect(address.Region).to.equal("MO");
-    expect(address.PostalCode).to.equal("63105");
+    expect(address).not.toBeNull();
+    expect(address.Street).toEqual("123 Easy Street");
+    expect(address.City).toEqual("St. Louis");
+    expect(address.Region).toEqual("MO");
+    expect(address.PostalCode).toEqual("63105");
 
     done();
   })
@@ -36,9 +35,9 @@ describe('Address', function() {
     var address = new Address("123 Easy Street, St.Louis, MO, 63105");
     var addressLines = address.getAddressLines();
 
-    expect(addressLines).to.have.length(2);
-    expect(addressLines[0]).to.equal("123 Easy Street");
-    expect(addressLines[1].trim()).to.equal(address.City + "," + address.Region + "," + address.PostalCode);
+    expect(addressLines).toHaveLength(2);
+    expect(addressLines[0]).toEqual("123 Easy Street");
+    expect(addressLines[1].trim()).toEqual(address.City + "," + address.Region + "," + address.PostalCode);
 
     done();
 
@@ -47,9 +46,9 @@ describe('Address', function() {
     var address = new Address("63105");
     var addressLines = address.getAddressLines();
 
-    expect(addressLines).to.have.length(2);
-    expect(addressLines[0]).to.equal('');
-    expect(addressLines[1]).to.equal(address.PostalCode);
+    expect(addressLines).toHaveLength(2);
+    expect(addressLines[0]).toEqual('');
+    expect(addressLines[1]).toEqual(address.PostalCode);
 
     done();
 
@@ -58,20 +57,20 @@ describe('Address', function() {
     var address = new Address("St. Louis, MO, 63105");
     var addressLines = address.getAddressLines();
 
-    expect(addressLines).to.have.length(2);
-    expect(addressLines[0]).to.equal('');
-    expect(addressLines[1]).to.equal(address.City + "," + address.Region + "," + address.PostalCode);
+    expect(addressLines).toHaveLength(2);
+    expect(addressLines[0]).toEqual('');
+    expect(addressLines[1]).toEqual(address.City + "," + address.Region + "," + address.PostalCode);
 
     done();
 
   })
   it('should create Address object from array', function(done) {
     var address = new Address(["123 Easy Street", "St. Louis", "MO", "63105"]);
-    expect(address).not.to.be.null;
-    expect(address.Street).to.equal("123 Easy Street");
-    expect(address.City).to.equal("St. Louis");
-    expect(address.Region).to.equal("MO");
-    expect(address.PostalCode).to.equal("63105");
+    expect(address).not.toBeNull();
+    expect(address.Street).toEqual("123 Easy Street");
+    expect(address.City).toEqual("St. Louis");
+    expect(address.Region).toEqual("MO");
+    expect(address.PostalCode).toEqual("63105");
 
     done();
   })

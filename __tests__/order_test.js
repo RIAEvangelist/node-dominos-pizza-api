@@ -1,7 +1,7 @@
 'use strict';
 
-var mocha = require('mocha');
-var expect = require('chai').expect;
+
+
 var Customer = require('../src/Customer');
 var Order = require('../src/Order');
 var Address = require('../src/Address');
@@ -11,7 +11,6 @@ var joeNumber='800joeMine';
 var joeMail='joe@mst.edu';
 
 describe('Order', function() {
-  this.timeout(15000);
   describe('Creation', function() {
     it('should create Customer', function(done) {
       var addressParams = {
@@ -23,10 +22,10 @@ describe('Order', function() {
       };
 
       var havener = new Address(addressParams);
-      expect(havener).not.to.be.null;
-      expect(havener.Street).to.equal(addressParams.Street);
-      expect(havener.City).to.equal(addressParams.City);
-      expect(havener.Region).to.equal(addressParams.Region);
+      expect(havener).not.toBeNull;
+      expect(havener.Street).toEqual(addressParams.Street);
+      expect(havener.City).toEqual(addressParams.City);
+      expect(havener.Region).toEqual(addressParams.Region);
 
       var customerParams = {
         firstName: "Joe",
@@ -43,10 +42,10 @@ describe('Order', function() {
         storeID: "1546"
       });
 
-      expect(order).not.to.be.null;
-      expect(order.Address).to.equal(joeMiner.address);
-      expect(order.ServiceMethod).to.equal("Delivery");
-      expect(order.StoreID).to.equal("1546");
+      expect(order).not.toBeNull;
+      expect(order.Address).toEqual(joeMiner.address);
+      expect(order.ServiceMethod).toEqual("Delivery");
+      expect(order.StoreID).toEqual("1546");
 
       done();
     });
@@ -92,9 +91,9 @@ describe('Order', function() {
         Options: { 'C': {'1/1': '1'}, 'X': { '1/1': '1'}}
       };
 
-      expect(order.Products).not.to.be.empty;
-      expect(order.Products).to.include(itemParams);
-      expect(order.Products[0].Qty).to.equal(itemParams.Qty);
+      expect(order.Products).toEqual(expect.not.objectContaining({}));
+      expect(order.Products).toEqual(expect.arrayContaining([itemParams]));
+      expect(order.Products[0].Qty).toEqual(itemParams.Qty);
 
       done();
     });
@@ -134,8 +133,8 @@ describe('Order', function() {
 
       order.validate(function(result) {
         var results = result.result;
-        expect(results.Order).to.exist;
-        expect(results.Order.OrderID).to.not.eql("");
+        expect(results.Order).toBeTruthy();
+        expect(results.Order.OrderID.length).toBeGreaterThan(0);
 
         done();
 
@@ -175,9 +174,9 @@ describe('Order', function() {
 
       order.validate(function(result) {
         var results = result.result;
-        expect(results.Order).to.exist;
-        expect(result.success).to.be.true;
-        expect(results.Order.OrderID).to.not.eql("");
+        expect(results.Order).toBeTruthy();
+        expect(result.success).toBeTruthy();
+        expect(results.Order.OrderID.length).toBeGreaterThan(0);
 
         done();
 
@@ -229,9 +228,9 @@ describe('Order', function() {
       order.validate(function(result) {
         var results = result.result;
 
-        expect(results.Order).to.exist;
-        expect(result.success).to.be.true
-        expect(results.Order.OrderID).to.not.eql("");
+        expect(results.Order).toBeTruthy();
+        expect(result.success).toBeTruthy();
+        expect(results.Order.OrderID.length).toBeGreaterThan(0);
 
         done();
 
@@ -276,9 +275,9 @@ describe('Order', function() {
         newOrder.price(function(result) {
           var priceResults = result.result.Order;
 
-          expect(priceResults).to.exist;
-          expect(priceResults.Amounts).not.to.eql({});
-          expect(priceResults.EstimatedWaitMinutes).not.to.eql('');
+          expect(priceResults).toBeTruthy();
+          expect(priceResults.Amounts).toMatchObject({});
+          expect(priceResults.EstimatedWaitMinutes.length).toBeGreaterThan(0);
 
           done();
         });

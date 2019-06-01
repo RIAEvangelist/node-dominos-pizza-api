@@ -1,7 +1,5 @@
 'use strict';
 
-var mocha = require('mocha');
-var expect = require('chai').expect;
 var Item = require('../src/Item');
 
 describe('Item', function() {
@@ -10,9 +8,9 @@ describe('Item', function() {
         code: 'Some code',
       });
 
-      expect(newItem.Code).to.equal('Some code');
-      expect(newItem.Qty).to.equal(1);
-      expect(newItem.Options).to.eql({ 'C': {'1/1': '1'}, 'X': {'1/1': '1'} });
+      expect(newItem.Code).toEqual('Some code');
+      expect(newItem.Qty).toEqual(1);
+      expect(newItem.Options).toMatchObject({ 'C': {'1/1': '1'}, 'X': {'1/1': '1'} });
 
       done();
   });
@@ -23,9 +21,9 @@ describe('Item', function() {
         quantity: 1
       });
 
-      expect(newItem.Code).to.equal('Some code');
-      expect(newItem.Qty).to.equal(1);
-      expect(newItem.Options).to.eql({ 'C': {'1/1': '1'}, 'X': {'1/1': '1'} });
+      expect(newItem.Code).toEqual('Some code');
+      expect(newItem.Qty).toEqual(1);
+      expect(newItem.Options).toMatchObject({ 'C': {'1/1': '1'}, 'X': {'1/1': '1'} });
 
       done();
   });
@@ -37,9 +35,9 @@ describe('Item', function() {
       options: ['P']
     });
 
-    expect(newItem.Code).to.equal('Some code');
-    expect(newItem.Qty).to.equal(1);
-    expect(newItem.Options).to.include.keys('P');
+    expect(newItem.Code).toEqual('Some code');
+    expect(newItem.Qty).toEqual(1);
+    expect(newItem.Options).toHaveProperty('P');
 
     done();
   });
@@ -51,9 +49,10 @@ describe('Item', function() {
       options: ['P', 'S']
     });
 
-    expect(newItem.Code).to.equal('Some code');
-    expect(newItem.Qty).to.equal(1);
-    expect(newItem.Options).to.include.keys(['P', 'S']);
+    expect(newItem.Code).toEqual('Some code');
+    expect(newItem.Qty).toEqual(1);
+    expect(newItem.Options).toHaveProperty('P');
+    expect(newItem.Options).toHaveProperty('S');
 
     done();
   });

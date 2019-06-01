@@ -1,7 +1,7 @@
 'use strict';
 
-var mocha = require('mocha');
-var expect = require('chai').expect;
+
+
 var Customer = require('../src/Customer');
 
 describe('Customer', function() {
@@ -14,12 +14,12 @@ describe('Customer', function() {
       phone: "Secret"
     }
     var newCustomer = new Customer(customerParams);
-    expect(newCustomer).not.to.be.null;
-    expect(newCustomer.firstName).to.equal("Barack");
-    expect(newCustomer.lastName).to.equal("Obama");
-    expect(newCustomer.email).to.equal("barack@whitehouse.gov");
-    expect(newCustomer.address).to.equal("The White House");
-    expect(newCustomer.phone).to.equal("Secret");
+    expect(newCustomer).not.toBeNull;
+    expect(newCustomer.firstName).toEqual("Barack");
+    expect(newCustomer.lastName).toEqual("Obama");
+    expect(newCustomer.email).toEqual("barack@whitehouse.gov");
+    expect(newCustomer.address).toEqual("The White House");
+    expect(newCustomer.phone).toEqual("Secret");
 
     done();
   })

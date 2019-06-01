@@ -1,7 +1,7 @@
 'use strict';
 
-var mocha = require('mocha');
-var expect = require('chai').expect;
+
+
 var Store = require('../src/Store');
 
 describe('Store', function() {
@@ -10,7 +10,7 @@ describe('Store', function() {
       ID: 1546
     });
 
-    expect(newStore.ID).to.equal(1546);
+    expect(newStore.ID).toEqual(1546);
 
     done();
   });
@@ -20,9 +20,9 @@ describe('Store', function() {
     });
 
     newStore.getInfo(function(info) {
-      expect(info).to.exist;
-      expect(info.result).to.exist;
-      expect(info.result.StoreID).to.equal('1546');
+      expect(info).toBeTruthy();
+      expect(info.result).toBeTruthy();
+      expect(info.result.StoreID).toEqual('1546');
 
       done();
     });
@@ -33,9 +33,9 @@ describe('Store', function() {
     });
 
     newStore.getMenu(function(menu) {
-      expect(menu).to.exist;
-      expect(menu.getRaw().result).to.exist;
-      expect(menu.getRaw().result.Misc.StoreID).to.equal('1546');
+      expect(menu).toBeTruthy();
+      expect(menu.getRaw().result).toBeTruthy();
+      expect(menu.getRaw().result.Misc.StoreID).toEqual('1546');
 
       done();
     });
@@ -46,9 +46,9 @@ describe('Store', function() {
     });
 
     newStore.getFriendlyNames(function(mapping) {
-      expect(mapping).to.exist;
-      expect(mapping.result).to.exist;
-      expect(mapping.result).to.have.length.above(1);
+      expect(mapping).toBeTruthy();
+      expect(mapping.result).toBeTruthy();
+      expect(mapping.result.length).toBeGreaterThan(1);
 
       done();
     });
