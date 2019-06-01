@@ -49,13 +49,7 @@ See the examples directory for simple apps and demonstrations on using the basic
 
 Testing
 ====
-Simply run ` npm test `
-if you have issues with this you may want to try installing mocha globally like this : ` npm install -g mocha `
-
--OR for manual testing-
-
-1. Install mocha ` npm install -g mocha `
-1. Run the tests ` mocha `
+Simply run ` npm test ` to execute a fine Jest.
 
 ---
 
