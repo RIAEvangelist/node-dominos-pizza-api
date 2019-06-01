@@ -45,6 +45,9 @@
     },
     {
       "name": "Matt Cotter"
+    },
+    {
+      "name": "Jubilee Young"
     }
   ],
   "license": "DBAD",
@@ -56,13 +59,11 @@
   },
   "dependencies": {
     "request": "^2.88.0",
-    "xml2json": "^0.9.0"
+    "xml2json": "^0.11.2"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "colors": "^1.0.3",
-    "jest": "^24.8.0",
-    "mocha": "^2.2.5"
+    "colors": "^1.3.3",
+    "jest": "^24.8.0"
   },
   "homepage": "https://github.com/RIAEvangelist/node-dominos-pizza-api"
 }
