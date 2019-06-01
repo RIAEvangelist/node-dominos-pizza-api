@@ -2,7 +2,7 @@
 
 
 
-var util = require('../src/Utilities');
+const util = require('../src/Utilities');
 
 describe('Utilities', function() {
     describe('FindStores', function() {

@@ -1,16 +1,16 @@
 'use strict';
 
 
-var Store = require('../src/Store');
+const Store = require('../src/Store');
 
-var testStore = 8386;
+const testStore = 8386;
 
 //TODO this test needs fleshing out
 describe('Menu', function() {
 
   describe('ParseMenu', function() {
     it('should parse menu', function(done) {
-        var store = new Store({ID: testStore});
+        const store = new Store({ID: testStore});
         store.getMenu(function(menu) {
             expect(menu).not.toBeNull;
 
@@ -18,7 +18,7 @@ describe('Menu', function() {
             expect(menu.getCouponCategory()).not.toBeNull;
             expect(menu.getPreconfiguredCategory()).not.toBeNull;
 
-            var pizzaItem = menu.getItemByCode("S_PIZZA");
+            const pizzaItem = menu.getItemByCode("S_PIZZA");
             expect(pizzaItem).not.toBeNull();
 
             expect(pizzaItem.getName()).toMatch("Pizza");

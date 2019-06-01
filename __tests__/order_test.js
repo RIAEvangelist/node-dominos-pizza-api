@@ -2,18 +2,18 @@
 
 
 
-var Customer = require('../src/Customer');
-var Order = require('../src/Order');
-var Address = require('../src/Address');
-var Item = require('../src/Item');
+const Customer = require('../src/Customer');
+const Order = require('../src/Order');
+const Address = require('../src/Address');
+const Item = require('../src/Item');
 
-var joeNumber='800joeMine';
-var joeMail='joe@mst.edu';
+const joeNumber='800joeMine';
+const joeMail='joe@mst.edu';
 
 describe('Order', function() {
   describe('Creation', function() {
     it('should create Customer', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -21,13 +21,13 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
       expect(havener).not.toBeNull;
       expect(havener.Street).toEqual(addressParams.Street);
       expect(havener.City).toEqual(addressParams.City);
       expect(havener.Region).toEqual(addressParams.Region);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -35,9 +35,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -51,7 +51,7 @@ describe('Order', function() {
     });
 
     it('should add a pizza', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -59,9 +59,9 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -69,9 +69,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -82,7 +82,7 @@ describe('Order', function() {
         quantity: 1
       }));
 
-      var itemParams = {
+      const itemParams = {
         AutoRemove: false,
         Code: '14SCREEN',
         Qty: 1,
@@ -100,7 +100,7 @@ describe('Order', function() {
   });
   describe('Validate', function() {
     it('should validate cheese pizza', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -108,9 +108,9 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -118,9 +118,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -132,7 +132,7 @@ describe('Order', function() {
       }));
 
       order.validate(function(result) {
-        var results = result.result;
+        const results = result.result;
         expect(results.Order).toBeTruthy();
         expect(results.Order.OrderID.length).toBeGreaterThan(0);
 
@@ -141,7 +141,7 @@ describe('Order', function() {
       });
     });
     it('should validate pepperoni pizza', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -149,9 +149,9 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -159,9 +159,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -173,7 +173,7 @@ describe('Order', function() {
       }));
 
       order.validate(function(result) {
-        var results = result.result;
+        const results = result.result;
         expect(results.Order).toBeTruthy();
         expect(result.success).toBeTruthy();
         expect(results.Order.OrderID.length).toBeGreaterThan(0);
@@ -183,7 +183,7 @@ describe('Order', function() {
       });
     });
     it('should validate assorted order', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -191,9 +191,9 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -201,9 +201,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -226,7 +226,7 @@ describe('Order', function() {
         quantity: 1
       }));
       order.validate(function(result) {
-        var results = result.result;
+        const results = result.result;
 
         expect(results.Order).toBeTruthy();
         expect(result.success).toBeTruthy();
@@ -239,7 +239,7 @@ describe('Order', function() {
   });
   describe('Price', function() {
     it('should price order', function(done) {
-      var addressParams = {
+      const addressParams = {
         Street: "1346 N Bishop Ave",
         City: "Rolla",
         Region: "MO",
@@ -247,9 +247,9 @@ describe('Order', function() {
         Type: "House"
       };
 
-      var havener = new Address(addressParams);
+      const havener = new Address(addressParams);
 
-      var customerParams = {
+      const customerParams = {
         firstName: "Joe",
         lastName: "Miner",
         email: joeMail,
@@ -257,9 +257,9 @@ describe('Order', function() {
         phone: joeNumber
       };
 
-      var joeMiner = new Customer(customerParams);
+      const joeMiner = new Customer(customerParams);
 
-      var order = new Order({
+      const order = new Order({
         customer: joeMiner,
         storeID: "1546"
       });
@@ -271,9 +271,9 @@ describe('Order', function() {
       }));
 
       order.validate(function(result) {
-        var newOrder = new Order(result.result);
+        const newOrder = new Order(result.result);
         newOrder.price(function(result) {
-          var priceResults = result.result.Order;
+          const priceResults = result.result.Order;
 
           expect(priceResults).toBeTruthy();
           expect(priceResults.Amounts).toMatchObject({});

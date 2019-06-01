@@ -2,11 +2,11 @@
 
 
 
-var Store = require('../src/Store');
+const Store = require('../src/Store');
 
 describe('Store', function() {
   it('should create store', function(done) {
-    var newStore = new Store({
+    const newStore = new Store({
       ID: 1546
     });
 
@@ -15,7 +15,7 @@ describe('Store', function() {
     done();
   });
   it('should get info', function(done) {
-    var newStore = new Store({
+    const newStore = new Store({
       ID: 1546
     });
 
@@ -28,7 +28,7 @@ describe('Store', function() {
     });
   });
   it('should get menu', function(done) {
-    var newStore = new Store({
+    const newStore = new Store({
       ID: 1546
     });
 
@@ -41,7 +41,7 @@ describe('Store', function() {
     });
   });
   it('should get all friendly item names from menu', function(done) {
-    var newStore = new Store({
+    const newStore = new Store({
       ID: 1546
     });
 

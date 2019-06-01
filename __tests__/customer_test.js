@@ -2,18 +2,18 @@
 
 
 
-var Customer = require('../src/Customer');
+const Customer = require('../src/Customer');
 
 describe('Customer', function() {
   it('should be created', function(done) {
-    var customerParams = {
+    const customerParams = {
       firstName: "Barack",
       lastName: "Obama",
       email: "barack@whitehouse.gov",
       address: "The White House",  //Address object can be passed as well, this functionality is tested in order_test.
       phone: "Secret"
     }
-    var newCustomer = new Customer(customerParams);
+    const newCustomer = new Customer(customerParams);
     expect(newCustomer).not.toBeNull;
     expect(newCustomer.firstName).toEqual("Barack");
     expect(newCustomer.lastName).toEqual("Obama");
