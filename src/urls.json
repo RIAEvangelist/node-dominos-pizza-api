@@ -11,5 +11,5 @@
     "price": "https://order.dominos.com/power/price-order",
     "place": "https://order.dominos.com/power/place-order"
   },
-  "track": "https://trkweb.dominos.com/orderstorage/GetTrackerData?"
+  "track": "https://order.dominos.com/orderstorage/GetTrackerData?"
 }
