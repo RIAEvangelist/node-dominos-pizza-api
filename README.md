@@ -52,7 +52,7 @@ International Support
 
 Provided a country uses the same api as the US, you can just update the URL endpoints from the url ESM.
 
-See the various [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/InternationalSupport.md)
+See the various [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
 
 
 
@@ -60,7 +60,7 @@ Address
 ====
 Address is constructed `async`, so when you instantiate it, you should await it, like this : ` const address = await new Address(String)` this will work in your main node code without wrapping it in an anonymous async function.
 
-You can see the full `Address` documentation [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md). 
+You can see the full `Address` documentation [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md). 
 
 |argument|type                  |required|default|
 |--------|------                |--------|-------|
@@ -150,12 +150,12 @@ NearbyStores for Finding Stores
 |address  |AddressObject / AddressString|       |anything that could be passed to the `Address` class|
 |type     |String                       |all    |`Delivery`, `Carryout`, `all`|
 
-You can see the full NearbyStores documentation [in the dominos pizza NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/NearbyStores.md). 
+You can see the full NearbyStores documentation [in the dominos pizza NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md). 
 
 ### By PostalCode
 ***this yields a wide variety of stores*** because it is not a very specific address. To find stores closer to you (or your user), use a more specific address.
 
-You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md).
+You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md).
 
 ```javascript
 
@@ -223,7 +223,7 @@ Store
 
 Store is constructed `async`, so when you instantiate it, you should await it, like this : ` const store = await new Store(Number)` this will work in your main node code without wrapping it in an anonymous async function.
 
-You can see the full `Store` documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Store.md). 
+You can see the full `Store` documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Store.md). 
 
 |argument|type  |required|default|
 |--------|------|--------|-------|
@@ -248,7 +248,7 @@ You can see the full `Store` documentation [in the dominos pizza Store.md](https
 
 `store.info` gives us a wealth of information about the store we can use. This information is populated from the dominos api when the instance is instantiated.
 
-You can see the full `.info` object and documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Store.md)
+You can see the full `.info` object and documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Store.md)
 
 ```js
 
@@ -374,7 +374,7 @@ You can see the full `.info` object and documentation [in the dominos pizza Stor
 
 `store.menu` provides ***HUGE*** amounts of menu data and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
 
-You can see the full menu object  and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Menu.md). 
+You can see the full menu object  and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md). 
 
 ```js
 
