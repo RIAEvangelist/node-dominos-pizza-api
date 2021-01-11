@@ -124,22 +124,6 @@ The Address class will do its best to parse an AddressString into an AddressObje
 
 ```
 
-#### `address.dominos` Dominos API Formatted Address
-
-Dominos API uses pascal case for the Address object, we convert the values set to the other members of the address object to conform to the Dominos spec here. 
-
-```js
-
-dominos={
-        Type:'House',
-        Street:'',
-        City:'',
-        Region:'',
-        PostalCode:''
-    }
-
-```
-
 ---
 
 NearbyStores for Finding Stores
