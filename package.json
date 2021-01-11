@@ -1,18 +1,17 @@
 {
   "name": "dominos",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "node js API for Domino's pizza",
-  "main": "dominos-pizza-api.js",
+  "exports": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "mocha",
-    "start": "node example/commandline-pizza/dominos-commandline-pizza.js"
+    "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
+    "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
+    "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
-  },
-  "engines": {
-    "node": ">=0.10.0"
   },
   "keywords": [
     "Dominos",
@@ -24,30 +23,87 @@
   ],
   "author": {
     "name": "Brandon Miller",
-    "email": "brandon@diginow.it"
+    "email": "brandon@diginow.it",
+    "url": "https://github.com/RIAEvangelist"
   },
   "contributors": [
     {
       "name": "Julian Hartline",
       "email": "julianh2o@gmail.com",
-      "url": "http://www.julianhartline.com"
+      "url": "https://github.com/julianh2o"
     },
     {
-      "name": "Madeline Cameron",
-      "email": "madeline@madelinecameron.net",
-      "url": "http://madelinecameron.net"
+      "name": "Patrick Dube",
+      "email": "pdube.devbox@gmail.com",
+      "url": "https://github.com/pdube"
     },
     {
-      "name": "Adrian Sida"
+      "name": "Ray Farias",
+      "url": "https://github.com/sgnl"
     },
     {
-      "name": "Victor Quinn"
+      "name": "Adrian Sida",
+      "url": "https://github.com/asida18"
     },
     {
-      "name": "Matt Cotter"
+      "name": "Ryan blhack",
+      "email": "blhack@gmail.com",
+      "url": "https://github.com/blhack"
+    },
+    {
+      "name": "Eric Wong",
+      "url": "https://github.com/K4orta"
+    },
+    {
+      "name": "Mark Amery",
+      "email": "markamery@btinternet.com",
+      "url": "https://github.com/ExplodingCabbage"
+    },
+    {
+      "name": "William Volin",
+      "url": "https://github.com/Eein"
+    },
+    {
+      "name": "Maxime Lafarie",
+      "url": "https://github.com/maximelafarie"
+    },
+    {
+      "name": "Victor Quinn",
+      "email": "mail@victorquinn.com",
+      "url": "https://github.com/victorquinn"
+    },
+    {
+      "name": "Spencer Malekian",
+      "url": "https://github.com/smalekian"
+    },
+    {
+      "name": "Kevin Grube",
+      "url": "https://github.com/k-grube"
+    },
+    {
+      "name": "Hiroshi Fukada",
+      "email": "hiroshi@fukada.us",
+      "url": "https://github.com/hfukada"
+    },
+    {
+      "name": "The Gitter Badger",
+      "email": "badger@gitter.im",
+      "url": "https://github.com/gitter-badger"
+    },
+    {
+      "name": "Matt Cotter",
+      "url": "https://github.com/Machyne"
+    },
+    {
+      "name": "Matt Steele",
+      "url": "https://github.com/mattdsteele"
     }
   ],
-  "license": "DBAD",
+  "funding": {
+    "type": "GitHub",
+    "url": "https://github.com/sponsors/RIAEvangelist"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
   },
@@ -55,13 +111,16 @@
     "example": "example"
   },
   "dependencies": {
-    "request": "^2.50.0",
+    "c8": "^7.4.0",
+    "node-fetch": "^2.6.1",
+    "node-http-server": "^8.1.3",
+    "strong-type": "^0.1.6",
+    "vanilla-test": "^1.4.5",
     "xml2json": "^0.9.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "colors": "^1.0.3",
-    "mocha": "^2.2.5"
+    "colors": "^1.0.3"
   },
   "homepage": "https://github.com/RIAEvangelist/node-dominos-pizza-api"
 }

@@ -3,11 +3,6 @@ Domino's Pizza API
 This is a node.js API for integrating with the Domino's pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
-[![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-__PAYMENT-SUPPORTED-MODULE__
-This module will pass payment information directly from the customer to Domino's Pizza for Domino's Pizza to process.
-
 npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)  
 [![Package Quality](http://npm.packagequality.com/badge/dominos.png)](http://packagequality.com/#?package=dominos)  
 ![dominos npm version](https://img.shields.io/npm/v/dominos.svg) ![supported node version for dominos api](https://img.shields.io/node/v/dominos.svg) ![total npm downloads for dominos](https://img.shields.io/npm/dt/dominos.svg) ![monthly npm downloads for dominos](https://img.shields.io/npm/dm/dominos.svg) ![npm licence for dominos](https://img.shields.io/npm/l/dominos.svg)
@@ -19,24 +14,19 @@ GitHub info :
 
 ---
 
-Special thanks to : [@madelinecameron](https://github.com/madelinecameron), a major contributor to this repo.
-
----
-
-This work is licenced via the [DBAD Public Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
+This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
 Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
 ====
 
-` npm i dominos ` or ` npm i --save dominos `
-
+` npm i dominos `
 
 Contributing
 ====
 
 1. Pull or Fork code.
-2. from the cloned directory run ` npm install ` (this will install required dependancies, depending on your system may require)
-3. be awesome!
+2. From the cloned directory run ` npm i ` (this will install required dependancies, depending on your system may require)
+3. Be awesome!
 
 
 Examples
@@ -49,97 +39,180 @@ See the examples directory for simple apps and demonstrations on using the basic
 
 Testing
 ====
+For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare bones testing framework, but it works really well and simply with native ES6 and ESM.
+
 Simply run ` npm test `
-if you have issues with this you may want to try installing mocha globally like this : ` npm install -g mocha `
 
--OR for manual testing-
-
-1. Install mocha ` npm install -g mocha `
-1. Run the tests ` mocha `
+This will setup everything that is needed to run the tests, install the modules required and run the tests for you.
 
 ---
 
-For Canada
+International Support
 ====
 
-Set the urls.json file to be:
-```
-{
-  "referer":"https://order.dominos.ca/en/pages/order/",
-  "sourceUri":"order.dominos.ca",
-  "store": {
-    "find": "https://order.dominos.ca/power/store-locator?s=${line1}&c=${line2}&type=${type}",
-    "info": "https://order.dominos.ca/power/store/${storeID}/profile",
-    "menu": "https://order.dominos.ca/power/store/${storeID}/menu?lang=${lang}&structured=true"
-  },
-  "order": {
-    "validate": "https://order.dominos.ca/power/validate-order",
-    "price": "https://order.dominos.ca/power/price-order",
-    "place": "https://order.dominos.ca/power/place-order"
-  },
-  "track": "https://trkweb.dominos.ca/orderstorage/GetTrackerData?"
-}
+Provided a country uses the same api as the US, you can just update the URL endpoints from the url ESM.
 
-```
+See the various [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/InternationalSupport.md)
 
-Finding Stores
+
+
+Address
 ====
+Address is constructed `async`, so when you instantiate it, you should await it, like this : ` const address = await new Address(String)` this will work in your main node code without wrapping it in an anonymous async function.
 
-|argument|type|default|required|
-|--------|----|-------|--------|
-|address|full or partial address string|null|true|
-|type|Delivery, Carryout, all| all | true|
-|callback|function to pass the api result to|null|true|
+You can see the full `Address` documentation [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md). 
 
-Note: the 'address' parameter is passed to the Address class. This means any formatting that works for Address will work being passed here. This means you can pass JSON, array or string.
+|argument|type                  |required|default|
+|--------|------                |--------|-------|
+|address |AddressObject / String|true    |       |
 
-### By Postal Code
-***this yields the least accurate information***
+|member/method|type  |writeable|default|description|
+|-------------|------|---    |---      |-------    |
+|.dominos     |Object|No     |         |Address formatted the dominos API likes it|
+|.type        |String|Yes    |'Home'   |dominos address type, defaults to Home|
+|.street      |String|Yes    |         |street address|
+|.city        |String|Yes    |         |address city|
+|.region      |String|Yes    |         |in the US this would be the state. In other countries it may be the province or prefecture|
+|.postalCode  |String|Yes    |         |address postal or zip code|
+|.addressLines|Object|No     |         |{line1,line2} formatted address lines as best as possible with the information provided for the address.|
 
-```javascript
+#### AddressObject
 
-var pizzapi = require('dominos');
+Instead of passing an address string when initing the Address class (which needs to be parsed and can be comlicated), you can instead collect the address information and format it into an AddressObject. Dominos will try to figure the address out from any combination of address parts. None of these fields are required, but you should atleast provide enough information for Dominos to figure out the general location.
 
-pizzapi.Util.findNearbyStores(
-    '63102',
-    'Delivery',
-    function(storeData){
-        console.log(storeData);
+```js
+
+  const addressObject={
+      street:'900 Clark Ave',
+      city:'St. Louis',
+      region:'MO',
+      postalCode:'63102'
+  }
+
+```
+
+#### Full and Partial Address Instantiation
+
+The Address class will do its best to parse an AddressString into an AddressObject, and/or massage the AddressObject into a dominos api formatted Address. 
+
+```js
+
+  import {Address} from 'dominos';
+
+  //full address examples
+  const address = new Address(
+      {
+          street:'900 Clark Ave',
+          city:'St. Louis',
+          region:'MO',
+          postalCode:'63102'
+      }
+  );
+
+  const address=new Address('900 Clark Ave, St. Louis, MO, 63102');  
+
+
+
+  //zip only examples
+  const fullAddressObject = new Address(
+      {
+          postalCode:'63102'
+      }
+  );
+
+  const onlyZip = new Address('63102');
+
+```
+
+#### `address.dominos` Dominos API Formatted Address
+
+Dominos API uses pascal case for the Address object, we convert the values set to the other members of the address object to conform to the Dominos spec here. 
+
+```js
+
+dominos={
+        Type:'House',
+        Street:'',
+        City:'',
+        Region:'',
+        PostalCode:''
     }
-);
 
 ```
 
-### By City and Postal Code
-***this yields less accurate information but is better than just using the postal code***
+---
+
+NearbyStores for Finding Stores
+====
+
+|argument |type                         |default|description|
+|-------- |----                         |-------|--------|
+|address  |AddressObject / AddressString|       |anything that could be passed to the `Address` class|
+|type     |String                       |all    |`Delivery`, `Carryout`, `all`|
+
+You can see the full NearbyStores documentation [in the dominos pizza NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/NearbyStores.md). 
+
+### By PostalCode
+***this yields a wide variety of stores*** because it is not a very specific address. To find stores closer to you (or your user), use a more specific address.
+
+You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md).
 
 ```javascript
 
-  var pizzapi = require('dominos');
+  import {NearbyStores} from 'dominos';
 
-  pizzapi.Util.findNearbyStores(
-      'St. Louis, MO, 63102',
-      'Delivery',
-      function(storeData){
-          console.log(storeData);
-      }
+  const nearbyStores=await new NearbyStores(
+    '63102',
+    'Delivery'
   );
+
+  console.log(nearbyStores.stores);
+
 ```
 
-### Using Full or Nearly Full Address
-***this yields the best information and sorts stores by actual distance***
+`nearbyStores.stores` is automatically populated from the dominos API when the class is instantiated. It is an `Array` of basic Store information. This info can be used as is, or you can create a `new Store(StoreID)` to get even more detailed information on the Store and its Menu as well.
 
-```javascript
+```js
 
-  var pizzapi = require('dominos'); 
-
-  pizzapi.Util.findNearbyStores(
-      '700 Clark Ave, St. Louis, MO, 63102',
-      'Delivery',
-      function(storeData){
-          console.log(storeData);
-      }
-  );
+  [
+      {
+        StoreID: '1605',
+        IsDeliveryStore: false,
+        Phone: '314-421-3030',
+        AddressDescription: '1430 N. 13th\n' +
+          'St. Louis, MO 63106\n' +
+          'On the  corner of Cass Ave and N 13th Street.',
+        HolidaysDescription: '',
+        HoursDescription: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+        ServiceHoursDescription: {
+          Carryout: 'Su-Sa 10:30am-10:00pm',
+          Delivery: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+          DriveUpCarryout: 'Su-Sa 10:30am-9:00pm'
+        },
+        IsOnlineCapable: true,
+        IsOnlineNow: true,
+        IsNEONow: true,
+        IsSpanish: true,
+        LocationInfo: 'On the  corner of Cass Ave and N 13th Street.',
+        LanguageLocationInfo: {
+          en: 'On the  corner of Cass Ave and N 13th Street.',
+          es: 'On the  corner of Cass Ave and N 13th Street.'
+        },
+        AllowDeliveryOrders: true,
+        AllowCarryoutOrders: true,
+        AllowDuc: true,
+        ServiceMethodEstimatedWaitMinutes: { Delivery: [Object], Carryout: [Object] },
+        StoreCoordinates: { StoreLatitude: '38.6405', StoreLongitude: '-90.1942' },
+        AllowPickupWindowOrders: false,
+        ContactlessDelivery: 'REQUIRED',
+        ContactlessCarryout: 'INSTRUCTION',
+        IsOpen: false,
+        ServiceIsOpen: { Carryout: false, Delivery: false, DriveUpCarryout: false }
+      },
+      {
+        StoreID: '1524',
+        ...
+  ]
 
 ```
 
@@ -148,140 +221,195 @@ pizzapi.Util.findNearbyStores(
 Store
 ====
 
-|argument|type|default|required|
-|--------|----|-------|--------|
-|ID      |Integer|null|true    |
+Store is constructed `async`, so when you instantiate it, you should await it, like this : ` const store = await new Store(Number)` this will work in your main node code without wrapping it in an anonymous async function.
 
-```javascript
+You can see the full `Store` documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Store.md). 
 
-  //Get Store Info for Store #4336
-  var pizzapi = require('dominos');
-  var myStore = new pizzapi.Store();
-  myStore.ID=4336;
+|argument|type  |required|default|
+|--------|------|--------|-------|
+|id      |Number|true    |       |
+|lang    |String|false   |'en'   |
 
-  myStore.getInfo(
-      function(storeData){
-          console.log(storeData);
-      }
-  );
+|member/method|type  |description|
+|-------------|------|-----------|
+|.info        |Object|Detailed Store Information|
+|.menu        |Object|Store Menu |
 
-```
+```js
 
-### Store menu
-
-|argument|type|default|required|
-|--------|----|-------|--------|
-|callback|function|null|true   |
-
-```javascript
-
-  //Get Menu for Store #4336
-  var pizzapi = require('dominos'); 
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
-
-  myStore.getMenu(
-      function(storeData){
-          console.log(storeData);
-      }
-  );
+  import {Store} from '../../index.js';
+  
+  //Get Store Info for Store #4332
+  const store=await new Store(4332);
 
 ```
 
-### Store info
-|argument|type|default|required|
-|--------|----|-------|--------|
-|callback|function|null|true   |
+#### `store.info` Detailed Information About the Store
 
-```javascript
+`store.info` gives us a wealth of information about the store we can use. This information is populated from the dominos api when the instance is instantiated.
 
-  //Get Info for Store #4336
-  var pizzapi = require('dominos');
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
+You can see the full `.info` object and documentation [in the dominos pizza Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Store.md)
 
-  myStore.getInfo(
-      function(storeData){
-          console.log(storeData);
-      }
-  );
+```js
 
-```
+  import {Store} from 'dominos';
+  
+  //Get Store Info for Store #4332
+  const store=await new Store(4332);
 
-### Friendly menu list
-|argument|type|default|required|
-|--------|----|-------|--------|
-|callback|function|null|true   |
-
-Returns a list of all items the store offers in an JSON array, formatted {Code: Friendly Name}
-
-```javascript
-
-  //Get friendly name menu for Store #4336
-  var pizzapi = require('dominos'); 
-  var myStore = new pizzapi.Store();
-  myStore.ID = 4336;
-
-  myStore.getFriendlyNames(
-      function(storeData){
-          console.log(storeData);
-      }
-  );
+  //depth 0 makes it so we only show the base level of the object
+  //its really big
+  console.dir(store.info,{depth:0});
 
 ```
 
----
+```js
 
-Address
-====
-When creating a new Address object, there are many ways to instantiate the object!
-
-The following are examples of the methods:
-
-#### From string *note the commas*
-
-```javascript
-
-  var fullAddress = new Address('900 Clark Ave, St. Louis, MO, 63102');
-
-  //or
-
-  var partAddress = new Address('St. Louis, MO, 63102');
-
-  //or
-
-  var stateAndZip = new Address('St. Louis, 63102');
-
-  //or
-
-  var cityAndZip = new Address('St. Louis, 63102');
-
-  //only zip
-
-  var onlyZip = new Address('63102');
+{
+  StoreID: '4332',
+  BusinessDate: '2021-01-11',
+  PulseVersion: '6.89.477',
+  PulseVersionName: '3.89',
+  PreferredLanguage: 'en-US',
+  PreferredCurrency: 'USD',
+  Phone: '703-799-3030',
+  StreetName: '7732c Richmond Hwy',
+  City: 'Alexandria',
+  Region: 'VA',
+  PostalCode: '22306',
+  AddressDescription: '7732c Richmond Hwy\n' +
+    'Alexandria, VA 22306\n' +
+    "Please don't forget to tip your driver for being awesome!",
+  TimeZoneCode: 'GMT-05:00',
+  TimeZoneMinutes: -300,
+  IsAffectedByDaylightSavingsTime: false,
+  Holidays: {},
+  HolidaysDescription: '',
+  Hours: [Object],
+  HoursDescription: 'Su-Th 10:00am-12:00am\nFr-Sa 10:00am-1:00am',
+  ServiceHours: [Object],
+  ServiceHoursDescription: [Object],
+  CustomerCloseWarningMinutes: 30,
+  AcceptablePaymentTypes: [Array],
+  AcceptableCreditCards: [Array],
+  IsOnlineCapable: true,
+  LocationInfo: "Please don't forget to tip your driver for being awesome!",
+  LanguageLocationInfo: [Object],
+  MinimumDeliveryOrderAmount: 13.98,
+  CashLimit: 50,
+  IsForceOffline: false,
+  IsOnlineNow: true,
+  IsForceClose: false,
+  IsOpen: false,
+  OnlineStatusCode: 'Ok',
+  StoreAsOfTime: '2021-01-11 01:21:21',
+  AsOfTime: '2021-01-11 01:22:33',
+  IsNEONow: false,
+  IsSpanish: true,
+  AllowCarryoutOrders: true,
+  AllowDeliveryOrders: true,
+  Status: 0,
+  AcceptableWalletTypes: [Array],
+  SocialReviewLinks: [Object],
+  IsAVSEnabled: true,
+  Pop: true,
+  LanguageTranslations: [Object],
+  StoreLocation: [Object],
+  DriverTrackingSupported: 'true',
+  IsCookingInstructionsEnabled: false,
+  IsSaltWarningEnabled: false,
+  DriverTrackingSupportMode: 'NOLO_VISIBLE',
+  StoreName: '',
+  AllowDineInOrders: false,
+  EstimatedWaitMinutes: '15-25',
+  StoreCoordinates: [Object],
+  Upsell: {},
+  AcceptableTipPaymentTypes: [Array],
+  FutureOrderDelayInHours: 1,
+  FutureOrderBlackoutBusinessDate: '2021-01-11',
+  StoreEndTimeEvenSpansToNextBusinessDay: '2021-01-11 23:59:00',
+  ecomActive: true,
+  AllowSmsNotification: true,
+  HasKiosk: false,
+  IsTippingAllowedAtCheckout: true,
+  AlternatePaymentProcess: false,
+  AcceptAnonymousCreditCards: true,
+  Tokenization: true,
+  AcceptGiftCards: true,
+  AcceptSavedCreditCard: true,
+  AllowCardSaving: true,
+  AllowPickupWindowOrders: false,
+  IsAllergenWarningEnabled: false,
+  AllowAutonomousDelivery: false,
+  AllowDriverPooling: false,
+  AdvDelDash: false,
+  SaltWarningInfo: null,
+  MarketPaymentTypes: [],
+  CarryoutWaitTimeReason: null,
+  DeliveryWaitTimeReason: null,
+  RawPaymentGateway: '1',
+  AllowDuc: true,
+  AllowRemoteDispatch: false,
+  AllowPiePass: true,
+  IsDriverSafetyEnabled: false,
+  StoreVariance: null,
+  ContactlessDelivery: 'REQUIRED',
+  ContactlessCarryout: 'INSTRUCTION',
+  AllowDynamicDeliveryFees: false,
+  SmartRunEnabled: false,
+  RequireMaskInStore: false,
+  AllowHotspotLiteOrders: false,
+  TargetedOffers: [Object],
+  NoCarryoutOrdersUntil: '2000-01-01 00:00:00',
+  NoDeliveryOrdersUntil: '2000-01-01 00:00:00',
+  NoHotspotLiteOrdersUntil: '2100-01-01 00:00:00',
+  GeofenceRadiusMeters: 100,
+  CarsideTippingEnabled: false,
+  ServiceMethodEstimatedWaitMinutes: [Object]
+}
 
 ```
 
-#### From JSON
+### store.menu
 
-```javascript
+`store.menu` provides ***HUGE*** amounts of menu data and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
 
-  var jsonAddress = new Address(
-      {
-          Street: '900 Clark Ave',
-          City: 'St. Louis',
-          Region: 'MO',
-          PostalCode: 63102
-      }
-  );
+You can see the full menu object  and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Menu.md). 
+
+```js
+
+  import {Store} from 'dominos';
+  
+  //Get Store Info for Store #4332
+  const store=await new Store(4332);
+
+  //depth 0 makes it so we only show the base level of the object
+  //its really big
+  console.dir(store.info,{depth:0});
 
 ```
 
-#### From array
+```js
 
-```javascript
-
-  var arrayAddress = new Address(['900 Clark Ave', 'St. Louis', 'MO', '63102']);
+{
+  Misc: [Object],
+  Categorization: [Object],
+  Coupons: [Object],
+  Flavors: [Object],
+  Products: [Object],
+  Sides: [Object],
+  Sizes: [Object],
+  Toppings: [Object],
+  Variants: [Object],
+  PreconfiguredProducts: [Object],
+  ShortProductDescriptions: [Object],
+  ShortCouponDescriptions: [Object],
+  CouponTiers: [Object],
+  UnsupportedProducts: [Object],
+  UnsupportedOptions: [Object],
+  CookingInstructions: [Object],
+  CookingInstructionGroups: [Object]
+}
 
 ```
 
@@ -352,9 +480,9 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-  var pizzapi = require('dominos');
+  var pizza = require('dominos');
 
-  var thePresident = new pizzapi.Customer(
+  var thePresident = new pizza.Customer(
       {
           firstName: 'Barack',
           lastName: 'Obama',
@@ -363,7 +491,7 @@ This is the class that every other class feeds into.
       }
   );
 
-  var order = new pizzapi.Order(
+  var order = new pizza.Order(
       {
           customer: thePresident,
 
@@ -376,7 +504,7 @@ This is the class that every other class feeds into.
 
   //or
 
-  var order = new pizzapi.Order();
+  var order = new pizza.Order();
 
   order.FirstName = data;
   order.LastName = data;
@@ -393,7 +521,7 @@ This is the class that every other class feeds into.
 
 ```javascript
 
-  var anotherIdenticalOrder = new pizzapi.Order(
+  var anotherIdenticalOrder = new pizza.Order(
       {
           order:order
           //or
@@ -404,7 +532,7 @@ This is the class that every other class feeds into.
 
   //or create a duplicate order WITH different customer params
 
-  var order = new pizzapi.Order(
+  var order = new pizza.Order(
       {
           customer: thePresident,
           deliveryMethod: 'Delivery' //(or 'Carryout')
@@ -418,7 +546,7 @@ This is the class that every other class feeds into.
 ```javascript
 
   order.addItem(
-      new pizzapi.Item(
+      new pizza.Item(
           {
               code: '14SCREEN',
               options: [],
@@ -462,7 +590,7 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ```javascript
 
-  var pizzapi = require('dominos');
+  var pizza = require('dominos');
 
   var cardNumber = '4100123422343234';
 
@@ -498,9 +626,9 @@ Tracking
 
 ```javascript
 
-  var pizzapi = require('dominos'); 
+  var pizza = require('dominos'); 
 
-  pizzapi.Track.byPhone(
+  pizza.Track.byPhone(
       2024561111,
       function(pizzaData){
           console.log(pizzaData);
@@ -519,9 +647,9 @@ Tracking
 
 ```javascript
 
-  var pizzapi = require('dominos'); 
+  var pizza = require('dominos'); 
 
-  pizzapi.Track.byId(
+  pizza.Track.byId(
       123456,
       12345,
       function(pizzaData){

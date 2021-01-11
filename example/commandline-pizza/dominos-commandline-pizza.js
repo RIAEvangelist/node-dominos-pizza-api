@@ -2,7 +2,7 @@ var fs          = require('fs'),
     path        = require('path'),
     readline    = require('readline'),
     colors      = require('colors'),
-    pizzapi     = require('../../dominos-pizza-api.js');
+    pizza     = require('../../dominos-pizza-api.js');
 
 var util=require('util');
 
@@ -30,7 +30,7 @@ readline.clearScreenDown(process.stdout);
 rl.setPrompt('Pizza> ');
 rl.prompt();
 
-var order=new pizzapi.Order();
+var order=new pizza.Order();
 
 rl.on(
     'line',
@@ -115,7 +115,7 @@ function showMenu(storeID,quick){
     order.StoreID=storeID
     rl.prompt();
 
-    var store=new pizzapi.Store(
+    var store=new pizza.Store(
         {
             ID:storeID
         }
@@ -206,8 +206,8 @@ function showMenu(storeID,quick){
 }
 
 function validateAddress(address){
-    var address=new pizzapi.Address(address);
-    pizzapi.Util.findNearbyStores(
+    var address=new pizza.Address(address);
+    pizza.Util.findNearbyStores(
         address,
         function(storeData){
             order.Address=storeData.result.Address;
@@ -228,7 +228,7 @@ function validateAddress(address){
                 );
             }
 
-            pizzapi.Util.findNearbyStores(
+            pizza.Util.findNearbyStores(
                 order.Address,
                 'Delivery',
                 function(storeData){
@@ -265,19 +265,19 @@ function findStores(address, closest, menu, fullMenu){
     }
     console.log('Looking for stores near '+address.info+'...');
     rl.prompt();
-    var nearAddress=new pizzapi.Address(address);
+    var nearAddress=new pizza.Address(address);
 
     if(!nearAddress.PostalCode){
         console.log('Not a valid address'.red+' you must at least provide a zipcode');
         return;
     }
-    pizzapi.Util.findNearbyStores(
+    pizza.Util.findNearbyStores(
         nearAddress,
         'Delivery',
         function(storeData){
             var openStores=[];
 
-            order.Address=new pizzapi.Address(storeData.result.Address);
+            order.Address=new pizza.Address(storeData.result.Address);
 
             for(var i in storeData.result.Stores){
                 if(storeData.result.Stores[i].IsOpen &&
@@ -343,7 +343,7 @@ function orderPizza(items){
     for(var i=0; i<items.length; i++){
         //create a new item to add to the order
         order.addItem(
-            new pizzapi.Item(
+            new pizza.Item(
                 {
                     code: items[i].trim(),
                     options: [],
@@ -533,7 +533,7 @@ function orderPlaced(data){
 }
 
 function trackOrder(){
-    pizzapi.Track.orderKey(
+    pizza.Track.orderKey(
         order.OrderID,
         order.StoreID,
         function(pizzaData){
