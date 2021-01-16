@@ -24,7 +24,7 @@ class Store{
     }
 
     get menu(){
-        return this.#menu.menu;
+        return this.#menu;
     }
 
     #info={}

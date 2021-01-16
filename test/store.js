@@ -33,28 +33,28 @@ const testStore=async function(test,storeID,lang){
             store.info.StoreID,
             `storeID of ${storeID} to match store.info.StoreID of ${store.info.StoreID}`
         );
+
+        //test a smattering of the dominos menu categories for existance and format
+        test.is.object(store.menu.dominos.Misc);
+        test.is.object(store.menu.dominos.Categorization);
+        test.is.object(store.menu.dominos.Products);
+        test.is.object(store.menu.dominos.Toppings);
+        test.is.object(store.menu.dominos.PreconfiguredProducts);
         
-        //test a smattering of the menu categories for existance and format
-        test.is.object(store.menu.Misc);
-        test.is.object(store.menu.Categorization);
-        test.is.object(store.menu.Products);
-        test.is.object(store.menu.Toppings);
-        test.is.object(store.menu.PreconfiguredProducts);
-        
-        //test that the menu was for the right store
+        //test that the dominos was for the right store
         test.compare(
             storeID,
-            store.menu.Misc.StoreID,
-            `storeID of ${storeID} to match store.menu.Misc.StoreID of ${store.menu.Misc.StoreID}`
+            store.menu.dominos.Misc.StoreID,
+            `storeID of ${storeID} to match store.menu.dominos.Misc.StoreID of ${store.menu.dominos.Misc.StoreID}`
         );
 
-        //test that the menu for the correct language if it was provided
+        //test that the dominos for the correct language if it was provided
         if(lang){
-            //console.log(`menu LanguageCode to be ${lang} and got a LanguageCode of ${store.menu.Misc.LanguageCode}`)
+            //console.log(`dominos LanguageCode to be ${lang} and got a LanguageCode of ${store.menu.dominos.Misc.LanguageCode}`)
             test.compare(
                 lang,
-                store.menu.Misc.LanguageCode,
-                `menu LanguageCode to be ${lang} but got a LanguageCode of ${store.menu.Misc.LanguageCode}`
+                store.menu.dominos.Misc.LanguageCode,
+                `store.menu.dominos LanguageCode to be ${lang} but got a LanguageCode of ${store.menu.dominos.Misc.LanguageCode}`
             );
         }
 

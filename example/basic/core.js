@@ -1,4 +1,5 @@
 import {Store} from '../../index.js';
+import pascalToCamel from '../../utils/pascalToCamel.js';
 
 const store=await new Store(4332);
 
@@ -10,12 +11,14 @@ const store=await new Store(4332);
 
 //get sub category names
 const menu={
-    food:{}
+    categories:{}
 }
 
 const defineCategories=function(categories,menuParent){
     for(const category of categories){
-        const formattedCategory=menuParent[category.Code]={};
+        const formattedCategory=menuParent[
+            pascalToCamel(category.Code)
+        ]={};
         
         if(category.Code.length){
             formattedCategory.code=category.Code;
@@ -55,13 +58,19 @@ const defineCategories=function(categories,menuParent){
     }
 }   
 
-//define food
-defineCategories(
-    store.menu.Categorization.Food.Categories,
-    menu.food
-);
+//define categories
+for(const [categoryKey, dominosCategory] of Object.entries(store.menu.Categorization)){
+    const category= menu.categories[pascalToCamel(categoryKey)]={};
+    
+    defineCategories(
+        dominosCategory.Categories,
+        category
+    );
+}
 
-console.log(menu);
+
+console.dir(menu,{depth:1});
+console.dir(store.menu.Coupons,{depth:1});
 
 // console.dir(
 //     //JSON.stringify(store.menu)

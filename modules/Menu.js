@@ -8,14 +8,22 @@ class Menu{
     constructor(menu) {
         is.object(menu);
         
-        this.#menu = menu;
+        this.#dominos = menu;
+    }
+
+    get dominos(){
+        return this.#dominos;
     }
 
     get menu(){
         return this.#menu;
     }
 
+
+
     #menu={}
+
+    #dominos={}
    
 }
 

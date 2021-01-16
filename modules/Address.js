@@ -104,10 +104,7 @@ const parseAddress=function(locationString){
 
     this.postalCode= splitAddress[splitAddress.length-1]
 
-    //need better intellegence for auto determining address parts
-    //added some, should externalize it
-    //while not perfect, it does seem to get most of the right stuff
-    //in good enough places for dominos to like it.
+    //works well enough for addresses, could be better though
     switch (splitAddress.length) {
         case 2:
             this.region=splitAddress[0];
