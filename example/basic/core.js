@@ -11,7 +11,22 @@ const store=await new Store(4332);
 
 //get sub category names
 const menu={
-    categories:{}
+    categories:{},
+    coupons:{},
+    flavors:{},
+    products:{},
+    sides:{},
+    sizes:{},
+    toppings:{},
+    variants:{},
+    preconfiguredProducts:{},
+    shortProductDescriptions:{},
+    shortCouponDescriptions:{},
+    couponTiers:{},
+    unsupportedProducts:{},
+    unsupportedOptions:{},
+    cookingInstructions:{},
+    cookingInstructionGroups:{}
 }
 
 const defineCategories=function(categories,menuParent){
@@ -39,7 +54,12 @@ const defineCategories=function(categories,menuParent){
 
         if(category.Categories.length){
             formattedCategory.hasSubCategories=true;
-            formattedCategory.subCategories=category.Categories;
+            formattedCategory.subCategories={};
+
+            defineCategories(
+                category.Categories,
+                formattedCategory.subCategories
+            );
         }
 
         formattedCategory.hasProducts=false;
@@ -59,7 +79,7 @@ const defineCategories=function(categories,menuParent){
 }   
 
 //define categories
-for(const [categoryKey, dominosCategory] of Object.entries(store.menu.Categorization)){
+for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Categorization)){
     const category= menu.categories[pascalToCamel(categoryKey)]={};
     
     defineCategories(
@@ -68,9 +88,68 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.Categoriza
     );
 }
 
+//comparing pizza with products
+//maybe auto complete? 
+//console.dir(menu.categories.food.pizza.subCategories.specialty,{depth:1});
 
-console.dir(menu,{depth:1});
-console.dir(store.menu.Coupons,{depth:1});
+//comparing some coupon info.
+//maybe auto convert these into coupon objects?
+// console.dir(menu.categories.coupons,{depth:2});
+// console.dir(store.menu.dominos.Coupons,{depth:2});
+
+
+//organize the below object keys to pascal case as follows
+// {
+//     pascal:{
+//         LEAVEIT:{
+//             any decendant keys pascal
+//         }
+//     }
+// }
+
+//flavors
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Flavors,{depth:2});
+
+//products
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Products,{depth:2});
+
+//sides
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Sides,{depth:2});
+
+//Sizes
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Sizes,{depth:2});
+
+//Toppings
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Toppings,{depth:3});
+
+//Variants
+//probably just reorganize object keys to be camel case
+//console.dir(store.menu.dominos.Variants,{depth:2});
+
+//PreconfiguredProducts
+//probably just reorganize object keys to be camel case
+console.dir(store.menu.dominos.PreconfiguredProducts,{depth:2});
+
+// Coupons: [Object],
+//   Flavors: [Object],
+//   Products: [Object],
+//   Sides: [Object],
+//   Sizes: [Object],
+//   Toppings: [Object],
+//   Variants: [Object],
+//   PreconfiguredProducts: [Object],
+//   ShortProductDescriptions: [Object],
+//   ShortCouponDescriptions: [Object],
+//   CouponTiers: [Object],
+//   UnsupportedProducts: [Object],
+//   UnsupportedOptions: [Object],
+//   CookingInstructions: [Object],
+//   CookingInstructionGroups: [Object]
 
 // console.dir(
 //     //JSON.stringify(store.menu)
