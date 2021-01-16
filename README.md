@@ -1,5 +1,5 @@
-Domino's Pizza API
-====
+# Domino's Pizza API
+
 This is a node.js API for integrating with the Domino's pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
@@ -16,29 +16,29 @@ GitHub info :
 
 This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
 
-Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
-====
+# Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
+
 
 ` npm i dominos `
 
-Contributing
-====
+# Contributing
+
 
 1. Pull or Fork code.
 2. From the cloned directory run ` npm i ` (this will install required dependancies, depending on your system may require)
 3. Be awesome!
 
 
-Examples
-====
+# Examples
+
 
 You can run the domino's pizza command line interface from your terminal just by running ` npm start `! See the example in the examples directory.
 
 See the examples directory for simple apps and demonstrations on using the basic functionality.
 
 
-Testing
-====
+# Testing
+
 For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare bones testing framework, but it works really well and simply with native ES6 and ESM.
 
 Simply run ` npm test `
@@ -47,8 +47,8 @@ This will setup everything that is needed to run the tests, install the modules 
 
 ---
 
-International Support
-====
+# International Support
+
 
 Provided a country uses the same api as the US, you can just update the URL endpoints from the url ESM.
 
@@ -56,8 +56,8 @@ See the various [International Dominos Endpoints and how to use them](https://gi
 
 
 
-Address
-====
+# Address
+
 Address is constructed `async`, so when you instantiate it, you should await it, like this : ` const address = await new Address(String)` this will work in your main node code without wrapping it in an anonymous async function.
 
 You can see the full `Address` documentation [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md). 
@@ -76,7 +76,7 @@ You can see the full `Address` documentation [in the dominos pizza Address.md](h
 |.postalCode  |String|Yes    |         |address postal or zip code|
 |.addressLines|Object|No     |         |{line1,line2} formatted address lines as best as possible with the information provided for the address.|
 
-#### AddressObject
+## AddressObject
 
 Instead of passing an address string when initing the Address class (which needs to be parsed and can be comlicated), you can instead collect the address information and format it into an AddressObject. Dominos will try to figure the address out from any combination of address parts. None of these fields are required, but you should atleast provide enough information for Dominos to figure out the general location.
 
@@ -91,7 +91,7 @@ Instead of passing an address string when initing the Address class (which needs
 
 ```
 
-#### Full and Partial Address Instantiation
+## Full and Partial Address Instantiation
 
 The Address class will do its best to parse an AddressString into an AddressObject, and/or massage the AddressObject into a dominos api formatted Address. 
 
@@ -126,8 +126,8 @@ The Address class will do its best to parse an AddressString into an AddressObje
 
 ---
 
-NearbyStores for Finding Stores
-====
+# NearbyStores for Finding Stores
+
 
 |argument |type                         |default|description|
 |-------- |----                         |-------|--------|
@@ -136,7 +136,7 @@ NearbyStores for Finding Stores
 
 You can see the full NearbyStores documentation [in the dominos pizza NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md). 
 
-### By PostalCode
+## By PostalCode
 ***this yields a wide variety of stores*** because it is not a very specific address. To find stores closer to you (or your user), use a more specific address.
 
 You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md).
@@ -202,8 +202,8 @@ You can see the all the ways to pass an address [in the dominos pizza Address.md
 
 ---
 
-Store
-====
+# Store
+
 
 Store is constructed `async`, so when you instantiate it, you should await it, like this : ` const store = await new Store(Number)` this will work in your main node code without wrapping it in an anonymous async function.
 
@@ -217,7 +217,8 @@ You can see the full `Store` documentation [in the dominos pizza Store.md](https
 |member/method|type  |description|
 |-------------|------|-----------|
 |.info        |Object|Detailed Store Information|
-|.menu        |Object|Store Menu |
+|.menu        |Object|Parsed `store.dominosMenu` for easier use in JS|
+|.dominosMenu |Object|Detailed Raw Store Menu from Dominos |
 
 ```js
 
@@ -228,7 +229,7 @@ You can see the full `Store` documentation [in the dominos pizza Store.md](https
 
 ```
 
-#### `store.info` Detailed Information About the Store
+## `store.info` Detailed Information About the Store
 
 `store.info` gives us a wealth of information about the store we can use. This information is populated from the dominos api when the instance is instantiated.
 
@@ -252,8 +253,6 @@ You can see the full `.info` object and documentation [in the dominos pizza Stor
 {
   StoreID: '4332',
   BusinessDate: '2021-01-11',
-  PulseVersion: '6.89.477',
-  PulseVersionName: '3.89',
   PreferredLanguage: 'en-US',
   PreferredCurrency: 'USD',
   Phone: '703-799-3030',
@@ -281,84 +280,26 @@ You can see the full `.info` object and documentation [in the dominos pizza Stor
   LanguageLocationInfo: [Object],
   MinimumDeliveryOrderAmount: 13.98,
   CashLimit: 50,
-  IsForceOffline: false,
-  IsOnlineNow: true,
-  IsForceClose: false,
-  IsOpen: false,
-  OnlineStatusCode: 'Ok',
-  StoreAsOfTime: '2021-01-11 01:21:21',
-  AsOfTime: '2021-01-11 01:22:33',
-  IsNEONow: false,
-  IsSpanish: true,
-  AllowCarryoutOrders: true,
-  AllowDeliveryOrders: true,
-  Status: 0,
-  AcceptableWalletTypes: [Array],
-  SocialReviewLinks: [Object],
-  IsAVSEnabled: true,
-  Pop: true,
-  LanguageTranslations: [Object],
-  StoreLocation: [Object],
-  DriverTrackingSupported: 'true',
-  IsCookingInstructionsEnabled: false,
-  IsSaltWarningEnabled: false,
-  DriverTrackingSupportMode: 'NOLO_VISIBLE',
-  StoreName: '',
-  AllowDineInOrders: false,
-  EstimatedWaitMinutes: '15-25',
-  StoreCoordinates: [Object],
-  Upsell: {},
-  AcceptableTipPaymentTypes: [Array],
-  FutureOrderDelayInHours: 1,
-  FutureOrderBlackoutBusinessDate: '2021-01-11',
-  StoreEndTimeEvenSpansToNextBusinessDay: '2021-01-11 23:59:00',
-  ecomActive: true,
-  AllowSmsNotification: true,
-  HasKiosk: false,
-  IsTippingAllowedAtCheckout: true,
-  AlternatePaymentProcess: false,
-  AcceptAnonymousCreditCards: true,
-  Tokenization: true,
-  AcceptGiftCards: true,
-  AcceptSavedCreditCard: true,
-  AllowCardSaving: true,
-  AllowPickupWindowOrders: false,
-  IsAllergenWarningEnabled: false,
-  AllowAutonomousDelivery: false,
-  AllowDriverPooling: false,
-  AdvDelDash: false,
-  SaltWarningInfo: null,
-  MarketPaymentTypes: [],
-  CarryoutWaitTimeReason: null,
-  DeliveryWaitTimeReason: null,
-  RawPaymentGateway: '1',
-  AllowDuc: true,
-  AllowRemoteDispatch: false,
-  AllowPiePass: true,
-  IsDriverSafetyEnabled: false,
-  StoreVariance: null,
-  ContactlessDelivery: 'REQUIRED',
-  ContactlessCarryout: 'INSTRUCTION',
-  AllowDynamicDeliveryFees: false,
-  SmartRunEnabled: false,
-  RequireMaskInStore: false,
-  AllowHotspotLiteOrders: false,
-  TargetedOffers: [Object],
-  NoCarryoutOrdersUntil: '2000-01-01 00:00:00',
-  NoDeliveryOrdersUntil: '2000-01-01 00:00:00',
-  NoHotspotLiteOrdersUntil: '2100-01-01 00:00:00',
-  GeofenceRadiusMeters: 100,
-  CarsideTippingEnabled: false,
-  ServiceMethodEstimatedWaitMinutes: [Object]
+  //see the full store.info Object in the docs/Store.md
+  ...
 }
 
 ```
 
-### store.menu
+## store.menu
 
-`store.menu` provides ***HUGE*** amounts of menu data and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
+`store.menu` provides ***HUGE*** amounts of well formatted menu data parsed from the `store.dominosMenu` object. This information is parsed from the dominos api when the instance is instantiated.
 
-You can see the full menu object  and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md). 
+You can see the full parsed menu object and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md). 
+
+//Working on building this object while documenting the `.dominosMenu` object.
+
+
+## store.dominosMenu
+
+`store.dominosMenu` provides ***HUGE*** amounts of ***RAW*** menu data direct from Dominos and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
+
+You can see the full raw dominosMenu object and documentation [in the dominos pizza RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md). 
 
 ```js
 
@@ -399,8 +340,10 @@ You can see the full menu object  and documentation [in the dominos pizza Menu.m
 
 ---
 
-Customer
-===
+# Below docs are still v2.0 updating docs in order as I go
+
+# Customer
+
 
 |argument|type|default|
 |--------|----|-------|
@@ -427,8 +370,8 @@ Customer
 ```
 ---
 
-Item
-====
+# Item
+
 You can get the codes from one of the menu requests.
 
 |argument|type|default|
@@ -449,8 +392,8 @@ You can get the codes from one of the menu requests.
 ```
 ---
 
-Order
-====
+# Order
+
 
 This is the class that every other class feeds into.
 
@@ -598,8 +541,8 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ---
 
-Tracking
-====
+# Tracking
+
 
 ### By Phone
 
