@@ -3,35 +3,15 @@ import {Address} from '../index.js';
 
 const isDominos=new IsDominos;
 
-const testAddress=function(test,addressObject,addressString,descriptor){
+const testAddress=function(test,addressInfo){
     try{
         isDominos.test(test);
-        test.is.object(addressObject);
-        test.is.string(descriptor);
-        test.expects(`Address class to Populate address.dominos from ${descriptor} AddressObject`);    
+        test.expects(`Address class to Populate address.dominos from addressInfo: ${JSON.stringify(addressInfo)}`);    
         
-        const address=new Address(addressObject);
+        const address=new Address(addressInfo);
         isDominos.address(address);
 
-        validateAddress(test,address,addressObject);
-    }catch(err){
-        console.trace(err);
-        test.fail();
-    }
-    test.pass();
-    test.done();
-
-    // Address class to Populate address.dominos from AddressString
-    try{
-        isDominos.test(test);
-        test.is.string(addressString);
-        test.is.string(descriptor);
-        test.expects(`Address class to Populate address.dominos from ${descriptor} AddressString`);    
-        
-        const address=new Address(addressString);
-        isDominos.address(address);
-
-        validateAddress(test,address,addressObject);
+        validateAddress(test,address);
     }catch(err){
         console.trace(err);
         test.fail();
@@ -40,28 +20,22 @@ const testAddress=function(test,addressObject,addressString,descriptor){
     test.done();
 }
 
-const validateAddress=function(test,address,addressObject){
+const validateAddress=function(test,address){
     isDominos.test(test);
     isDominos.address(address);
-    isDominos.object(addressObject);
 
-    for(const [key,value] of Object.entries(addressObject)){
-        test.compare(
-            value,
-            address[key],
-            `expected addressObject.${key} "${value}" to equal address.${key} "${address[key]}"`    
-        );
+    for(const [key,value] of Object.entries(address.dominos)){
+        const camelKey=key[0].toLowerCase()+key.slice(1);
         
-        const dominosKey=key[0].toUpperCase()+key.slice(1);
-        const dominosValue=address.dominos[dominosKey];
-
+        //ensure that qall values match up despite casing
         test.compare(
             value,
-            dominosValue,
-            `expected addressObject.${key} "${value}" to equal address.dominos.${dominosKey} "${dominosValue}"`    
+            address[camelKey],
+            `expected address.dominos.${key} ${JSON.stringify(value)} to equal address.${camelKey} "${JSON.stringify(address[camelKey])}"`    
         );
     }
 
+    //ensure the default of House is set for the unit type
     test.compare(
         'House',
         address.dominos.UnitType,
@@ -70,8 +44,6 @@ const validateAddress=function(test,address,addressObject){
 }
 
 const runTest=function(test){
-    // Address class to Populate address.dominos from full AddressObject & String
-    //setup
     let addressObject={
         street:'900 Clark Ave',
         city:'St. Louis',
@@ -79,46 +51,58 @@ const runTest=function(test){
         postalCode:'63102'
     }
 
+    // Address class to Populate address.dominos from full AddressObject
+    testAddress(test,addressObject);
+
     let addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
-    let descriptor='complete';
+    
+    // Address class to Populate address.dominos from full AddressString
+    testAddress(test,addressString);
 
-    testAddress(test,addressObject,addressString,descriptor);
-
-    // Address class to Populate address.dominos from partial AddressObject & String
-    //setup
     addressObject={
         city:'St. Louis',
         region:'MO',
         postalCode:'63102'
     }
 
+    // Address class to Populate address.dominos from partial AddressObject
+    testAddress(test,addressObject);
+
     addressString=`${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
-    descriptor='partial';
-
-    testAddress(test,addressObject,addressString,descriptor);
-
-    // Address class to Populate address.dominos from city and zip AddressObject & AddressString
-    // setup
+    
+    // Address class to Populate address.dominos from partial AddressString
+    testAddress(test,addressString);
+    
     addressObject={
         city:'St. Louis',
         postalCode:'63102'
     }
 
+    // Address class to Populate address.dominos from city and zip AddressObject
+    testAddress(test,addressObject);
+
     addressString=`${addressObject.city}, ${addressObject.postalCode}`
-    descriptor='city and zip';
+    
+    // Address class to Populate address.dominos from city and zip AddressString
+    testAddress(test,addressString);
 
-    testAddress(test,addressObject,addressString,descriptor);
-
-    // Address class to Populate address.dominos from zip AddressObject & AddressString
-    // setup
     addressObject={
         postalCode:'63102'
     }
+    
+    // Address class to Populate address.dominos from zip AddressObject
+    testAddress(test,addressObject);
 
-    addressString=`${addressObject.postalCode}`
-    descriptor='zip';
+    addressString=`${addressObject.postalCode}`;
+    
+    // Address class to Populate address.dominos from zip AddressString
+    testAddress(test,addressString);
 
-    testAddress(test,addressObject,addressString,descriptor);
+    addressString=Number(addressString);
+    
+    // Address class to Populate address.dominos from zip AddressNumber
+    testAddress(test,addressObject,addressString);
+
 }
 
 export {

@@ -12,18 +12,6 @@ class Address {
             return;
         };
         
-        if (Array.isArray(parameters)) {
-            this.street = parameters[0];
-            this.city = parameters[1];
-            this.region = parameters[2];
-            this.postalCode = parameters[3];
-            return;
-        }
-    
-        if (typeof parameters == 'number') {
-            parameters+='';
-        }
-    
         if (typeof parameters == 'string') {
             this.#parse(parameters);
         }
@@ -77,10 +65,7 @@ class Address {
 
     #dominos={
         Street: '',
-        StreetNumber: '',
-        StreetName: '',
         UnitType: 'House',
-        UnitNumber: '',
         City: '',
         Region: '',
         PostalCode: ''
