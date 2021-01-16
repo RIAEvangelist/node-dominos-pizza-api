@@ -98,11 +98,11 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Ca
 // console.dir(store.menu.dominos.Coupons,{depth:2});
 
 
-//organize the below object keys to pascal case as follows
+//organize the below object keys to camel case as follows
 // {
 //     pascal:{
 //         LEAVEIT:{
-//             any decendant keys pascal
+//             any decendant keys camel
 //         }
 //     }
 // }
@@ -133,7 +133,22 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Ca
 
 //PreconfiguredProducts
 //probably just reorganize object keys to be camel case
-console.dir(store.menu.dominos.PreconfiguredProducts,{depth:2});
+//console.dir(store.menu.dominos.PreconfiguredProducts,{depth:2});
+
+
+
+
+//organize the below object keys to camel case as follows
+// {
+//     LEAVEIT:{
+//         all descendants camel
+//     }
+// }
+
+
+//ShortProductDescriptions
+//probably just reorganize object keys to be camel case
+console.dir(store.menu.dominos.ShortProductDescriptions,{depth:2});
 
 // Coupons: [Object],
 //   Flavors: [Object],
