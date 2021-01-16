@@ -5,17 +5,18 @@ import Menu from './Menu.js';
 import Is from 'strong-type';
 
 const is=new Is;
+const weakIs=new Is(false);
 
 class Store{
     //parameters object required
     //parameters.id also required as a minimum
     constructor(id,lang='en') {
+        //accept both string and number types for id
+        if(!weakIs.number(id)&&!weakIs.string(id)){
+            throw new ReferenceError(`Store class expects id to be a number or string, but got ${id}`);
+        }
         is.string(lang);
         return this.#init(id,lang);
-    }
-
-    get dominos(){
-        return this.#dominos;
     }
 
     get info(){
@@ -26,7 +27,6 @@ class Store{
         return this.#menu.menu;
     }
 
-    #dominos={}
     #info={}
     #menu={}
 
