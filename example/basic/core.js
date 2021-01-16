@@ -148,6 +148,11 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Ca
 //UnsupportedOptions
 //console.dir(store.menu.dominos.UnsupportedOptions,{depth:2});
 
+//CookingInstructions
+//console.dir(store.menu.dominos.CookingInstructions,{depth:2});
+
+//CookingInstructionGroups
+//console.dir(store.menu.dominos.CookingInstructionGroups,{depth:2});
 
 //
 //
@@ -160,13 +165,6 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Ca
 //CouponTiers
 //console.dir(store.menu.dominos.CouponTiers,{depth:2});
 
-
-
-
-//   : [Object],
-//   : [Object],
-//   CookingInstructions: [Object],
-//   CookingInstructionGroups: [Object]
 
 // console.dir(
 //     //JSON.stringify(store.menu)
