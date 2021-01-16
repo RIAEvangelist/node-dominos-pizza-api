@@ -1,13 +1,13 @@
 import {get,post} from '../utils/api-json.js';
 import urls from '../utils/urls.js';
-import IsDominos from '../utils/customTypes.js';
-import {Address} from '../index.js';
+import Is from 'strong-type';
+import Address from '../modules/Address.js';
 
-const isDominos=new IsDominos;
+const is=new Is;
 
 class NearbyStores{
     constructor(addressInfo, pickUpType=this.pickUpType) {
-        isDominos.string(pickUpType);
+        is.string(pickUpType);
         this.address = new Address(addressInfo);
         this.pickUpType = pickUpType;
 

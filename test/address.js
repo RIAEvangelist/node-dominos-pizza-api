@@ -1,4 +1,4 @@
-import IsDominos from '../utils/customTypes.js';
+import IsDominos from '../utils/DominosTypes.js';
 import {Address} from '../index.js';
 
 const isDominos=new IsDominos;
@@ -69,7 +69,59 @@ const validateAddress=function(test,address,addressObject){
     );
 }
 
+const runTest=function(test){
+    // Address class to Populate address.dominos from full AddressObject & String
+    //setup
+    let addressObject={
+        street:'900 Clark Ave',
+        city:'St. Louis',
+        region:'MO',
+        postalCode:'63102'
+    }
+
+    let addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
+    let descriptor='complete';
+
+    testAddress(test,addressObject,addressString,descriptor);
+
+    // Address class to Populate address.dominos from partial AddressObject & String
+    //setup
+    addressObject={
+        city:'St. Louis',
+        region:'MO',
+        postalCode:'63102'
+    }
+
+    addressString=`${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
+    descriptor='partial';
+
+    testAddress(test,addressObject,addressString,descriptor);
+
+    // Address class to Populate address.dominos from city and zip AddressObject & AddressString
+    // setup
+    addressObject={
+        city:'St. Louis',
+        postalCode:'63102'
+    }
+
+    addressString=`${addressObject.city}, ${addressObject.postalCode}`
+    descriptor='city and zip';
+
+    testAddress(test,addressObject,addressString,descriptor);
+
+    // Address class to Populate address.dominos from zip AddressObject & AddressString
+    // setup
+    addressObject={
+        postalCode:'63102'
+    }
+
+    addressString=`${addressObject.postalCode}`
+    descriptor='zip';
+
+    testAddress(test,addressObject,addressString,descriptor);
+}
+
 export {
-    testAddress as default,
-    testAddress
+    runTest as default,
+    runTest
 }
