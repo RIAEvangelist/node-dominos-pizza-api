@@ -1,6 +1,8 @@
 import {Store} from '../../index.js';
 import {toCamel} from '../../utils/toCase.js';
+import Is from 'strong-type';
 
+const weakIs=new Is(false);
 const store=await new Store(4332);
 
 // console.dir(
@@ -8,30 +10,6 @@ const store=await new Store(4332);
 //     store.info,
 //     {depth:0}
 // );
-
-//get sub category names
-const menu={
-    categories:{},
-    coupons:{
-        products:{},
-        shortCouponDescriptions:{},
-        couponTiers:{},
-    },
-    flavors:{},
-    products:{},
-    sides:{},
-    sizes:{},
-    toppings:{},
-    variants:{},
-    preconfiguredProducts:{},
-    shortProductDescriptions:{},
-    unsupported:{
-        products:{},
-        options:{}
-    },
-    cookingInstructions:{},
-    cookingInstructionGroups:{}
-}
 
 const defineCategories=function(categories,menuParent){
     for(const category of categories){
@@ -84,7 +62,7 @@ const defineCategories=function(categories,menuParent){
 
 //define categories
 for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Categorization)){
-    const category= menu.categories[toCamel(categoryKey)]={};
+    const category= store.menu.menu.categories[toCamel(categoryKey)]={};
     
     defineCategories(
         dominosCategory.Categories,
@@ -92,10 +70,25 @@ for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Ca
     );
 }
 
-const camelCaseKeys=function(object){
-    for(const key in object){
-        object[]
+const camelCaseKeys=function(dominos,menu){
+    for(const [key,value] of Object.entries(dominos)){
+        //console.log(key);
+        menu[toCamel(key)]=dominos[key];
+    }
+}
 
+const allDescendantsToCamel=function(dominos,menu){
+    if(weakIs.object(dominos)){
+        for(const [key,value] of Object.entries(dominos)){
+            if(!weakIs.object(value)){
+                menu[toCamel(key)]=value;
+                continue;
+            }
+            menu[toCamel(key)]={};
+            const menuChild=menu[toCamel(key)];
+            camelCaseKeys(value,menuChild);
+            allDescendantsToCamel(value,menuChild);
+        }
     }
 }
 
@@ -103,7 +96,7 @@ const camelCaseKeys=function(object){
 //
 //organize the below object keys to camel case as follows
 // {
-//     pascal:{
+//     camel:{
 //         LEAVEIT:{
 //             any decendant keys camel
 //         }
@@ -112,6 +105,8 @@ const camelCaseKeys=function(object){
 
 //flavors
 //console.dir(store.menu.dominos.Flavors,{depth:2});
+camelCaseKeys(store.menu.dominos.Flavors,store.menu.menu.flavors);
+//console.log(store.menu.menu.flavors);
 
 //products
 //console.dir(store.menu.dominos.Products,{depth:2});
@@ -170,12 +165,14 @@ const camelCaseKeys=function(object){
 
 
 //CouponTiers
-//console.dir(store.menu.dominos.CouponTiers,{depth:2});
+//console.dir(store.menu.dominos.CouponTiers,{depth:3});
+allDescendantsToCamel(store.menu.dominos.CouponTiers,store.menu.menu.coupons.couponTiers);
 
+console.dir(store.menu.menu.coupons.couponTiers,{depth:3});
 
 // console.dir(
 //     //JSON.stringify(store.menu)
-//     store.menu.Categorization.Food.Categories,
+//     store.menu.menu.Categorization.Food.Categories,
 //     {
 //         depth:1
 //     }

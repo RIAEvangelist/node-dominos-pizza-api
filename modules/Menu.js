@@ -9,21 +9,70 @@ class Menu{
         is.object(menu);
         
         this.#dominos = menu;
+        this.#parse(menu);
     }
 
     get dominos(){
         return this.#dominos;
     }
-
-    get menu(){
-        return this.#menu;
+    
+    menu={
+        categories:{},
+        coupons:{
+            products:{},
+            shortCouponDescriptions:{},
+            couponTiers:{},
+        },
+        flavors:{},
+        products:{},
+        sides:{},
+        sizes:{},
+        toppings:{},
+        variants:{},
+        preconfiguredProducts:{},
+        shortProductDescriptions:{},
+        unsupported:{
+            products:{},
+            options:{}
+        },
+        cookingInstructions:{},
+        cookingInstructionGroups:{}
     }
 
+    //add back in once menu parsing solid
+    // get menu(){
+    //     return this.#menu;
+    // }
 
-
-    #menu={}
+    #menu={
+        categories:{},
+        coupons:{
+            products:{},
+            shortCouponDescriptions:{},
+            couponTiers:{},
+        },
+        flavors:{},
+        products:{},
+        sides:{},
+        sizes:{},
+        toppings:{},
+        variants:{},
+        preconfiguredProducts:{},
+        shortProductDescriptions:{},
+        unsupported:{
+            products:{},
+            options:{}
+        },
+        cookingInstructions:{},
+        cookingInstructionGroups:{}
+    }
 
     #dominos={}
+
+    #parse(menu){
+        is.object(menu);
+        
+    }
    
 }
 

@@ -23,12 +23,13 @@ class Store{
         return this.#info;
     }
 
-    get menu(){
-        return this.#menu;
-    }
+    //add this back in once menu parsing complete
+    // get menu(){
+    //     return this.#menu;
+    // }
 
     #info={}
-    #menu={}
+    //#menu={}
 
     async #init(id,lang) {
 
@@ -37,7 +38,7 @@ class Store{
         );
 
         
-        this.#menu=new Menu(
+        this.menu=new Menu(
             await get(
                 urls.store.menu
                     .replace('${storeID}', this.info.StoreID)
