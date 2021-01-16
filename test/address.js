@@ -34,24 +34,23 @@ const validateAddress=function(test,address){
             `expected address.dominos.${key} ${JSON.stringify(value)} to equal address.${camelKey} "${JSON.stringify(address[camelKey])}"`    
         );
     }
-
-    //ensure the default of House is set for the unit type
-    test.compare(
-        'House',
-        address.dominos.UnitType,
-        `expected address.dominos.UnitType ${address.dominos.UnitType} to equal House`    
-    );
 }
 
 const runTest=function(test){
     let addressObject={
+        unitType:'Apartment',
         street:'900 Clark Ave',
         city:'St. Louis',
         region:'MO',
         postalCode:'63102'
     }
 
-    // Address class to Populate address.dominos from full AddressObject
+    // Address class to Populate address.dominos from full AddressObject apartment
+    testAddress(test,addressObject);
+
+    addressObject.unitType='Home';
+
+    // Address class to Populate address.dominos from full AddressObject home
     testAddress(test,addressObject);
 
     let addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
