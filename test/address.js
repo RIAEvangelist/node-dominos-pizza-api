@@ -59,17 +59,16 @@ const runTest=function(test){
     testAddress(test,addressString);
 
     addressObject={
-        city:'St. Louis',
         region:'MO',
         postalCode:'63102'
     }
 
-    // Address class to Populate address.dominos from partial AddressObject
+    // Address class to Populate address.dominos from state and zip AddressObject
     testAddress(test,addressObject);
 
-    addressString=`${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
+    addressString=`${addressObject.region}, ${addressObject.postalCode}`;
     
-    // Address class to Populate address.dominos from partial AddressString
+    // Address class to Populate address.dominos from state and zip AddressString
     testAddress(test,addressString);
     
     addressObject={

@@ -109,70 +109,21 @@ const parseAddress=function(locationString){
     //while not perfect, it does seem to get most of the right stuff
     //in good enough places for dominos to like it.
     switch (splitAddress.length) {
-        case 1:
-            if (!this.postalCode) {
-                this.postalCode='';
-                this.city = splitAddress[0];
-            }
-            break;
         case 2:
-            if(splitAddress[0].length<3){
-                this.region = splitAddress[0];
-            }else{
-                this.city = splitAddress[0];
-            }
-            if (!this.postalCode) {
-                if(splitAddress[1].length>2){
-                    if(this.city){
-                        this.street = this.city;
-                    }
-                    this.city = splitAddress[1];
-                }else{
-                    if(this.region){
-                        this.city=this.region;
-                    }
-                    this.region = splitAddress[1];
-                }
-            }
+            this.region = splitAddress[0];
             break;
         case 3:
-            if(splitAddress[0].length<3){
-                this.region = splitAddress[0];
-            }else{
-                this.city = splitAddress[0];
-            }
-
-            if(splitAddress[1].length<3){
-                if(this.region){
-                    if(this.city){
-                        this.street = this.city;
-                    }
-                    this.city=this.region;
-                }
-                this.region = splitAddress[1];
-            }else{
+            this.region = splitAddress[0];
+            
+            
+            if(this.region){
                 if(this.city){
                     this.street = this.city;
                 }
-                this.city = splitAddress[1];
+                this.city=this.region;
             }
-
-            if (!this.postalCode) {
-                if(splitAddress[2].length<3){
-                    if(this.region){
-                        if(this.city){
-                            this.street = this.city;
-                        }
-                        this.city=this.region;
-                    }
-                    this.region = splitAddress[2];
-                }else{
-                    if(this.city){
-                        this.street = this.city;
-                    }
-                    this.city = splitAddress[1];
-                }
-            }
+            this.region = splitAddress[1];
+            
             break;
         case 4:
             this.street = splitAddress[0];
