@@ -1,5 +1,5 @@
 import {Store} from '../../index.js';
-import pascalToCamel from '../../utils/pascalToCamel.js';
+import {toCamel} from '../../utils/toCase.js';
 
 const store=await new Store(4332);
 
@@ -36,7 +36,7 @@ const menu={
 const defineCategories=function(categories,menuParent){
     for(const category of categories){
         const formattedCategory=menuParent[
-            pascalToCamel(category.Code)
+            toCamel(category.Code)
         ]={};
         
         if(category.Code.length){
@@ -84,12 +84,19 @@ const defineCategories=function(categories,menuParent){
 
 //define categories
 for(const [categoryKey, dominosCategory] of Object.entries(store.menu.dominos.Categorization)){
-    const category= menu.categories[pascalToCamel(categoryKey)]={};
+    const category= menu.categories[toCamel(categoryKey)]={};
     
     defineCategories(
         dominosCategory.Categories,
         category
     );
+}
+
+const camelCaseKeys=function(object){
+    for(const key in object){
+        object[]
+
+    }
 }
 
 //

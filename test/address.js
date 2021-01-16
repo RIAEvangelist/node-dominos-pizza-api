@@ -1,5 +1,5 @@
 import IsDominos from '../utils/DominosTypes.js';
-import pascalToCamel from '../utils/pascalToCamel.js';
+import {toCamel} from '../utils/toCase.js';
 import {Address} from '../index.js';
 
 const isDominos=new IsDominos;
@@ -26,7 +26,7 @@ const validateAddress=function(test,address){
     isDominos.address(address);
 
     for(const [key,value] of Object.entries(address.dominos)){
-        const camelKey=pascalToCamel(key);
+        const camelKey=toCamel(key);
         
         //ensure that qall values match up despite casing
         test.compare(
