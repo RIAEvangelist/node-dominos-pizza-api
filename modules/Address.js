@@ -110,18 +110,10 @@ const parseAddress=function(locationString){
     //in good enough places for dominos to like it.
     switch (splitAddress.length) {
         case 2:
-            this.region = splitAddress[0];
+            this.region=splitAddress[0];
             break;
         case 3:
-            this.region = splitAddress[0];
-            
-            
-            if(this.region){
-                if(this.city){
-                    this.street = this.city;
-                }
-                this.city=this.region;
-            }
+            this.city=splitAddress[0];
             this.region = splitAddress[1];
             
             break;
@@ -130,10 +122,6 @@ const parseAddress=function(locationString){
             this.city = splitAddress[1];
             this.region = splitAddress[2];
             this.postalCode = splitAddress[3];
-    }
-
-    if (!this.postalCode) {
-        this.postalCode='';
     }
 }
 

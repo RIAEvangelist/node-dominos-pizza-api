@@ -59,6 +59,21 @@ const runTest=function(test){
     testAddress(test,addressString);
 
     addressObject={
+        street:'900 Clark Ave',
+        region:'MO',
+        postalCode:'63102'
+    }
+
+    // Address class to Populate address.dominos from spartial AddressObject
+    testAddress(test,addressObject);
+
+    addressString=`${addressObject.street}, ${addressObject.region}, ${addressObject.postalCode}`;
+    
+    // Address class to Populate address.dominos from partial AddressString
+    testAddress(test,addressString);
+
+
+    addressObject={
         region:'MO',
         postalCode:'63102'
     }
