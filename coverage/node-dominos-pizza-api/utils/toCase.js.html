@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for node-dominos-pizza-api/utils/urls.js</title>
+    <title>Code coverage report for node-dominos-pizza-api/utils/toCase.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">node-dominos-pizza-api/utils</a> urls.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">node-dominos-pizza-api/utils</a> toCase.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -71,13 +71,13 @@
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">63520x</span>
+<span class="cline-any cline-yes">63520x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -85,39 +85,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const urls={
-  referer : "https://order.dominos.com/en/pages/order/",
-  sourceUri : "order.dominos.com",
-  store : {
-    find : "https://order.dominos.com/power/store-locator?s=${line1}&amp;c=${line2}&amp;type=${type}",
-    info : "https://order.dominos.com/power/store/${storeID}/profile",
-    menu : "https://order.dominos.com/power/store/${storeID}/menu?lang=${lang}&amp;structured=true"
-  },
-  order: {
-    validate: "https://order.dominos.com/power/validate-order",
-    price: "https://order.dominos.com/power/price-order",
-    place: "https://order.dominos.com/power/place-order"
-  },
-  track: "https://order.dominos.com/orderstorage/GetTrackerData?"
-};
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const toCamel=function(key){
+    return key[0].toLowerCase()+key.slice(1);
+}
+&nbsp;
+const toPascal=<span class="fstat-no" title="function not covered" >function(key){</span>
+<span class="cstat-no" title="statement not covered" >    return key[0].toUpperCase()+key.slice(1);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+const old={toCamel}
 &nbsp;
 export {
-    urls as default,
-    urls
-}
-&nbsp;</pre></td></tr></table></pre>
+    old as default,
+    toCamel,
+    toPascal
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
