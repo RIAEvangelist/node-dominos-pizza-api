@@ -35,8 +35,10 @@ class Menu{
             products:{},
             options:{}
         },
-        cookingInstructions:{},
-        cookingInstructionGroups:{}
+        cooking:{
+            instructions:{},
+            instructionGroups:{}
+        }
     }
 
     //add back in once menu parsing solid
@@ -63,8 +65,10 @@ class Menu{
             products:{},
             options:{}
         },
-        cookingInstructions:{},
-        cookingInstructionGroups:{}
+        cooking:{
+            instructions:{},
+            instructionGroups:{}
+        }
     }
 
     #dominos={}

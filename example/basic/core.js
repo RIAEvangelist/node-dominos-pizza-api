@@ -92,6 +92,21 @@ const allDescendantsToCamel=function(dominos,menu){
     }
 }
 
+const allGrandDescendantsToCamel=function(dominos,menu){
+    if(weakIs.object(dominos)){
+        //console.log(menu);
+        for(const [key,value] of Object.entries(dominos)){
+            if(!weakIs.object(value)){
+                menu[key]=value;
+                continue;
+            }
+            menu[key]={};
+            const menuChild=menu[key];
+            allDescendantsToCamel(value,menuChild);
+        }
+    }
+}
+
 //
 //
 //organize the below object keys to camel case as follows
@@ -137,24 +152,33 @@ camelCaseKeys(store.menu.dominos.Flavors,store.menu.menu.flavors);
 
 //coupons
 //console.dir(store.menu.dominos.Coupons,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.Coupons,store.menu.menu.coupons.products);
+//console.dir(store.menu.menu.coupons.products,{depth:2});
 
 //ShortProductDescriptions
 //console.dir(store.menu.dominos.ShortProductDescriptions,{depth:2});
-
-//ShortCouponDescriptions
-//console.dir(store.menu.dominos.ShortCouponDescriptions,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.ShortProductDescriptions,store.menu.menu.shortProductDescriptions);
+//console.dir(store.menu.menu.shortProductDescriptions,{depth:2});
 
 //UnsupportedProducts
 //console.dir(store.menu.dominos.UnsupportedProducts,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.UnsupportedProducts,store.menu.menu.unsupported.products);
+//console.dir(store.menu.menu.unsupported.products,{depth:2});
 
 //UnsupportedOptions
 //console.dir(store.menu.dominos.UnsupportedOptions,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.UnsupportedOptions,store.menu.menu.unsupported.options);
+//console.dir(store.menu.menu.unsupported.options,{depth:2});
 
 //CookingInstructions
 //console.dir(store.menu.dominos.CookingInstructions,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.CookingInstructions,store.menu.menu.cooking.instructions);
+//console.dir(store.menu.menu.cooking.instructions,{depth:2});
 
 //CookingInstructionGroups
 //console.dir(store.menu.dominos.CookingInstructionGroups,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.CookingInstructionGroups,store.menu.menu.cooking.instructionGroups);
+//console.dir(store.menu.menu.cooking.instructionGroups,{depth:2});
 
 //
 //
@@ -167,8 +191,13 @@ camelCaseKeys(store.menu.dominos.Flavors,store.menu.menu.flavors);
 //CouponTiers
 //console.dir(store.menu.dominos.CouponTiers,{depth:3});
 allDescendantsToCamel(store.menu.dominos.CouponTiers,store.menu.menu.coupons.couponTiers);
+//console.dir(store.menu.menu.coupons.couponTiers,{depth:3});
 
-console.dir(store.menu.menu.coupons.couponTiers,{depth:3});
+//ShortCouponDescriptions
+//console.dir(store.menu.dominos.ShortCouponDescriptions,{depth:2});
+allDescendantsToCamel(store.menu.dominos.ShortCouponDescriptions,store.menu.menu.coupons.shortCouponDescriptions);
+//console.dir(store.menu.menu.coupons.shortCouponDescriptions,{depth:2});
+
 
 // console.dir(
 //     //JSON.stringify(store.menu)
