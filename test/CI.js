@@ -1,17 +1,16 @@
 import VanillaTest from 'vanilla-test';
-import IsDominos from '../utils/DominosTypes.js'
-import {Store} from '../index.js';
+import casingTest from './casingTest.js';
 import runAddressTest from './address.js';
 import runNearbyStoresTest from './nearbyStore.js';
 import runStoreTest from './store.js';
 
-const isDominos=new IsDominos;
-
 const test=new VanillaTest;
 
+casingTest(test);
 runAddressTest(test);
 await runNearbyStoresTest(test);
 await runStoreTest(test);
+
 
 
 
