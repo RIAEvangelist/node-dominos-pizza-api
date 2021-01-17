@@ -4,21 +4,96 @@
 
 If you want to see the ***RAW*** `.dominosMenu` object and documentation, check out the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md) instead. That object is huge and a little difficult to use which is why we provide this parsed menu.
 
+# store.menu.parsed
+
+|member                     |type  |description|
+|------                     |----  |-----------|
+|.categories                |Object|categorized products|
+|.coupons                   |Object|coupons details that can be used for discounts|
+|.flavors                   |Object|types of flavors and sauces for different foods|
+|.products                  |Object|a list of various products you can order. This does not include all of the same products from the `.categories` member sadly.|
+|.sides                     |Object|side dishes and side orders|
+|.sizes                     |Object|various order sizes and pice counts for products|
+|.toppings                  |Object|toppings that can be applied to various dishes and pizzas|
+|.variants                  |Object|customized or special versions of popular dishes|
+|.preconfiguredProducts     |Object|a selection of preconfigured products to order. There are more items like, sorted into categories like `popularItems` in the preconfigured category in `.categories`|
+|.shortProductDescriptions  |Object|a strange object which contains a seeminly random set of short description for just a few products.|
+|.unsupported               |Object|unsupported products and options. This may be store specific.|
+|.cooking                   |Object|cooking instrictions and options|
 
 
 
+```js
+
+    {
+        categories: [Object],
+        coupons: [Object],
+        flavors: [Object],
+        products: [Object],
+        sides: [Object],
+        sizes: [Object],
+        toppings: [Object],
+        variants: [Object],
+        preconfiguredProducts: [Object],
+        shortProductDescriptions: [Object],
+        unsupported: [Object],
+        cooking: [Object]
+    }
+
+```
 
 
+# store.menu.parsed.categories
+
+|member                 |type  |description|
+|------                 |----  |-----------|
+|.food                  |Object|various types of food product categories|
+|.coupons               |Object|coupon categories|
+|.couponsByProduct      |Object|coupons sorted by product|
+|.preconfiguredProducts |Object|categories of preconfigured products, including items that are popular|
 
 
+```js
 
+{
+    food: {
+        pizza: [Object],
+        sandwich: [Object],
+        pasta: [Object],
+        wings: [Object],
+        bread: [Object],
+        gSalad: [Object],
+        chips: [Object],
+        drinks: [Object],
+        dessert: [Object],
+        sides: [Object]
+    },
+    coupons: {
+        feeds1To2: [Object],
+        feeds3To5: [Object],
+        feeds6Plus: [Object],
+        lunchOffers: [Object],
+        all: [Object],
+        allStoreCoupons: [Object]
+    },
+    couponsByProduct: {
+        couponPizza: [Object],
+        couponDessert: [Object],
+        couponDrinks: [Object],
+        couponBread: [Object],
+        couponWings: [Object],
+        couponSandwich: [Object],
+        couponPasta: [Object],
+        couponGSalad: [Object],
+        couponSides: [Object]
+    },
+    preconfiguredProducts: { 
+      groupOrdering: [Object], 
+      popularItems: [Object] 
+    }
+}
 
-
-
-
-
-
-
+```
 
 
 

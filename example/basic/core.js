@@ -15,10 +15,10 @@ const store=await new Store(4332);
 
 
 console.dir(
-    JSON.stringify(store.menu.parsed),
-    //store.menu.parsed,
+    //JSON.stringify(store.menu.parsed),
+    store.menu.parsed.categories,
     {
-        depth:30
+        depth:1
     }
 );
 

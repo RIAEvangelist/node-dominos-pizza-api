@@ -1,17 +1,11 @@
-# Dominos store.dominosMenu
+# Dominos store.menu.dominos
 
-The `store.dominosMenu` object is ***HUGE***! It cntains the actual dominos menu response with information on everything you could imagine for a Store's Menu. We parse this information and provide a simpler to use menu for javascript in the store.
+The `store.menu.dominos` object is ***HUGE***! It cntains the actual dominos menu response with information on everything you could imagine for a Store's Menu. We parse this information and provide a simpler to use menu for javascript in the store.
 
 If you want to see the easy to use parsed `.menu` object and documentation, check out the [parsed Dominos Pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md), it is designed to be much easier to use. 
 
 
-## store.dominosMenu
-
-`store.dominosMenu` provides ***HUGE*** amounts of ***RAW*** menu data direct from Dominos and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
-
-You can see the full raw dominosMenu object and documentation [in the dominos pizza RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md).
-
-`store.dominosMenu` fields
+## store.menu.dominos
 
 |member                   |type  |description|
 |------                   |----  |-----------|
@@ -57,9 +51,9 @@ You can see the full raw dominosMenu object and documentation [in the dominos pi
 ```
 
 
-# store.dominosMenu.Misc
+# store.menu.dominos.Misc
 
-The `store.dominosMenu.Misc` object contains a little bit of useful information like the `StoreID` and date and time at the stores location.
+The `store.menu.dominos.Misc` object contains a little bit of useful information like the `StoreID` and date and time at the stores location.
 
 ```js
 
@@ -77,9 +71,9 @@ The `store.dominosMenu.Misc` object contains a little bit of useful information 
 
 ---
 
-# store.dominosMenu.Categorization
+# store.menu.dominos.Categorization
 
-A short example of the `store.dominosMenu.Categorization` object. This object contains a lot of information. It starts with categories such as `Food` and `Drink`. Inside of each category is an array of sub categories such as `Pizza`, or `Pasta`. 
+A short example of the `store.menu.dominos.Categorization` object. This object contains a lot of information. It starts with categories such as `Food` and `Drink`. Inside of each category is an array of sub categories such as `Pizza`, or `Pasta`. 
 
 |member                 |type  |description|
 |------                 |------|-----------|
@@ -116,7 +110,7 @@ Each category is formattes as follows. The product information is contained actu
 
 ## .Food
 
-`store.dominosMenu.Categorization.Food`
+`store.menu.dominos.Categorization.Food`
 
 
 ```js
@@ -194,7 +188,7 @@ List of `.Food` catgories and if they have products or sub categories. You will 
 
 ### Category Products
 
-In each Category that contains no further Sub Categories, there will be a `.Products` Array which contains a list of product codes that are avauilable in this category. These product codes need to be looked up in the `store.dominosMenu.Procucts` Object.
+In each Category that contains no further Sub Categories, there will be a `.Products` Array which contains a list of product codes that are avauilable in this category. These product codes need to be looked up in the `store.menu.dominos.Procucts` Object.
 
 ```js
 
@@ -213,7 +207,7 @@ Products : [
 
 ## .Coupons
 
-`store.dominosMenu.Categorization.Coupons`
+`store.menu.dominos.Categorization.Coupons`
 
 
 ```js
@@ -232,7 +226,7 @@ Products : [
 
 ## .CouponsByProduct
 
-`store.dominosMenu.Categorization.CouponsByProduct`
+`store.menu.dominos.Categorization.CouponsByProduct`
 
 
 ```js
@@ -257,7 +251,7 @@ CouponsByProduct: {
 
 ## .PreconfiguredProducts
 
-`store.dominosMenu.Categorization.PreconfiguredProducts`
+`store.menu.dominos.Categorization.PreconfiguredProducts`
 
 
 ```js
@@ -278,7 +272,7 @@ PreconfiguredProducts: {
 
 
 
-# Full store.dominosMenu example response
+# Full store.menu.dominos example response
 
 Here is a full example from store `4332`. Enjoy perusing the available data.
 

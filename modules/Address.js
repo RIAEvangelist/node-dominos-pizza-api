@@ -74,9 +74,9 @@ class Address {
     get addressLines() {
         const line1 = this.street||'';
         const line2 = `${
-            (this.City ? this.city + ',' : '')
+            (this.City||'')
         } ${
-            (this.Region ? this.region + ',' : '')
+            (this.Region||'')
         } ${
             this.postalCode
         }`
