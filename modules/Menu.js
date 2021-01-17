@@ -122,11 +122,7 @@ class Menu{
             }
     
             formattedCategory.hasTags=false;
-    
-            if(category.Tags.length){
-                formattedCategory.hasTags=true;
-                formattedCategory.tags=category.Tags;
-            }
+
         }
     }
     
@@ -149,8 +145,6 @@ class Menu{
                 this.#camelCaseKeys(value,menuChild);
                 this.#allDescendantsToCamel(value,menuChild);
             }
-        }else{
-            menu=dominos;
         }
     }
     
@@ -158,16 +152,10 @@ class Menu{
         if(weakIs.object(dominos)){
             //console.log(menu);
             for(const [key,value] of Object.entries(dominos)){
-                if(!weakIs.object(value)){
-                    menu[key]=value;
-                    continue;
-                }
                 menu[key]={};
                 const menuChild=menu[key];
                 this.#allDescendantsToCamel(value,menuChild);
             }
-        }else{
-            menu=dominos;
         }
     }
     
@@ -177,17 +165,11 @@ class Menu{
             if(weakIs.object(dominos)){
                 this.#camelCaseKeys(dominos,menu);
                 for(const [key,value] of Object.entries(dominos)){
-                    if(!weakIs.object(value)){
-                        menu[toCamel(key)]=value;
-                        continue;
-                    }
                     const menuChild=menu[toCamel(key)]={};
                     
                     this.#allGrandDescendantsToCamel(value,menuChild);
                 }
             }
-        }else{
-            menu=dominos;
         }
     }
    
