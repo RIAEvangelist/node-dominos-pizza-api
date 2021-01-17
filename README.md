@@ -39,11 +39,19 @@ See the examples directory for simple apps and demonstrations on using the basic
 
 # Testing
 
-For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare bones testing framework, but it works really well and simply with native ES6 and ESM.
+For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare bones testing framework, but it works really well and simply with native ES6 and ESM. [vanilla-test on npm](https://www.npmjs.com/package/vanilla-test)
 
 Simply run ` npm test `
 
 This will setup everything that is needed to run the tests, install the modules required and run the tests for you.
+
+---
+
+# Code Coverage
+
+For coverage we are using the amazing `c8` coverage suite. It produces awesom instanbul style reports as well as lcov and much mmore. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
+
+Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. 
 
 ---
 
@@ -217,7 +225,7 @@ You can see the full `Store` documentation [in the dominos pizza Store.md](https
 |member/method|type  |description|
 |-------------|------|-----------|
 |.info        |Object|Detailed Store Information|
-|.menu        |Object|Parsed `store.dominosMenu` for easier use in JS|
+|.menu        |Object|Parsed `store.menu.dominos` for easier use in JS|
 |.dominosMenu |Object|Detailed Raw Store Menu from Dominos |
 
 ```js
@@ -288,16 +296,14 @@ You can see the full `.info` object and documentation [in the dominos pizza Stor
 
 ## store.menu
 
-`store.menu` provides ***HUGE*** amounts of well formatted menu data parsed from the `store.dominosMenu` object. This information is parsed from the dominos api when the instance is instantiated.
+`store.menu.parsed` provides ***HUGE*** amounts of well formatted menu data parsed from the `store.menu.dominos` object. This information is parsed from the dominos api when the instance is instantiated. There is a *LOT* of info in this object. Please see the full parsed menu object and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md). 
 
-You can see the full parsed menu object and documentation [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md). 
-
-//Working on building this object while documenting the `.dominosMenu` object.
+//Working on documenting this object [in the dominos pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md) first.
 
 
-## store.dominosMenu
+## store.menu.dominos
 
-`store.dominosMenu` provides ***HUGE*** amounts of ***RAW*** menu data direct from Dominos and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
+`store.menu.dominos` provides ***HUGE*** amounts of ***RAW*** menu data direct from Dominos and has information for ***everything*** on the store's menu. This information is populated from the dominos api when the instance is instantiated.
 
 You can see the full raw dominosMenu object and documentation [in the dominos pizza RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md). 
 

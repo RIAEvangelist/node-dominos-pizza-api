@@ -53,10 +53,7 @@ class Item{
         Code:'',
         Qty:1,
         ID:1,
-        Options:{ 
-            'C': {'1/1': '1'}, 
-            'X': {'1/1': '1'} 
-        }
+        Options:{}
     }
 }
 

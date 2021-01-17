@@ -86,7 +86,7 @@ class Menu{
             const formattedCategory=menuParent[
                 toCamel(category.Code)
             ]={};
-            
+
             if(category.Code.length){
                 formattedCategory.code=category.Code;
             }
@@ -136,7 +136,10 @@ class Menu{
     #allDescendantsToCamel(dominos,menu){
         if(weakIs.object(dominos)){
             for(const [key,value] of Object.entries(dominos)){
-                if(!weakIs.object(value)){
+                if(
+                    weakIs.array(value)||
+                    !weakIs.object(value)
+                ){
                     menu[toCamel(key)]=value;
                     continue;
                 }
