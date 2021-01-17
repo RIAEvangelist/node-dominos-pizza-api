@@ -40,6 +40,11 @@ const testStore=async function(test,storeID,lang){
         test.is.object(store.menu.dominos.Products);
         test.is.object(store.menu.dominos.Toppings);
         test.is.object(store.menu.dominos.PreconfiguredProducts);
+
+        //test a smattering of the PARSED menu categories for existance and format
+        test.is.object(store.menu.parsed.categories.food.pizza);
+        test.is.object(store.menu.parsed.categories.food.drinks);
+        test.is.object(store.menu.parsed.preconfiguredProducts.XC_14SCREEN);
         
         //test that the dominos was for the right store
         test.compare(

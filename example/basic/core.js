@@ -15,9 +15,26 @@ const store=await new Store(4332);
 
 console.dir(
     //JSON.stringify(store.menu)
-    store.menu.parsed,
+    store.menu.parsed.categories.preconfiguredProducts.popularItems.subCategories.popularItemsPizza,
+    {
+        depth:1
+    }
+);
+
+console.dir(
+    //JSON.stringify(store.menu)
+    store.menu.parsed.preconfiguredProducts.XC_14SCREEN,
+    {
+        depth:1
+    }
+);
+
+console.dir(
+    //JSON.stringify(store.menu)
+    store.menu.parsed.categories.food,
     {
         depth:0
     }
 );
+
 
