@@ -89,6 +89,8 @@ const allDescendantsToCamel=function(dominos,menu){
             camelCaseKeys(value,menuChild);
             allDescendantsToCamel(value,menuChild);
         }
+    }else{
+        menu=dominos;
     }
 }
 
@@ -104,6 +106,28 @@ const allGrandDescendantsToCamel=function(dominos,menu){
             const menuChild=menu[key];
             allDescendantsToCamel(value,menuChild);
         }
+    }else{
+        menu=dominos;
+    }
+}
+
+const allParentAndGrandDescendantsToCamel=function(dominos,menu){
+    if(weakIs.object(dominos)){
+        //console.log(menu);
+        if(weakIs.object(dominos)){
+            camelCaseKeys(dominos,menu);
+            for(const [key,value] of Object.entries(dominos)){
+                if(!weakIs.object(value)){
+                    menu[toCamel(key)]=value;
+                    continue;
+                }
+                const menuChild=menu[toCamel(key)]={};
+                
+                allGrandDescendantsToCamel(value,menuChild);
+            }
+        }
+    }else{
+        menu=dominos;
     }
 }
 
@@ -120,26 +144,23 @@ const allGrandDescendantsToCamel=function(dominos,menu){
 
 //flavors
 //console.dir(store.menu.dominos.Flavors,{depth:2});
-camelCaseKeys(store.menu.dominos.Flavors,store.menu.menu.flavors);
+allParentAndGrandDescendantsToCamel(store.menu.dominos.Flavors,store.menu.menu.flavors);
 //console.log(store.menu.menu.flavors);
-
-//products
-//console.dir(store.menu.dominos.Products,{depth:2});
 
 //sides
 //console.dir(store.menu.dominos.Sides,{depth:2});
+allParentAndGrandDescendantsToCamel(store.menu.dominos.Sides,store.menu.menu.sides);
+//console.dir(store.menu.menu.sides,{depth:3});
 
 //Sizes
 //console.dir(store.menu.dominos.Sizes,{depth:2});
+allParentAndGrandDescendantsToCamel(store.menu.dominos.Sizes,store.menu.menu.sizes);
+//console.dir(store.menu.menu.sizes,{depth:3});
 
 //Toppings
 //console.dir(store.menu.dominos.Toppings,{depth:3});
-
-//Variants
-//console.dir(store.menu.dominos.Variants,{depth:2});
-
-//PreconfiguredProducts
-//console.dir(store.menu.dominos.PreconfiguredProducts,{depth:2});
+allParentAndGrandDescendantsToCamel(store.menu.dominos.Toppings,store.menu.menu.toppings);
+//console.dir(store.menu.menu.toppings,{depth:3});
 
 //
 //
@@ -150,10 +171,26 @@ camelCaseKeys(store.menu.dominos.Flavors,store.menu.menu.flavors);
 //     }
 // }
 
+//products
+//console.dir(store.menu.dominos.Products,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.Products,store.menu.menu.products);
+//console.log(store.menu.menu.products);
+
+//PreconfiguredProducts
+//console.dir(store.menu.dominos.PreconfiguredProducts,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.PreconfiguredProducts,store.menu.menu.preconfiguredProducts);
+//console.dir(store.menu.menu.preconfiguredProducts,{depth:3});
+
+
 //coupons
 //console.dir(store.menu.dominos.Coupons,{depth:2});
 allGrandDescendantsToCamel(store.menu.dominos.Coupons,store.menu.menu.coupons.products);
 //console.dir(store.menu.menu.coupons.products,{depth:2});
+
+//Variants
+//console.dir(store.menu.dominos.Variants,{depth:2});
+allGrandDescendantsToCamel(store.menu.dominos.Variants,store.menu.menu.variants);
+//console.dir(store.menu.menu.variants,{depth:3});
 
 //ShortProductDescriptions
 //console.dir(store.menu.dominos.ShortProductDescriptions,{depth:2});
