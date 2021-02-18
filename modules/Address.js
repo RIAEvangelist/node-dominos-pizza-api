@@ -1,10 +1,10 @@
 import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
-import {pascalObjectKeys,camelObjectKeys} from '../utils/toCase.js';
+import DominosFormat from './DominosFormat.js';
 
 const weakIs=new Is(false);
 
-class Address {
+class Address extends DominosFormat{
     constructor(parameters){
         //merge params into this object
         const paramsRemaining=defaultParameters(this,parameters);
@@ -32,19 +32,6 @@ class Address {
     region      =''
     postalCode  =''
     deliveryInstructions=''
-
-    get formatted(){
-        return pascalObjectKeys(this);
-    }
-
-    set formatted(dominosAddress){
-        Object.assign(
-            this,
-            camelObjectKeys(dominosAddress)
-        );
-
-        return this;
-    }
 
     get addressLines() {
         const line1 = this.street

@@ -1,10 +1,10 @@
 import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
-import {pascalObjectKeys,camelObjectKeys} from '../utils/toCase.js';
+import DominosFormat from './DominosFormat.js';
 
 const is=new Is;
 
-class Item{
+class Item extends DominosFormat{
     constructor(parameters) {
         defaultParameters(this,parameters);
     }
@@ -12,19 +12,6 @@ class Item{
     code=''
     qty=1
     options={}   
-
-    get formatted(){
-        return pascalObjectKeys(this);
-    }
-
-    set formatted(dominosItem){
-        Object.assign(
-            this,
-            camelObjectKeys(dominosItem)
-        );
-
-        return this;
-    }
 }
 
 export {
