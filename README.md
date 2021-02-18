@@ -90,6 +90,12 @@ See the various [International Dominos Endpoints and how to use them](https://gi
 
 ---
 
+# Item
+
+[Item.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)
+
+---
+
 
 # Below docs are still v2.0 updating docs in order as I go
 
@@ -117,28 +123,6 @@ See the various [International Dominos Endpoints and how to use them](https://gi
           email: 'br'
       }
   )
-
-```
----
-
-# Item
-
-You can get the codes from one of the menu requests.
-
-|argument|type|default|
-|--------|----|-------|
-|code|String|null|
-|quantity|Integer|1|
-|options|Array|[]|
-
-```javascript
-
-  var newItem = new Item(
-    {
-        code: '14SCREEN'
-    }
-  );
-  //and so on...
 
 ```
 ---
