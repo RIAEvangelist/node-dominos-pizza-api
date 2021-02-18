@@ -16,35 +16,19 @@ class Store{
             throw new ReferenceError(`Store class expects id to be a number or string, but got ${id}`);
         }
         is.string(lang);
+
         return this.#init(id,lang);
     }
 
-    get info(){
-        return this.#info;
-    }
-
-    //add this back in once menu parsing complete
-    // get menu(){
-    //     return this.#menu;
-    // }
-
-    #info={}
-    //#menu={}
+    dominosAPIResponse={}
 
     async #init(id,lang) {
 
-        this.#info=await get(
+        this.dominosAPIResponse=await get(
             urls.store.info.replace('${storeID}', id)
         );
 
-        
-        this.menu=new Menu(
-            await get(
-                urls.store.menu
-                    .replace('${storeID}', this.info.StoreID)
-                    .replace('${lang}', lang)
-            )
-        );
+        this.menu=await new Menu(id,lang);
 
         return this;
     }

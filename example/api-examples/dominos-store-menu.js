@@ -1,40 +1,11 @@
-var pizza = require('../../dominos-pizza-api');
+import {NearbyStores, Menu} from '../../index.js';
+  
+const nearbyStores=await new NearbyStores('88 Colin P Kelly Jr St, 94107');
 
-//Get stores by postal code, distance is not as accurate this way
-pizza.Util.findNearbyStores(
-    '63102',
-    'Delivery',
-    function(storeData) {
-        var Store = new pizza.Store(
-            {
-                ID: storeData.result.Stores[0].StoreID
-            }
-        );
+console.dir(nearbyStores,{depth:1});
+console.dir(nearbyStores.stores[0],{depth:1});
 
-        //Get Menu for first store
-        Store.getMenu(
-            function(menu) {
-                function printCategory(showItems,category,depth) {
-                    if (!depth) depth = 0;
-                    var indent = Array(depth+1).join("  ");
-                    console.log(indent+category.getName());
-                    for (var subIndex in category.getSubcategories()) {
-                        printCategory(showItems,category.getSubcategories()[subIndex],depth+1);
-                    }
-                    if (showItems) {
-                        category.getProducts().forEach(function(product) {
-                            console.log(indent+"  ["+product.getCode()+"] "+product.getName());
-                        });
-                    }
-                }
+//initialize the frst of the nearbyStores.stores
+const menu=await new Menu(nearbyStores.stores[0].StoreID);
 
-                console.log("************ Coupon Menu ************");
-                printCategory(true,menu.getCouponCategory(),1);
-                console.log("\n\n************ Preconfigured Menu ************");
-                printCategory(true,menu.getPreconfiguredCategory(),1);
-                console.log("\n\n************ Regular Menu ************");
-                printCategory(true,menu.getFoodCategory(),1);
-            }
-        );
-    }
-);
+console.dir(menu,{depth:1});

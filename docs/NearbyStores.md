@@ -2,12 +2,25 @@
 NearbyStores for Finding Stores
 ====
 
-|argument |type                         |default|description|
-|-------- |----                         |-------|--------|
-|address  |AddressObject / AddressString|       |anything that could be passed to the `Address` class|
-|type     |String                       |all    |`Delivery`, `Carryout`, `all`|
+Constructor
+====
 
-You can see the full NearbyStores documentation [in the dominos pizza NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/NearbyStores.md). 
+`new Address({...})`
+
+|argument |type  |default   |description|
+|-------- |----  |-------   |--------|
+|address  |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md) instance, or AddressObject or AddressString | |either an instance of the Address class or anthing that could be passed to the `Address` class to make an instance|
+|type     |String|`Delivery`|`Delivery`, `Carryout`, `all`|
+
+
+Instance
+====
+
+|member/method      |type  |description|
+|-------------      |------|-------    |
+|address            |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md)|An Address Instance populated with the Domino's Store information|
+|stores             |Array| Array of basic store objects, see below.|
+|dominosAPIResponse |[Dominos API Response Object](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md)|Raw response from Domino's Each response is a little different, but you can see the core info in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md). |
 
 ### By PostalCode
 ***this yields a wide variety of stores*** because it is not a very specific address. To find stores closer to you (or your user), use a more specific address.
@@ -16,92 +29,104 @@ You can see the all the ways to pass an address [in the dominos pizza Address.md
 
 ```js
 
-  import {NearbyStores} from 'dominos';
+    import {NearbyStores} from 'dominos';
 
-  const nearbyStores=await new NearbyStores(
-    '63102',
-    'Delivery'
-  );
+    const nearbyStores=await new NearbyStores('63102');
 
-  console.log(nearbyStores.stores);
+    console.dir(nearbyStores,{depth:1});
+    console.dir(nearbyStores.stores[0],{depth:1});
 
 ```
 
 `nearbyStores.stores` is automatically populated from the dominos API when the class is instantiated. It is an `Array` of basic Store information. This info can be used as is, or you can create a `new Store(StoreID)` to get even more detailed information on the Store and its Menu as well.
 
+``` js
+
+    import {NearbyStores, Store} from 'dominos';
+  
+    const nearbyStores=await new NearbyStores('88 Colin P Kelly Jr St, 94107');
+
+    console.dir(nearbyStores,{depth:1});
+    console.dir(nearbyStores.stores[0],{depth:1});
+
+    //initialize the frst of the nearbyStores.stores
+    const store=await new Store(nearbyStores.stores[0].StoreID);
+
+    console.dir(store,{depth:1});
+```
+
+
+### Detailed class insight
+
 ```js
 
-    [
-        {
-            StoreID: '1605',
-            IsDeliveryStore: false,
-            Phone: '314-421-3030',
-            AddressDescription: '1430 N. 13th\n' +
-            'St. Louis, MO 63106\n' +
-            'On the  corner of Cass Ave and N 13th Street.',
-            HolidaysDescription: '',
-            HoursDescription: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
-            ServiceHoursDescription: {
-                Carryout: 'Su-Sa 10:30am-10:00pm',
-                Delivery: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
-                DriveUpCarryout: 'Su-Sa 10:30am-9:00pm'
-            },
-            IsOnlineCapable: true,
-            IsOnlineNow: true,
-            IsNEONow: true,
-            IsSpanish: true,
-            LocationInfo: 'On the  corner of Cass Ave and N 13th Street.',
-            LanguageLocationInfo: {
-                en: 'On the  corner of Cass Ave and N 13th Street.',
-                es: 'On the  corner of Cass Ave and N 13th Street.'
-            },
-            AllowDeliveryOrders: true,
-            AllowCarryoutOrders: true,
-            AllowDuc: true,
-            ServiceMethodEstimatedWaitMinutes: { 
-                Delivery: { Min: 15, Max: 20 }, 
-                Carryout: { Min: 10, Max: 15 } 
-            },
-            StoreCoordinates: { StoreLatitude: '38.6405', StoreLongitude: '-90.1942' },
-            AllowPickupWindowOrders: false,
-            ContactlessDelivery: 'REQUIRED',
-            ContactlessCarryout: 'INSTRUCTION',
-            IsOpen: false,
-            ServiceIsOpen: { Carryout: false, Delivery: false, DriveUpCarryout: false }
+    //nearbyStores high level instance
+    NearbyStores {
+        address: Address {
+            street: '88 COLIN P KELLY JR ST',
+            streetNumber: '88',
+            streetName: 'COLIN P KELLY JR ST',
+            unitType: '',
+            unitNumber: '',
+            city: 'SAN FRANCISCO',
+            region: 'CA',
+            postalCode: '94107-2008',
+            deliveryInstructions: ''
         },
-        {
-            StoreID: '1524',
-            IsDeliveryStore: false,
-            Phone: '314-621-3030',
-            AddressDescription: '1613 S 9th Street\nSt. Louis, MO 63104\n',
-            HolidaysDescription: '',
-            HoursDescription: 'Su-Th 11:00am-12:00am\nFr-Sa 11:00am-1:00am',
-            ServiceHoursDescription: {
-                Carryout: 'Su-Sa 10:30am-10:00pm',
-                Delivery: 'Su-Th 11:00am-12:00am\nFr-Sa 11:00am-1:00am',
-                DriveUpCarryout: 'Su-Sa 4:00pm-9:00pm'
-            },
-            IsOnlineCapable: true,
-            IsOnlineNow: true,
-            IsNEONow: false,
-            IsSpanish: true,
-            LocationInfo: '',
-            LanguageLocationInfo: { en: '', es: '' },
-            AllowDeliveryOrders: true,
-            AllowCarryoutOrders: true,
-            AllowDuc: true,
-            ServiceMethodEstimatedWaitMinutes: { 
-                Delivery: { Min: 20, Max: 30 }, 
-                Carryout: { Min: 10, Max: 15 } 
-            },
-            StoreCoordinates: { StoreLatitude: '38.6111', StoreLongitude: '-90.2024' },
-            AllowPickupWindowOrders: false,
-            ContactlessDelivery: 'REQUIRED',
-            ContactlessCarryout: 'DISABLED',
-            IsOpen: false,
-            ServiceIsOpen: { Carryout: false, Delivery: false, DriveUpCarryout: false }
+        stores: [
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object]
+        ],
+        dominosAPIResponse: {
+            //this all comes from dominos
+            //this is -1 if the request fails
+            Status: 0,
+            //this is only present if the request fails. it contains information about what went wrong
+            StatusItems: [Array],
+            Granularity: 'Exact',
+            Address: [Object],
+            Stores: [Array]
+        }
+    }
+
+
+    //nearbyStores.stores[0] basic store info
+    {
+        StoreID: '7764',
+        IsDeliveryStore: false,
+        MinDistance: 1.5,
+        MaxDistance: 1.5,
+        Phone: '415-776-0400',
+        AddressDescription: '876 Geary St.\nSan Francisco, CA 94109\n',
+        HolidaysDescription: '',
+        HoursDescription: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+        ServiceHoursDescription: {
+            Carryout: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+            Delivery: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+            DriveUpCarryout: 'Su-Sa 4:00pm-9:00pm'
         },
-        ...
-    ]
+        IsOnlineCapable: true,
+        IsOnlineNow: true,
+        IsNEONow: false,
+        IsSpanish: true,
+        LocationInfo: '',
+        LanguageLocationInfo: { en: '', es: '' },
+        AllowDeliveryOrders: true,
+        AllowCarryoutOrders: true,
+        AllowDuc: true,
+        ServiceMethodEstimatedWaitMinutes: { Delivery: [Object], Carryout: [Object] },
+        StoreCoordinates: { StoreLatitude: '37.786466', StoreLongitude: '-122.417737' },
+        AllowPickupWindowOrders: false,
+        ContactlessDelivery: 'REQUIRED',
+        ContactlessCarryout: 'INSTRUCTION',
+        IsOpen: true,
+        ServiceIsOpen: { Carryout: true, Delivery: true, DriveUpCarryout: true }
+    }
 
 ```

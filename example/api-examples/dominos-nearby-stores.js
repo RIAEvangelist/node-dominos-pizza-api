@@ -1,8 +1,7 @@
-import {NearbyStores} from "../../index.js";
+import {NearbyStores} from '../../index.js';
+  
+const nearbyStores=await new NearbyStores('88 Colin P Kelly Jr St, 94107');
 
-const address='88 Colin P Kelly Jr St, 94107';
+console.dir(nearbyStores,{depth:1});
 
-//Get stores by postal code, distance is not as accurate this way
-const nearbyStores=await new NearbyStores(address);
-
-console.dir(nearbyStores);
+console.dir(nearbyStores.stores[0],{depth:1});

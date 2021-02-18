@@ -11,14 +11,14 @@ class NearbyStores{
         
         this.address = new Address(addressInfo);
 
-        return this.getStores(pickUpType);
+        return this.#getStores(pickUpType);
     }
 
     address=defaultAddress
 
-    stores=[];
+    stores=[]
 
-    async getStores(pickUpType){
+    async #getStores(pickUpType){
         const stores=await get(
             urls.store.find
                 .replace(

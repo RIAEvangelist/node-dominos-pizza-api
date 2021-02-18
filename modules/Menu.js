@@ -6,22 +6,11 @@ const is=new Is;
 const weakIs=new Is(false);
 
 class Menu{
-    constructor(menu) {
-        is.object(menu);
-        
-        this.#dominos = menu;
-        this.#parse(menu);
+    constructor(storeID,lang='en') {
+        return this.#getMenu(storeID,lang);
     }
 
-    get dominos(){
-        return this.#dominos;
-    }
-    
-    get parsed(){
-        return this.#menu;
-    }
-
-    #menu={
+    menu={
         categories:{},
         coupons:{
             products:{},
@@ -46,14 +35,26 @@ class Menu{
         }
     }
 
-    #dominos={}
+    dominosAPIResponse={}
+
+    async #getMenu(storeID,lang){
+        this.dominosAPIResponse=await get(
+            urls.store.menu
+                .replace('${storeID}', storeID)
+                .replace('${lang}', lang)
+        );
+
+        this.#parse(this.dominosAPIResponse);
+
+        return this;
+    };
 
     #parse(menu){
         is.object(menu);
 
         //define categories
-        for(const [categoryKey, dominosCategory] of Object.entries(this.#dominos.Categorization)){
-            const category= this.#menu.categories[toCamel(categoryKey)]={};
+        for(const [categoryKey, dominosCategory] of Object.entries(this.dominosAPIResponse.Categorization)){
+            const category= this.menu.categories[toCamel(categoryKey)]={};
             
             this.#defineCategories(
                 dominosCategory.Categories,
@@ -61,23 +62,23 @@ class Menu{
             );
         }
 
-        this.#allParentAndGrandDescendantsToCamel(this.#dominos.Flavors,this.#menu.flavors);
-        this.#allParentAndGrandDescendantsToCamel(this.#dominos.Sides,this.#menu.sides);
-        this.#allParentAndGrandDescendantsToCamel(this.#dominos.Sizes,this.#menu.sizes);
-        this.#allParentAndGrandDescendantsToCamel(this.#dominos.Toppings,this.#menu.toppings);
+        this.#allParentAndGrandDescendantsToCamel(this.dominosAPIResponse.Flavors,this.menu.flavors);
+        this.#allParentAndGrandDescendantsToCamel(this.dominosAPIResponse.Sides,this.menu.sides);
+        this.#allParentAndGrandDescendantsToCamel(this.dominosAPIResponse.Sizes,this.menu.sizes);
+        this.#allParentAndGrandDescendantsToCamel(this.dominosAPIResponse.Toppings,this.menu.toppings);
 
-        this.#allGrandDescendantsToCamel(this.#dominos.Products,this.#menu.products);
-        this.#allGrandDescendantsToCamel(this.#dominos.PreconfiguredProducts,this.#menu.preconfiguredProducts);
-        this.#allGrandDescendantsToCamel(this.#dominos.Coupons,this.#menu.coupons.products);
-        this.#allGrandDescendantsToCamel(this.#dominos.Variants,this.#menu.variants);
-        this.#allGrandDescendantsToCamel(this.#dominos.ShortProductDescriptions,this.#menu.shortProductDescriptions);
-        this.#allGrandDescendantsToCamel(this.#dominos.UnsupportedProducts,this.#menu.unsupported.products);
-        this.#allGrandDescendantsToCamel(this.#dominos.UnsupportedOptions,this.#menu.unsupported.options);
-        this.#allGrandDescendantsToCamel(this.#dominos.CookingInstructions,this.#menu.cooking.instructions);
-        this.#allGrandDescendantsToCamel(this.#dominos.CookingInstructionGroups,this.#menu.cooking.instructionGroups);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.Products,this.menu.products);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.PreconfiguredProducts,this.menu.preconfiguredProducts);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.Coupons,this.menu.coupons.products);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.Variants,this.menu.variants);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.ShortProductDescriptions,this.menu.shortProductDescriptions);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.UnsupportedProducts,this.menu.unsupported.products);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.UnsupportedOptions,this.menu.unsupported.options);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.CookingInstructions,this.menu.cooking.instructions);
+        this.#allGrandDescendantsToCamel(this.dominosAPIResponse.CookingInstructionGroups,this.menu.cooking.instructionGroups);
 
-        this.#allDescendantsToCamel(this.#dominos.CouponTiers,this.#menu.coupons.couponTiers);
-        this.#allDescendantsToCamel(this.#dominos.ShortCouponDescriptions,this.#menu.coupons.shortCouponDescriptions);
+        this.#allDescendantsToCamel(this.dominosAPIResponse.CouponTiers,this.menu.coupons.couponTiers);
+        this.#allDescendantsToCamel(this.dominosAPIResponse.ShortCouponDescriptions,this.menu.coupons.shortCouponDescriptions);
         
     }
 
