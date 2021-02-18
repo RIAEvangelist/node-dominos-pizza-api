@@ -6,7 +6,7 @@ const is=new Is;
 class Customer extends DominosFormat{
     constructor(parameters) {
         super();
-        
+        this.init=parameters;
     }
 
     firstName   =''

@@ -5,7 +5,8 @@ const weakIs=new Is(false);
 
 class Address extends DominosFormat{
     constructor(parameters){
-        super(parameters);
+        super();
+        this.init=parameters;
 
         if(weakIs.string(parameters)){
             this.#parse(parameters);

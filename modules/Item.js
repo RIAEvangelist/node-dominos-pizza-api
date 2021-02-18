@@ -5,7 +5,8 @@ const is=new Is;
 
 class Item extends DominosFormat{
     constructor(parameters) {
-        super(parameters);
+        super();
+        this.init=parameters;
     }
 
     code=''
