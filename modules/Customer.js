@@ -1,4 +1,3 @@
-import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
 import DominosFormat from './DominosFormat.js';
 
@@ -6,7 +5,8 @@ const is=new Is;
 
 class Customer extends DominosFormat{
     constructor(parameters) {
-        defaultParameters(this,parameters);
+        super();
+        
     }
 
     firstName   =''

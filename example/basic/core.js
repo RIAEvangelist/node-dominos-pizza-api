@@ -1,10 +1,13 @@
 import {Store} from '../../index.js';
-import {toCamel} from '../../utils/toCase.js';
 import Is from 'strong-type';
-import fs from 'fs';
+import Customer from '../../modules/Customer.js';
 
 const weakIs=new Is(false);
 const store=await new Store(4332);
+
+const customer=new Customer();
+
+console.dir(customer);
 
 // console.dir(
 //     //JSON.stringify(store.info, null, 4)
@@ -14,15 +17,15 @@ const store=await new Store(4332);
 
 
 
-console.dir(
-    //JSON.stringify(store.menu.parsed),
-    store.menu.parsed.categories,
-    {
-        depth:1
-    }
-);
+// console.dir(
+//     //JSON.stringify(store.menu.parsed),
+//     store.menu.parsed.categories,
+//     {
+//         depth:1
+//     }
+// );
 
-fs.writeFileSync('./menu.json', JSON.stringify(store.menu.parsed, null, 4) , 'utf-8');
+// fs.writeFileSync('./menu.json', JSON.stringify(store.menu.parsed, null, 4) , 'utf-8');
 
 // console.dir(
 //     //JSON.stringify(store.menu)

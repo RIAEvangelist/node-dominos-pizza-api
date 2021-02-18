@@ -1,9 +1,10 @@
-
+import defaultParameters from './defaultParameters.js';
 import {pascalObjectKeys,camelObjectKeys} from '../utils/toCase.js';
 
 class DominosFormat{
-    constructor(){
-
+    constructor(parameters){
+        //merge params into this object
+        const paramsRemaining=defaultParameters(this,parameters);
     }
 
     get formatted(){

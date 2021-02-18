@@ -1,4 +1,3 @@
-import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
 import DominosFormat from './DominosFormat.js';
 
@@ -6,20 +5,12 @@ const weakIs=new Is(false);
 
 class Address extends DominosFormat{
     constructor(parameters){
-        //merge params into this object
-        const paramsRemaining=defaultParameters(this,parameters);
-        
-        if(!paramsRemaining){
-            //if no paramsRemaining stop trying to merge
-            return this;
-        };
-        
-        if (weakIs.undefined(parameters)) {
-            return this;
+        super(parameters);
+
+        if(weakIs.string(parameters)){
+            this.#parse(parameters);
         }
-
-        this.#parse(parameters);
-
+        
         return this;
     }
 
