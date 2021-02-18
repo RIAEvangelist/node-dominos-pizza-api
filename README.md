@@ -72,7 +72,7 @@ See the various [International Dominos Endpoints and how to use them](https://gi
 
 ---
 
-# NearbyStores for Finding Stores
+# NearbyStores
 
 [NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md)
 
