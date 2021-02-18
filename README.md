@@ -96,36 +96,15 @@ See the various [International Dominos Endpoints and how to use them](https://gi
 
 ---
 
+# Customer
+
+[Customer.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)
+
+---
+
 
 # Below docs are still v2.0 updating docs in order as I go
 
-# Customer
-
-
-|argument|type|default|
-|--------|----|-------|
-|address|Address|null|
-|firstName|String|''|
-|lastName|String|''|
-|email|String|''|
-|phone|String|''|
-
----
-
-```javascript
-
-  var customer = new Customer(
-      {
-          address: someAddressObj,
-          firstName: 'Barack',
-          lastName: 'Obama',
-          phone: '1-800-The-White-House',
-          email: 'br'
-      }
-  )
-
-```
----
 
 # Order
 
