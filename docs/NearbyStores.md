@@ -78,11 +78,11 @@ You can see the all the ways to pass an address [in the dominos pizza Address.md
             ...
         ],
         dominosAPIResponse: {
-            //this all comes from dominos
-            //this is -1 if the request fails
+            //core
             Status: 0,
-            //this is only present if the request fails. it contains information about what went wrong
             StatusItems: [Array],
+            
+            //specific to this request
             Granularity: 'Exact',
             Address: [Object],
             Stores: [Array]
