@@ -9,8 +9,6 @@ Constructor
 
 `new Menu(4337)`
 
-storeID,lang
-
 |argument|type          |required|default|
 |--------|------        |--------|-------|
 |storeID |Number/String |true    |       |

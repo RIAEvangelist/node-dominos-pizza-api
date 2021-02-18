@@ -9,7 +9,7 @@ Constructor
 
 |argument |type  |default   |description|
 |-------- |----  |-------   |--------|
-|address  |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md) instance, or AddressObject or AddressString | |either an instance of the Address class or anthing that could be passed to the `Address` class to make an instance|
+|address  |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md) instance, or AddressObject or AddressString | |either an instance of the Address class or anthing that could be passed to the `Address` class to make an instance|
 |type     |String|`Delivery`|`Delivery`, `Carryout`, `all`|
 
 
@@ -18,14 +18,14 @@ Instance
 
 |member/method      |type  |description|
 |-------------      |------|-------    |
-|address            |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md)|An Address Instance populated with the Domino's Store information|
+|address            |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)|An Address Instance populated with the Domino's Store information|
 |stores             |Array| Array of basic store objects, see below.|
-|dominosAPIResponse |[Dominos API Response Object](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md)|Raw response from Domino's Each response is a little different, but you can see the core info in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md). |
+|dominosAPIResponse |[Dominos API Response Object](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosAPIResponse.md)|Raw response from Domino's Each response is a little different, but you can see the core info in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosAPIResponse.md). |
 
 ### By PostalCode
 ***this yields a wide variety of stores*** because it is not a very specific address. To find stores closer to you (or your user), use a more specific address.
 
-You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md).
+You can see the all the ways to pass an address [in the dominos pizza Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md).
 
 ```js
 

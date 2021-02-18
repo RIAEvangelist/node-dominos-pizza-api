@@ -9,7 +9,7 @@ If you want to see the easy to use parsed `.menu` object and documentation, chec
 
 |member                   |type  |description|
 |------                   |----  |-----------|
-|.Misc                    |Object|Contains general information about the API andmenu request to Dominos. Below you will find specific information for this request, and you can see some core information about the requests in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md).|
+|.Misc                    |Object|Contains general information about the API andmenu request to Dominos. Below you will find specific information for this request, and you can see some core information about the requests in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosAPIResponse.md).|
 |.Categorization          |Object|This contains categories of products. Each Category includes Sub categories and all the available products in that sub category for a specific store menu.|
 |.Coupons                 |Object||
 |.Flavors                 |Object||
@@ -53,7 +53,7 @@ If you want to see the easy to use parsed `.menu` object and documentation, chec
 
 # menu.domniosAPIResponse.Misc
 
-The `menu.domniosAPIResponse.Misc` object contains a little bit of useful information like the `StoreID` and date and time at the stores location. You can see some core information about the requests in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosAPIResponse.md).
+The `menu.domniosAPIResponse.Misc` object contains a little bit of useful information like the `StoreID` and date and time at the stores location. You can see some core information about the requests in the [Domino's API Response Doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosAPIResponse.md).
 
 ```js
 
