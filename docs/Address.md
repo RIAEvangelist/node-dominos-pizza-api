@@ -1,6 +1,6 @@
 Address
 ====
-Address is constructed `async`, so when you instantiate it, you should await it, like this : ` const address = await new Address(String)` this will work in your main node code without wrapping it in an anonymous async function.
+This is the primary Address Class used for all things Domnio's.
 
 Constructor
 ====

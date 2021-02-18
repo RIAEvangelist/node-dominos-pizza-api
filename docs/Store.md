@@ -1,9 +1,11 @@
 # Dominos Store Info
 
+Store is constructed `async`, so when you instantiate it, you should await it, like this : ` const store = await new Store(String)` this will work in your main node code without wrapping it in an anonymous async function.
+
 Constructor
 ====
 
-`new Store(4337)`
+`await new Store(4337)`
 
 |argument|type          |required|default|
 |--------|------        |--------|-------|

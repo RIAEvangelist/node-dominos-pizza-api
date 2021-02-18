@@ -1,11 +1,12 @@
 
 NearbyStores for Finding Stores
 ====
+NearbyStores is constructed `async`, so when you instantiate it, you should await it, like this : ` const nearbyStores = await new NearbyStores(...)` this will work in your main node code without wrapping it in an anonymous async function.
 
 Constructor
 ====
 
-`new Address({...})`
+`await new NearbyStores({...})`
 
 |argument |type  |default   |description|
 |-------- |----  |-------   |--------|

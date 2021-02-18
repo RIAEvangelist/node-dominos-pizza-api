@@ -1,4 +1,5 @@
 # Dominos Menu
+Menu is constructed `async`, so when you instantiate it, you should await it, like this : ` const menu = await new Menu(...)` this will work in your main node code without wrapping it in an anonymous async function.
 
 `.menu` provides ***HUGE*** amounts of well formatted menu data parsed from the `menu.dominosAPIResponse` object. This information is parsed from the dominos api when the instance is instantiated.
 
@@ -7,7 +8,7 @@ If you want to see the ***RAW*** `menu.dominosAPIResponse` object and documentat
 Constructor
 ====
 
-`new Menu(4337)`
+`await new Menu(4337)`
 
 |argument|type          |required|default|
 |--------|------        |--------|-------|
