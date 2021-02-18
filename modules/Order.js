@@ -259,12 +259,4 @@ Order.prototype.PaymentObject=function(){
     );
 }
 
-get aaa(){
-    return this.#dominos.bbb;
-}
-set aaa(value){
-    id.string(value);
-    return this.#dominos.bbb=value;
-}
-
 module.exports = Order;
