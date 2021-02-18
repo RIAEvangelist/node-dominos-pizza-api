@@ -1,13 +1,13 @@
 import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
-import {toPascal,toCamel} from '../utils/toCase.js';
+import {pascalObjectKeys,camelObjectKeys} from '../utils/toCase.js';
 
 const weakIs=new Is(false);
 
 class Address {
     constructor(parameters){
         //merge params into this object
-        const paramsRemaining=defaultParameters.call(this,parameters);
+        const paramsRemaining=defaultParameters(this,parameters);
         
         if(!paramsRemaining){
             //if no paramsRemaining stop trying to merge
@@ -34,23 +34,14 @@ class Address {
     deliveryInstructions=''
 
     get formatted(){
-        const dominosAddress={};
-        
-        for(const [key,value] of Object.entries(this)){
-            const pascalKey=toPascal(key);
-            
-            dominosAddress[pascalKey]=value;
-        }
-
-        return dominosAddress;
+        return pascalObjectKeys(this);
     }
 
     set formatted(dominosAddress){
-        for(const [key,value] of Object.entries(dominosAddress)){
-            const camelKey=toCamel(key);
-            
-            this[camelKey]=value;
-        }
+        Object.assign(
+            this,
+            camelObjectKeys(dominosAddress)
+        );
 
         return this;
     }

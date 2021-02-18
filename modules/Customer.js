@@ -5,7 +5,7 @@ const is=new Is;
 
 class Customer{
     constructor(parameters) {
-        defaultParameters.call(this,parameters);
+        defaultParameters(this,parameters);
     }
 
     get ID(){

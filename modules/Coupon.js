@@ -5,7 +5,7 @@ const is=new Is;
 
 class Coupon{
     constructor(parameters){
-        defaultParameters.call(this,paramaters);  
+        defaultParameters(this,paramaters);  
     }
 
     
