@@ -1,21 +1,32 @@
 Customer
 ====
+The customer class is used to create a customer instance for a Domino's Pizza Order.
 
 
 Constructor
 ====
 
-`new Customer()`
+`new Customer({...})`
 
-|argument|type  |required|description|
+|params.argument|type  |required|description|
 |--------|------|--------|-------|
-
+|address      |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md), AddressObject, AddressString|yes|customers Address. See more info on what is an acceptable Address/AddressObject or AddressString in the [Address.md doc](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)|
+|firstName  |String|yes||
+|lastName   |String|yes||
+|email      |String|yes||
+|phone      |String|yes||
 
 Instance
 ====
 
 |member/method|type  |description|
 |-------------|------|-------    |
+|.address      |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)|customers Address|
+|.firstName  |String| |
+|.lastName   |String||
+|.email      |String||
+|.phone      |String||
+
 
 
 

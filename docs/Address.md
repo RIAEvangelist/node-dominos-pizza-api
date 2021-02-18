@@ -7,9 +7,9 @@ Constructor
 
 `new Address({...})`
 
-|argument|type                              |required|default|
+|argument|type                              |required|description|
 |--------|------                            |--------|-------|
-|address |`AddressObject`/`AddressString`   |true    |       |
+|address |`AddressObject`/`AddressString`   |true    |the instance table below shows all the useable `AddressObject` fields |
 
 Instance
 ====

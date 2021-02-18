@@ -1,21 +1,29 @@
 import {Store} from '../../index.js';
 import Is from 'strong-type';
-import Customer from '../../modules/Customer.js';
+import Item from '../../modules/Item.js';
 
 const weakIs=new Is(false);
-const store=await new Store(4332);
+//const store=await new Store(4332);
 
-var customer = new Customer(
+// var customer = new Customer(
+//     {
+//         address: '900 Clark Ave, 63102',
+//         firstName: 'Barack',
+//         lastName: 'Obama',
+//         phone: '1-800-The-White-House',
+//         email: 'br'
+//     }
+// );
+
+// console.dir(customer);
+
+const pepperoniPizza=new Item(
     {
-        address: '900 Clark Ave, 63102',
-        firstName: 'Barack',
-        lastName: 'Obama',
-        phone: '1-800-The-White-House',
-        email: 'br'
+        code:'P_14SCREEN'
     }
-);
+)
 
-console.dir(customer);
+console.dir(pepperoniPizza);
 
 // console.dir(
 //     //JSON.stringify(store.info, null, 4)
