@@ -5,7 +5,15 @@ import Customer from '../../modules/Customer.js';
 const weakIs=new Is(false);
 const store=await new Store(4332);
 
-const customer=new Customer();
+var customer = new Customer(
+    {
+        address: '900 Clark Ave, 63102',
+        firstName: 'Barack',
+        lastName: 'Obama',
+        phone: '1-800-The-White-House',
+        email: 'br'
+    }
+);
 
 console.dir(customer);
 
