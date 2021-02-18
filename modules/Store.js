@@ -1,5 +1,5 @@
 import defaultParameters from './defaultParameters.js';
-import {get,post} from '../utils/api-json.js';
+import {get} from '../utils/api-json.js';
 import urls from '../utils/urls.js';
 import Menu from './Menu.js';
 import Is from 'strong-type';
