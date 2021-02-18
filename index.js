@@ -3,7 +3,6 @@ import NearbyStores from './modules/NearbyStores.js';
 import Store from './modules/Store.js';
 import Menu from './modules/Menu.js';
 
-import Coupon from './modules/Coupon.js';
 import Customer from './modules/Customer.js';
 import Item from './modules/Item.js';
 
