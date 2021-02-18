@@ -75,13 +75,7 @@ You can see the all the ways to pass an address [in the dominos pizza Address.md
         },
         stores: [
             [Object], [Object],
-            [Object], [Object],
-            [Object], [Object],
-            [Object], [Object],
-            [Object], [Object],
-            [Object], [Object],
-            [Object], [Object],
-            [Object]
+            ...
         ],
         dominosAPIResponse: {
             //this all comes from dominos
