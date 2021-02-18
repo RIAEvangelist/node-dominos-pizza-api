@@ -11,7 +11,6 @@ class Item{
 
     code=''
     qty=1
-    ID=1
     options={}   
 
     get formatted(){
