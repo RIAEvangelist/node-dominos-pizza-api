@@ -17,7 +17,6 @@ const old={
     Store,
     Menu,
     
-    Coupon,
     Customer,
     Item,
     
@@ -34,7 +33,6 @@ export {
     Store,
     Menu,
     
-    Coupon,
     Customer,
     Item,
     
