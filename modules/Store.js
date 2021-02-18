@@ -20,11 +20,9 @@ class Store{
         return this.#init(id,lang);
     }
 
-    dominosAPIResponse={}
-
     async #init(id,lang) {
 
-        this.dominosAPIResponse=await get(
+        this.info=await get(
             urls.store.info.replace('${storeID}', id)
         );
 

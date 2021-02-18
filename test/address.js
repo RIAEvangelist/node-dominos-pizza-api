@@ -30,8 +30,8 @@ const validateAddress=function(test,address=defaultAddress,expected=defaultExpec
 
     const formattedAddress=address.formatted;
 
-    console.dir(address)
-    console.dir(expected);
+    // console.dir(address)
+    // console.dir(expected);
 
     for(const [key,value] of Object.entries(expected)){
         const pascalKey=toPascal(key);

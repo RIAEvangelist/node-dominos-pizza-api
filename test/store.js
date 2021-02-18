@@ -36,31 +36,31 @@ const testStore=async function(test,storeID,lang){
         );
 
         //test a smattering of the dominos menu categories for existance and format
-        test.is.object(store.menu.dominos.Misc);
-        test.is.object(store.menu.dominos.Categorization);
-        test.is.object(store.menu.dominos.Products);
-        test.is.object(store.menu.dominos.Toppings);
-        test.is.object(store.menu.dominos.PreconfiguredProducts);
+        test.is.object(store.menu.dominosAPIResponse.Misc);
+        test.is.object(store.menu.dominosAPIResponse.Categorization);
+        test.is.object(store.menu.dominosAPIResponse.Products);
+        test.is.object(store.menu.dominosAPIResponse.Toppings);
+        test.is.object(store.menu.dominosAPIResponse.PreconfiguredProducts);
 
         //test a smattering of the PARSED menu categories for existance and format
-        test.is.object(store.menu.parsed.categories.food.pizza);
-        test.is.object(store.menu.parsed.categories.food.drinks);
-        test.is.object(store.menu.parsed.preconfiguredProducts.XC_14SCREEN);
+        test.is.object(store.menu.menu.categories.food.pizza);
+        test.is.object(store.menu.menu.categories.food.drinks);
+        test.is.object(store.menu.menu.preconfiguredProducts.XC_14SCREEN);
         
         //test that the dominos was for the right store
         test.compare(
             storeID,
-            store.menu.dominos.Misc.StoreID,
-            `storeID of ${storeID} to match store.menu.dominos.Misc.StoreID of ${store.menu.dominos.Misc.StoreID}`
+            store.menu.dominosAPIResponse.Misc.StoreID,
+            `storeID of ${storeID} to match store.menu.dominosAPIResponse.Misc.StoreID of ${store.menu.dominosAPIResponse.Misc.StoreID}`
         );
 
         //test that the dominos for the correct language if it was provided
         if(lang){
-            //console.log(`dominos LanguageCode to be ${lang} and got a LanguageCode of ${store.menu.dominos.Misc.LanguageCode}`)
+            //console.log(`dominos LanguageCode to be ${lang} and got a LanguageCode of ${store.menu.dominosAPIResponse.Misc.LanguageCode}`)
             test.compare(
                 lang,
-                store.menu.dominos.Misc.LanguageCode,
-                `store.menu.dominos LanguageCode to be ${lang} but got a LanguageCode of ${store.menu.dominos.Misc.LanguageCode}`
+                store.menu.dominosAPIResponse.Misc.LanguageCode,
+                `store.menu.dominosAPIResponse LanguageCode to be ${lang} but got a LanguageCode of ${store.menu.dominosAPIResponse.Misc.LanguageCode}`
             );
         }
 
@@ -132,29 +132,29 @@ const runTest=async function(test){
     // Store class to Populate store.info and store.menu for StoreID from nearbyStore request when omitting lang
     await testStore(test,storeID);
 
-    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in en
-    // await testStore(test,storeID,lang);
+    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in en
+    await testStore(test,storeID,lang);
 
-    // lang='es';
-    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es
-    // await testStore(test,storeID,lang);
+    lang='es';
+    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es
+    await testStore(test,storeID,lang);
     
-    // //force storeID to string
-    // storeID+='';
+    //force storeID to string
+    storeID+='';
 
-    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es note storeID is a string here
-    // await testStore(test,storeID,lang);
+    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es note storeID is a string here
+    await testStore(test,storeID,lang);
 
-    // // Store class throw error without correct type of storeID as String or Number
-    // await storeShouldFailToInit(test);
-    // await storeShouldFailToInit(test,{});
-    // await storeShouldFailToInit(test,null);
-    // await storeShouldFailToInit(test,true);
+    // Store class throw error without correct type of storeID as String or Number
+    await storeShouldFailToInit(test);
+    await storeShouldFailToInit(test,{});
+    await storeShouldFailToInit(test,null);
+    await storeShouldFailToInit(test,true);
     
-    // storeID=3;
+    storeID=3;
 
-    // // Store class to have empty information for a bad storeID
-    // await expectNoStore(test,storeID);
+    // Store class to have empty information for a bad storeID
+    await expectNoStore(test,storeID);
     
 }
 
