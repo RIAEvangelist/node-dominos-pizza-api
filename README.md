@@ -3,7 +3,9 @@ Domino's Pizza API
 This is a node.js API for integrating with the Domino's pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
-[![Join the chat at https://gitter.im/RIAEvangelist/node-dominos-pizza-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RIAEvangelist/node-dominos-pizza-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Important updates coming
+====
+[v3.x](https://github.com/RIAEvangelist/node-dominos-pizza-api/tree/v3.x) is nearly complete and will be released sometime soon. It will have breaking changes, and will be heavy on the latest ES6 features and modules.
 
 __PAYMENT-SUPPORTED-MODULE__
 This module will pass payment information directly from the customer to Domino's Pizza for Domino's Pizza to process.
