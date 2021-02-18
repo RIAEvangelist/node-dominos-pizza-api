@@ -4,26 +4,19 @@ import Is from 'strong-type';
 import Address from '../modules/Address.js';
 
 const is=new Is;
+const defaultAddress=new Address('222 2nd St, San Francisco, CA 94105');
 
 class NearbyStores{
-    constructor(addressInfo, pickUpType=this.pickUpType) {
-        is.string(pickUpType);
-        this.address = new Address(addressInfo);
-        this.pickUpType = pickUpType;
-
-        console.log(addressInfo,this.address);
+    constructor(addressInfo=this.address) {
         
+        this.address = new Address(addressInfo);
+
         return this.#getStores();
     }
 
-    address={}
-    pickUpType='Delivery'
+    address=defaultAddress
 
-    get stores(){
-        return this.#stores;
-    }
-
-    #stores=[];
+    stores=[];
 
     async #getStores(){
         const stores=await get(
@@ -38,13 +31,15 @@ class NearbyStores{
                     encodeURI(
                         this.address.addressLines.line2
                     )
-                ).replace(
-                    '${type}',
-                    this.pickUpType
                 )
         );
 
-        this.#stores=stores.Stores;
+        this.dominosAPIResponse=stores;
+
+        this.address.formatted=stores.Address;
+        this.stores=stores.Stores;
+
+        console.dir(this,{depth:1})
         
         return this;
     }

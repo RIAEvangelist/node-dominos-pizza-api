@@ -55,23 +55,17 @@ const validateAddress=function(test,address=defaultAddress,expected=defaultExpec
 
 const runTest=function(test){
     let addressObject={
-        unitType:'Apartment',
-        street:'900 Clark Ave',
+        street:'900 Clark Ave Apt. 2',
         city:'St. Louis',
         region:'MO',
         postalCode:'63102'
     }
 
-    // Address class to Populate address from full AddressObject apartment
-    testAddress(test,addressObject,addressObject);
-
-    addressObject.unitType='House';
-
-    // Address class to Populate address from full AddressObject House
-    testAddress(test,addressObject,addressObject);
-
     let addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.region}, ${addressObject.postalCode}`;
-    
+
+    // Address class to Populate address from full AddressObject
+    testAddress(test,addressObject,addressObject);
+
     // Address class to Populate address from full AddressString
     testAddress(test,addressString,addressObject);
 
@@ -80,11 +74,11 @@ const runTest=function(test){
         city:'St. Louis',
         postalCode:'63102'
     }
+    
+    addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.postalCode}`;
 
     // Address class to Populate address from spartial AddressObject
     testAddress(test,addressObject,addressObject);
-
-    addressString=`${addressObject.street}, ${addressObject.city}, ${addressObject.postalCode}`;
     
     // Address class to Populate address from partial AddressString
     testAddress(test,addressString,addressObject);
@@ -95,11 +89,11 @@ const runTest=function(test){
         postalCode:'63102'
     }
 
+    addressString=`${addressObject.street}, ${addressObject.postalCode}`;
+
     // Address class to Populate address from state and zip AddressObject
     testAddress(test,addressObject,addressObject);
 
-    addressString=`${addressObject.street}, ${addressObject.postalCode}`;
-    
     // Address class to Populate address from state and zip AddressString
     testAddress(test,addressString,addressObject);
 
@@ -107,11 +101,11 @@ const runTest=function(test){
         postalCode:'63102'
     }
     
+    addressString=`${addressObject.postalCode}`;
+    
     // Address class to Populate address from zip AddressObject
     testAddress(test,addressObject,addressObject);
 
-    addressString=`${addressObject.postalCode}`;
-    
     // Address class to Populate address from zip AddressString
     testAddress(test,addressString,addressObject);
 

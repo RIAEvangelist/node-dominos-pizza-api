@@ -5,7 +5,7 @@ const isDominos=new IsDominos;
 
 const testNearbyStores=async function(test,address){
     try{
-        const description=`NearbyStores class to find no nearbyStores.stores supporting Delivery from a vague address: ${JSON.stringify(address)}`
+        const description=`NearbyStores class to find no nearbyStores.stores supporting Delivery from a detailed, or vague address: ${JSON.stringify(address)}`
 
         test.expects(description);    
         
@@ -26,7 +26,7 @@ const testNearbyStores=async function(test,address){
 
 const expectNoNearbyStores=async function(test,address){
     try{
-        const description=`NearbyStores class to find and populate nearbyStores.stores from: ${JSON.stringify(address)}`
+        const description=`NearbyStores class to find NO nearbyStores.stores from: ${JSON.stringify(address)}`
 
         test.expects(description);    
         
@@ -35,6 +35,8 @@ const expectNoNearbyStores=async function(test,address){
         isDominos.nearbyStores(nearbyStores);
     
         test.is.array(nearbyStores.stores);
+
+        console.log(nearbyStores.stores.length);
 
         isDominos.undefined(nearbyStores.stores[0]);
     }catch(err){
@@ -81,12 +83,20 @@ const runTest=async function(test){
     }
 
     // NearbyStores class to Populate nearbyStores.stores from an address object that is too vague
-    await expectNoNearbyStores(test,addressObject);
+    await testNearbyStores(test,addressObject);
     
     addressObject.city=''; 
 
     // NearbyStores class to Populate nearbyStores.stores from an address object that is too vague
     await expectNoNearbyStores(test,addressObject);
+
+    addressObject={
+        street  :'836 Traction Avenue Apt. 2B',
+        postalCode:'90013'
+    }
+
+    // NearbyStores class to Populate nearbyStores.stores from an apt address object
+    await testNearbyStores(test,addressObject);
 }
 
 export {

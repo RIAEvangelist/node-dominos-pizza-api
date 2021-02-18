@@ -1,11 +1,12 @@
 import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
-import {toPascal} from '../utils/toCase.js';
+import {toPascal,toCamel} from '../utils/toCase.js';
 
 const weakIs=new Is(false);
 
 class Address {
     constructor(parameters){
+        //merge params into this object
         const paramsRemaining=defaultParameters.call(this,parameters);
         
         if(!paramsRemaining){
@@ -23,10 +24,14 @@ class Address {
     }
 
     street      =''
-    unitType    = 'House'
-    city        = ''
-    region      = ''
-    postalCode  = ''
+    streetNumber=''
+    streetName  =''
+    unitType    =''
+    unitNumber  =''
+    city        =''
+    region      =''
+    postalCode  =''
+    deliveryInstructions=''
 
     get formatted(){
         const dominosAddress={};
@@ -40,8 +45,21 @@ class Address {
         return dominosAddress;
     }
 
+    set formatted(dominosAddress){
+        for(const [key,value] of Object.entries(dominosAddress)){
+            const camelKey=toCamel(key);
+            
+            this[camelKey]=value;
+        }
+
+        return this;
+    }
+
     get addressLines() {
-        const line1 = this.street||'';
+        const line1 = this.street
+            ||`${this.streetNumber} ${this.streetName} ${this.unitType} ${this.unitNumber}`
+            ||'';
+            
         const line2 = `${
             (this.city||'')
         } ${

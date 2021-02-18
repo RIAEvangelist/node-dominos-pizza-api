@@ -8,7 +8,7 @@ const test=new VanillaTest;
 
 casingTest(test);
 runAddressTest(test);
-// await runNearbyStoresTest(test);
+await runNearbyStoresTest(test);
 // await runStoreTest(test);
 
 

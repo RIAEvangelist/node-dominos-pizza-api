@@ -2,18 +2,23 @@ Address
 ====
 Address is constructed `async`, so when you instantiate it, you should await it, like this : ` const address = await new Address(String)` this will work in your main node code without wrapping it in an anonymous async function.
 
-|argument|type                  |required|default|
-|--------|------                |--------|-------|
-|address |AddressObject / String|true    |       |
+|argument|type                              |required|default|
+|--------|------                            |--------|-------|
+|address |`AddressObject`/`AddressString`   |true    |       |
+
 
 |member/method|type  |writeable|default|description|
-|-------------|------|---|---|-------|----       |
-|.dominos     |Object|No     |       |Address formatted the dominos API likes it|
-|.type        |String|Yes    |'Home' |dominos address type, defaults to Home|
-|.street      |String|Yes    |       |street address|
-|.city        |String|Yes    |       |address city|
-|.region      |String|Yes    |       |in the US this would be the state. In other countries it may be the province or prefecture|
-|.postalCode  |String|Yes    |       |address postal or zip code|
+|-------------|------|---    |---      |-------    |
+|.street      |String|Yes    |         |street address (most commonly used to combine street number, name and apt number)|
+|.streetName  |String|Yes    |         |street name|
+|.streetNumber|String|Yes    |         |street number|
+|.unitType    |String|Yes    |         |unit type, suite, apt etc.|
+|.unitNumber  |String|Yes    |         |apartment number|
+|.city        |String|Yes    |         |address city|
+|.region      |String|Yes    |         |in the US this would be the state. In other countries it may be the province or prefecture|
+|.postalCode  |String|Yes    |         |address postal or zip code|
+|.formatted   |Object|Yes    |         |Dominos formatted address for use with the API, if you write to this field, it will automatically parse the Dominos style Object and update the Address instance|
+
 
 #### AddressObject
 
@@ -22,7 +27,7 @@ Instead of passing an address string when initing the Address class (which needs
 ```js
 
   const addressObject={
-      street:'900 Clark Ave',
+      street:'900 Clark Ave Apt. 2B',
       city:'St. Louis',
       region:'MO',
       postalCode:'63102'
@@ -55,39 +60,25 @@ The Address class will do its best to parse an AddressString into an AddressObje
   //partial address examples
   const address = new Address(
       {
-          city:'St. Louis',
-          region:'MO',
-          postalCode:'63102'
-      }
-  );
-  
-  const address = new Address('St. Louis, MO, 63102');
-
-
-
-  //state and zip only examples
-  const fullAddressObject = new Address(
-      {
-          region:'MO',
-          postalCode:'63102'
-      }
-  );
-  
-  const stateAndZip = new Address('St. Louis, 63102');
-
-
-
-  //city and zip examples
-  const fullAddressObject = new Address(
-      {
+          street:'900 Clark Ave',
           city:'St. Louis',
           postalCode:'63102'
       }
   );
-
-  const cityAndZip = new Address('St. Louis, 63102');
-
   
+  const address=new Address('900 Clark Ave, St. Louis, 63102');
+
+
+
+  //street and zip only examples
+  const fullAddressObject = new Address(
+      {
+          street:'900 Clark Ave',
+          postalCode:'63102'
+      }
+  );
+  
+  const address=new Address('900 Clark Ave, 63102'); 
 
   //zip only examples
   const fullAddressObject = new Address(
@@ -100,7 +91,7 @@ The Address class will do its best to parse an AddressString into an AddressObje
 
 ```
 
-#### `address.dominos` Dominos API Formatted Address
+#### `address.formatted` Dominos API Formatted Address
 
 Dominos API uses pascal case for the Address object, we convert the values set to the other members of the address object to conform to the Dominos spec here. 
 
@@ -110,7 +101,7 @@ Dominos API uses pascal case for the Address object, we convert the values set t
 
   const address=new Address('900 Clark Ave, St. Louis, MO, 63102');
 
-  console.log(address.dominos);
+  console.log(address.formatted);
 
 ```
 
@@ -119,7 +110,6 @@ This outputs the dominos style address object.
 ```js
 
     {
-        Type:'House',
         Street:'900 Clark Ave',
         City:'St. Louis',
         Region:'MO',
