@@ -2,7 +2,7 @@ const urls={
   referer : "https://order.dominos.com/en/pages/order/",
   sourceUri : "order.dominos.com",
   store : {
-    find : "https://order.dominos.com/power/store-locator?s=${line1}&c=${line2}",
+    find : "https://order.dominos.com/power/store-locator?s=${line1}&c=${line2}&type=${pickUpType}",
     info : "https://order.dominos.com/power/store/${storeID}/profile",
     menu : "https://order.dominos.com/power/store/${storeID}/menu?lang=${lang}&structured=true"
   },

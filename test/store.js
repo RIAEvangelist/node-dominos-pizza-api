@@ -132,29 +132,29 @@ const runTest=async function(test){
     // Store class to Populate store.info and store.menu for StoreID from nearbyStore request when omitting lang
     await testStore(test,storeID);
 
-    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in en
-    await testStore(test,storeID,lang);
+    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in en
+    // await testStore(test,storeID,lang);
 
-    lang='es';
-    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es
-    await testStore(test,storeID,lang);
+    // lang='es';
+    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es
+    // await testStore(test,storeID,lang);
     
-    //force storeID to string
-    storeID+='';
+    // //force storeID to string
+    // storeID+='';
 
-    // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es note storeID is a string here
-    await testStore(test,storeID,lang);
+    // // Store class to Populate store.info and store.menu for StoreID from nearbyStore request in es note storeID is a string here
+    // await testStore(test,storeID,lang);
 
-    // Store class throw error without correct type of storeID as String or Number
-    await storeShouldFailToInit(test);
-    await storeShouldFailToInit(test,{});
-    await storeShouldFailToInit(test,null);
-    await storeShouldFailToInit(test,true);
+    // // Store class throw error without correct type of storeID as String or Number
+    // await storeShouldFailToInit(test);
+    // await storeShouldFailToInit(test,{});
+    // await storeShouldFailToInit(test,null);
+    // await storeShouldFailToInit(test,true);
     
-    storeID=3;
+    // storeID=3;
 
-    // Store class to have empty information for a bad storeID
-    await expectNoStore(test,storeID);
+    // // Store class to have empty information for a bad storeID
+    // await expectNoStore(test,storeID);
     
 }
 

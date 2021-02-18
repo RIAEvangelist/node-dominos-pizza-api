@@ -53,31 +53,10 @@ const runTest=async function(test){
     // NearbyStores class to Populate nearbyStores.stores from a zip AddressString
     await testNearbyStores(test,`90013`);
 
-    // NearbyStores class to Populate nearbyStores.stores from a just the city and Zip
-    await testNearbyStores(test,`Los Angeles, CA 90013`);
-
-    // NearbyStores class to Populate nearbyStores.stores from a just the city and zip
-    await testNearbyStores(test,`Los Angeles, CA 90013`);
-
-
     // NearbyStores class to Populate nearbyStores.stores from a full address
     await testNearbyStores(test,`836 Traction Avenue, Los Angeles, CA 90013`);
 
     let addressObject={
-        city:'Los Angeles',
-        region:'CA',
-        postalCode:'90013'
-    }
-
-    // NearbyStores class to Populate nearbyStores.stores from a partial addressObject
-    await testNearbyStores(test,addressObject);
-
-    addressObject.street='836 Traction Avenue';        
-
-    // NearbyStores class to Populate nearbyStores.stores from a full addressObject
-    await testNearbyStores(test,addressObject);
-
-    addressObject={
         city:'Los Angeles',
         region:'CA'
     }

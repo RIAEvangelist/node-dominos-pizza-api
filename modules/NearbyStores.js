@@ -7,18 +7,18 @@ const is=new Is;
 const defaultAddress=new Address('222 2nd St, San Francisco, CA 94105');
 
 class NearbyStores{
-    constructor(addressInfo=this.address) {
+    constructor(addressInfo=this.address, pickUpType='Delivery') {
         
         this.address = new Address(addressInfo);
 
-        return this.#getStores();
+        return this.getStores(pickUpType);
     }
 
     address=defaultAddress
 
     stores=[];
 
-    async #getStores(){
+    async getStores(pickUpType){
         const stores=await get(
             urls.store.find
                 .replace(
@@ -31,6 +31,9 @@ class NearbyStores{
                     encodeURI(
                         this.address.addressLines.line2
                     )
+                ).replace(
+                    '${pickUpType}',
+                    pickUpType
                 )
         );
 
@@ -39,7 +42,7 @@ class NearbyStores{
         this.address.formatted=stores.Address;
         this.stores=stores.Stores;
 
-        console.dir(this,{depth:1})
+        //console.dir(this,{depth:1})
         
         return this;
     }
