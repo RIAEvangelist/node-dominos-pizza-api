@@ -1,6 +1,7 @@
 import IsDominos from '../utils/DominosTypes.js';
 import {Store} from '../modules/Store.js';
 import {NearbyStores} from '../modules/NearbyStores.js';
+import { FetchError } from 'node-fetch';
 
 const isDominos=new IsDominos;
 
@@ -73,7 +74,7 @@ const testStore=async function(test,storeID,lang){
 
 const storeShouldFailToInit=async function(test,storeID){
     try{
-        test.expects(`Store class should throw an error when provided an invalid id of: ${JSON.stringify(storeID)}`);    
+        test.expects(`Store class should throw a reference error when provided an invalid id type (not a number|string) of: ${JSON.stringify(storeID)}`);    
         
         const store=await new Store(storeID);
         
@@ -82,7 +83,14 @@ const storeShouldFailToInit=async function(test,storeID){
         //allow transparency
         isDominos.undefined(store);
     }catch(err){
-        console.trace(err);
+        try{
+            isDominos.referenceError(err);
+        }catch(err){
+            console.trace(err);
+            test.fail();
+        }
+
+        console.trace(err);        
     }
     test.pass();
     test.done(); 
@@ -90,7 +98,7 @@ const storeShouldFailToInit=async function(test,storeID){
 
 const expectNoStore=async function(test,storeID){
     try{
-        test.expects(`Store class to Populate store.info and store.menu for Store id of ${JSON.stringify(storeID)}`);    
+        test.expects(`Store class to Throw an error for an invalid Store id of ${JSON.stringify(storeID)}`);    
         
         const store=await new Store(storeID);
         
@@ -99,12 +107,18 @@ const expectNoStore=async function(test,storeID){
         //allow transparency
         isDominos.undefined(store);
     }catch(err){
-        console.trace(err);
-        test.pass();
+        if(!(err instanceof FetchError)){
+            console.log(`Expected ${err.name} to be a FetchError`);
+            test.fail();
+        }
+
+        console.trace(err);        
     }
     test.pass();
     test.done();
 }
+
+
 
 const runTest=async function(test){
     //sadly we can not test language support because even when we request ES, the menu and other info is still returned in EN
@@ -141,6 +155,7 @@ const runTest=async function(test){
 
     // Store class to have empty information for a bad storeID
     await expectNoStore(test,storeID);
+    
 }
 
 export {

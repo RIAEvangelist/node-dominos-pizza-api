@@ -5,14 +5,11 @@ const isDominos=new IsDominos;
 
 const testNearbyStores=async function(test,address){
     try{
-        const description=`NearbyStores class to find no nearbyStores.stores from a vague address: ${JSON.stringify(address)}`
+        const description=`NearbyStores class to find no nearbyStores.stores supporting Delivery from a vague address: ${JSON.stringify(address)}`
 
         test.expects(description);    
         
-        const nearbyStores=await new NearbyStores(
-            address,
-            'Delivery'
-        );
+        const nearbyStores=await new NearbyStores(address);
           
         isDominos.nearbyStores(nearbyStores);
     
@@ -33,10 +30,7 @@ const expectNoNearbyStores=async function(test,address){
 
         test.expects(description);    
         
-        const nearbyStores=await new NearbyStores(
-            address,
-            'Delivery'
-        );
+        const nearbyStores=await new NearbyStores(address);
           
         isDominos.nearbyStores(nearbyStores);
     

@@ -11,11 +11,13 @@ class NearbyStores{
         this.address = new Address(addressInfo);
         this.pickUpType = pickUpType;
 
+        console.log(addressInfo,this.address);
+        
         return this.#getStores();
     }
 
     address={}
-    pickUpType='all'
+    pickUpType='Delivery'
 
     get stores(){
         return this.#stores;

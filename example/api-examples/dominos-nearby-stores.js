@@ -1,10 +1,8 @@
-var pizza = require('../../dominos-pizza-api');
+import {NearbyStores} from "../../index.js";
+
+const address='88 Colin P Kelly Jr St, 94107';
 
 //Get stores by postal code, distance is not as accurate this way
-pizza.Util.findNearbyStores(
-    '63102',
-    'Delivery',
-    function(storeData) {
-        console.log('\n\n##################\nNearby Stores\n##################\n\n',storeData.result.Stores);
-    }
-);
+const nearbyStores=await new NearbyStores(address);
+
+console.dir(nearbyStores);

@@ -1,82 +1,51 @@
 import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
+import {toPascal} from '../utils/toCase.js';
 
-const is=new Is;
+const weakIs=new Is(false);
 
 class Address {
     constructor(parameters){
-        const parmsRemaining=defaultParameters.call(this,parameters);
+        const paramsRemaining=defaultParameters.call(this,parameters);
         
-        if(!parmsRemaining){
-            //if no parmsRemaining stop trying to merge
-            return;
+        if(!paramsRemaining){
+            //if no paramsRemaining stop trying to merge
+            return this;
         };
         
-        if (typeof parameters == 'string') {
-            this.#parse(parameters);
+        if (weakIs.undefined(parameters)) {
+            return this;
         }
 
-        return;
+        this.#parse(parameters);
+
+        return this;
     }
 
-    get unitType(){
-        return this.#dominos.UnitType;
-    }
-    set unitType(value){
-        is.string(value);
-        return this.#dominos.UnitType=value;
-    }
+    street      =''
+    unitType    = 'House'
+    city        = ''
+    region      = ''
+    postalCode  = ''
 
-    get street(){
-        return this.#dominos.Street;
-    }
-    set street(value){
-        is.string(value);
-        return this.#dominos.Street=value;
-    }
+    get formatted(){
+        const dominosAddress={};
+        
+        for(const [key,value] of Object.entries(this)){
+            const pascalKey=toPascal(key);
+            
+            dominosAddress[pascalKey]=value;
+        }
 
-    get city(){
-        return this.#dominos.City;
-    }
-    set city(value){
-        is.string(value);
-        return this.#dominos.City=value;
-    }
-
-    get region(){
-        return this.#dominos.Region;
-    }
-    set region(value){
-        is.string(value);
-        return this.#dominos.Region=value;
-    }
-
-    get postalCode(){
-        return this.#dominos.PostalCode;
-    }
-    set postalCode(value){
-        is.string(value);
-        return this.#dominos.PostalCode=value;
-    }
-
-    get dominos(){
-        return this.#dominos;
-    }
-
-    #dominos={
-        Street: '',
-        UnitType: 'House',
-        City: '',
-        Region: '',
-        PostalCode: ''
+        return dominosAddress;
     }
 
     get addressLines() {
         const line1 = this.street||'';
         const line2 = `${
-            (this.City||'')
+            (this.city||'')
         } ${
-            (this.Region||'')
+            (this.region||'')
         } ${
             this.postalCode
         }`
@@ -91,8 +60,7 @@ class Address {
 
     #parse(locationString) {
         return parseAddress.call(this,locationString);
-    }
-        
+    }   
 }
 
 const parseAddress=function(locationString){
@@ -107,18 +75,17 @@ const parseAddress=function(locationString){
     //works well enough for addresses, could be better though
     switch (splitAddress.length) {
         case 2:
-            this.region=splitAddress[0];
+            this.street=splitAddress[0];
             break;
         case 3:
-            this.city=splitAddress[0];
-            this.region = splitAddress[1];
+            this.street=splitAddress[0];
+            this.city = splitAddress[1];
             
             break;
         case 4:
             this.street = splitAddress[0];
             this.city = splitAddress[1];
             this.region = splitAddress[2];
-            this.postalCode = splitAddress[3];
     }
 }
 
