@@ -59,46 +59,223 @@ Simply run ` npm test ` and the coverage files will be added to the `./coverage`
 
 # International Support
 
+The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custome endpoints. However, if you get hyour country working with custome endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
 
-Provided a country uses the same api as the US, you can just update the URL endpoints from the url ESM.
+See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
 
-See the various [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
+### Canada
+
+```js
+
+  import {urls} from 'dominos';
+  import {useInternational,canada} from 'dominos/utils/urls.js';
+  useInternational(canada);
+
+  console.dir(urls);
+
+```
+
+### Custom
+
+```js
+
+  import {urls} from 'dominos';
+  import {useInternational,canada} from 'dominos/utils/urls.js';
+  
+  const myCountriesURLs={
+      referer   :"https://order.dominos.nz/en/pages/order/",
+      sourceUri :"order.dominos.nz",
+          location:{
+          find:urls.location.find
+      },
+      store     : {
+          find    : "https://order.dominos.nz/power/store-locator?s=${line1}&c=${line2}&type=${type}",
+          info    : "https://order.dominos.nz/power/store/${storeID}/profile",
+          menu    : "https://order.dominos.nz/power/store/${storeID}/menu?lang=${lang}&structured=true"
+      },
+      order     : {
+          validate: "https://order.dominos.nz/power/validate-order",
+          price   : "https://order.dominos.nz/power/price-order",
+          place   : "https://order.dominos.nz/power/place-order"
+      },
+      track   : "https://order.dominos.nz/orderstorage/GetTrackerData?"
+  }
+
+
+  useInternational(myCountriesURLs);
+
+  console.log('MY COUSTOM FAKE NZ ENDPOINTS');
+  console.dir(urls);
+
+```
 
 
 
 # Address
 
-[Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)
+See the detailed docs on addresses here : [Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)
+
+```js
+
+  import {Address} from 'dominos';
+
+  //full address examples
+  const address = new Address(
+      {
+          street:'900 Clark Ave',
+          city:'St. Louis',
+          region:'MO',
+          postalCode:'63102'
+      }
+  );
+
+  const address=new Address('900 Clark Ave, St. Louis, MO, 63102');
+  
+
+
+  //partial address examples
+  const address = new Address(
+      {
+          street:'900 Clark Ave',
+          city:'St. Louis',
+          postalCode:'63102'
+      }
+  );
+  
+  const address=new Address('900 Clark Ave, St. Louis, 63102');
+
+
+
+  //street and zip only examples
+  const fullAddressObject = new Address(
+      {
+          street:'900 Clark Ave',
+          postalCode:'63102'
+      }
+  );
+  
+  const address=new Address('900 Clark Ave, 63102'); 
+
+  //zip only examples
+  const fullAddressObject = new Address(
+      {
+          postalCode:'63102'
+      }
+  );
+
+  const onlyZip = new Address('63102');
+
+```
 
 ---
 
 # NearbyStores
 
-[NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md)
+This provides a list of basic info on stores that are nearby an address.
+
+See the detailed docs on finding nearby stores here : [NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md)
+
+``` js
+
+    import {NearbyStores, Store} from 'dominos';
+  
+    const nearbyStores=await new NearbyStores('88 Colin P Kelly Jr St, 94107');
+
+    console.dir(nearbyStores,{depth:1});
+    
+    console.log('\n\nFirst nearby store');
+    console.dir(nearbyStores.stores[0],{depth:1});
+
+    //initialize the frst of the nearbyStores.stores
+    const store=await new Store(nearbyStores.stores[0].StoreID);
+
+    console.log('\n\nFull Store info called from the first nearby stores ID');
+    console.dir(store,{depth:1});
+
+```
 
 ---
 
 # Menu
 
-[Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md)
+This provides a detailed menu for a given store.
+
+See the detailed docs on menus here : [Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md)
+
+```js
+
+import {Menu} from 'dominos';
+
+const menu=await new Menu(4337);
+
+console.dir(menu,{depth:1});
+
+```
 
 ---
 
 # Store
 
-[Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Store.md)
+This provides detailed store information.
+
+See the detailed docs on stores here : [Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Store.md)
+
+```js
+
+    import {Store} from 'dominos';
+
+    const store=await new Store(4337);
+
+    console.dir(store,{depth:1});
+
+```
 
 ---
 
 # Item
 
-[Item.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)
+Items are used to place orders.
+
+See the detailed docs on items here : [Item.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)
+
+```js
+import {Item} from 'dominos';
+
+const pepperoniPizza=new Item(
+    {
+        code:'P_14SCREEN'
+    }
+)
+
+console.dir(pepperoniPizza);
+
+```
 
 ---
 
 # Customer
 
-[Customer.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)
+This creates a customer object for use when making an order.
+
+See the detailed docs on customers here : [Customer.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)
+
+```js
+
+import {Customer} from 'dominos';
+
+const customer = new Customer(
+    {
+        address: '900 Clark Ave, 63102',
+        firstName: 'Barack',
+        lastName: 'Obama',
+        phone: '1-800-The-White-House',
+        email: 'chief@us.gov'
+    }
+);
+
+console.dir(customer);
+
+```
 
 ---
 
