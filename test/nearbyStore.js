@@ -5,8 +5,8 @@ const isDominos=new IsDominos;
 
 const testNearbyStores=async function(test,address){
     try{
-        const description=`NearbyStores class to find no nearbyStores.stores supporting Delivery from a detailed, or vague address: ${JSON.stringify(address)}`
-
+        const description=`NearbyStores class to find nearbyStores.stores supporting Delivery from a detailed, or vague address: ${JSON.stringify(address)}`
+        
         test.expects(description);    
         
         const nearbyStores=await new NearbyStores(address);

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for node-dominos-pizza-api/modules/NearbyStores.js</title>
+    <title>Code coverage report for node-dominos-pizza-api/modules/Tracking.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">node-dominos-pizza-api/modules</a> NearbyStores.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">node-dominos-pizza-api/modules</a> Tracking.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">94% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/54</span>
+                <span class='fraction'>47/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">94% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/54</span>
+                <span class='fraction'>47/50</span>
             </div>
         
             
@@ -106,12 +106,7 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -121,105 +116,95 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {get,post} from '../utils/api-json.js';
-import urls from '../utils/urls.js';
-import Is from 'strong-type';
-import Address from '../modules/Address.js';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import Is from "strong-type";
+import { getSoap } from "../utils/api-json.js";
+import urls from "../utils/urls.js";
 &nbsp;
 const is=new Is;
-const defaultAddress=new Address('222 2nd St, San Francisco, CA 94105');
 &nbsp;
-class NearbyStores{
-    constructor(addressInfo=this.address, pickUpType='Delivery') {
-        
-        this.address = new Address(addressInfo);
+class Tracking{
+    constructor(){
 &nbsp;
-        return this.#getStores(pickUpType);
+    }
+    
+    orders={}
+    query={}
+    dominosAPIResult={}
+&nbsp;
+    async byPhone(phone) {
+        is.string(phone);
+    
+        return await this.byUrl(`${urls.track}Phone=${phone}`);
     }
 &nbsp;
-    address=defaultAddress
+<span class="fstat-no" title="function not covered" >    async byId(storeID, orderKey) {</span>
+<span class="cstat-no" title="statement not covered" >    </span>
+<span class="cstat-no" title="statement not covered" >        return await this.byUrl(`${urls.track}StoreID=${storeID}&amp;OrderKey=${orderKey}`);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-    stores=[]
+    async byUrl(url){
+        is.string(url);
+        
+        //console.log(url)
 &nbsp;
-    async #getStores(pickUpType){
-        const stores=await get(
-            urls.store.find
-                .replace(
-                    '${line1}',
-                    encodeURI(
-                        this.address.addressLines.line1
-                    )
-                ).replace(
-                    '${line2}',
-                    encodeURI(
-                        this.address.addressLines.line2
-                    )
-                ).replace(
-                    '${pickUpType}',
-                    pickUpType
-                )
-        );
+        this.dominosAPIResult=await getSoap(url);
 &nbsp;
-        this.dominosAPIResponse=stores;
+        //console.log(this.dominosAPIResult);
 &nbsp;
-        this.address.formatted=stores.Address;
-        this.stores=stores.Stores;
+        is.object(this.dominosAPIResult['soap:Envelope']);
+        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body']);
+        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse);
 &nbsp;
-        //console.dir(this,{depth:1})
+        this.orders=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses;
+        this.query=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query;
         
         return this;
     }
-};
+}
 &nbsp;
 export {
-    NearbyStores as default,
-    NearbyStores
-};
-&nbsp;</pre></td></tr></table></pre>
+    Tracking as default,
+    Tracking
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

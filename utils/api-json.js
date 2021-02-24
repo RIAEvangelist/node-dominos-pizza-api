@@ -67,30 +67,42 @@ const get = async function(url){
 
     //console.log(await res.text());
 
-    let parsed={};
-    const soap=res.clone();
-
-    try{
-        parsed=await res.json();
-    }catch(err){
-        parsed=parser.toJson(
-            await soap.text(),
-            {
-                coerce: false,
-                sanitize: false,
-                object: true,
-                trim: false
-            }
-        );
-    }
-
-    return parsed;
+    return await res.json();
 }
 
-const old={get,post}
+const getSoap = async function(url){
+    const options = {
+        method:'GET',
+        headers: {
+            'Referer': urls.referer
+        }
+    };
+
+    //console.log(options,url);
+
+    const res=await fetch(
+        url,
+        options
+    );
+
+    //console.log(await res.text());
+
+    return parser.toJson(
+        await res.text(),
+        {
+            coerce: false,
+            sanitize: false,
+            object: true,
+            trim: false
+        }
+    );
+}
+
+const old={get,getSoap,post}
 
 export {
     old as default,
     get,
+    getSoap,
     post
 }

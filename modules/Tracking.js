@@ -1,5 +1,5 @@
 import Is from "strong-type";
-import { get } from "../utils/api-json.js";
+import { getSoap } from "../utils/api-json.js";
 import urls from "../utils/urls.js";
 
 const is=new Is;
@@ -9,6 +9,8 @@ class Tracking{
 
     }
     
+    orders={}
+    query={}
     dominosAPIResult={}
 
     async byPhone(phone) {
@@ -25,20 +27,20 @@ class Tracking{
     async byUrl(url){
         is.string(url);
         
-        console.log(url)
+        //console.log(url)
 
-        this.dominosAPIResult=await get(url);
+        this.dominosAPIResult=await getSoap(url);
 
-        console.log(this.dominosAPIResult);
+        //console.log(this.dominosAPIResult);
 
         is.object(this.dominosAPIResult['soap:Envelope']);
         is.object(this.dominosAPIResult['soap:Envelope']['soap:Body']);
         is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse);
 
-        return {
-            orders: this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses,
-            query: this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query
-        }
+        this.orders=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses;
+        this.query=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query;
+        
+        return this;
     }
 }
 

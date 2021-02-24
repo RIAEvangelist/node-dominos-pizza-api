@@ -3,6 +3,7 @@ import casingTest from './casingTest.js';
 import runAddressTest from './address.js';
 import runNearbyStoresTest from './nearbyStore.js';
 import runStoreTest from './store.js';
+import runTrackingTest from './tracking.js';
 
 const test=new VanillaTest;
 
@@ -10,6 +11,7 @@ casingTest(test);
 runAddressTest(test);
 await runNearbyStoresTest(test);
 await runStoreTest(test);
+await runTrackingTest(test);
 
 
 
