@@ -15,6 +15,16 @@ Constructor
 |storeID |Number/String |true    |       |
 |lang    |String        |false   |en     |
 
+```js
+
+    import {Store} from 'dominos';
+
+    const store=await new Store(4337);
+
+    console.dir(store,{depth:1});
+
+```
+
 Instance
 ====
 
