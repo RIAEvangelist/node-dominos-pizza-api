@@ -2,6 +2,8 @@ Customer
 ====
 The customer class is used to create a customer instance for a Domino's Pizza Order.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/customer.js`
 
 Constructor
 ====

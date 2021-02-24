@@ -2,6 +2,9 @@ Address
 ====
 This is the primary Address Class used for all things Domnio's.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/address.js`
+
 Constructor
 ====
 

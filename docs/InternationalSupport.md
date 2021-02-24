@@ -2,6 +2,9 @@
 
 Provided a country uses the same api as the US, you can just update the URL endpoints from the url ESM.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/international.js`
+
 Canada
 ====
 
