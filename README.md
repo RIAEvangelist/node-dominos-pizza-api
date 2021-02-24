@@ -286,6 +286,31 @@ Still working on reverse engineering this module
 
 ---
 
+# Tracking
+
+This is how you track Pizzas! (and other things)
+
+See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Tracking.md)
+
+```js
+
+import {Tracking} from 'dominos';
+
+const tracking=new Tracking();
+
+const trackingResult=await tracking.byPhone('3108675309');
+
+console.dir(trackingResult,{depth:1});
+
+//outputs
+Tracking {
+  orders: {},
+  query: { Phone: '3108675309' },
+  dominosAPIResult: { 'soap:Envelope': [Object] }
+}
+
+```
+
 # Below docs are still v2.0 updating docs in order as I go
 
 
@@ -438,49 +463,6 @@ You don't have to do anything for the payment, Domino's Pizza will handle all tr
 
 ---
 
-# Tracking
 
-
-### By Phone
-
-|argument|type|default|required|
-|--------|----|-------|--------|
-|phone|Phone number string or int|null|true|
-|callback|function to pass the api result to|null|true|
-
-```javascript
-
-  var pizza = require('dominos'); 
-
-  pizza.Track.byPhone(
-      2024561111,
-      function(pizzaData){
-          console.log(pizzaData);
-      }
-  );
-
-```
-
-### By orderKey
-
-|argument|type|default|required|
-|--------|----|-------|--------|
-|orderKey|string or int|null|true|
-|storeID|sting or int|null|true|
-|callback|function to pass the api result to|null|true|
-
-```javascript
-
-  var pizza = require('dominos'); 
-
-  pizza.Track.byId(
-      123456,
-      12345,
-      function(pizzaData){
-          console.log(pizzaData)
-      }
-  );
-
-```
 
 Code, Order, Eat, Be Happy!
