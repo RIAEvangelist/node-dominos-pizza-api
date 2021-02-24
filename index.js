@@ -5,6 +5,7 @@ import Menu from './modules/Menu.js';
 
 import Customer from './modules/Customer.js';
 import Item from './modules/Item.js';
+import Image from './modules/Image.js';
 
 // import Order from './modules/Order.js';
 import Tracking from './modules/Tracking.js';
@@ -19,6 +20,7 @@ const old={
     
     Customer,
     Item,
+    Image,
     
     // Order,
     Tracking,
@@ -35,6 +37,7 @@ export {
     
     Customer,
     Item,
+    Image,
     
     // Order,
     Tracking,

@@ -13,7 +13,7 @@ GitHub info :
 [![node-dominos-pizza-api GitHub Release](https://img.shields.io/github/release/RIAEvangelist/node-dominos-pizza-api.svg) ![GitHub license node-dominos-pizza-api license](https://img.shields.io/github/license/RIAEvangelist/node-dominos-pizza-api.svg) ![open issues for node-dominos-pizza-api on GitHub](https://img.shields.io/github/issues/RIAEvangelist/node-dominos-pizza-api.svg)](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 Build Info :  
-Mac & Linux & Windows : [![Build Status](https://travis-ci.org/RIAEvangelist/node-dominos-api.svg?branch=v3.x)](https://travis-ci.org/RIAEvangelist/node-dominos-api) 
+Mac & Linux & Windows : [![Build Status](https://travis-ci.com/RIAEvangelist/node-dominos-pizza-api.svg?branch=v3.x)](https://travis-ci.com/RIAEvangelist/node-dominos-pizza-api?branch=v3.x) 
 ---
 
 This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
@@ -56,6 +56,8 @@ Remember, the Dominos API is rate limited, so if you make too many requests, lik
 For coverage we are using the amazing `c8` coverage suite. It produces awesom instanbul style reports as well as lcov and much mmore. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
 
 Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. 
+
+### [See the c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/coverage/)
 
 ---
 

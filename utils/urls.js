@@ -18,7 +18,7 @@ const usa={
     price: "https://order.dominos.com/power/price-order",
     place: "https://order.dominos.com/power/place-order"
   },
-  images:"https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/${itemCode}.jpg",
+  images:"https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/${productCode}.jpg",
   track: "https://order.dominos.com/orderstorage/GetTrackerData?",
 
   //POST {storeId: "8278"}
