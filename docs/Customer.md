@@ -32,6 +32,8 @@ Instance
 
 ```js
 
+import {Customer} from 'dominos';
+
 const customer = new Customer(
     {
         address: '900 Clark Ave, 63102',
