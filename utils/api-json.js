@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import urls from './urls.js';
+import {default as parser} from 'xml2json';
 
 const post=function(url, req, callback) {
     if(typeof req !=  'string')
@@ -51,7 +52,9 @@ const get = async function(url){
     const options = {
         method:'GET',
         headers: {
-            'Referer': urls.referer
+            'Referer': urls.referer,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
     };
 
@@ -64,7 +67,22 @@ const get = async function(url){
 
     //console.log(await res.text());
 
-    const parsed=await res.json();
+    let parsed={};
+    const soap=res.clone();
+
+    try{
+        parsed=await res.json();
+    }catch(err){
+        parsed=parser.toJson(
+            await soap.text(),
+            {
+                coerce: false,
+                sanitize: false,
+                object: true,
+                trim: false
+            }
+        );
+    }
 
     return parsed;
 }

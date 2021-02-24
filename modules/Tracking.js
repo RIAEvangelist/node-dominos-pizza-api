@@ -1,8 +1,8 @@
 import Is from "strong-type";
-import { get } from "../utils/api-json";
-import urls from "../utils/urls";
+import { get } from "../utils/api-json.js";
+import urls from "../utils/urls.js";
 
-is=new Is;
+const is=new Is;
 
 class Tracking{
     constructor(){
@@ -11,29 +11,33 @@ class Tracking{
     
     dominosAPIResult={}
 
-    byPhone(phone, callback) {
+    async byPhone(phone) {
         is.string(phone);
     
-        this.byUrl(urls.track + 'Phone=' + phone, callback);
+        return await this.byUrl(`${urls.track}Phone=${phone}`);
     }
 
-    byId(storeID, orderKey, callback) {
+    async byId(storeID, orderKey) {
     
-        this.byUrl(urls.track + 'StoreID=' + storeID + '&OrderKey=' + orderKey, callback);
+        return await this.byUrl(`${urls.track}StoreID=${storeID}&OrderKey=${orderKey}`);
     }
 
-    byUrl(url, callback){
+    async byUrl(url){
         is.string(url);
         
+        console.log(url)
+
         this.dominosAPIResult=await get(url);
 
-        is.object(tracking['soap:Envelope']);
-        is.object(tracking['soap:Envelope']['soap:Body']);
-        is.object(tracking['soap:Envelope']['soap:Body'].GetTrackerDataResponse);
+        console.log(this.dominosAPIResult);
+
+        is.object(this.dominosAPIResult['soap:Envelope']);
+        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body']);
+        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse);
 
         return {
-            orders: tracking['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses,
-            query: tracking['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query
+            orders: this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses,
+            query: this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query
         }
     }
 }

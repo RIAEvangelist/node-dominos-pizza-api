@@ -5,7 +5,7 @@ Track
 Constructor
 ====
 
-`new Track()`
+`new Tracking()`
 
 |argument|type  |required|description|
 |--------|------|--------|-------|

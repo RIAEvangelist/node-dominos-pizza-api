@@ -1,7 +1,7 @@
 Dominos API Response information
 ====
 
-Not all responses actually follow this format, some will throw a `FetchError` because the Domino's API is inconsistant with how it handles errors. Sometimes it follows the below JSON, and other times it returns an HTML Error Page. It is best to wrap things in `try catch` if you want to have error handling for invalid requests.
+Not all responses actually follow this format, some will throw a `FetchError` because the Domino's API is inconsistant with how it handles errors. Sometimes it follows the below JSON, and other times it returns SOAP and yet others HTML Error Pages. It is best to wrap things in `try catch` if you want to have error handling for invalid requests.
 
 
 Good response
