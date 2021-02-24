@@ -18,6 +18,17 @@ Constructor
 |storeID |Number/String |true    |       |
 |lang    |String        |false   |en     |
 
+
+```js
+
+import {Menu} from 'dominos';
+
+const menu=await new Menu(4337);
+
+console.dir(menu,{depth:1});
+
+```
+
 Instance
 ====
 
