@@ -16,15 +16,15 @@ class Tracking{
     async byPhone(phone) {
         is.string(phone);
     
-        return await this.byUrl(`${urls.track}Phone=${phone}`);
+        return await this.byURL(`${urls.track}Phone=${phone}`);
     }
 
-    async byId(storeID, orderKey) {
+    async byID(storeID, orderKey) {
     
-        return await this.byUrl(`${urls.track}StoreID=${storeID}&OrderKey=${orderKey}`);
+        return await this.byURL(`${urls.track}StoreID=${storeID}&OrderKey=${orderKey}`);
     }
 
-    async byUrl(url){
+    async byURL(url){
         is.string(url);
         
         //console.log(url)
