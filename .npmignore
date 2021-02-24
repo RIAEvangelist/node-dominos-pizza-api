@@ -1,5 +1,7 @@
 example
 coverage
 test
+docs
+menu.json
 .travis.yml
-test.png
+
