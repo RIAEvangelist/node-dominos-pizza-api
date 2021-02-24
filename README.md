@@ -12,6 +12,8 @@ npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/c
 GitHub info :
 [![node-dominos-pizza-api GitHub Release](https://img.shields.io/github/release/RIAEvangelist/node-dominos-pizza-api.svg) ![GitHub license node-dominos-pizza-api license](https://img.shields.io/github/license/RIAEvangelist/node-dominos-pizza-api.svg) ![open issues for node-dominos-pizza-api on GitHub](https://img.shields.io/github/issues/RIAEvangelist/node-dominos-pizza-api.svg)](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
+Build Info :  
+Mac & Linux & Windows : [![Build Status](https://travis-ci.org/RIAEvangelist/node-dominos-api.svg?branch=v3.x)](https://travis-ci.org/RIAEvangelist/node-dominos-api) 
 ---
 
 This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
