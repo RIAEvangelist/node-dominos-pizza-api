@@ -1,0 +1,19 @@
+#OS
+os:
+  - linux
+  - windows
+  - osx
+
+#node versions
+language: node_js
+node_js:
+  - 12
+  - 13
+  - 14
+  - 15
+
+# safelist
+branches:
+  only:
+  - master
+  - v3.x
