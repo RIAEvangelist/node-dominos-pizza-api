@@ -2,6 +2,9 @@ Item
 ====
 Items are used to track what products, quantities, and options a customer would like to Order.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/item.js`
+
 Constructor
 ====
 
@@ -24,6 +27,7 @@ Instance
 
 
 ```js
+import {Item} from 'dominos';
 
 const pepperoniPizza=new Item(
     {

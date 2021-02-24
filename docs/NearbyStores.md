@@ -3,6 +3,9 @@ NearbyStores for Finding Stores
 ====
 NearbyStores is constructed `async`, so when you instantiate it, you should await it, like this : ` const nearbyStores = await new NearbyStores(...)` this will work in your main node code without wrapping it in an anonymous async function.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/nearby.js`
+
 Constructor
 ====
 

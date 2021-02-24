@@ -5,6 +5,9 @@ Menu is constructed `async`, so when you instantiate it, you should await it, li
 
 If you want to see the ***RAW*** `menu.dominosAPIResponse` object and documentation, check out the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md) instead. That object is huge and a little difficult to use which is why we provide this parsed menu.
 
+If you have cloned this repo, you can run the example with this command:
+`node ./example/menu.js`
+
 Constructor
 ====
 
