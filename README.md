@@ -365,6 +365,11 @@ Tracking {
 
 ```
 
+# Payment
+
+still need to document this class
+
+
 # Below docs are still v2.0 updating docs in order as I go
 
 

@@ -5,6 +5,8 @@ This is the primary Address Class used for all things Domnio's.
 If you have cloned this repo, you can run the example with this command:
 `node ./example/address.js`
 
+extends `DominosFormat` class, see more in [DominosFormat.md]](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+
 Constructor
 ====
 
@@ -27,7 +29,6 @@ Instance
 |.city        |String|Yes    |         |address city|
 |.region      |String|Yes    |         |in the US this would be the state. In other countries it may be the province or prefecture|
 |.postalCode  |String|Yes    |         |address postal or zip code|
-|.formatted   |Object|Yes    |         |Dominos formatted address for use with the API, if you write to this field, it will automatically parse the Dominos style Object and update the Address instance|
 
 
 #### AddressObject

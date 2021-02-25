@@ -5,6 +5,8 @@ The customer class is used to create a customer instance for a Domino's Pizza Or
 If you have cloned this repo, you can run the example with this command:
 `node ./example/customer.js`
 
+extends `DominosFormat` class, see more in [DominosFormat.md]](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+
 Constructor
 ====
 
