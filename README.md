@@ -57,7 +57,7 @@ For coverage we are using the amazing `c8` coverage suite. It produces awesom in
 
 Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. 
 
-### [See the c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/coverage/)
+### [See the c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/index.html)
 
 ---
 

@@ -9,6 +9,9 @@
     "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
     "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
+  "pre-commit": [
+    "coverage"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
