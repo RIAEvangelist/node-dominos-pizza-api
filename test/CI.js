@@ -4,6 +4,7 @@ import runAddressTest from './address.js';
 import runNearbyStoresTest from './nearbyStore.js';
 import runStoreTest from './store.js';
 import runTrackingTest from './tracking.js';
+import runImageTest from './image.js';
 
 const test=new VanillaTest;
 
@@ -12,6 +13,7 @@ runAddressTest(test);
 await runNearbyStoresTest(test);
 await runStoreTest(test);
 await runTrackingTest(test);
+await runImageTest(test);
 
 
 
