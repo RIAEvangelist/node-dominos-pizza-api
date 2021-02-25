@@ -272,7 +272,7 @@ const customer = new Customer(
         address: '900 Clark Ave, 63102',
         firstName: 'Barack',
         lastName: 'Obama',
-        phone: '1-800-The-White-House',
+        phone: '1-800-555-2368',
         email: 'chief@us.gov'
     }
 );
