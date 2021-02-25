@@ -46,7 +46,7 @@ const runTest=async function(test){
         const amexCard=new Payment(template);
         isDominos.payment(amexCard);
 
-        template.number='5536868883500805';
+        template.number='30036592321275';
         const dinersCard=new Payment(template);
         isDominos.payment(dinersCard);
 
