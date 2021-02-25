@@ -1,4 +1,7 @@
 import {Menu,Image} from '../index.js';
+import IsDominos from '../utils/DominosTypes.js';
+
+const isDominos=new IsDominos;
 
 const menu=await new Menu(4337);
 const productCode=menu.menu.products[
@@ -11,6 +14,8 @@ const runTest=async function(test){
         test.expects(`Image to fetch base64 product image for ${productCode}`);    
         const image=await new Image(productCode);
         
+        isDominos.image(image);
+
         if(image.base64Image.length<minSize){
             throw new RangeError(`image size of ${image.base64Image.length} is smaller than the expected minimum size of ${minSize}.`)
         }

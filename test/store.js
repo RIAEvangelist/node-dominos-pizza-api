@@ -13,10 +13,10 @@ const testStore=async function(test,storeID,lang){
         
         //confirm Store class creation as expected
         isDominos.store(store);
+        isDominos.menu(store.menu);
         
         //test the expected format after completion
         test.is.object(store.info);
-        test.is.object(store.menu);
 
         //console.dir(store.info,{depth:1});
         //console.dir(store.menu.Misc,{depth:1});

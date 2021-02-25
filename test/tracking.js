@@ -1,7 +1,7 @@
 import {Tracking} from '../index.js';
-import {Is} from 'strong-type';
+import IsDominos from '../utils/DominosTypes.js';
 
-const is=new Is;
+const isDominos=new IsDominos;
 
 
 const runTest=async function(test){
@@ -12,9 +12,11 @@ const runTest=async function(test){
 
         const trackingResult=await tracking.byPhone('3108675309');
         
-        is.object(trackingResult.orders);
-        is.object(trackingResult.query);
-        is.string(trackingResult.query.Phone);
+        isDominos.tracking(tracking);
+
+        isDominos.object(trackingResult.orders);
+        isDominos.object(trackingResult.query);
+        isDominos.string(trackingResult.query.Phone);
 
     }catch(err){
         console.trace(err);
