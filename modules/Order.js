@@ -6,8 +6,10 @@ import {urls} from '../utils/urls.js';
 const is=new Is;
 
 class Order extends DominosFormat{
-    constructor() {
+    constructor(parameters) {
         super();
+
+        this.init=parameters;
     }
 
     address = new Address
