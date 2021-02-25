@@ -7,6 +7,8 @@ class Item extends DominosFormat{
     constructor(parameters) {
         super();
         this.init=parameters;
+
+        return this;
     }
 
     code=''

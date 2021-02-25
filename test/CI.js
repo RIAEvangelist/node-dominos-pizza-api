@@ -7,6 +7,8 @@ import runStoreTest from './store.js';
 import runTrackingTest from './tracking.js';
 import runImageTest from './image.js';
 import runPaymentTest from './payment.js';
+import runItemTest from './item.js';
+import runCustomerTest from './customer.js';
 
 const test=new VanillaTest;
 
@@ -16,6 +18,8 @@ const test=new VanillaTest;
 casingTest(test);
 runAddressTest(test);
 runPaymentTest(test);
+runItemTest(test);
+runCustomerTest(test);
 
 await runImageTest(test);
 delay(5e3);

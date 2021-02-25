@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/25</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/25</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,7 +82,8 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -90,16 +91,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -114,17 +116,18 @@ import DominosFormat from './DominosFormat.js';
 const is=new Is;
 &nbsp;
 class Customer extends DominosFormat{
-<span class="fstat-no" title="function not covered" >    constructor(parameters) {</span>
-<span class="cstat-no" title="statement not covered" >        super();</span>
-<span class="cstat-no" title="statement not covered" >        this.init=parameters;</span>
-<span class="cstat-no" title="statement not covered" >        this.address=new Address(parameters.address);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    constructor(parameters) {
+        super();
+        this.init=parameters;
+        this.address=new Address(parameters.address);
+        return this;
+<span class="branch-0 cbranch-no" title="branch not covered" >    }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >    firstName   =''</span></span>
-<span class="cstat-no" title="statement not covered" >    lastName    =''</span>
-<span class="cstat-no" title="statement not covered" >    email       =''</span>
-<span class="cstat-no" title="statement not covered" >    address     =new Address</span>
-<span class="cstat-no" title="statement not covered" >    phone       =''</span>
+    firstName   =''
+    lastName    =''
+    email       =''
+    address     =new Address
+    phone       =''
     
 };
 &nbsp;
@@ -139,7 +142,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Feb 25 2021 02:30:11 GMT-0800 (Pacific Standard Time)
+                at Thu Feb 25 2021 02:46:18 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

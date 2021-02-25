@@ -1,4 +1,5 @@
 import {Customer} from '../index.js';
+import {toPascal} from '../utils/toCase.js';
 import IsDominos from '../utils/DominosTypes.js';
 
 const isDominos=new IsDominos;
@@ -23,7 +24,7 @@ const expected={
 
 const runTest=async function(test){
     try{
-        test.expects(`Item to populate proper itemCode`);    
+        test.expects(`Customer populate properly from customer object`);    
         const customer = new Customer(
             {
                 address: '900 Clark Ave, 63102',
@@ -35,24 +36,24 @@ const runTest=async function(test){
         );
         
         isDominos.customer(customer);
-        isDominos.address(customer,address);
+        isDominos.address(customer.address);
 
-        const formattedCustomer=address.formatted;
+        const formattedCustomer=customer.formatted;
 
         for(const [key,value] of Object.entries(expected)){
             const pascalKey=toPascal(key);
             
             //ensure that all customer values match expected values
             test.compare(
-                value,
-                customer[key],
+                JSON.stringify(value),
+                JSON.stringify(customer[key]),
                 `customer.${key} ${JSON.stringify(customer[key])} to equal expected.${key} ${JSON.stringify(value)}`    
             );
 
             //ensure that all dominos formatted values match expected values
             test.compare(
-                value,
-                formattedCustomer[pascalKey],
+                JSON.stringify(value),
+                JSON.stringify(formattedCustomer[pascalKey]),
                 `expected.${key} ${JSON.stringify(value)} to equal customer.formatted.${pascalKey} ${JSON.stringify(formattedCustomer[pascalKey])}`    
             );
         }

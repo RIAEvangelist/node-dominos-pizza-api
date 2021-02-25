@@ -7,6 +7,7 @@ const is=new Is;
 class Tracking{
     constructor(){
 
+        return this;
     }
     
     orders={}

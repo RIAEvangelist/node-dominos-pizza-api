@@ -9,6 +9,7 @@ class Customer extends DominosFormat{
         super();
         this.init=parameters;
         this.address=new Address(parameters.address);
+        return this;
     }
 
     firstName   =''

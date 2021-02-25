@@ -4,6 +4,7 @@ import {pascalObjectKeys,camelObjectKeys} from '../utils/toCase.js';
 class DominosFormat{
     constructor(){
         
+        return this;
     }
 
     set init(parameters){

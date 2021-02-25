@@ -1,4 +1,5 @@
 import {Item} from '../index.js';
+import {toPascal} from '../utils/toCase.js';
 import IsDominos from '../utils/DominosTypes.js';
 
 const isDominos=new IsDominos;
@@ -20,9 +21,9 @@ const runTest=async function(test){
             throw new ReferenceError(`Expected Item Code of '${item.code}' to be ${itemCode}.`);
         }
 
-        const formattedItem=address.formatted;
+        const formattedItem=item.formatted;
 
-        for(const [key,value] of Object.entries(expected)){
+        for(const [key,value] of Object.entries(item)){
             const pascalKey=toPascal(key);
             
             //ensure that all item values match expected values

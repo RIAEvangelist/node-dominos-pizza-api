@@ -10,6 +10,7 @@ class Order extends DominosFormat{
         super();
 
         this.init=parameters;
+        return this;
     }
 
     address = new Address
