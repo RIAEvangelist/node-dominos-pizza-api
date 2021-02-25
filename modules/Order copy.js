@@ -1,67 +1,58 @@
-import Is from 'strong-type';
-import DominosFormat from './DominosFormat.js';
+import defaultParameters from './defaultParameters.js';
 
-const is=new Is;
-
-class Order extends DominosFormat{
-    constructor(parameters={}) {
-        super();
-
-        if(parameters.customer&&!parameters.address) {
-            var Customer = parameters.customer;
-        
-            this.Address = Customer.address;
-            this.CustomerID = Customer.ID;
-            this.Email = Customer.email;
-            this.FirstName = Customer.firstName;
-            this.LastName = Customer.lastName;
-            this.Phone = Customer.phone;
-            return this;
-          }
-
-        this.init=parameters;
-    }
-
-    address = ''
-    coupons = []
-    customerID = ''
-    email = ''
-    extension = ''
-    firstName = ''
-    lastName = ''
-    languageCode = 'en'
-    orderChannel = 'OLO'
-    orderID = ''
-    orderMethod = 'Web'
-    orderTaker = null
-    payments = []
-    phone = ''
-    products = []
-    market = ''
-    currency = ''
-    serviceMethod = 'Delivery'
-    sourceOrganizationURI = urls.sourceUri
-    storeID = ''
-    tags = {}
-    version = '1.0'
-    noCombine = true
-    partners = {}
-    newUser = true
-    metaData = {}
-    amounts = {}
-    businessDate = ''
-    estimatedWaitMinutes = ''
-    priceOrderTime = ''
-    amountsBreakdown=[]
-
-}
+var urls = require('../utils/urls');
+var httpJson = require('./http-json');
+var util=require('util');
 
 var Order = function(parameters) {
+  if(!parameters){
+      parameters={}
+  }
   
-  
-  
+  //default order
+  this.Address = '';
+  this.Coupons = [];
+  this.CustomerID = '';
+  this.Email = '';
+  this.Extension = '';
+  this.FirstName = '';
+  this.LastName = '';
+  this.LanguageCode = 'en';
+  this.OrderChannel = 'OLO';
+  this.OrderID = '';
+  this.OrderMethod = 'Web';
+  this.OrderTaker = null;
+  this.Payments = [];
+  this.Phone = '';
+  this.Products = [];
+  this.Market = '';
+  this.Currency = '';
+  this.ServiceMethod = parameters.deliveryMethod || 'Delivery';
+  this.SourceOrganizationURI = urls.sourceUri;
+  this.StoreID = parameters.storeID||'';
+  this.Tags = {};
+  this.Version = '1.0';
+  this.NoCombine = true;
+  this.Partners = {};
+  this.NewUser = true;
+  this.metaData = {};
+  this.Amounts = {};
+  this.BusinessDate = '';
+  this.EstimatedWaitMinutes = '';
+  this.PriceOrderTime = '';
+  this.AmountsBreakdown;
 
-  
+  if(parameters['customer']) {
+    var Customer = parameters.customer;
+
+    this.Address = Customer.address;
+    this.CustomerID = Customer.ID;
+    this.Email = Customer.email;
+    this.FirstName = Customer.firstName;
+    this.LastName = Customer.lastName;
+    this.Phone = Customer.phone;
+    return this;
+  }
   if(parameters['Order'] || parameters['order']) {  //Used to initialize order object from Dominos results (Also handy for initializing from DB)
     var prevOrder = parameters.Order;
     var Customer = parameters.customer;
@@ -225,8 +216,47 @@ Order.prototype.validateCC=function(number){
     return "";
 }
 
-
-export {
-    Order as default,
-    Order
+Order.prototype.PaymentObject=function(){
+    Object.defineProperties(
+        this,
+        {
+            "Type": {
+                writable:false,
+                enumerable:true,
+                value:"CreditCard"
+            },
+            "Amount":  {
+                writable:true,
+                enumerable:true,
+                value:0
+            },
+            "Number":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            },
+            "CardType":  {
+                writable:true,
+                enumerable:true,
+                value:""//uppercase
+            },
+            "Expiration":  {
+                writable:true,
+                enumerable:true,
+                value:""//digits only
+            },
+            "SecurityCode":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            },
+            "PostalCode":  {
+                writable:true,
+                enumerable:true,
+                value:""
+            }
+        }
+    );
 }
+
+module.exports = Order;
