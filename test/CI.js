@@ -13,9 +13,9 @@ casingTest(test);
 runAddressTest(test);
 runPaymentTest(test);
 
-// await runNearbyStoresTest(test);
-// await runStoreTest(test);
-// await runTrackingTest(test);
+await runNearbyStoresTest(test);
+await runStoreTest(test);
+await runTrackingTest(test);
 await runImageTest(test);
 
 

@@ -6,12 +6,30 @@
   "type": "module",
   "scripts": {
     "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
+    "precommit": "node test/CI.js",
     "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
     "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
   "pre-commit": [
-    "test"
+    "precommit"
   ],
+  "directories": {
+    "example": "example",
+    "test": "test",
+    "coverage": "coverage"
+  },
+  "dependencies": {
+    "js-base64-file": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "strong-type": "^0.1.6",
+    "xml2json": "^0.9.0",
+    "vanilla-test": "^1.4.7"
+  },
+  "devDependencies": {
+    "c8": "^7.6.0",
+    "node-http-server": "^8.1.3",
+    "pre-commit": "^1.2.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api.git"
@@ -114,22 +132,6 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/RIAEvangelist/node-dominos-pizza-api/issues"
-  },
-  "directories": {
-    "example": "example",
-    "test": "test"
-  },
-  "dependencies": {
-    "js-base64-file": "^2.0.3",
-    "node-fetch": "^2.6.1",
-    "strong-type": "^0.1.6",
-    "xml2json": "^0.9.0",
-    "vanilla-test": "^1.4.7"
-  },
-  "devDependencies": {
-    "c8": "^7.6.0",
-    "node-http-server": "^8.1.3",
-    "pre-commit": "^1.2.2"
   },
   "homepage": "https://github.com/RIAEvangelist/node-dominos-pizza-api"
 }
