@@ -67,6 +67,35 @@ The module now supports using multiple sets of endpoints that we have in `./util
 
 See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
 
+### USA
+USA is default so you really dont need to do anything other than `import {urls} from 'dominos';` if you want access to the usa endpoints.
+
+```js
+
+  import {urls} from 'dominos';
+  console.dir(urls);
+
+
+
+  //Or to reset the usa if you switched to custom or another country
+  
+  
+  import {urls} from 'dominos';
+  import {useInternational,canada,usa} from 'dominos/utils/urls.js';
+  
+  //first set to canada so we can see it work since USA is default
+  useInternational(canada);
+  console.dir(urls);
+  
+  //then set it back to usa so we can confirm it works
+  useInternational(usa);
+  console.dir(urls);
+  
+
+```
+
+
+
 ### Canada
 
 ```js
