@@ -55,15 +55,15 @@ Remember, the Dominos API is rate limited, so if you make too many requests, lik
 
 For coverage we are using the amazing `c8` coverage suite. It produces awesom instanbul style reports as well as lcov and much mmore. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
 
-Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. 
+Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. You can start a local coverage server to view your results by running `npm run coverage`. This will start a simple [`node-http-server`](https://github.com/RIAEvangelist/node-http-server) for your local coverage directory.
 
-### [See the c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/index.html)
+### [See the public c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/index.html)
 
 ---
 
 # International Support
 
-The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custome endpoints. However, if you get hyour country working with custome endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
+The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get hyour country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
 
 See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
 
@@ -367,7 +367,30 @@ Tracking {
 
 # Payment
 
-still need to document this class
+This class will initialize a creditcard payment object for an order.
+
+See the detailed docs on payment here : [Payment.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Payment.md)
+
+
+```js
+
+import {Payment} from '../index.js';
+
+const myCard=new Payment(
+    {
+        amount:10.77,
+        //dashes are not needed, they just make it easier to read
+        //the class sanitizes the data
+        number:'4444-4444-4444-4444',
+        expiration:'01/12',
+        securityCode:'867',
+        postalCode:'93940'
+    }
+)
+
+
+```
+
 
 
 # Below docs are still v2.0 updating docs in order as I go

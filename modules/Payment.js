@@ -8,7 +8,7 @@ class Payment extends DominosFormat{
         is.string(parameters.number);
         is.string(parameters.expiration);
         is.string(parameters.securityCode);
-        is.string(parameters.billingPostalCode);
+        is.string(parameters.postalCode);
         
         if(parameters.amount){
             is.number(parameters.amount)
@@ -26,7 +26,7 @@ class Payment extends DominosFormat{
             //numbers only
             this.expiration=this.#digitsOnly(parameters.expiration);
             this.securityCode=parameters.securityCode;
-            this.postalCode=parameters.billingPostalCode;
+            this.postalCode=parameters.postalCode;
             this.amount=parameters.amount||0;
         }
 

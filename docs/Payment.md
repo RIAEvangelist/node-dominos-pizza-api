@@ -15,35 +15,54 @@ Constructor
 |parameters.|type       |required|description|
 |--------   |------     |--------|-------|
 |amount     |number     |no      |amount to pay with the card|
-|number     |string     |yes     |credit card number|
-|cardType   |string     |yes     ||
-|expiration |string     |yes     ||
-|securityCode|string    |yes     ||
-|postalCode |string     |yes     ||
+|number     |string     |yes     |credit card number sanitized when instantiatied per dominos rules (numbers only)|
+|expiration |string     |yes     |creditcard expiration sanitized when instantiatied per dominos rules (numbers only)|
+|securityCode|string    |yes     |credit card security code|
+|postalCode |string     |yes     |credit card billing postal/zip code|
 
 Instance
 ====
 
-|member/method|type  |writeable|default|description|
-|-------------|------|---    |---      |-------    |
+|member/method  |type  |description|
+|-------------  |------|---      |-------    |
+|amount         |number|amount to pay with the card|
+|number         |string|credit card number sanitized when instantiatied per dominos rules (numbers only|
+|cardType       |string|type of credit card, automatically assigned when instantiated based on the credit card number |
+|expiration     |string|credit card expiration sanitized when instantiatied per dominos rules (numbers only)|
+|securityCode   |string|credit card security code|
+|postalCode     |string|credit card billing postal/zip code|
 
 
+```js
+
+import {Payment} from '../index.js';
+
+const myCard=new Payment(
+    {
+        amount:10.77,
+        //dashes are not needed, they just make it easier to read
+        //the class sanitizes the data
+        number:'4444-4444-4444-4444',
+        expiration:'01/12',
+        securityCode:'867',
+        postalCode:'93940'
+    }
+)
+
+console.dir(myCard);
 
 
-type='CreditCard'
-    amount=0
-    number=''
-    cardType=''
-    expiration=''
-    securityCode=''
-    postalCode=''
+//outputs
 
 
+Payment {
+  type: 'CreditCard',
+  amount: 10.77,
+  number: '4444444444444444',
+  cardType: 'VISA',
+  expiration: '0112',
+  securityCode: '867',
+  postalCode: '93940'
+}
 
- visa        : /^4[0-9]{12}(?:[0-9]{3})?$/,
-            mastercard  : /^5[1-5][0-9]{14}$/,
-            amex        : /^3[47][0-9]{13}$/,
-            diners      : /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
-            discover    : /^6(?:011|5[0-9]{2})[0-9]{12}$/,
-            jcb         : /^(?:2131|1800|35\d{3})\d{11}$/,
-            enroute  
+```

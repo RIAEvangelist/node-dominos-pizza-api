@@ -1,5 +1,5 @@
 import Is from 'strong-type';
-import {Address,NearbyStores,Menu,Store, Item, Customer} from '../index.js';
+import {Address,NearbyStores,Menu,Store, Item, Customer, Tracking, Payment, Image} from '../index.js';
 import VanillaTest from 'vanilla-test';
 
 class IsDominos extends Is{
@@ -29,6 +29,18 @@ class IsDominos extends Is{
 
     customer(value){
         return this.instanceCheck(value,Customer);
+    }
+
+    image(value){
+        return this.instanceCheck(value,Image);
+    }
+
+    payment(value){
+        return this.instanceCheck(value,Payment);
+    }
+
+    tracking(value){
+        return this.instanceCheck(value,Tracking);
     }
 }
 
