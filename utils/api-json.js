@@ -2,50 +2,27 @@ import fetch from 'node-fetch';
 import urls from './urls.js';
 import {default as parser} from 'xml2json';
 
-const post=function(url, req, callback) {
-    if(typeof req !=  'string')
-        req = JSON.stringify(req);
-
-    const requestBody = {
-        uri: url,
+const post=async function(url, payload) {
+    const options = {
+        method:'POST',
         headers: {
-            Referer: urls.referer,
+            'Referer': urls.referer,
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: req
+        body:payload
     };
 
-    http.post(requestBody, function (error, res, body) {
-      if (error) {
-          return callback({
-            success: false,
-            message: error
-          });
-      }
+    //console.log(options,url);
 
-      if (res.statusCode !== 200) {
-          return callback({
-              success: false,
-              message: 'HTML Status Code Error ' + res.statusCode
-          });
-      }
+    const res=await fetch(
+        url,
+        options
+    );
 
-      try {
-          const parsed = JSON.parse(body);
-      }
-      catch(error){
-        console.log(error);
-        return callback({
-            success: false,
-            message: error
-        });
-      }
+    //console.log(await res.text());
 
-      return callback({
-          success: true,
-          result: parsed
-      });
-  });
+    return await res.json();
 }
 
 const get = async function(url){

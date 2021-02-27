@@ -1,4 +1,4 @@
-import {get,post} from '../utils/api-json.js';
+import {get} from '../utils/api-json.js';
 import urls from '../utils/urls.js';
 import Is from 'strong-type';
 import Address from '../modules/Address.js';
@@ -15,8 +15,19 @@ class NearbyStores{
     }
 
     address=defaultAddress
-
     stores=[]
+    
+    get dominosAPIResponse(){
+        return this.#dominosAPIResponse; 
+    }
+
+    set dominosAPIResponse(value){
+        is.object(value);
+
+        return this.#dominosAPIResponse=value;
+    }
+
+    #dominosAPIResponse={}
 
     async #getStores(pickUpType){
         const stores=await get(

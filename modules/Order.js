@@ -1,103 +1,151 @@
-import Is from 'strong-type';
+import IsDominos from '../utils/DominosTypes.js';
 import DominosFormat from './DominosFormat.js';
-import Address from '../modules/Address.js';
 import {urls} from '../utils/urls.js';
+import Address from '../modules/Address.js';
+import {post} from '../utils/api-json.js';
 
-const is=new Is;
+const isDominos=new IsDominos;
 
 class Order extends DominosFormat{
-    constructor(parameters) {
+    constructor(customer) {
         super();
 
-        this.init=parameters;
-        return this;
+        return this.addCustomer(customer);
     }
 
     address = new Address
+    amounts = {}
+    amountsBreakdown=[]
+    businessDate = ''
     coupons = []
+    currency = ''
     customerID = ''
+    
+    estimatedWaitMinutes = ''
     email = ''
     extension = ''
     firstName = ''
+    hotspotsLite= false
     lastName = ''
     languageCode = 'en'
+    market = ''
+    metaData = {}
+    newUser = true
+    noCombine = true
     orderChannel = 'OLO'
     orderID = ''
     orderMethod = 'Web'
     orderTaker = null
+    partners = {}
     payments = []
     phone = ''
+    priceOrderTime = ''
     products = []
-    market = ''
-    currency = ''
     serviceMethod = 'Delivery'
     sourceOrganizationURI = urls.sourceUri
     storeID = ''
     tags = {}
     version = '1.0'
-    noCombine = true
-    partners = {}
-    newUser = true
-    metaData = {}
-    amounts = {}
-    businessDate = ''
-    estimatedWaitMinutes = ''
-    priceOrderTime = ''
-    amountsBreakdown=[]
-
+    
     get payload(){
+        const formatted=this.formatted;
+        formatted.Address=this.address.formatted;
+
+        for(const [i,item] of Object.entries(this.products)){
+            formatted.Products[i]=item.formatted;
+        }
+
+        //console.log(formatted);
+
         return JSON.stringify(
             {
-                Object:this.formatted
-            }
+                Order:formatted
+            },
+            // null,
+            // 4
         )   
     }
 
+    addCustomer(customer) { 
+        isDominos.customer(customer);
+        
+        Object.assign(this,customer);
+        
+        return this;
+    }
+
     addCoupon(couponCode) { 
+        isDominos.string(couponCode);
+        
         this.coupons.push(couponCode);
         
         return this;
     }
 
     removeCoupon(couponCode) { 
-        var index = this.coupons.indexOf(couponCode);
-        if (index == -1) {
-            return this;
-        }
-        this.coupons.splice(index, 1);
+        isDominos.string(couponCode);
         
-        return this;
+        return this.#remove(couponCode,this.coupons);;
     }
 
     addItem(item) { 
+        isDominos.item(item);
+
         this.products.push(item);
         
         return this;
     }
 
     removeItem(item) {
-        var index = this.products.indexOf(item);
+        isDominos.item(item);
+
+        return this.#remove(item,this.products);
+    }
+
+    get validationResponse(){
+        return this.#validationResponse; 
+    }
+
+    set validationResponse(value){
+        isDominos.object(value);
+
+        return this.#validationResponse=value;
+    }
+
+    get priceResponse(){
+        return this.#priceResponse; 
+    }
+
+    set priceResponse(value){
+        isDominos.object(value);
+
+        return this.#priceResponse=value;
+    }
+
+    #priceResponse={}
+
+    #validationResponse={}
+    
+    #remove(child,parent){
+
+        const index = parent.indexOf(child);
         if(index != -1) {
-          this.products.splice(index, 1);
+          parent.splice(index, 1);
         }
 
         return this;
-    }    
+    }
 
     async validate() {  
 
-        order = JSON.stringify(
-            {
-                'Order' : this
-            }
-        );
-
-
         //switch this to an await
 
-        httpJson.post(urls.order.validate, this.payload);
-
-        return;
+        this.validationResponse=await post(
+            urls.order.validate,
+            this.payload
+        );
+        
+        return this;
     }
 
     async price() {

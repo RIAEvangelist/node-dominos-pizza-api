@@ -1,5 +1,15 @@
 import Is from 'strong-type';
-import {Address,NearbyStores,Menu,Store, Item, Customer, Tracking, Payment, Image} from '../index.js';
+
+import Address from '../modules/Address.js';
+import NearbyStores from '../modules/NearbyStores.js';
+import Menu from '../modules/Menu.js';
+import Store from '../modules/Store.js';
+import Item from '../modules/Item.js';
+import Image from '../modules/Image.js';
+import Customer from '../modules/Customer.js';
+import Tracking from '../modules/Tracking.js';
+import Payment from '../modules/Payment.js';
+
 import VanillaTest from 'vanilla-test';
 
 class IsDominos extends Is{

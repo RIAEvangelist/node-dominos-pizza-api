@@ -1,4 +1,3 @@
-import defaultParameters from './defaultParameters.js';
 import Is from 'strong-type';
 import urls from '../utils/urls.js';
 import {toCamel} from '../utils/toCase.js';
@@ -37,7 +36,17 @@ class Menu{
         }
     }
 
-    dominosAPIResponse={}
+    get dominosAPIResponse(){
+        return this.#dominosAPIResponse; 
+    }
+
+    set dominosAPIResponse(value){
+        is.object(value);
+
+        return this.#dominosAPIResponse=value;
+    }
+
+    #dominosAPIResponse={}
 
     async #getMenu(storeID,lang){
         this.dominosAPIResponse=await get(

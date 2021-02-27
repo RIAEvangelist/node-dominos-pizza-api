@@ -24,6 +24,18 @@ class DominosFormat{
 
         return this;
     }
+
+    get dominosAPIResponse(){
+        return this.#dominosAPIResponse; 
+    }
+
+    set dominosAPIResponse(value){
+        is.object(value);
+
+        return this.#dominosAPIResponse=value;
+    }
+
+    #dominosAPIResponse={}
 }
 
 export {

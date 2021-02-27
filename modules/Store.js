@@ -1,4 +1,3 @@
-import defaultParameters from './defaultParameters.js';
 import {get} from '../utils/api-json.js';
 import urls from '../utils/urls.js';
 import Menu from './Menu.js';

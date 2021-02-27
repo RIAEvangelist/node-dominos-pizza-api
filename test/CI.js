@@ -10,6 +10,7 @@ import runPaymentTest from './tests/payment.js';
 import runItemTest from './tests/item.js';
 import runCustomerTest from './tests/customer.js';
 import runInternationalTest from './tests/international.js';
+import runOrderTest from './tests/order.js';
 
 const test=new VanillaTest;
 
@@ -33,8 +34,9 @@ await runStoreTest(test);
 delay(5e3);
 
 await runTrackingTest(test);
+delay(5e3);
 
-
+await runOrderTest(test);
 
 
 

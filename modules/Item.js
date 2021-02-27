@@ -2,6 +2,7 @@ import Is from 'strong-type';
 import DominosFormat from './DominosFormat.js';
 
 const is=new Is;
+let id=0;
 
 class Item extends DominosFormat{
     constructor(parameters) {
@@ -11,6 +12,7 @@ class Item extends DominosFormat{
         return this;
     }
 
+    iD=id++
     code=''
     qty=1
     options={}   
