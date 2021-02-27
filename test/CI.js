@@ -17,24 +17,24 @@ const test=new VanillaTest;
 //we will add delays between the tests that API requests
 //this will help prevent us from getting rate limited due to testing
 
-casingTest(test);
-runAddressTest(test);
-runPaymentTest(test);
-runItemTest(test);
-runCustomerTest(test);
-runInternationalTest(test);
+// casingTest(test);
+// runAddressTest(test);
+// runPaymentTest(test);
+// runItemTest(test);
+// runCustomerTest(test);
+// runInternationalTest(test);
 
-await runImageTest(test);
-delay(5e3);
+// await runImageTest(test);
+// delay(5e3);
 
-await runNearbyStoresTest(test);
-delay(5e3);
+// await runNearbyStoresTest(test);
+// delay(5e3);
 
-await runStoreTest(test);
-delay(5e3);
+// await runStoreTest(test);
+// delay(5e3);
 
-await runTrackingTest(test);
-delay(5e3);
+// await runTrackingTest(test);
+// delay(5e3);
 
 await runOrderTest(test);
 

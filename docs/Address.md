@@ -19,16 +19,17 @@ Constructor
 Instance
 ====
 
-|member/method|type  |writeable|default|description|
-|-------------|------|---    |---      |-------    |
-|.street      |String|Yes    |         |street address (most commonly used to combine street number, name and apt number)|
-|.streetName  |String|Yes    |         |street name|
-|.streetNumber|String|Yes    |         |street number|
-|.unitType    |String|Yes    |         |unit type, suite, apt etc.|
-|.unitNumber  |String|Yes    |         |apartment number|
-|.city        |String|Yes    |         |address city|
-|.region      |String|Yes    |         |in the US this would be the state. In other countries it may be the province or prefecture|
-|.postalCode  |String|Yes    |         |address postal or zip code|
+|member/method|type  |description|
+|-------------|------|-------    |
+|.street      |String|street address (most commonly used to combine street number, name and apt number)|
+|.streetName  |String|street name|
+|.streetNumber|String|street number|
+|.unitType    |String|unit type, suite, apt etc.|
+|.unitNumber  |String|apartment number|
+|.city        |String|address city|
+|.region      |String|in the US this would be the state. In other countries it may be the province or prefecture|
+|.postalCode  |String|address postal or zip code|
+|.deliveryInstructions|String|This is for special injstructions, like ring the bell, or please don't give the Pizza to the old lady out front, she is not my Grandma, and always steals my food deliverys.|
 
 
 #### AddressObject
@@ -41,7 +42,8 @@ Instead of passing an address string when initing the Address class (which needs
       street:'900 Clark Ave Apt. 2B',
       city:'St. Louis',
       region:'MO',
-      postalCode:'63102'
+      postalCode:'63102',
+      deliveryInstructions:'please dont give the Pizza to the old lady out front, she is not my Grandma.'
   }
 
 ```
