@@ -1,5 +1,5 @@
-import {Menu,Image} from '../index.js';
-import IsDominos from '../utils/DominosTypes.js';
+import {Menu,Image} from '../../index.js';
+import IsDominos from '../../utils/DominosTypes.js';
 
 const isDominos=new IsDominos;
 

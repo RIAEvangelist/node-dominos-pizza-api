@@ -1,14 +1,15 @@
 import VanillaTest from 'vanilla-test';
 import delay from '../utils/delay.js';
-import casingTest from './casingTest.js';
-import runAddressTest from './address.js';
-import runNearbyStoresTest from './nearbyStore.js';
-import runStoreTest from './store.js';
-import runTrackingTest from './tracking.js';
-import runImageTest from './image.js';
-import runPaymentTest from './payment.js';
-import runItemTest from './item.js';
-import runCustomerTest from './customer.js';
+import casingTest from './tests/casingTest.js';
+import runAddressTest from './tests/address.js';
+import runNearbyStoresTest from './tests/nearbyStore.js';
+import runStoreTest from './tests/store.js';
+import runTrackingTest from './tests/tracking.js';
+import runImageTest from './tests/image.js';
+import runPaymentTest from './tests/payment.js';
+import runItemTest from './tests/item.js';
+import runCustomerTest from './tests/customer.js';
+import runInternationalTest from './tests/international.js';
 
 const test=new VanillaTest;
 
@@ -20,6 +21,7 @@ runAddressTest(test);
 runPaymentTest(test);
 runItemTest(test);
 runCustomerTest(test);
+runInternationalTest(test);
 
 await runImageTest(test);
 delay(5e3);

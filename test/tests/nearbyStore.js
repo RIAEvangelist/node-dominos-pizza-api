@@ -1,5 +1,5 @@
-import IsDominos from '../utils/DominosTypes.js';
-import {NearbyStores} from '../modules/NearbyStores.js';
+import IsDominos from '../../utils/DominosTypes.js';
+import {NearbyStores} from '../../modules/NearbyStores.js';
 
 const isDominos=new IsDominos;
 

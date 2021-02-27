@@ -1,5 +1,5 @@
-import {Tracking} from '../index.js';
-import IsDominos from '../utils/DominosTypes.js';
+import {Tracking} from '../../index.js';
+import IsDominos from '../../utils/DominosTypes.js';
 
 const isDominos=new IsDominos;
 

@@ -1,6 +1,6 @@
-import IsDominos from '../utils/DominosTypes.js';
-import {toPascal} from '../utils/toCase.js';
-import {Address} from '../index.js';
+import IsDominos from '../../utils/DominosTypes.js';
+import {toPascal} from '../../utils/toCase.js';
+import {Address} from '../../index.js';
 
 const isDominos=new IsDominos;
 const defaultExpected=new Address;

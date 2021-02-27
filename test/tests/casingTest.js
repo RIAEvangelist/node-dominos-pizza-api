@@ -1,4 +1,4 @@
-import {toCamel,toPascal} from '../utils/toCase.js';
+import {toCamel,toPascal} from '../../utils/toCase.js';
 
 const testToCase=function(test,camel,pascal){
     try{

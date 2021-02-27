@@ -7,7 +7,7 @@ import Customer from './modules/Customer.js';
 import Item from './modules/Item.js';
 import Image from './modules/Image.js';
 
-// import Order from './modules/Order.js';
+import Order from './modules/Order.js';
 import Payment from './modules/Payment.js';
 import Tracking from './modules/Tracking.js';
  
@@ -23,7 +23,7 @@ const old={
     Item,
     Image,
     
-    // Order,
+    Order,
     Payment,
     Tracking,
     
@@ -41,7 +41,7 @@ export {
     Item,
     Image,
     
-    // Order,
+    Order,
     Payment,
     Tracking,
     

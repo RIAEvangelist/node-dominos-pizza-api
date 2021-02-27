@@ -39,6 +39,7 @@ import {Payment} from '../index.js';
 
 const myCard=new Payment(
     {
+        //amount is optional. you can add this on myCard.amount whenever you are ready
         amount:10.77,
         //dashes are not needed, they just make it easier to read
         //the class sanitizes the data

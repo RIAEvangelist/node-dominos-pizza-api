@@ -1,6 +1,6 @@
-import {Item} from '../index.js';
-import {toPascal} from '../utils/toCase.js';
-import IsDominos from '../utils/DominosTypes.js';
+import {Item} from '../../index.js';
+import {toPascal} from '../../utils/toCase.js';
+import IsDominos from '../../utils/DominosTypes.js';
 
 const isDominos=new IsDominos;
 

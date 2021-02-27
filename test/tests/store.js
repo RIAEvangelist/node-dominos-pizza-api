@@ -1,6 +1,6 @@
-import IsDominos from '../utils/DominosTypes.js';
-import {Store} from '../modules/Store.js';
-import {NearbyStores} from '../modules/NearbyStores.js';
+import IsDominos from '../../utils/DominosTypes.js';
+import {Store} from '../../modules/Store.js';
+import {NearbyStores} from '../../modules/NearbyStores.js';
 import { FetchError } from 'node-fetch';
 
 const isDominos=new IsDominos;
