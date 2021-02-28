@@ -25,7 +25,7 @@ Instance
 |-------------|------|-------    |
 |.code        |String|the product code, like `14SCREEN` for a 14' cheese pizza|
 |.qty         |Number|the quantity of the item to order|
-|.options     |Object|the special options for these items, options supported for various products can be found in the menu entries for the item|
+|.options     |Object|the special options for these items, options supported for various products can be found in the menu entries for the item. Poke around in the menu to get an idea about them.|
 
 
 ```js
@@ -35,12 +35,14 @@ const cheesePizza=new Item(
     {
         ID:1,
         code:'14SCREEN',
-        options:{
+        options:
+            // this says, for the whole pizza put sauce on it
             X: {'1/1' : '1'}, 
+            
+            //this says for the whole pizza put double cheese
             C: {'1/1' : '2'}
-        }
     }
-)
+);
 
 console.dir(cheesePizza);
 
