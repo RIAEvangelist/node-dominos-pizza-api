@@ -48,8 +48,10 @@ const initWithCustomer=function(test){
         //get sanitized JSON
         //console.log(order.payload)
 
-        const expectsJSON='{"Order":{"Address":{"Street":"900 Clark Ave","StreetNumber":"","StreetName":"","UnitType":"","UnitNumber":"","City":"","Region":"","PostalCode":"63102","DeliveryInstructions":""},"Amounts":{},"AmountsBreakdown":[],"BusinessDate":"","Coupons":[],"Currency":"","CustomerID":"","EstimatedWaitMinutes":"","Email":"chief@us.gov","Extension":"","FirstName":"Barack","HotspotsLite":false,"LastName":"Obama","LanguageCode":"en","Market":"","MetaData":{},"NewUser":true,"NoCombine":true,"OrderChannel":"OLO","OrderID":"","OrderMethod":"Web","OrderTaker":null,"Partners":{},"Payments":[],"Phone":"1-800-555-2368","PriceOrderTime":"","Products":[],"ServiceMethod":"Delivery","SourceOrganizationURI":"order.dominos.com","StoreID":"","Tags":{},"Version":"1.0"}}';
+        const expectsJSON='{"Order":{"Address":{"Street":"900 Clark Ave","StreetNumber":"","StreetName":"","UnitType":"","UnitNumber":"","City":"","Region":"","PostalCode":"63102","DeliveryInstructions":""},"Amounts":{},"AmountsBreakdown":[],"BusinessDate":"","Coupons":[],"Currency":"","CustomerID":"","EstimatedWaitMinutes":"","Email":"chief@us.gov","Extension":"","FirstName":"Barack","HotspotsLite":false,"IP":"","LastName":"Obama","LanguageCode":"en","Market":"","MetaData":{},"NewUser":true,"NoCombine":true,"OrderChannel":"OLO","OrderID":"","OrderMethod":"Web","OrderTaker":null,"Partners":{},"Payments":[],"Phone":"1-800-555-2368","PriceOrderTime":"","Products":[],"Promotions":{},"ServiceMethod":"Delivery","SourceOrganizationURI":"order.dominos.com","StoreID":"","Tags":{},"UserAgent":"","Version":"1.0"}}';
         
+        //console.log(order.payload);
+
         if(order.payload!==expectsJSON){
             test.fail();
         }
@@ -121,16 +123,52 @@ const addAndRemoveItems=function(test){
     test.done();
 }
 
+const failValidateCheesePizza=async function(test){
+    try{
+        test.expects(`Order to fail validating an order that does not specify a store`);    
+        
+        const cheesePizza=new Item(
+            {
+                code:'14SCREEN',
+                options:{
+                    X: {'1/1' : '1'}, 
+                    C: {'1/1' : '2'}
+                }
+            }
+        )
+        
+        const order=new Order(customer);
+        order.serviceMethod='Carryout';
+        
+        order.addItem(cheesePizza);
+        
+        console.dir(order,{depth:5});
+
+        //should throw because this would be a terrible pizza
+        await order.validate();
+        
+        console.dir(order,{depth:5});
+        test.fail();
+    }catch(err){
+        try{
+            isDominos.validationError(err);
+        }catch(err){
+            console.trace(err);
+            test.fail();
+        }
+    }
+    test.pass();
+    test.done();
+}
 
 const validateCheesePizza=async function(test){
     try{
         test.expects(`Order to validate as a Cheese Pizza with Extra Cheese`);    
         
-        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":[],\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderMethod\":\"Web\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderTime\":\"\",\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":7981,\"Tags\":{},\"Version\":\"1.0\",\"IP\":null,\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"Status\":1,\"StatusItems\":null,\"metaData\":{\"prop65Warning\":true},\"Products\":[{\"ID\":1,\"Code\":\"14SCREEN\",\"Qty\":1,\"CategoryCode\":\"Pizza\",\"FlavorCode\":\"HANDTOSS\",\"Status\":0,\"LikeProductID\":0,\"Name\":\"Large (14\\\") Hand Tossed Pizza\",\"IsNew\":false,\"NeedsCustomization\":false,\"AutoRemove\":false,\"Fulfilled\":false,\"Tags\":{},\"Options\":{\"C\":{\"1/1\":\"2\"}},\"descriptions\":[{\"portionCode\":\"1/1\",\"value\":\"Double Cheese, Robust Inspired Tomato Sauce\"}]}]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
+        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":[],\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"IP\":null,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderMethod\":\"Web\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderTime\":\"\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":7981,\"Tags\":{},\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Version\":\"1.0\",\"Status\":1,\"StatusItems\":null,\"metaData\":{\"prop65Warning\":true},\"Products\":[]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
 
         const cheesePizza=new Item(
             {
-                ID:1,
                 code:'14SCREEN',
                 options:{
                     X: {'1/1' : '1'}, 
@@ -153,6 +191,10 @@ const validateCheesePizza=async function(test){
         
         //sanitize this because if the tests are done when the store is closed payloads will not match
         order.validationResponse.Order.StatusItems=null;
+        
+        //if you need to compare the objects because something is wonky
+        // console.log(order.validationResponse)
+        // console.log(JSON.parse(expectsJSON))
 
         const sanitizedResponse=JSON.stringify(order.validationResponse);
         
@@ -191,6 +233,7 @@ const runTest=async function(test){
     addAndRemoveCoupons(test);
     addAndRemoveItems(test);
 
+    await failValidateCheesePizza(test);
     await validateCheesePizza(test);
 }
 

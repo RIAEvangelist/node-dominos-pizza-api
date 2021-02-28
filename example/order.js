@@ -12,10 +12,17 @@ const customer = new Customer(
     }
 );
 
-//used to get instantiation payload for CI test
-//console.log(order.payload)
-
 const cheesePizza=new Item(
+    {
+        code:'14SCREEN',
+        options:{
+            X: {'1/1' : '1'}, 
+            C: {'1/1' : '1'}
+        }
+    }
+)
+
+const extraCheesePizza=new Item(
     {
         code:'14SCREEN',
         options:{
@@ -25,28 +32,34 @@ const cheesePizza=new Item(
     }
 )
 
+
+//create
+
 const order=new Order(customer);
 order.storeID=7981;
 order.serviceMethod='Carryout';
 
 order.addItem(cheesePizza);
+order.addItem(extraCheesePizza);
+
+console.log(`
+    INITIALIZED ORDER
+`);
+console.dir(order,{depth:2});
+
+
+
+//validate
 
 await order.validate();
 
 console.log(`
-ORDER
+    VALIDATED ORDER
 `);
 
 console.dir(order,{depth:2});
 
-console.log(`
-VALIDATION
-`);
 
-console.dir(order.validationResponse,{depth:5});
+//price
 
-
-//used to get validation payload for CI test
-order.validationResponse.Order.OrderID=null;
-order.validationResponse.Order.IP=null;
-console.log(JSON.stringify(order.validationResponse));
+//await order.price()

@@ -393,6 +393,24 @@ const myCard=new Payment(
 
 
 
+
+
+
+
+
+
+
+# Global DominosErrors
+
+These custom errors are added to the global object for use in your code and the `dominos` api. You can use them to validate errors or even throw your own if you are making a module ontop of this one.
+
+See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosErrors.md)
+
+|error                  |parameters         |description|
+|-----                  |----------         |-----------|
+|DominosValidationError |validationResponse |this error is thrown when a dominos validation request fails|
+
+
 # Below docs are still v2.0 updating docs in order as I go
 
 

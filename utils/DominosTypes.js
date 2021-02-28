@@ -1,3 +1,5 @@
+import '../modules/DominosErrors.js';
+
 import Is from 'strong-type';
 
 import Address from '../modules/Address.js';
@@ -51,6 +53,10 @@ class IsDominos extends Is{
 
     tracking(value){
         return this.instanceCheck(value,Tracking);
+    }
+
+    validationError(value){
+        return this.instanceCheck(value,DominosValidationError);
     }
 }
 

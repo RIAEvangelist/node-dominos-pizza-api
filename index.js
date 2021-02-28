@@ -12,6 +12,8 @@ import Payment from './modules/Payment.js';
 import Tracking from './modules/Tracking.js';
  
 import urls from './utils/urls.js';
+import IsDominos from './utils/DominosTypes.js';
+
 
 const old={
     Address,
@@ -27,7 +29,8 @@ const old={
     Payment,
     Tracking,
     
-    urls
+    urls,
+    IsDominos
 };
 
 export {
@@ -45,5 +48,6 @@ export {
     Payment,
     Tracking,
     
-    urls
+    urls,
+    IsDominos
 };

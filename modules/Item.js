@@ -2,7 +2,7 @@ import Is from 'strong-type';
 import DominosFormat from './DominosFormat.js';
 
 const is=new Is;
-let id=0;
+let id=1;
 
 class Item extends DominosFormat{
     constructor(parameters) {
