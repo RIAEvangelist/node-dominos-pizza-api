@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.57% </span>
+                <span class="strong">77.31% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>187/216</span>
+                <span class='fraction'>167/216</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">88.24% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>15/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.47% </span>
+                <span class="strong">70.59% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/17</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.57% </span>
+                <span class="strong">77.31% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>187/216</span>
+                <span class='fraction'>167/216</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -383,8 +383,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -428,12 +428,12 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -465,22 +465,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -646,10 +646,10 @@ class Order extends DominosFormat{
         if(validation.Status==-1 || this.validationResponse.Status==-1){
             throw new DominosValidationError(this.validationResponse);
         }
-&nbsp;
-        this.#merge(validation);
-&nbsp;
-        return this;
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span>
+<span class="cstat-no" title="statement not covered" >        this.#merge(validation);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    async price() {</span>
@@ -658,11 +658,11 @@ class Order extends DominosFormat{
 <span class="cstat-no" title="statement not covered" >            this.payload</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        console.dir(JSON.parse(this.payload),{depth:5})</span>
+<span class="cstat-no" title="statement not covered" >        //console.dir(JSON.parse(this.payload),{depth:5})</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        const price=this.priceResponse.Order;</span>
 <span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >        console.dir(this.priceResponse,{depth:5})</span>
+<span class="cstat-no" title="statement not covered" >        //console.dir(this.priceResponse,{depth:5})</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        if(price.Status==-1 || this.priceResponse.Status==-1){</span>
 <span class="cstat-no" title="statement not covered" >            throw new DominosPriceError(this.priceResponse);</span>
@@ -680,23 +680,23 @@ class Order extends DominosFormat{
 <span class="cstat-no" title="statement not covered" >        httpJson.post(urls.order.place, this.payload, callback);</span>
     };
 &nbsp;
-    #merge(order){
-        this.address.formatted=order.Address;
-        this.currency=order.Currency;
-        this.estimatedWaitMinutes=order.EstimatedWaitMinutes;
-        this.market=order.Market;
-        this.orderID=order.OrderID;
-        this.iP=order.IP;
-        this.userAgent=order.UserAgent;
-        
-        for(const [key,promo] of Object.entries(order.Promotions)){
-            this.promotions[toCamel(key)]=promo;
-        }
-&nbsp;
-        for(const [i,product] of Object.entries(order.Products)){
-            this.products[i].formatted=product;
-        }
-    }
+<span class="fstat-no" title="function not covered" >    #merge(order){</span>
+<span class="cstat-no" title="statement not covered" >        this.address.formatted=order.Address;</span>
+<span class="cstat-no" title="statement not covered" >        this.currency=order.Currency;</span>
+<span class="cstat-no" title="statement not covered" >        this.estimatedWaitMinutes=order.EstimatedWaitMinutes;</span>
+<span class="cstat-no" title="statement not covered" >        this.market=order.Market;</span>
+<span class="cstat-no" title="statement not covered" >        this.orderID=order.OrderID;</span>
+<span class="cstat-no" title="statement not covered" >        this.iP=order.IP;</span>
+<span class="cstat-no" title="statement not covered" >        this.userAgent=order.UserAgent;</span>
+<span class="cstat-no" title="statement not covered" >        </span>
+<span class="cstat-no" title="statement not covered" >        for(const [key,promo] of Object.entries(order.Promotions)){</span>
+<span class="cstat-no" title="statement not covered" >            this.promotions[toCamel(key)]=promo;</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        for(const [i,product] of Object.entries(order.Products)){</span>
+<span class="cstat-no" title="statement not covered" >            this.products[i].formatted=product;</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
 }
 &nbsp;
@@ -712,7 +712,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Feb 28 2021 08:03:00 GMT+0000 (Coordinated Universal Time)
+                at Sun Feb 28 2021 09:17:56 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

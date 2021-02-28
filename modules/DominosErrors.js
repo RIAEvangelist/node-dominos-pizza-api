@@ -34,7 +34,7 @@ const createErrorMessage=function(self,response){
     is.object(self);
     is.object(response);
 
-    console.dir(response,{depth:2})
+    //console.dir(response,{depth:2})
 
     if(response.Order.StatusItems){
         for(const [i,statusItem] 

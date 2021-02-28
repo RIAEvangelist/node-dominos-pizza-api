@@ -1,7 +1,6 @@
 import IsDominos from '../../utils/DominosTypes.js';
 import {Store} from '../../modules/Store.js';
 import {NearbyStores} from '../../modules/NearbyStores.js';
-import { FetchError } from 'node-fetch';
 
 const isDominos=new IsDominos;
 
@@ -107,12 +106,14 @@ const expectNoStore=async function(test,storeID){
         //allow transparency
         isDominos.undefined(store);
     }catch(err){
-        if(!(err instanceof FetchError)){
-            console.log(`Expected ${err.name} to be a FetchError`);
+        try{
+            console.log(err);
+            isDominos.fetchError(err);
+            console.trace(err);
+        }catch(err){
+            console.trace(err);
             test.fail();
-        }
-
-        console.trace(err);        
+        }                
     }
     test.pass();
     test.done();

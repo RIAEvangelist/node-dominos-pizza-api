@@ -24,21 +24,12 @@ const runTest=async function(test){
         const formattedItem=item.formatted;
 
         for(const [key,value] of Object.entries(item)){
-            const pascalKey=toPascal(key);
+            //handle isNew One off
+            const pascalKey=(key=='isNew')? 'isNew':toPascal(key);
             
-            //ensure that all item values match expected values
-            test.compare(
-                value,
-                item[key],
-                `item.${key} ${JSON.stringify(item[key])} to equal expected.${key} ${JSON.stringify(value)}`    
-            );
-
-            //ensure that all dominos formatted values match expected values
-            test.compare(
-                value,
-                formattedItem[pascalKey],
-                `expected.${key} ${JSON.stringify(value)} to equal item.formatted.${pascalKey} ${JSON.stringify(formattedItem[pascalKey])}`    
-            );
+            if(JSON.stringify(value)!==JSON.stringify(formattedItem[pascalKey])){
+                throw new ReferenceError(`expected item.${key}:${JSON.stringify(value)} to equal item.formatted.${pascalKey}:${JSON.stringify(formattedItem[pascalKey])}`)
+            }
         }
 
     }catch(err){

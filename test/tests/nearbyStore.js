@@ -36,7 +36,7 @@ const expectNoNearbyStores=async function(test,address){
     
         test.is.array(nearbyStores.stores);
 
-        console.log(nearbyStores.stores.length);
+        //console.log(nearbyStores.stores.length);
 
         isDominos.undefined(nearbyStores.stores[0]);
     }catch(err){

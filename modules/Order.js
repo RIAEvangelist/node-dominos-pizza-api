@@ -167,11 +167,11 @@ class Order extends DominosFormat{
             this.payload
         );
 
-        console.dir(JSON.parse(this.payload),{depth:5})
+        //console.dir(JSON.parse(this.payload),{depth:5})
 
         const price=this.priceResponse.Order;
         
-        console.dir(this.priceResponse,{depth:5})
+        //console.dir(this.priceResponse,{depth:5})
 
         if(price.Status==-1 || this.priceResponse.Status==-1){
             throw new DominosPriceError(this.priceResponse);

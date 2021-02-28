@@ -1,6 +1,7 @@
 import '../modules/DominosErrors.js';
 
 import Is from 'strong-type';
+import {FetchError} from 'node-fetch';
 
 import Address from '../modules/Address.js';
 import NearbyStores from '../modules/NearbyStores.js';
@@ -57,6 +58,14 @@ class IsDominos extends Is{
 
     validationError(value){
         return this.instanceCheck(value,DominosValidationError);
+    }
+
+    priceError(value){
+        return this.instanceCheck(value,DominosPriceError);
+    }
+
+    fetchError(value){
+        return this.instanceCheck(value,FetchError);
     }
 }
 
