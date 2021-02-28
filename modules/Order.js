@@ -31,13 +31,14 @@ class Order extends DominosFormat{
     lastName = ''
     languageCode = 'en'
     market = ''
-    metaData = {}
+    metaData = {calculateNutrition: "true"}
     newUser = true
     noCombine = true
     orderChannel = 'OLO'
     orderID = ''
+    orderInfoCollection=[]
     orderMethod = 'Web'
-    orderTaker = null
+    orderTaker = 'node-dominos-pizza-api'
     partners = {}
     payments = []
     phone = ''
@@ -56,10 +57,7 @@ class Order extends DominosFormat{
         formatted.Address=this.address.formatted;
         
         for(const [i,item] of Object.entries(this.products)){
-            //this will also effect the instance products
             formatted.Products[i]=item.formatted;
-            //reset the instance products back to what they were
-            this.products[i]=item;
         }
 
         //console.log(formatted);
@@ -145,8 +143,6 @@ class Order extends DominosFormat{
 
     async validate() {  
 
-        //switch this to an await
-
         this.validationResponse=await post(
             urls.order.validate,
             this.payload
@@ -156,7 +152,7 @@ class Order extends DominosFormat{
         
         //console.log(this.validationResponse)
 
-        if(validation.Status!==1 || this.validationResponse.Status !== 1){
+        if(validation.Status==-1 || this.validationResponse.Status==-1){
             throw new DominosValidationError(this.validationResponse);
         }
 
@@ -166,11 +162,24 @@ class Order extends DominosFormat{
     }
 
     async price() {
+        this.priceResponse=await post(
+            urls.order.price,
+            this.payload
+        );
+
+        console.dir(JSON.parse(this.payload),{depth:5})
+
+        const price=this.priceResponse.Order;
         
-        
-        //update this
-        
-        httpJson.post(urls.order.price, this.payload);
+        console.dir(this.priceResponse,{depth:5})
+
+        if(price.Status==-1 || this.priceResponse.Status==-1){
+            throw new DominosPriceError(this.priceResponse);
+        }
+
+        this.#merge(price);
+
+        return this;
     }
 
     async place() {

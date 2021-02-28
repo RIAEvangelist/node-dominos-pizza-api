@@ -15,7 +15,20 @@ class Item extends DominosFormat{
     iD=id++
     code=''
     qty=1
-    options={}   
+    options={}
+    isNew=true   
+
+    get formatted(){
+        const formatted=super.formatted;
+        //console.log(formatted);
+        formatted.isNew=this.isNew;
+        delete formatted.IsNew;
+        return formatted;
+    }
+
+    set formatted(value){
+        return super.formatted=value;
+    }
 }
 
 export {

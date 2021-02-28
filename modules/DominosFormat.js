@@ -13,7 +13,11 @@ class DominosFormat{
     }
 
     get formatted(){
-        return pascalObjectKeys(this);
+        return pascalObjectKeys(
+            JSON.parse(
+                JSON.stringify(this)
+            )
+        );
     }
 
     set formatted(dominosAddress){

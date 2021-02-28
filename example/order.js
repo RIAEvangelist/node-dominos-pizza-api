@@ -45,7 +45,7 @@ order.addItem(extraCheesePizza);
 console.log(`
     INITIALIZED ORDER
 `);
-console.dir(order,{depth:2});
+//console.dir(order,{depth:2});
 
 
 
@@ -57,9 +57,13 @@ console.log(`
     VALIDATED ORDER
 `);
 
-console.dir(order,{depth:2});
+//console.dir(order,{depth:2});
 
 
 //price
 
-//await order.price()
+await order.price();
+console.log(`
+    PRICED ORDER
+`);
+//console.dir(order.priceResponse,{depth:3});

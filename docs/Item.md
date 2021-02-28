@@ -18,6 +18,7 @@ Constructor
 |.code          |String|yes|the product code, like `14SCREEN` for a 14' cheese pizza|
 |.qty           |Number|no|the quantity of the item to order, ***defaults to 1*** if not specified|
 |.options       |Object|no|the special options for these items, options supported for various products can be found in the menu entries for the item|
+|.isNew         |Bool  |no|suggested you do not modify this. tells the dominos api if this is a new item. If set to false, dominos will not return duplicate information for this item|
 
 Instance
 ====
@@ -28,7 +29,7 @@ Instance
 |.code        |String|the product code, like `14SCREEN` for a 14' cheese pizza|
 |.qty         |Number|the quantity of the item to order|
 |.options     |Object|the special options for these items, options supported for various products can be found in the menu entries for the item. Poke around in the menu to get an idea about them.|
-
+|.isNew       |Bool  |suggested you do not modify this. tells the dominos api if this is a new item. If set to false, dominos will not return duplicate information for this item|
 
 ```js
 import {Item} from 'dominos';
