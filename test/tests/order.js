@@ -126,7 +126,7 @@ const validateCheesePizza=async function(test){
     try{
         test.expects(`Order to validate as a Cheese Pizza with Extra Cheese`);    
         
-        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":[],\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderMethod\":\"Web\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderTime\":\"\",\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":7981,\"Tags\":{},\"Version\":\"1.0\",\"IP\":null,\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"Status\":1,\"StatusItems\":[{\"Code\":\"AutoAddedOrderId\"},{\"Code\":\"PriceInformationRemoved\"},{\"Code\":\"StoreInWarningTimeForCarryout\"}],\"metaData\":{\"prop65Warning\":true},\"Products\":[{\"ID\":1,\"Code\":\"14SCREEN\",\"Qty\":1,\"CategoryCode\":\"Pizza\",\"FlavorCode\":\"HANDTOSS\",\"Status\":0,\"LikeProductID\":0,\"Name\":\"Large (14\\\") Hand Tossed Pizza\",\"IsNew\":false,\"NeedsCustomization\":false,\"AutoRemove\":false,\"Fulfilled\":false,\"Tags\":{},\"Options\":{\"C\":{\"1/1\":\"2\"}},\"descriptions\":[{\"portionCode\":\"1/1\",\"value\":\"Double Cheese, Robust Inspired Tomato Sauce\"}]}]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
+        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":[],\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderMethod\":\"Web\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderTime\":\"\",\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":7981,\"Tags\":{},\"Version\":\"1.0\",\"IP\":null,\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"Status\":1,\"StatusItems\":null,\"metaData\":{\"prop65Warning\":true},\"Products\":[{\"ID\":1,\"Code\":\"14SCREEN\",\"Qty\":1,\"CategoryCode\":\"Pizza\",\"FlavorCode\":\"HANDTOSS\",\"Status\":0,\"LikeProductID\":0,\"Name\":\"Large (14\\\") Hand Tossed Pizza\",\"IsNew\":false,\"NeedsCustomization\":false,\"AutoRemove\":false,\"Fulfilled\":false,\"Tags\":{},\"Options\":{\"C\":{\"1/1\":\"2\"}},\"descriptions\":[{\"portionCode\":\"1/1\",\"value\":\"Double Cheese, Robust Inspired Tomato Sauce\"}]}]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
 
         const cheesePizza=new Item(
             {
@@ -150,11 +150,14 @@ const validateCheesePizza=async function(test){
         //clear randomized or machine specific information
         order.validationResponse.Order.OrderID=null;
         order.validationResponse.Order.IP=null;
+        
+        //sanitize this because if the tests are done when the store is closed payloads will not match
+        order.validationResponse.Order.StatusItems=null;
 
         const sanitizedResponse=JSON.stringify(order.validationResponse);
         
         //get sanitized JSON
-        // console.log(JSON.stringify(sanitizedResponse));
+        //console.log(JSON.stringify(sanitizedResponse));
         
         if(sanitizedResponse!==expectsJSON){
             test.fail();
@@ -188,7 +191,7 @@ const runTest=async function(test){
     addAndRemoveCoupons(test);
     addAndRemoveItems(test);
 
-    //await validateCheesePizza(test);
+    await validateCheesePizza(test);
 }
 
 export {

@@ -31,19 +31,27 @@ Instance
 ```js
 import {Item} from 'dominos';
 
-const pepperoniPizza=new Item(
+const cheesePizza=new Item(
     {
-        code:'P_14SCREEN'
+        ID:1,
+        code:'14SCREEN',
+        options:{
+            X: {'1/1' : '1'}, 
+            C: {'1/1' : '2'}
+        }
     }
 )
 
-console.dir(pepperoniPizza);
+console.dir(cheesePizza);
 
 //outputs
 Item { 
     code: 'P_14SCREEN', 
     qty: 1, 
-    options: {} 
+    options: {
+        X: {'1/1' : '1'}, 
+        C: {'1/1' : '2'}
+    } 
 }
 
 ```
