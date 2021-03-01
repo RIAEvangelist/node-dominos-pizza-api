@@ -4,6 +4,7 @@ import Is from 'strong-type';
 import {FetchError} from 'node-fetch';
 
 import Address from '../modules/Address.js';
+import AmountsBreakdown from '../modules/AmountsBreakdown.js';
 import NearbyStores from '../modules/NearbyStores.js';
 import Menu from '../modules/Menu.js';
 import Store from '../modules/Store.js';
@@ -22,6 +23,10 @@ class IsDominos extends Is{
 
     address(value){
         return this.instanceCheck(value,Address);
+    }
+
+    amountsBreakdown(value){
+        return this.instanceCheck(value,AmountsBreakdown);
     }
 
     nearbyStores(value){

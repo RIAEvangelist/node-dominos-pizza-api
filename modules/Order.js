@@ -4,8 +4,10 @@ import {urls} from '../utils/urls.js';
 import Address from '../modules/Address.js';
 import {post} from '../utils/api-json.js';
 import { toCamel } from '../utils/toCase.js';
+import AmountsBreakdown from './AmountsBreakdown.js';
 
 const isDominos=new IsDominos;
+const testDominos=new IsDominos(false);
 
 class Order extends DominosFormat{
     constructor(customer) {
@@ -16,7 +18,7 @@ class Order extends DominosFormat{
 
     address = new Address
     amounts = {}
-    amountsBreakdown={}
+    amountsBreakdown=new AmountsBreakdown
     businessDate = ''
     coupons = []
     currency = ''
@@ -107,6 +109,11 @@ class Order extends DominosFormat{
         return this.#remove(item,this.products);
     }
 
+    // the setter is very large, so it is near the bottom of the class
+    get formatted(){
+        return super.formatted;
+    }
+
     get validationResponse(){
         return this.#validationResponse; 
     }
@@ -156,7 +163,7 @@ class Order extends DominosFormat{
             throw new DominosValidationError(this.validationResponse);
         }
 
-        this.#merge(validation);
+        this.formatted=validation;
 
         return this;
     }
@@ -177,7 +184,7 @@ class Order extends DominosFormat{
             throw new DominosPriceError(this.priceResponse);
         }
 
-        this.#merge(price);
+        this.formatted=price;
 
         return this;
     }
@@ -189,19 +196,12 @@ class Order extends DominosFormat{
         httpJson.post(urls.order.place, this.payload, callback);
     };
 
-    #merge(orderResponse){
+    set formatted(orderResponse){
         // instance members
         this.address.formatted=orderResponse.Address;
         this.amountsBreakdown.formatted=orderResponse.AmountsBreakdown;
         
-        // primitive members
-        this.currency=orderResponse.Currency;
-        this.estimatedWaitMinutes=orderResponse.EstimatedWaitMinutes;
-        this.market=orderResponse.Market;
-        this.orderID=orderResponse.OrderID;
-        this.iP=orderResponse.IP;
-        this.userAgent=orderResponse.UserAgent;
-        
+        //refreneces arrays/objects 
         for(const [key,promo] of Object.entries(orderResponse.Promotions)){
             this.promotions[toCamel(key)]=promo;
         }
@@ -209,6 +209,23 @@ class Order extends DominosFormat{
         for(const [i,product] of Object.entries(orderResponse.Products)){
             this.products[i].formatted=product;
         }
+
+        //primitives
+        for(const [key,value] of Object.entries(orderResponse)){
+            if(
+                !testDominos.address(value)
+                && !testDominos.address(value)
+                && !testDominos.amountsBreakdown(value)
+                && !testDominos.object(value)
+                && !testDominos.array(value)
+            ){
+                this[toCamel(key)]=value;
+                continue;
+            }
+            console.log(key,value);
+        }
+
+        return this;
     }
 
 }

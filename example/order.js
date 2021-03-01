@@ -64,8 +64,11 @@ console.log(`
 
 await order.price();
 console.log(`
-    PRICED ORDER
+    PRICED ORDER RESPONSE
 `);
 console.dir(order.priceResponse,{depth:2});
 
+console.log(`
+    PRICED ORDER Instance
+`);
 console.dir(order,{depth:1});

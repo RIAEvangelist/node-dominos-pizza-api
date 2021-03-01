@@ -3,7 +3,7 @@ import DominosFormat from "./DominosFormat.js"
 class AmountsBreakdown extends DominosFormat{
     constructor(params){
         super();
-        this.init=parameters;
+        this.init=params;
         return this;
     }
 
