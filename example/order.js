@@ -66,4 +66,6 @@ await order.price();
 console.log(`
     PRICED ORDER
 `);
-//console.dir(order.priceResponse,{depth:3});
+console.dir(order.priceResponse,{depth:2});
+
+console.dir(order,{depth:1});

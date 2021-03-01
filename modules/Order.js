@@ -16,7 +16,7 @@ class Order extends DominosFormat{
 
     address = new Address
     amounts = {}
-    amountsBreakdown=[]
+    amountsBreakdown={}
     businessDate = ''
     coupons = []
     currency = ''
@@ -189,20 +189,24 @@ class Order extends DominosFormat{
         httpJson.post(urls.order.place, this.payload, callback);
     };
 
-    #merge(order){
-        this.address.formatted=order.Address;
-        this.currency=order.Currency;
-        this.estimatedWaitMinutes=order.EstimatedWaitMinutes;
-        this.market=order.Market;
-        this.orderID=order.OrderID;
-        this.iP=order.IP;
-        this.userAgent=order.UserAgent;
+    #merge(orderResponse){
+        // instance members
+        this.address.formatted=orderResponse.Address;
+        this.amountsBreakdown.formatted=orderResponse.AmountsBreakdown;
         
-        for(const [key,promo] of Object.entries(order.Promotions)){
+        // primitive members
+        this.currency=orderResponse.Currency;
+        this.estimatedWaitMinutes=orderResponse.EstimatedWaitMinutes;
+        this.market=orderResponse.Market;
+        this.orderID=orderResponse.OrderID;
+        this.iP=orderResponse.IP;
+        this.userAgent=orderResponse.UserAgent;
+        
+        for(const [key,promo] of Object.entries(orderResponse.Promotions)){
             this.promotions[toCamel(key)]=promo;
         }
 
-        for(const [i,product] of Object.entries(order.Products)){
+        for(const [i,product] of Object.entries(orderResponse.Products)){
             this.products[i].formatted=product;
         }
     }
