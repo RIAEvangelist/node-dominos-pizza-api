@@ -5,7 +5,7 @@ This is the primary Address Class used for all things Domnio's.
 If you have cloned this repo, you can run the example with this command:
 `node ./example/address.js`
 
-extends `DominosFormat` class, see more in [DominosFormat.md]](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
 
 Constructor
 ====
@@ -18,6 +18,8 @@ Constructor
 
 Instance
 ====
+
+Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
 
 |member/method|type  |description|
 |-------------|------|-------    |

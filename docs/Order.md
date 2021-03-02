@@ -14,6 +14,8 @@ Constructor
 Instance
 ====
 
+Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
+
 |member/method|type  |description|
 |-------------|------|-------    |
 
