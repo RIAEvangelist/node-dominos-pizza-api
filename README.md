@@ -47,7 +47,7 @@ Simply run ` npm test `
 
 This will setup everything that is needed to run the tests, install the modules required and run the tests for you.
 
-Remember, the Dominos API is rate limited, so if you make too many requests, like running tests back to back too many times, you may need to wait a short while before making new requests.
+***Remember, the Dominos API is rate limited,*** so if you make too many requests, like running tests back to back too many times, you may need to wait a short while before making new requests.
 
 ---
 
