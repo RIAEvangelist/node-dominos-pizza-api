@@ -5,6 +5,8 @@ import Item from '../../modules/Item.js';
 
 const isDominos=new IsDominos;
 
+const storeID=4337;
+
 const customer=new Customer(
     {
         //this could be an Address instance if you wanted 
@@ -46,9 +48,9 @@ const initWithCustomer=function(test){
         const order=new Order(customer);
 
         //get sanitized JSON
-        //console.log(order.payload)
+        console.log(order.payload)
 
-        const expectsJSON='{"Order":{"Address":{"Street":"900 Clark Ave","StreetNumber":"","StreetName":"","UnitType":"","UnitNumber":"","City":"","Region":"","PostalCode":"63102","DeliveryInstructions":""},"Amounts":{},"AmountsBreakdown":[],"BusinessDate":"","Coupons":[],"Currency":"","CustomerID":"","EstimatedWaitMinutes":"","Email":"chief@us.gov","Extension":"","FirstName":"Barack","HotspotsLite":false,"IP":"","LastName":"Obama","LanguageCode":"en","Market":"","MetaData":{"calculateNutrition":"true"},"NewUser":true,"NoCombine":true,"OrderChannel":"OLO","OrderID":"","OrderInfoCollection":[],"OrderMethod":"Web","OrderTaker":"node-dominos-pizza-api","Partners":{},"Payments":[],"Phone":"1-800-555-2368","PriceOrderTime":"","Products":[],"Promotions":{},"ServiceMethod":"Delivery","SourceOrganizationURI":"order.dominos.com","StoreID":"","Tags":{},"UserAgent":"","Version":"1.0"}}';
+        const expectsJSON='{"Order":{"Address":{"Street":"900 Clark Ave","StreetNumber":"","StreetName":"","UnitType":"","UnitNumber":"","City":"","Region":"","PostalCode":"63102","DeliveryInstructions":""},"Amounts":{},"AmountsBreakdown":{"foodAndBeverage":"0.00","adjustment":"0.00","surcharge":"0.00","deliveryFee":"0.00","tax":0,"tax1":0,"tax2":0,"tax3":0,"tax4":0,"tax5":0,"bottle":0,"customer":0,"roundingAdjustment":0,"cash":0,"savings":"0.00"},"BusinessDate":"","Coupons":[],"Currency":"","CustomerID":"","EstimatedWaitMinutes":"","Email":"chief@us.gov","Extension":"","FirstName":"Barack","HotspotsLite":false,"IP":"","LastName":"Obama","LanguageCode":"en","Market":"","MetaData":{"calculateNutrition":"true"},"NewUser":true,"NoCombine":true,"OrderChannel":"OLO","OrderID":"","OrderInfoCollection":[],"OrderMethod":"Web","OrderTaker":"node-dominos-pizza-api","Partners":{},"Payments":[],"Phone":"1-800-555-2368","PriceOrderMs":0,"PriceOrderTime":"","Products":[],"Promotions":{},"PulseOrderGuid":"","ServiceMethod":"Delivery","SourceOrganizationURI":"order.dominos.com","StoreID":"","Tags":{},"UserAgent":"","Version":"1.0"}}';
         
         //console.log(order.payload);
 
@@ -165,7 +167,7 @@ const validateCheesePizza=async function(test){
     try{
         test.expects(`Order to validate as a Cheese Pizza with Extra Cheese`);    
         
-        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":[],\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"IP\":null,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{\"calculateNutrition\":\"true\"},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderInfoCollection\":[],\"OrderMethod\":\"Web\",\"OrderTaker\":\"node-dominos-pizza-api\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderTime\":\"\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":7981,\"Tags\":{},\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Version\":\"1.0\",\"Status\":1,\"StatusItems\":null,\"metaData\":{\"prop65Warning\":true},\"Products\":[{\"ID\":4,\"Code\":\"14SCREEN\",\"Qty\":1,\"CategoryCode\":\"Pizza\",\"FlavorCode\":\"HANDTOSS\",\"Status\":0,\"LikeProductID\":0,\"Name\":\"Large (14\\\") Hand Tossed Pizza\",\"IsNew\":true,\"NeedsCustomization\":false,\"AutoRemove\":false,\"Fulfilled\":false,\"Tags\":{},\"Options\":{\"C\":{\"1/1\":\"2\"}},\"descriptions\":[{\"portionCode\":\"1/1\",\"value\":\"Double Cheese, Robust Inspired Tomato Sauce\"}]}]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
+        const expectsJSON="{\"Order\":{\"Address\":{\"Street\":\"900 Clark Ave\",\"StreetNumber\":\"\",\"StreetName\":\"\",\"UnitType\":\"\",\"UnitNumber\":\"\",\"City\":\"\",\"Region\":\"\",\"PostalCode\":\"63102\",\"DeliveryInstructions\":\"\"},\"AmountsBreakdown\":{\"foodAndBeverage\":\"0.00\",\"adjustment\":\"0.00\",\"surcharge\":\"0.00\",\"deliveryFee\":\"0.00\",\"tax\":0,\"tax1\":0,\"tax2\":0,\"tax3\":0,\"tax4\":0,\"tax5\":0,\"bottle\":0,\"customer\":0,\"roundingAdjustment\":0,\"cash\":0,\"savings\":\"0.00\"},\"BusinessDate\":\"\",\"Coupons\":[],\"Currency\":\"USD\",\"CustomerID\":\"\",\"EstimatedWaitMinutes\":\"0\",\"Email\":\"chief@us.gov\",\"Extension\":\"\",\"FirstName\":\"Barack\",\"HotspotsLite\":false,\"IP\":null,\"LastName\":\"Obama\",\"LanguageCode\":\"en\",\"Market\":\"UNITED_STATES\",\"MetaData\":{\"calculateNutrition\":\"true\"},\"NewUser\":true,\"NoCombine\":true,\"OrderChannel\":\"OLO\",\"OrderID\":null,\"OrderInfoCollection\":[],\"OrderMethod\":\"Web\",\"OrderTaker\":\"node-dominos-pizza-api\",\"Partners\":{},\"Payments\":[],\"Phone\":\"1-800-555-2368\",\"PriceOrderMs\":0,\"PriceOrderTime\":\"\",\"Promotions\":{\"Redeemable\":[],\"Valid\":[]},\"PulseOrderGuid\":\"\",\"ServiceMethod\":\"Carryout\",\"SourceOrganizationURI\":\"order.dominos.com\",\"StoreID\":4337,\"Tags\":{},\"UserAgent\":\"node-fetch/1.0 (+https://github.com/bitinn/node-fetch)\",\"Version\":\"1.0\",\"Status\":1,\"StatusItems\":null,\"Products\":[{\"ID\":3,\"Code\":\"14SCREEN\",\"Qty\":1,\"CategoryCode\":\"Pizza\",\"FlavorCode\":\"HANDTOSS\",\"Status\":0,\"LikeProductID\":0,\"Name\":\"Large (14\\\") Hand Tossed Pizza\",\"IsNew\":true,\"NeedsCustomization\":false,\"AutoRemove\":false,\"Fulfilled\":false,\"Tags\":{},\"Options\":{\"C\":{\"1/1\":\"2\"}},\"descriptions\":[{\"portionCode\":\"1/1\",\"value\":\"Double Cheese, Robust Inspired Tomato Sauce\"}]}]},\"Status\":1,\"Offer\":{\"CouponList\":[],\"ProductOffer\":\"\"},\"EmailHash\":null,\"StatusItems\":[{\"Code\":\"Warning\"}]}";
 
         const cheesePizza=new Item(
             {
@@ -178,7 +180,7 @@ const validateCheesePizza=async function(test){
         )
         
         const order=new Order(customer);
-        order.storeID=7981;
+        order.storeID=storeID;
         order.serviceMethod='Carryout';
         
         order.addItem(cheesePizza);
@@ -199,11 +201,52 @@ const validateCheesePizza=async function(test){
         const sanitizedResponse=JSON.stringify(order.validationResponse);
         
         //get sanitized JSON
-        //console.log(JSON.stringify(sanitizedResponse));
+        console.log(JSON.stringify(sanitizedResponse));
         
         if(sanitizedResponse!==expectsJSON){
             test.fail();
         }
+
+    }catch(err){
+        console.trace(err);
+        test.fail();
+    }
+    test.pass();
+    test.done();
+}
+
+const priceCheesePizza=async function(test){
+    try{
+        test.expects(`Order to price a Cheese Pizza with Extra Cheese`);    
+        
+        const cheesePizza=new Item(
+            {
+                code:'14SCREEN',
+                options:{
+                    X: {'1/1' : '1'}, 
+                    C: {'1/1' : '2'}
+                }
+            }
+        )
+        
+        const order=new Order(customer);
+        order.storeID=storeID;
+        order.serviceMethod='Carryout';
+        
+        order.addItem(cheesePizza);
+        
+        await order.validate();
+        await order.price();
+        
+        //test important expected values
+        if(
+            !parseInt(order.amountsBreakdown.foodAndBeverage)>0
+            || !order.amountsBreakdown.customer>0
+            || !order.businessDate.length>4
+        ){
+            test.fail()
+        }
+        
 
     }catch(err){
         console.trace(err);
@@ -235,6 +278,7 @@ const runTest=async function(test){
 
     await failValidateCheesePizza(test);
     await validateCheesePizza(test);
+    await priceCheesePizza(test);
 }
 
 export {
