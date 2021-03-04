@@ -44,9 +44,11 @@ class Order extends DominosFormat{
     partners = {}
     payments = []
     phone = ''
+    priceOrderMs=0
     priceOrderTime = ''
     products = []
     promotions={}
+    pulseOrderGuid=''
     serviceMethod = 'Delivery'
     sourceOrganizationURI = urls.sourceUri
     storeID = ''
@@ -222,7 +224,7 @@ class Order extends DominosFormat{
                 this[toCamel(key)]=value;
                 continue;
             }
-            console.log(key,value);
+            //console.log(key,value);
         }
 
         return this;

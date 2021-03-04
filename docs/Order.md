@@ -56,26 +56,22 @@ order.addItem(cheesePizza);
 
 await order.validate();
 
-console.dir(order,{depth:2});
+console.dir(order,{depth:1});
 
 
-///expected output
+//expected output
 
 
 Order {
   address: Address {
-    street: '900 Clark Ave',
-    streetNumber: '',
-    streetName: '',
-    unitType: '',
-    unitNumber: '',
-    city: '',
-    region: '',
-    postalCode: '63102',
-    deliveryInstructions: ''
+    street: '1 alvarado st',
+    ...
   },
   amounts: {},
-  amountsBreakdown: [],
+  amountsBreakdown: AmountsBreakdown {
+    foodAndBeverage: '0.00',
+    ...
+  },
   businessDate: '',
   coupons: [],
   currency: '',
@@ -84,34 +80,32 @@ Order {
   email: 'chief@us.gov',
   extension: '',
   firstName: 'Barack',
+  hotspotsLite: false,
+  iP: '',
   lastName: 'Obama',
   languageCode: 'en',
   market: '',
-  metaData: {},
+  metaData: { calculateNutrition: 'true' },
   newUser: true,
   noCombine: true,
   orderChannel: 'OLO',
   orderID: '',
+  orderInfoCollection: [],
   orderMethod: 'Web',
-  orderTaker: null,
+  orderTaker: 'node-dominos-pizza-api',
   partners: {},
   payments: [],
   phone: '1-800-555-2368',
+  priceOrderMs:0,
   priceOrderTime: '',
-  products: [ 
-    Item { 
-      code: '14SCREEN', 
-      qty: 1, 
-      options: {
-        X: {'1/1' : '1'}, 
-        C: {'1/1' : '2'}
-      } 
-    } 
-  ],
-  serviceMethod: 'Delivery',
+  products: [ [Item], [Item] ],
+  promotions: {},
+  pulseOrderGuid: '',
+  serviceMethod: 'Carryout',
   sourceOrganizationURI: 'order.dominos.com',
-  storeID: '',
+  storeID: 7981,
   tags: {},
+  userAgent: '',
   version: '1.0'
 }
 
@@ -154,92 +148,167 @@ order.addItem(cheesePizza);
 
 await order.validate();
 
-console.dir(order.validationResponse,{depth:5});
+console.dir(order,{depth:1});
 
 
 
-//Expected response
+//Expected outpuut
 
 
-{
-  Order: {
-    Address: {
-      Street: '1 alvarado st',
-      StreetNumber: '',
-      StreetName: '',
-      UnitType: '',
-      UnitNumber: '',
-      City: '',
-      Region: '',
-      PostalCode: '93940',
-      DeliveryInstructions: ''
-    },
-    AmountsBreakdown: [],
-    BusinessDate: '',
-    Coupons: [],
-    Currency: 'USD',
-    CustomerID: '',
-    EstimatedWaitMinutes: '0',
-    Email: 'chief@us.gov',
-    Extension: '',
-    FirstName: 'Barack',
-    HotspotsLite: false,
-    LastName: 'Obama',
-    LanguageCode: 'en',
-    Market: 'UNITED_STATES',
-    MetaData: {},
-    NewUser: true,
-    NoCombine: true,
-    OrderChannel: 'OLO',
-    OrderID: 'lH49m_GKWnsZoLtbUBpo',
-    OrderMethod: 'Web',
-    Partners: {},
-    Payments: [],
-    Phone: '1-800-555-2368',
-    PriceOrderTime: '',
-    ServiceMethod: 'Carryout',
-    SourceOrganizationURI: 'order.dominos.com',
-    StoreID: 7981,
-    Tags: {},
-    Version: '1.0',
-    IP: '99.43.15.137',
-    UserAgent: 'node-fetch/1.0 (+https://github.com/bitinn/node-fetch)',
-    Promotions: { Redeemable: [], Valid: [] },
-    Status: 1,
-    StatusItems: [
-      { Code: 'AutoAddedOrderId' },
-      { Code: 'PriceInformationRemoved' }
-    ],
-    metaData: { prop65Warning: true },
-    Products: [
-      {
-        ID: 9360365,
-        Code: '14SCREEN',
-        Qty: 1,
-        CategoryCode: 'Pizza',
-        FlavorCode: 'HANDTOSS',
-        Status: 0,
-        LikeProductID: 0,
-        Name: 'Large (14") Hand Tossed Pizza',
-        IsNew: false,
-        NeedsCustomization: false,
-        AutoRemove: false,
-        Fulfilled: false,
-        Tags: {},
-        Options: { C: { '1/1': '2' } },
-        descriptions: [
-          {
-            portionCode: '1/1',
-            value: 'Double Cheese, Robust Inspired Tomato Sauce'
-          }
-        ]
-      }
-    ]
+Order {
+  address: Address {
+    street: '1 alvarado st',
+    streetNumber: '',
+    streetName: '',
+    unitType: '',
+    unitNumber: '',
+    city: '',
+    region: '',
+    postalCode: '93940',
+    deliveryInstructions: ''
   },
-  Status: 1,
-  Offer: { CouponList: [], ProductOffer: '' },
-  EmailHash: null,
-  StatusItems: [ { Code: 'Warning' } ]
+  amounts: {},
+  amountsBreakdown: AmountsBreakdown {
+    foodAndBeverage: '0.00',
+   ...
+  },
+  businessDate: '',
+  coupons: [],
+  currency: 'USD',
+  customerID: '',
+  estimatedWaitMinutes: '0',
+  email: 'chief@us.gov',
+  extension: '',
+  firstName: 'Barack',
+  hotspotsLite: false,
+  iP: '13.68.241.114',
+  lastName: 'Obama',
+  languageCode: 'en',
+  market: 'UNITED_STATES',
+  metaData: { calculateNutrition: 'true' },
+  newUser: true,
+  noCombine: true,
+  orderChannel: 'OLO',
+  orderID: 'OA6HvkfOCJv3Yk2kNgOx',
+  orderInfoCollection: [],
+  orderMethod: 'Web',
+  orderTaker: 'node-dominos-pizza-api',
+  partners: {},
+  payments: [],
+  phone: '1-800-555-2368',
+  priceOrderMs:0,
+  priceOrderTime: '',
+  products: [ [Item], [Item] ],
+  promotions: { redeemable: [], valid: [] },
+  pulseOrderGuid: '',
+  serviceMethod: 'Carryout',
+  sourceOrganizationURI: 'order.dominos.com',
+  storeID: 7981,
+  tags: {},
+  userAgent: 'node-fetch/1.0 (+https://github.com/bitinn/node-fetch)',
+  version: '1.0',
+  status: 1
 }
 
+
 ```
+
+
+
+
+### Pricing an Order
+
+```js
+
+import {Order,Customer,Item} from '../index.js';
+
+const customer = new Customer(
+    {
+        //this could be an Address instance if you wanted 
+        address: '1 alvarado st, 93940',
+        firstName: 'Barack',
+        lastName: 'Obama',
+        //where's that 555 number from?
+        phone: '1-800-555-2368',
+        email: 'chief@us.gov'
+    }
+);
+
+const cheesePizza=new Item(
+    {
+        code:'14SCREEN',
+        options:{
+            X: {'1/1' : '1'}, 
+            C: {'1/1' : '1'}
+        }
+    }
+)
+
+const extraCheesePizza=new Item(
+    {
+        code:'14SCREEN',
+        options:{
+            X: {'1/1' : '1'}, 
+            C: {'1/1' : '2'}
+        }
+    }
+)
+
+
+const order=new Order(customer);
+order.storeID=7981;
+order.serviceMethod='Carryout';
+
+order.addItem(cheesePizza);
+order.addItem(extraCheesePizza);
+
+await order.validate();
+await order.price();
+
+console.dir(order,{depth:1});
+
+
+
+// expected output
+
+
+Order {
+  address: Address {
+    street: '1 alvarado st',
+    ...
+  },
+  amounts: {},
+  amountsBreakdown: AmountsBreakdown {
+    foodAndBeverage: '31.98',
+    adjustment: '0.00',
+    surcharge: '0.00',
+    deliveryFee: '0.00',
+    tax: 2.96,
+    tax1: 2.96,
+    tax2: 0,
+    tax3: 0,
+    tax4: 0,
+    tax5: 0,
+    bottle: 0,
+    customer: 34.94,
+    roundingAdjustment: 0,
+    cash: 0,
+    savings: '0.00'
+  },
+  businessDate: '2021-03-01',
+  coupons: [],
+  currency: 'USD',
+  customerID: '',
+  estimatedWaitMinutes: '9-19',
+  ...
+  priceOrderTime: '2021-03-01 20:50:37',
+  ...
+  pulseOrderGuid: '01961aa7-62eb-4ce5-acd9-408a37bd0001',
+  priceOrderMs: 1003
+}
+
+
+```
+
+
+

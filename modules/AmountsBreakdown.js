@@ -18,7 +18,7 @@ class AmountsBreakdown extends DominosFormat{
     tax4=0
     tax5=0
     bottle=0
-    customer=34.94
+    customer=0
     roundingAdjustment=0
     cash=0
     savings='0.00'
