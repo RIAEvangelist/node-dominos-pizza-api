@@ -1,4 +1,4 @@
-import {Order,Customer,Item} from '../index.js';
+import {Order,Customer,Item,Payment} from '../index.js';
 
 const customer = new Customer(
     {
@@ -64,5 +64,24 @@ await order.price();
 
 console.log(`
     PRICED ORDER Instance
+`);
+console.dir(order,{depth:1});
+
+const myCard=new Payment(
+    {
+        amount:order.amountsBreakdown.customer,
+        number:'4100123422343234',
+        expiration:'01/35',
+        securityCode:'867',
+        postalCode:'93940'
+    }
+)
+
+order.payments.push(myCard);
+
+await order.place();
+
+console.log(`
+    PLACED ORDER Instance... PIZZA IS ON THE WAY WOOT!
 `);
 console.dir(order,{depth:1});

@@ -30,6 +30,19 @@ class DominosPriceError extends Error{
     }
 };
 
+class DominosPlaceOrderError extends Error{
+    constructor(response){
+        is.object(response);
+        super();
+
+        //console.log(response)
+
+        this.message='Dominos Place Order failed with the following information:';
+
+        return createErrorMessage(this,response);
+    }
+};
+
 const createErrorMessage=function(self,response){
     is.object(self);
     is.object(response);
@@ -55,3 +68,4 @@ const createErrorMessage=function(self,response){
 
 global.DominosValidationError=DominosValidationError;
 global.DominosPriceError=DominosPriceError;
+global.DominosPlaceOrderError=DominosPlaceOrderError;

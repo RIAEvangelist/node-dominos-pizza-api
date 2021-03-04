@@ -136,9 +136,21 @@ class Order extends DominosFormat{
         return this.#priceResponse=value;
     }
 
+    get placeResponse(){
+        return this.#placeResponse; 
+    }
+
+    set placeResponse(value){
+        isDominos.object(value);
+
+        return this.#placeResponse=value;
+    }
+
     #priceResponse={}
 
     #validationResponse={}
+
+    #placeResponse={}
     
     #remove(child,parent){
 
@@ -192,10 +204,24 @@ class Order extends DominosFormat{
     }
 
     async place() {
+        this.placeResponse=await post(
+            urls.order.place,
+            this.payload
+        );
+
+        // console.dir(JSON.parse(this.payload),{depth:5})
+
+        const placeOrder=this.placeResponse.Order;
         
-        //update this
-        
-        httpJson.post(urls.order.place, this.payload, callback);
+        // console.dir(this.placeResponse,{depth:5})
+
+        if(placeOrder.Status==-1 || this.priceResponse.Status==-1){
+            throw new DominosPlaceOrderError(this.placeResponse);
+        }
+
+        this.formatted=placeOrder;
+
+        return this;
     };
 
     set formatted(orderResponse){
