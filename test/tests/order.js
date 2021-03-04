@@ -201,7 +201,7 @@ const validateCheesePizza=async function(test){
         const sanitizedResponse=JSON.stringify(order.validationResponse);
         
         //get sanitized JSON
-        console.log(JSON.stringify(sanitizedResponse));
+        //console.log(JSON.stringify(sanitizedResponse));
         
         if(sanitizedResponse!==expectsJSON){
             test.fail();
