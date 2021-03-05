@@ -1,5 +1,18 @@
 import {Order,Customer,Item,Payment} from '../index.js';
 
+//extra cheese thin crust pizza
+const pizza=new Item(
+    {
+        code:'14THIN',
+        options:{
+            //sauce, whole pizza : normal
+            X: {'1/1' : '1'}, 
+            //cheese, whole pizza  : double 
+            C: {'1/1' : '2'}
+        }
+    }
+);
+
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
@@ -12,61 +25,17 @@ const customer = new Customer(
     }
 );
 
-const cheesePizza=new Item(
-    {
-        code:'14SCREEN',
-        options:{
-            X: {'1/1' : '1'}, 
-            C: {'1/1' : '1'}
-        }
-    }
-)
-
-const extraCheesePizza=new Item(
-    {
-        code:'14SCREEN',
-        options:{
-            X: {'1/1' : '1'}, 
-            C: {'1/1' : '2'}
-        }
-    }
-)
-
-
 //create
-
 const order=new Order(customer);
 order.storeID=7981;
-order.serviceMethod='Carryout';
-
-order.addItem(cheesePizza);
-order.addItem(extraCheesePizza);
-
-console.log(`
-    INITIALIZED ORDER
-`);
-console.dir(order,{depth:1});
-
-
-
-//validate
+// add pizza
+order.addItem(pizza);
+//validate order
 await order.validate();
-
-console.log(`
-    VALIDATED ORDER
-`);
-
-console.dir(order,{depth:1});
-
-
-//price
+//price order
 await order.price();
 
-console.log(`
-    PRICED ORDER Instance
-`);
-console.dir(order,{depth:1});
-
+//grab price from order and setup payment
 const myCard=new Payment(
     {
         amount:order.amountsBreakdown.customer,
@@ -75,13 +44,12 @@ const myCard=new Payment(
         securityCode:'867',
         postalCode:'93940'
     }
-)
+);
 
 order.payments.push(myCard);
 
+//place order
 await order.place();
 
-console.log(`
-    PLACED ORDER Instance... PIZZA IS ON THE WAY WOOT!
-`);
-console.dir(order,{depth:1});
+//inspect Order
+console.dir(order,{depth:5});

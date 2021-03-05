@@ -61,6 +61,82 @@ Simply run ` npm test ` and the coverage files will be added to the `./coverage`
 
 ---
 
+# TLDR; Order & Track a Pizza
+
+```js
+
+import {Order,Customer,Item,Payment} from 'dominos';
+
+//extra cheese thin crust pizza
+const pizza=new Item(
+    {
+        code:'14THIN',
+        options:{
+            //sauce, whole pizza : normal
+            X: {'1/1' : '1'}, 
+            //cheese, whole pizza  : double 
+            C: {'1/1' : '2'}
+        }
+    }
+);
+
+const customer = new Customer(
+    {
+        //this could be an Address instance if you wanted 
+        address: '1 alvarado st, 93940',
+        firstName: 'Barack',
+        lastName: 'Obama',
+        //where's that 555 number from?
+        phone: '1-800-555-2368',
+        email: 'chief@us.gov'
+    }
+);
+
+//create
+const order=new Order(customer);
+order.storeID=7981;
+// add pizza
+order.addItem(pizza);
+//validate order
+await order.validate();
+//price order
+await order.price();
+
+//grab price from order and setup payment
+const myCard=new Payment(
+    {
+        amount:order.amountsBreakdown.customer,
+        
+        // dashes are not needed, they get filtered out
+        number:'4100-1234-2234-3234',
+        
+        //slashes not needed, they get filtered out
+        expiration:'01/35',
+        securityCode:'867',
+        postalCode:'93940'
+    }
+);
+
+order.payments.push(myCard);
+
+//place order
+await order.place();
+
+//inspect Order
+console.dir(order,{depth:5});
+
+//probably put this in an interval if you want updates in the 
+//terminal
+const trackingResult=await tracking.byPhone(order.phone);
+
+//inspect the tracking info
+console.dir(trackingResult,{depth:2});
+
+
+```
+
+---
+
 # International Support
 
 The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get hyour country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
@@ -312,7 +388,6 @@ console.dir(customer);
 
 ---
 
-
 # Image
 The Image class will grab the image for a product code and base 64 encode it. It extends the [`js-base64-file` class](https://github.com/RIAEvangelist/js-base64-file).
 
@@ -340,31 +415,6 @@ pepperoniPizza.saveSync(pepperoniPizza.base64Image,savePath,productCode+'.jpg');
 
 ---
 
-# Tracking
-
-This is how you track Pizzas! (and other things)
-
-See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Tracking.md)
-
-```js
-
-import {Tracking} from 'dominos';
-
-const tracking=new Tracking();
-
-const trackingResult=await tracking.byPhone('3108675309');
-
-console.dir(trackingResult,{depth:1});
-
-//outputs
-Tracking {
-  orders: {},
-  query: { Phone: '3108675309' },
-  dominosAPIResult: { 'soap:Envelope': [Object] }
-}
-
-```
-
 # Payment
 
 This class will initialize a creditcard payment object for an order.
@@ -374,7 +424,7 @@ See the detailed docs on payment here : [Payment.md](https://github.com/RIAEvang
 
 ```js
 
-import {Payment} from '../index.js';
+import {Payment} from 'dominos';
 
 const myCard=new Payment(
     {
@@ -390,15 +440,117 @@ const myCard=new Payment(
 
 
 ```
+---
+
+# Order
+
+***Finally...*** This class will order you pizza, and other things from the menu.
+
+See the detailed docs on order here : [Order.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Order.md)
 
 
+```js
+
+import {Order,Customer,Item,Payment} from 'dominos';
+
+//extra cheese thin crust pizza
+const pizza=new Item(
+    {
+        code:'14THIN',
+        options:{
+            //sauce, whole pizza : normal
+            X: {'1/1' : '1'}, 
+            //cheese, whole pizza  : double 
+            C: {'1/1' : '2'}
+        }
+    }
+);
+
+const customer = new Customer(
+    {
+        //this could be an Address instance if you wanted 
+        address: '1 alvarado st, 93940',
+        firstName: 'Barack',
+        lastName: 'Obama',
+        //where's that 555 number from?
+        phone: '1-800-555-2368',
+        email: 'chief@us.gov'
+    }
+);
+
+//create
+const order=new Order(customer);
+order.storeID=7981;
+// add pizza
+order.addItem(pizza);
+//validate order
+await order.validate();
+//price order
+await order.price();
+
+//grab price from order and setup payment
+const myCard=new Payment(
+    {
+        amount:order.amountsBreakdown.customer,
+        
+        // dashes are not needed, they get filtered out
+        number:'4100-1234-2234-3234',
+        
+        //slashes not needed, they get filtered out
+        expiration:'01/35',
+        securityCode:'867',
+        postalCode:'93940'
+    }
+);
+
+order.payments.push(myCard);
+
+//place order
+await order.place();
+
+//inspect Order
+console.dir(order,{depth:5});
+
+//you probably want to add some tracking too...
 
 
+```
+
+---
+# Tracking
+
+This is how you track Pizzas! (and other things)
+
+See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Tracking.md)
+
+```js
+
+import {Tracking} from 'dominos';
+
+const tracking=new Tracking();
+
+//track by phone
+const trackingResult=await tracking.byPhone('3108675309');
+console.dir(trackingResult,{depth:1});
+
+//outputs
+Tracking {
+  orders: {
+      //active trackable orders for this phonenumber
+      ...
+  },
+  query: { Phone: '3108675309' },
+  dominosAPIResult: { 'soap:Envelope': [Object] }
+}
 
 
+// by order id
+const trackingResult=await tracking.byID(storeID,order.iD);
+console.dir(trackingResult,{depth:1});
 
+```
 
-
+---
 
 # Global DominosErrors
 
@@ -406,163 +558,15 @@ These custom errors are added to the global object for use in your code and the 
 
 See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosErrors.md)
 
-|error                  |parameters         |description|
-|-----                  |----------         |-----------|
-|DominosValidationError |validationResponse |this error is thrown when a dominos validation request fails|
+|error                  |parameters           |description|
+|-----                  |----------           |-----------|
+|DominosValidationError |`.validationResponse`|this error is thrown when a dominos validation request fails|
+|DominosPriceError      |`.priceResponse`     |this error is thrown when a dominos price request fails|
+|DominosPlaceOrderError |`.placeOrderResponse`|this error is thrown when a dominos place request fails|
 
 
-# Below docs are still v2.0 updating docs in order as I go
+----
 
+# Code, Order, Eat, Be Happy!
 
-# Order
-
-
-This is the class that every other class feeds into.
-
-|argument|type|default|
-|--------|----|-------|
-|code|String|null|
-|quantity|Integer|1|
-|options|Array|[]|
-
-### creating an order
-
-```javascript
-
-  var pizza = require('dominos');
-
-  var thePresident = new pizza.Customer(
-      {
-          firstName: 'Barack',
-          lastName: 'Obama',
-          address: '1600 Pennsylvania Avenue, Washington, DC',
-          email: 'barack@whitehouse.gov'
-      }
-  );
-
-  var order = new pizza.Order(
-      {
-          customer: thePresident,
-
-          //optional set the store ID right away
-          storeID: myStore.ID,
-
-          deliveryMethod: 'Delivery' //(or 'Carryout')
-      }
-  );
-
-  //or
-
-  var order = new pizza.Order();
-
-  order.FirstName = data;
-  order.LastName = data;
-  order.Email = data;
-  order.Phone = data;
-
-  //and if you want to update the store id just :
-
-  order.StoreID = myStore.ID;
-
-```
-
-### duplicating an order
-
-```javascript
-
-  var anotherIdenticalOrder = new pizza.Order(
-      {
-          order:order
-          //or
-          //Order:order
-          //because domino's pizza web API returns pascal case...
-      }
-  );
-
-  //or create a duplicate order WITH different customer params
-
-  var order = new pizza.Order(
-      {
-          customer: thePresident,
-          deliveryMethod: 'Delivery' //(or 'Carryout')
-      }
-  );
-
-```
-
-### Adding a product to the order :
-
-```javascript
-
-  order.addItem(
-      new pizza.Item(
-          {
-              code: '14SCREEN',
-              options: [],
-              quantity: 1
-          }
-      )
-  );
-
-```
-
-### Validating an Order
-This step is **Strongly** recommended
-
-```javascript
-
-  order.validate(
-      function(result) {
-          console.log("We did it!");
-      }
-  );
-
-```
-
-### Price an Order
-
-```javascript
-
-  order.price(
-      function(result) {
-          console.log("Price!")
-      }
-  );
-
-```
-
-### Place an Order
-At least one item must've been added to place an order.
-
-#### with payment allowed
-You don't have to do anything for the payment, Domino's Pizza will handle all transactions.
-
-```javascript
-
-  var pizza = require('dominos');
-
-  var cardNumber = '4100123422343234';
-
-  var cardInfo = new order.PaymentObject();
-  cardInfo.Amount = order.Amounts.Customer;
-  cardInfo.Number = cardNumber;
-  cardInfo.CardType = order.validateCC(cardNumber);
-  cardInfo.Expiration = '0115';//  01/15 just the numbers "01/15".replace(/\D/g,'');
-  cardInfo.SecurityCode = '777';
-  cardInfo.PostalCode = '90210'; // Billing Zipcode
-
-  order.Payments.push(cardInfo);
-
-  order.place(
-      function(result) {
-          console.log("Order placed!");
-      }
-  );
-
-```
-
----
-
-
-
-Code, Order, Eat, Be Happy!
+![Tatsu Ninja Turtles Go Play](https://media1.tenor.com/images/1e5eb7062aefb9fba304ca81ba877922/tenor.gif?itemid=7950001)
