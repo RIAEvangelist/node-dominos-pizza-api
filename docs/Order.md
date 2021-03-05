@@ -157,7 +157,7 @@ Instance Public Fields
 |.products      |Array of [Item Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)||Your product items are sanitized and added here by the `.addProduct` method|
 |.promotions    |Array||? Not sure, perhaps some special promotions, if you figure it out, please contribute to this doc.|
 |.pulseOrderGuid|String||? populated by dominos.com and used by dominos|    
-|.serviceMethod |String|'Delivery'|How you plan to get your pizza, `'Delivery'`/`'Carryout'`|
+|.serviceMethod |String|'Delivery'|How you plan to get your pizza, `'Delivery'`/`'Carryout'`/`'DriveUpCarryout'`|
 |.sourceOrganizationURI |String|'order.dominos.com'||    
 |.storeID       |String/Number||Id for the store you wish to order from. get this through the [NearbyStores class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)|
 |.tags          |Object||? Not sure, if you figure it out, please contribute to this doc.|

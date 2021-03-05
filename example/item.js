@@ -9,6 +9,6 @@ const cheesePizza=new Item(
             C: {'1/1' : '2'}
         }
     }
-)
+);
 
 console.dir(cheesePizza);

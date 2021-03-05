@@ -96,35 +96,38 @@ You can see the all the ways to pass an address [in the dominos pizza Address.md
 
     //nearbyStores.stores[0] basic store info
     {
-        StoreID: '7764',
-        IsDeliveryStore: false,
-        MinDistance: 1.5,
-        MaxDistance: 1.5,
-        Phone: '415-776-0400',
-        AddressDescription: '876 Geary St.\nSan Francisco, CA 94109\n',
-        HolidaysDescription: '',
-        HoursDescription: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
-        ServiceHoursDescription: {
-            Carryout: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
-            Delivery: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
-            DriveUpCarryout: 'Su-Sa 4:00pm-9:00pm'
-        },
-        IsOnlineCapable: true,
-        IsOnlineNow: true,
-        IsNEONow: false,
-        IsSpanish: true,
-        LocationInfo: '',
-        LanguageLocationInfo: { en: '', es: '' },
-        AllowDeliveryOrders: true,
-        AllowCarryoutOrders: true,
-        AllowDuc: true,
-        ServiceMethodEstimatedWaitMinutes: { Delivery: [Object], Carryout: [Object] },
-        StoreCoordinates: { StoreLatitude: '37.786466', StoreLongitude: '-122.417737' },
-        AllowPickupWindowOrders: false,
-        ContactlessDelivery: 'REQUIRED',
-        ContactlessCarryout: 'INSTRUCTION',
-        IsOpen: true,
-        ServiceIsOpen: { Carryout: true, Delivery: true, DriveUpCarryout: true }
+      StoreID: '8302',
+      IsDeliveryStore: false,
+      MinDistance: 22.7,
+      MaxDistance: 22.7,
+      Phone: '831-728-4444',
+      AddressDescription: '512 Main Street\nWatsonville, CA 95076\n',
+      HolidaysDescription: '',
+      HoursDescription: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+      ServiceHoursDescription: {
+        Carryout: 'Su-Sa 10:30am-10:00pm',
+        Delivery: 'Su-Th 10:30am-12:00am\nFr-Sa 10:30am-1:00am',
+        DriveUpCarryout: 'Su-Sa 4:30pm-9:00pm'
+      },
+      IsOnlineCapable: true,
+      IsOnlineNow: true,
+      IsNEONow: true,
+      IsSpanish: true,
+      LocationInfo: '',
+      LanguageLocationInfo: { en: '', es: '' },
+      AllowDeliveryOrders: true,
+      AllowCarryoutOrders: true,
+      AllowDuc: true,
+      ServiceMethodEstimatedWaitMinutes: {
+        Delivery: { Min: 29, Max: 34 },
+        Carryout: { Min: 13, Max: 18 }
+      },
+      StoreCoordinates: { StoreLatitude: '36.912', StoreLongitude: '-121.759' },
+      AllowPickupWindowOrders: false,
+      ContactlessDelivery: 'REQUIRED',
+      ContactlessCarryout: 'INSTRUCTION',
+      IsOpen: true,
+      ServiceIsOpen: { Carryout: true, Delivery: true, DriveUpCarryout: false }
     }
 
 ```

@@ -53,7 +53,7 @@ const createErrorMessage=function(self,response){
         for(const [i,statusItem] 
             of Object.entries(response.Order.StatusItems)
         ){
-            self.message+=` ${statusItem.Code},`
+            self.message+=` ${statusItem.Code}:'${statusItem.Message||''}',`
         }
     }
 
