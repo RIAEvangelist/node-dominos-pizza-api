@@ -69,6 +69,10 @@ class IsDominos extends Is{
         return this.instanceCheck(value,DominosPriceError);
     }
 
+    placeOrderError(value){
+        return this.instanceCheck(value,DominosPlaceOrderError);
+    }
+
     fetchError(value){
         return this.instanceCheck(value,FetchError);
     }

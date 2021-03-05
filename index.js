@@ -1,3 +1,5 @@
+import './modules/DominosErrors.js';
+
 import Address from './modules/Address.js';
 import NearbyStores from './modules/NearbyStores.js';
 import Store from './modules/Store.js';
