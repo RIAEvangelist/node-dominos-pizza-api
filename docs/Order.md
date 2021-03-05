@@ -98,7 +98,7 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 |member/method  |type  |default|description|
 |-------------  |------|-------|-----------|
 |.address       |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)||Address for customer|
-|.amounts       |Object|   
+|.amounts       |Object||? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here. It may be legacy and could be removed.|   
 |.amountsBreakdown|[AmountsBreakdown]()||populated by `order.price`, this is the break down of costs and taxes|
 |.businessDate  |String||This is the date the order was created at the business.| 
 |.coupons       |Array||This is an array of coupon codes.|
@@ -106,35 +106,35 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 |.customerID    |String||If the customer has an ID set it here. Not tested, may work.|
 |.estimatedWaitMinutes|String||Estimated wait time from when the order is placed and paid for.|
 |.email         |String||Customer's email, pupulated when instantiated by the passed Customer Object|
-|.extension 
+|.extension     |String||Phone extension|
 |.firstName     |String||Customer's first name, pupulated when instantiated by the passed Customer Object|
-|.hotspotsLite  
-|.iP    
+|.hotspotsLite  |Boolean|false|? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here. We are just using what the web uses here.|  
+|.iP            |String||The IP where you are making requests from, dominos servers will auto populate this|
 |.lastName      |String||Customer's last name, pupulated when instantiated by the passed Customer Object|
-|.languageCode  
-|.market    
-|.metaData  
-|.newUser  
-|.noCombine 
-|.orderChannel              'OLO'
-|.orderID   
-|.orderInfoCollection   
-|.orderMethod               'Web'
-|.orderTaker                'node-dominos-pizza-api'
-|.partners  
-|.payments  
+|.languageCode  |String|'en'|appears to be a 2 letter language code|  
+|.market        |String||Dominos populates this based on where the order is happening.|
+|.metaData      |Object||Dominos passes various important meta data objects here, like `prop65 warning` to let you know that pizza causes cancer in California... If you figure out more information on the list of things that can be passed back here, please contribute the information.|
+|.newUser       |Boolean||? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here.|
+|.noCombine     |Boolean||? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here.|
+|.orderChannel  |String|'OLO'|This is what the dominos.com site passes... ? Not sure, if you figure it out, please contribute to this doc.|            
+|.orderID       |String||The ID of the order, this seems to change even if passed to dominos. It gets auto populated apparently... ? Not sure, if you figure it out, please contribute to this doc.|
+|.orderInfoCollection|Array||? Not sure, if you figure it out, please contribute to this doc.|   
+|.orderMethod   |String|'Web'|This is how the dominos.com site passes this information, there could be other options, but we do not know them. ?If you figure it out, please contribute to this doc.|            
+|.orderTaker    |String|'node-dominos-pizza-api'|? Perhaps the name of the person that took your order? Not sure, if you figure it out, please contribute to this doc.|            
+|.partners      |Object||? Not sure, if you figure it out, please contribute to this doc.|
+|.payments      |Array of [Payment Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Payment.md)||This is how you pay for the order when you use the `.place` method.|
 |.phone         |String||Customer's phonenumber, pupulated when instantiated by the passed Customer Object|
-|.priceOrderMs  
-|.priceOrderTime    
-|.products  
-|.promotions    
-|.pulseOrderGuid    
-|.serviceMethod             'Delivery',
-|.sourceOrganizationURI     'order.dominos.com'
-|.storeID   
-|.tags  
-|.userAgent 
-|.version                   '1.0'
+|.priceOrderMs  |Number||?Perhaps how long it took to complete the pricing? Not sure, if you figure it out, please contribute to this doc.|
+|.priceOrderTime|String||The time when the order was priced by the `.price` method. This is provided by the dominos servers|
+|.products      |Array of [Item Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)||Your product items are sanitized and added here by the `.addProduct` method|
+|.promotions    |Array||? Not sure, perhaps some special promotions, if you figure it out, please contribute to this doc.|
+|.pulseOrderGuid|String||? populated by dominos.com and used by dominos|    
+|.serviceMethod |String|'Delivery'|How you plan to get your pizza, `'Delivery'`/`'Carryout'`|
+|.sourceOrganizationURI |String|'order.dominos.com'||    
+|.storeID       |String/Number||Id for the store you wish to order from. get this through the [NearbyStores class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)|
+|.tags          |Object||? Not sure, if you figure it out, please contribute to this doc.|
+|.userAgent     |String||Auto populated when requests are made. We use `node-fetch`|
+|.version       |String|'1.0'|Dominos.com api version|        
 
 
 ### Creating An Order
