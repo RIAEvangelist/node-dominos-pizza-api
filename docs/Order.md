@@ -96,18 +96,17 @@ Instance Hidden Methods & Hidden Fields
 
 Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
 
-|Hidden Method Name |Params|Description|
-|-----------------  |------|-----------|
-|.addCustomer       |||
-|.addCoupon         |||
-|.removeCoupon      |||
-|.addItem           |||
-|.removeItem        |||
-|async .validate    |||
-|async .price       |||
-|async .place       |||
-|async .            |||
 
+|Hidden Method Name |Params |Description|
+|-----------------  |------ |-----------|
+|.addCustomer       |[Customer Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)|This will populate all `Customer` fields on the `Order` Instance|
+|.addCoupon         |String |This will add a coupon string to the coupons array|
+|.removeCoupon      |String |This will find and remove a coupon string from the coupons array|
+|.addItem           |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will sanitize and add a product `Item` to the `.products` array|
+|.removeItem        |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will find and remove a product `Item` from the `.products` array|
+|`async` .validate    |       |This will request dominos.com validate the current `Order` Instance.|
+|`async` .price       |       |This will request dominos.com price the current `Order` Instance.|
+|`async` .place       |       |This will place the order with dominos.com using the current `Order` Instance.|
 
 
 

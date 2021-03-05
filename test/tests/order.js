@@ -2,6 +2,7 @@ import IsDominos from '../../utils/DominosTypes.js';
 import Order from '../../modules/Order.js';
 import Customer from '../../modules/Customer.js';
 import Item from '../../modules/Item.js';
+import Payment from '../../modules/Payment.js';
 
 const isDominos=new IsDominos;
 

@@ -4,13 +4,19 @@ These custom errors are added to the global object for use in your code and the 
 
 |error                  |parameters         |description|
 |-----                  |----------         |-----------|
-|DominosValidationError |validationResponse |this error is thrown when a dominos validation request fails|
+|DominosValidationError |`.validationResponse`|this error is thrown when a dominos validation request fails|
+|DominosPriceError      |`.priceResponse`     |this error is thrown when a dominos price request fails|
+|DominosPlaceOrderError |`.placeOrderResponse`|this error is thrown when a dominos place request fails|
 
 
 
 ```js
 
 throw new DominosValidationError(order.validationResponse);
+
+throw new DominosPriceError(order.priceResponse);
+
+throw new DominosPlaceOrderError(order.placeResponse);
 
 
 ```
