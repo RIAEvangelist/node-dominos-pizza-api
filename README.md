@@ -83,7 +83,7 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '1 alvarado st, 93940',
+        address: '110 S Fairfax Ave, 90036',
         firstName: 'Barack',
         lastName: 'Obama',
         //where's that 555 number from?
@@ -94,7 +94,7 @@ const customer = new Customer(
 
 //create
 const order=new Order(customer);
-order.storeID=7981;
+order.storeID=8244;
 // add pizza
 order.addItem(pizza);
 //validate order
@@ -469,7 +469,7 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '1 alvarado st, 93940',
+        address: '110 S Fairfax Ave, 90036',
         firstName: 'Barack',
         lastName: 'Obama',
         //where's that 555 number from?
@@ -480,7 +480,7 @@ const customer = new Customer(
 
 //create
 const order=new Order(customer);
-order.storeID=7981;
+order.storeID=8244;
 // add pizza
 order.addItem(pizza);
 //validate order

@@ -16,7 +16,7 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '1 alvarado st, 93940',
+        address: '110 S Fairfax Ave, 90036',
         firstName: 'Barack',
         lastName: 'Obama',
         //where's that 555 number from?
@@ -27,13 +27,24 @@ const customer = new Customer(
 
 //create
 const order=new Order(customer);
-order.storeID=7981;
+
+// console.log('Instance');
+// console.dir(order,{depth:0});
+
+order.storeID=8244;
 // add pizza
 order.addItem(pizza);
 //validate order
 await order.validate();
+
+// console.log('Validate');
+// console.dir(order,{depth:0});
+
 //price order
 await order.price();
+
+console.log('Price');
+console.dir(order,{depth:0});
 
 //grab price from order and setup payment
 const myCard=new Payment(
@@ -49,7 +60,23 @@ const myCard=new Payment(
 order.payments.push(myCard);
 
 //place order
-await order.place();
 
-//inspect Order
-console.dir(order,{depth:5});
+try{
+    //will throw a dominos error because
+    //we used a fake credit card
+    await order.place();
+}catch(err){
+    console.trace(err);
+
+    //inspect Order Response to see more information about the 
+    //failure, unless you added a real card, then you can inspect
+    //the order itself
+    console.log('Failed Order Probably Bad Card, here is order.priceResponse the raw response from Dominos');
+    console.dir(
+        order.priceResponse,
+        {depth:5}
+    );
+}
+
+// console.log('Placed Order');
+console.dir(order,{depth:3});
