@@ -90,10 +90,39 @@ Constructor
 |--------|------    |--------|-------|
 |customer|[`Customer`](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)|yes|This is a dominos customer instance|
 
-Instance
+
+Instance Hidden Methods & Hidden Fields
 ====
 
 Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
+
+|Hidden Method Name |Params|Description|
+|-----------------  |------|-----------|
+|.addCustomer       |||
+|.addCoupon         |||
+|.removeCoupon      |||
+|.addItem           |||
+|.removeItem        |||
+|async .validate    |||
+|async .price       |||
+|async .place       |||
+|async .            |||
+
+
+
+
+|Hidden Field Name  |Type   |Description|
+|-----------------  |----   |-----------|
+|.payload           |JSON   |n/a   |
+|.formatted         |Object |this comes from [DominosFormat Class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) but the setter is overloaded for special Dominos Order format|
+|.validationResponse|Object|Validation Response Object from Dominos|
+|.priceResponse     |Object|Price Response Object from Dominos|
+|.placeResponse     |Object|Place Order Response Object from Dominos|
+
+---
+
+Instance Public Fields
+====
 
 |member/method  |type  |default|description|
 |-------------  |------|-------|-----------|
