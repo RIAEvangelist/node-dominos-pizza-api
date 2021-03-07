@@ -5,7 +5,7 @@ This is the primary Order Class used for ordering Domnio's food!
 If you have cloned this repo, you can run the example with this command:
 `node ./example/order.js`
 
-extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)
 
 
 ## Complete Order Example
@@ -156,22 +156,22 @@ Constructor
 
 |argument|type      |required|description|
 |--------|------    |--------|-------|
-|customer|[`Customer`](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)|yes|This is a dominos customer instance|
+|customer|[`Customer`](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Customer.md)|yes|This is a dominos customer instance|
 
 
 Instance Hidden Methods & Hidden Fields
 ====
 
-Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
+Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md) as this class extends it.
 
 
 |Hidden Method Name |Params |Description|
 |-----------------  |------ |-----------|
-|.addCustomer       |[Customer Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)|This will populate all `Customer` fields on the `Order` Instance|
+|.addCustomer       |[Customer Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Customer.md)|This will populate all `Customer` fields on the `Order` Instance|
 |.addCoupon         |String |This will add a coupon string to the coupons array|
 |.removeCoupon      |String |This will find and remove a coupon string from the coupons array|
-|.addItem           |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will sanitize and add a product `Item` to the `.products` array|
-|.removeItem        |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will find and remove a product `Item` from the `.products` array|
+|.addItem           |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Item.md)|This will sanitize and add a product `Item` to the `.products` array|
+|.removeItem        |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Item.md)|This will find and remove a product `Item` from the `.products` array|
 |.orderInFuture     |Date   |Will set the order time to be in the future. Very useful when testing but stores are closed, or when you want to order things in the future.|
 |.orderNow          |       |This will ensure an order is made now and not in the future. If you had previously used `.orderInFuture`, its date will be removed.|
 |`async` .validate  |       |This will request dominos.com validate the current `Order` Instance.|
@@ -183,7 +183,7 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 |Hidden Field Name  |Type   |Description|
 |-----------------  |----   |-----------|
 |.payload           |JSON   |n/a   |
-|.formatted         |Object |this comes from [DominosFormat Class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) but the setter is overloaded for special Dominos Order format|
+|.formatted         |Object |this comes from [DominosFormat Class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md) but the setter is overloaded for special Dominos Order format|
 |.validationResponse|Object|Validation Response Object from Dominos|
 |.priceResponse     |Object|Price Response Object from Dominos|
 |.placeResponse     |Object|Place Order Response Object from Dominos|
@@ -195,7 +195,7 @@ Instance Public Fields
 
 |member/method  |type  |default|description|
 |-------------  |------|-------|-----------|
-|.address       |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)||Address for customer|
+|.address       |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)||Address for customer|
 |.amounts       |Object||? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here. It may be legacy and could be removed.|   
 |.amountsBreakdown|[AmountsBreakdown]()||populated by `order.price`, this is the break down of costs and taxes|
 |.businessDate  |String||This is the date the order was created at the business.| 
@@ -220,16 +220,16 @@ Instance Public Fields
 |.orderMethod   |String|'Web'|This is how the dominos.com site passes this information, there could be other options, but we do not know them. ?If you figure it out, please contribute to this doc.|            
 |.orderTaker    |String|'node-dominos-pizza-api'|? Perhaps the name of the person that took your order? Not sure, if you figure it out, please contribute to this doc.|            
 |.partners      |Object||? Not sure, if you figure it out, please contribute to this doc.|
-|.payments      |Array of [Payment Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Payment.md)||This is how you pay for the order when you use the `.place` method.|
+|.payments      |Array of [Payment Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Payment.md)||This is how you pay for the order when you use the `.place` method.|
 |.phone         |String||Customer's phonenumber, pupulated when instantiated by the passed Customer Object|
 |.priceOrderMs  |Number||?Perhaps how long it took to complete the pricing? Not sure, if you figure it out, please contribute to this doc.|
 |.priceOrderTime|String||The time when the order was priced by the `.price` method. This is provided by the dominos servers|
-|.products      |Array of [Item Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)||Your product items are sanitized and added here by the `.addProduct` method|
+|.products      |Array of [Item Instances](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Item.md)||Your product items are sanitized and added here by the `.addProduct` method|
 |.promotions    |Array||? Not sure, perhaps some special promotions, if you figure it out, please contribute to this doc.|
 |.pulseOrderGuid|String||? populated by dominos.com and used by dominos|    
 |.serviceMethod |String|'Delivery'|How you plan to get your pizza, `'Delivery'`/`'Carryout'`/`'DriveUpCarryout'`|
 |.sourceOrganizationURI |String|'order.dominos.com'||    
-|.storeID       |String/Number||Id for the store you wish to order from. get this through the [NearbyStores class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)|
+|.storeID       |String/Number||Id for the store you wish to order from. get this through the [NearbyStores class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)|
 |.tags          |Object||? Not sure, if you figure it out, please contribute to this doc.|
 |.userAgent     |String||Auto populated when requests are made. We use `node-fetch`|
 |.version       |String|'1.0'|Dominos.com api version|        

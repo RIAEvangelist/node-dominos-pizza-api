@@ -8,7 +8,7 @@ This class will initialize a creditcard payment object for an order
 If you have cloned this repo, you can run the example with this command:
 `node ./example/payment.js`
 
-extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)
 
 Constructor
 ====
@@ -27,7 +27,7 @@ Constructor
 Instance
 ====
 
-Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
+Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md) as this class extends it.
 
 |member/method  |type  |description|
 |-------------  |------|---      |-------    |

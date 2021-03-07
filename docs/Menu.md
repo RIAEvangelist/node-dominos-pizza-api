@@ -3,7 +3,7 @@ Menu is constructed `async`, so when you instantiate it, you should await it, li
 
 `.menu` provides ***HUGE*** amounts of well formatted menu data parsed from the `menu.dominosAPIResponse` object. This information is parsed from the dominos api when the instance is instantiated.
 
-If you want to see the ***RAW*** `menu.dominosAPIResponse` object and documentation, check out the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md) instead. That object is huge and a little difficult to use which is why we provide this parsed menu.
+If you want to see the ***RAW*** `menu.dominosAPIResponse` object and documentation, check out the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosMenu.md) instead. That object is huge and a little difficult to use which is why we provide this parsed menu.
 
 If you have cloned this repo, you can run the example with this command:
 `node ./example/menu.js`
@@ -35,7 +35,7 @@ Instance
 |member/method      |type               |description|
 |-------------      |------             |-------    |
 |.menu              |object             |parsed and more friendly menu for the store documented below.|
-|.dominosAPIResponse|API response object|see more info in the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosMenu.md)|
+|.dominosAPIResponse|API response object|see more info in the [RAW DominosMenu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosMenu.md)|
 
 
 # .menu
