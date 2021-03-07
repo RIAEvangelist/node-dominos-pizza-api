@@ -33,9 +33,6 @@ This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is
 
 # Examples
 
-
-You can run the domino's pizza command line interface from your terminal just by running ` npm start `! See the example in the examples directory.
-
 See the examples directory for simple apps and demonstrations on using the basic functionality.
 
 
