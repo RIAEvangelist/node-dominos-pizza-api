@@ -10,22 +10,25 @@ extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com
 
 ## Complete Order Example
 
-Here is an example of a complete order process.
+Here is an example of a complete order process, including a single tracking check.
 
 
 ```js
 
-import {Order,Customer,Item,Payment} from 'dominos';
+import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
     {
-        code:'14THIN',
+        //16 inch hand tossed crust
+        code:'16SCREEN',
         options:{
             //sauce, whole pizza : normal
             X: {'1/1' : '1'}, 
             //cheese, whole pizza  : double 
-            C: {'1/1' : '2'}
+            C: {'1/1' : '2'},
+            //pepperoni, whole pizza : double 
+            P: {'1/2' : '2'}
         }
     }
 );
@@ -33,24 +36,73 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '110 S Fairfax Ave, 90036',
-        firstName: 'Barack',
-        lastName: 'Obama',
+        address: '2 Portola Plaza, Monterey, Ca, 93940',
+        firstName: 'Brandon',
+        lastName: 'Miller',
         //where's that 555 number from?
-        phone: '1-800-555-2368',
-        email: 'chief@us.gov'
+        phone: '941-555-2368',
+        email: 'brandon@diginow.it'
     }
 );
 
+let storeID=0;
+let distance=100;
+//find the nearest store
+const nearbyStores=await new NearbyStores(customer.address);
+
+//inspect nearby stores
+//console.log('\n\nNearby Stores\n\n')
+//console.dir(nearbyStores,{depth:5});
+
+
+//get closest delivery store
+for(const store of nearbyStores.stores){
+    //inspect each store
+    //console.dir(store,{depth:3});
+    
+    if(
+        //we check all of these because the API responses seem to say true for some
+        //and false for others, but it is only reliably ok for delivery if ALL are true
+        //this may become an additional method on the NearbyStores class.
+        store.IsOnlineCapable 
+        && store.IsDeliveryStore
+        && store.IsOpen
+        && store.ServiceIsOpen.Delivery
+        && store.MinDistance<distance
+    ){
+        distance=store.MinDistance;
+        storeID=store.StoreID;
+        //console.log(store)
+    }
+}
+
+if(storeID==0){
+    throw ReferenceError('No Open Stores');
+}
+
+//console.log(storeID,distance);
+
+
 //create
 const order=new Order(customer);
-order.storeID=8244;
+
+// console.log('\n\nInstance\n\n');
+// console.dir(order,{depth:0});
+
+order.storeID=storeID;
 // add pizza
 order.addItem(pizza);
 //validate order
 await order.validate();
+
+// console.log('\n\nValidate\n\n');
+//console.dir(order,{depth:3});
+
 //price order
 await order.price();
+
+// console.log('\n\nPrice\n\n');
+// console.dir(order,{depth:0});
 
 //grab price from order and setup payment
 const myCard=new Payment(
@@ -63,19 +115,35 @@ const myCard=new Payment(
         //slashes not needed, they get filtered out
         expiration:'01/35',
         securityCode:'867',
-        postalCode:'93940'
+        postalCode:'93940',
+        tipAmount:4
     }
 );
 
 order.payments.push(myCard);
 
 //place order
-await order.place();
 
-//inspect Order
-console.dir(order,{depth:5});
+try{
+    //will throw a dominos error because
+    //we used a fake credit card
+    await order.place();
 
-//you probably want to add some tracking too...
+    console.log('\n\nPlaced Order\n\n');
+    console.dir(order,{depth:3});
+
+}catch(err){
+    console.trace(err);
+
+    //inspect Order Response to see more information about the 
+    //failure, unless you added a real card, then you can inspect
+    //the order itself
+    console.log('\n\nFailed Order Probably Bad Card, here is order.priceResponse the raw response from Dominos\n\n');
+    console.dir(
+        order.placeResponse,
+        {depth:5}
+    );
+}
 
 
 ```
@@ -104,9 +172,11 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 |.removeCoupon      |String |This will find and remove a coupon string from the coupons array|
 |.addItem           |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will sanitize and add a product `Item` to the `.products` array|
 |.removeItem        |[Item Instance](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)|This will find and remove a product `Item` from the `.products` array|
-|`async` .validate    |       |This will request dominos.com validate the current `Order` Instance.|
-|`async` .price       |       |This will request dominos.com price the current `Order` Instance.|
-|`async` .place       |       |This will place the order with dominos.com using the current `Order` Instance.|
+|.orderInFuture     |Date   |Will set the order time to be in the future. Very useful when testing but stores are closed, or when you want to order things in the future.|
+|.orderNow          |       |This will ensure an order is made now and not in the future. If you had previously used `.orderInFuture`, its date will be removed.|
+|`async` .validate  |       |This will request dominos.com validate the current `Order` Instance.|
+|`async` .price     |       |This will request dominos.com price the current `Order` Instance.|
+|`async` .place     |       |This will place the order with dominos.com using the current `Order` Instance.|
 
 
 
@@ -475,17 +545,20 @@ Order {
 
 ```js
 
-import {Order,Customer,Item,Payment} from 'dominos';
+import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
     {
-        code:'14THIN',
+        //16 inch hand tossed crust
+        code:'16SCREEN',
         options:{
             //sauce, whole pizza : normal
             X: {'1/1' : '1'}, 
             //cheese, whole pizza  : double 
-            C: {'1/1' : '2'}
+            C: {'1/1' : '2'},
+            //pepperoni, whole pizza : double 
+            P: {'1/2' : '2'}
         }
     }
 );
@@ -493,22 +566,47 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '1 alvarado st, 93940',
-        firstName: 'Barack',
-        lastName: 'Obama',
+        address: '2 Portola Plaza, Monterey, Ca, 93940',
+        firstName: 'Brandon',
+        lastName: 'Miller',
         //where's that 555 number from?
-        phone: '1-800-555-2368',
-        email: 'chief@us.gov'
+        phone: '941-555-2368',
+        email: 'brandon@diginow.it'
     }
 );
 
+let storeID=0;
+let distance=100;
+//find the nearest store
+const nearbyStores=await new NearbyStores(customer.address);
+
+//get closest delivery store
+for(const store of nearbyStores.stores){
+    if(
+        store.IsOnlineCapable 
+        && store.IsDeliveryStore
+        && store.IsOpen
+        && store.ServiceIsOpen.Delivery
+        && store.MinDistance<distance
+    ){
+        distance=store.MinDistance;
+        storeID=store.StoreID;
+    }
+}
+
+if(storeID==0){
+    throw ReferenceError('No Open Stores');
+}
+
 //create
 const order=new Order(customer);
-order.storeID=7981;
+
+order.storeID=storeID;
 // add pizza
 order.addItem(pizza);
 //validate order
 await order.validate();
+
 //price order
 await order.price();
 
@@ -523,19 +621,33 @@ const myCard=new Payment(
         //slashes not needed, they get filtered out
         expiration:'01/35',
         securityCode:'867',
-        postalCode:'93940'
+        postalCode:'93940',
+        tipAmount:4
     }
 );
 
 order.payments.push(myCard);
 
 //place order
-await order.place();
 
-//inspect Order
-console.dir(order,{depth:5});
+try{
+    await order.place();
 
-//you probably want to add some tracking too...
+    console.log('/n/nPlaced Order/n/n');
+    console.dir(order,{depth:3});
+
+}catch(err){
+    console.trace(err);
+
+    //inspect Order Response to see more information about the 
+    //failure, unless you added a real card, then you can inspect
+    //the order itself
+    console.log('\n\nFailed Order Probably Bad Card, here is order.priceResponse the raw response from Dominos\n\n');
+    console.dir(
+        order.placeResponse,
+        {depth:5}
+    );
+}
 
 
 

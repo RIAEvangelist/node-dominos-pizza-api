@@ -33,7 +33,7 @@ class Order extends DominosFormat{
     lastName = ''
     languageCode = 'en'
     market = ''
-    metaData = {calculateNutrition: "true"}
+    metaData = {calculateNutrition: true, contactless:true}
     newUser = true
     noCombine = true
     orderChannel = 'OLO'
@@ -44,6 +44,7 @@ class Order extends DominosFormat{
     partners = {}
     payments = []
     phone = ''
+    phonePrefix = ''
     priceOrderMs=0
     priceOrderTime = ''
     products = []
@@ -56,23 +57,19 @@ class Order extends DominosFormat{
     userAgent=''
     version = '1.0'
     
-    get payload(){
-        const formatted=this.formatted;
-        formatted.Address=this.address.formatted;
-        
-        for(const [i,item] of Object.entries(this.products)){
-            formatted.Products[i]=item.formatted;
+    orderInFuture(date){
+        isDominos.date(date);
+        const now=Date.now();
+        if(date<now){
+            throw new DominosDateError('Order dates must be in the future.');
         }
+        const dateString=date.toISOString().replace('T',' ').replace('.000Z','');
+        
+        this.futureOrderTime=dateString;
+    }
 
-        //console.log(formatted);
-
-        return JSON.stringify(
-            {
-                Order:formatted
-            },
-            // null,
-            // 4
-        )   
+    orderNow(){
+        delete this.futureOrderTime;
     }
 
     addCustomer(customer) { 
@@ -109,6 +106,33 @@ class Order extends DominosFormat{
         isDominos.item(item);
 
         return this.#remove(item,this.products);
+    }
+
+    get payload(){
+        const formatted=this.formatted;
+        formatted.Address=this.address.formatted;
+        
+        for(const [i,item] of Object.entries(this.products)){
+            formatted.Products[i]=item.formatted;
+        }
+
+        for(const [i,payment] of Object.entries(this.payments)){
+            formatted.Payments[i]=payment.formatted;
+        }
+
+        //console.log(formatted);
+
+        Object.assign(formatted.metaData={},formatted.MetaData);
+
+        delete formatted.MetaData
+
+        return JSON.stringify(
+            {
+                Order:formatted
+            },
+            // null,
+            // 4
+        )   
     }
 
     // the setter is very large, so it is near the bottom of the class
@@ -163,6 +187,9 @@ class Order extends DominosFormat{
     }
 
     async validate() {  
+        if(!this.storeID){
+            throw new DominosStoreError('Store ID must be set before validating order');
+        }
 
         this.validationResponse=await post(
             urls.order.validate,
@@ -183,6 +210,14 @@ class Order extends DominosFormat{
     }
 
     async price() {
+        if(!this.storeID){
+            throw new DominosStoreError('Store ID must be set before pricing an order. `order.storeID=...`');
+        }
+
+        if(!this.products.length>0){
+            throw new DominosProductsError('Order must contain product items before pricing. `order.addItem(...)`');
+        }
+
         this.priceResponse=await post(
             urls.order.price,
             this.payload
@@ -204,6 +239,19 @@ class Order extends DominosFormat{
     }
 
     async place() {
+        if(!this.storeID){
+            throw new DominosStoreError('Store ID must be set before placing an order. `order.storeID=...`');
+        }
+
+        if(!this.products.length>0){
+            throw new DominosProductsError('Order must contain product items before placing. `order.addItem(...)`');
+        }
+        
+        if(!this.address.region){
+            console.log(this.address)
+            throw new DominosAddressError('before you place an order, you must insure `order.address.region` is set');
+        }
+
         this.placeResponse=await post(
             urls.order.place,
             this.payload

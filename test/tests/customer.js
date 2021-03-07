@@ -39,23 +39,12 @@ const runTest=async function(test){
         isDominos.address(customer.address);
 
         const formattedCustomer=customer.formatted;
+        const formattedJSON=JSON.stringify(formattedCustomer);
+        const expectedJSON=`{"FirstName":"Barack","LastName":"Obama","Email":"chief@us.gov","Address":{"street":"900 Clark Ave","streetNumber":"","streetName":"","unitType":"","unitNumber":"","city":"","region":"","postalCode":"63102","deliveryInstructions":""},"Phone":"18005552368","PhonePrefix":""}`;
 
-        for(const [key,value] of Object.entries(expected)){
-            const pascalKey=toPascal(key);
-            
-            //ensure that all customer values match expected values
-            test.compare(
-                JSON.stringify(value),
-                JSON.stringify(customer[key]),
-                `customer.${key} ${JSON.stringify(customer[key])} to equal expected.${key} ${JSON.stringify(value)}`    
-            );
-
-            //ensure that all dominos formatted values match expected values
-            test.compare(
-                JSON.stringify(value),
-                JSON.stringify(formattedCustomer[pascalKey]),
-                `expected.${key} ${JSON.stringify(value)} to equal customer.formatted.${pascalKey} ${JSON.stringify(formattedCustomer[pascalKey])}`    
-            );
+        if(formattedJSON!=expectedJSON){
+            console.log(formattedJSON);
+            test.fail();
         }
 
     }catch(err){

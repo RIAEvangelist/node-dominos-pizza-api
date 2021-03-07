@@ -65,17 +65,20 @@ Simply run ` npm test ` and the coverage files will be added to the `./coverage`
 
 ```js
 
-import {Order,Customer,Item,Payment} from 'dominos';
+import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
     {
-        code:'14THIN',
+        //16 inch hand tossed crust
+        code:'16SCREEN',
         options:{
             //sauce, whole pizza : normal
             X: {'1/1' : '1'}, 
             //cheese, whole pizza  : double 
-            C: {'1/1' : '2'}
+            C: {'1/1' : '2'},
+            //pepperoni, whole pizza : double 
+            P: {'1/2' : '2'}
         }
     }
 );
@@ -83,24 +86,72 @@ const pizza=new Item(
 const customer = new Customer(
     {
         //this could be an Address instance if you wanted 
-        address: '110 S Fairfax Ave, 90036',
-        firstName: 'Barack',
-        lastName: 'Obama',
+        address: '2 Portola Plaza, Monterey, Ca, 93940',
+        firstName: 'Brandon',
+        lastName: 'Miller',
         //where's that 555 number from?
-        phone: '1-800-555-2368',
-        email: 'chief@us.gov'
+        phone: '941-555-2368',
+        email: 'brandon@diginow.it'
     }
 );
 
+let storeID=0;
+let distance=100;
+//find the nearest store
+const nearbyStores=await new NearbyStores(customer.address);
+//inspect nearby stores
+//console.log('\n\nNearby Stores\n\n')
+//console.dir(nearbyStores,{depth:5});
+
+
+//get closest delivery store
+for(const store of nearbyStores.stores){
+    //inspect each store
+    //console.dir(store,{depth:3});
+    
+    if(
+        //we check all of these because the API responses seem to say true for some
+        //and false for others, but it is only reliably ok for delivery if ALL are true
+        //this may become an additional method on the NearbyStores class.
+        store.IsOnlineCapable 
+        && store.IsDeliveryStore
+        && store.IsOpen
+        && store.ServiceIsOpen.Delivery
+        && store.MinDistance<distance
+    ){
+        distance=store.MinDistance;
+        storeID=store.StoreID;
+        //console.log(store)
+    }
+}
+
+if(storeID==0){
+    throw ReferenceError('No Open Stores');
+}
+
+//console.log(storeID,distance);
+
+
 //create
 const order=new Order(customer);
-order.storeID=8244;
+
+// console.log('\n\nInstance\n\n');
+// console.dir(order,{depth:0});
+
+order.storeID=storeID;
 // add pizza
 order.addItem(pizza);
 //validate order
 await order.validate();
+
+// console.log('\n\nValidate\n\n');
+//console.dir(order,{depth:3});
+
 //price order
 await order.price();
+
+// console.log('\n\nPrice\n\n');
+// console.dir(order,{depth:0});
 
 //grab price from order and setup payment
 const myCard=new Payment(
@@ -113,24 +164,34 @@ const myCard=new Payment(
         //slashes not needed, they get filtered out
         expiration:'01/35',
         securityCode:'867',
-        postalCode:'93940'
+        postalCode:'93940',
+        tipAmount:4
     }
 );
 
 order.payments.push(myCard);
 
 //place order
-await order.place();
 
-//inspect Order
-console.dir(order,{depth:5});
+try{
+    //will throw a dominos error because
+    //we used a fake credit card
+    await order.place();
 
-//probably put this in an interval if you want updates in the 
-//terminal
-const trackingResult=await tracking.byPhone(order.phone);
+    console.log('\n\nPlaced Order\n\n');
+    console.dir(order,{depth:3});
+}catch(err){
+    console.trace(err);
 
-//inspect the tracking info
-console.dir(trackingResult,{depth:2});
+    //inspect Order Response to see more information about the 
+    //failure, unless you added a real card, then you can inspect
+    //the order itself
+    console.log('\n\nFailed Order Probably Bad Card, here is order.priceResponse the raw response from Dominos\n\n');
+    console.dir(
+        order.placeResponse,
+        {depth:5}
+    );
+}
 
 
 ```
@@ -521,6 +582,10 @@ console.dir(order,{depth:5});
 
 This is how you track Pizzas! (and other things)
 
+### TRACKING CURRENTLY REPORTS ABANDONDONED IN JSON DATA EVEN IF ORDER IS ON THE WAY
+
+Rely on the `order.place` response. If the order fails, it will throw a `DominosPlaceOrderError`. Otherwise, your pizza is on the way. It also seems that orders placed via `dominos` module do not show up on the tracking website right now. These orders appear stealth at the moment.
+
 See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Tracking.md)
 
 ```js
@@ -563,7 +628,10 @@ See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.
 |DominosValidationError |`.validationResponse`|this error is thrown when a dominos validation request fails|
 |DominosPriceError      |`.priceResponse`     |this error is thrown when a dominos price request fails|
 |DominosPlaceOrderError |`.placeOrderResponse`|this error is thrown when a dominos place request fails|
-
+|DominosAddressError    |message string       |this error is thrown when an issue is detected with a dominos address|
+|DominosDateError       |message string       |this error is thrown when an issue is detected with a date being used for a dominos order|
+|DominosStoreError      |message string       |this error is thrown when an issue is detected with a store being used for a dominos order|
+|DominosProductsError   |message string       |this error is thrown when an issue is detected with an orders product list|
 
 ----
 

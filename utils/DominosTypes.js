@@ -73,6 +73,22 @@ class IsDominos extends Is{
         return this.instanceCheck(value,DominosPlaceOrderError);
     }
 
+    addressError(value){
+        return this.instanceCheck(value,DominosAddressError);
+    }
+
+    dateError(value){
+        return this.instanceCheck(value,DominosDateError);
+    }
+
+    storeError(value){
+        return this.instanceCheck(value,DominosStoreError);
+    }
+
+    productsError(value){
+        return this.instanceCheck(value,DominosProductsError);
+    }
+
     fetchError(value){
         return this.instanceCheck(value,FetchError);
     }

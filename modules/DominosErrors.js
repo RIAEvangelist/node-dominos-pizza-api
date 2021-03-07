@@ -43,6 +43,50 @@ class DominosPlaceOrderError extends Error{
     }
 };
 
+class DominosAddressError extends Error{
+    constructor(message){
+        is.string(message);
+        super();
+
+        this.message='Dominos Address Error: '+message;
+
+        return this;
+    }
+};
+
+class DominosDateError extends Error{
+    constructor(message){
+        is.string(message);
+        super();
+
+        this.message='Dominos Date Error: '+message;
+
+        return this;
+    }
+};
+
+class DominosStoreError extends Error{
+    constructor(message){
+        is.string(message);
+        super();
+
+        this.message='Dominos Store Error: '+message;
+
+        return this;
+    }
+};
+
+class DominosProductsError extends Error{
+    constructor(message){
+        is.string(message);
+        super();
+
+        this.message='Dominos Products Error: '+message;
+
+        return this;
+    }
+};
+
 const createErrorMessage=function(self,response){
     is.object(self);
     is.object(response);
@@ -54,6 +98,14 @@ const createErrorMessage=function(self,response){
             of Object.entries(response.Order.StatusItems)
         ){
             self.message+=` ${statusItem.Code}:'${statusItem.Message||''}',`
+        }
+    }
+
+    if(response.Order.CorrectiveAction){
+        for(const [key,value] 
+            of Object.entries(response.Order.CorrectiveAction)
+        ){
+            self.message+=` ${key}:'${value}',`
         }
     }
 
@@ -69,3 +121,7 @@ const createErrorMessage=function(self,response){
 global.DominosValidationError=DominosValidationError;
 global.DominosPriceError=DominosPriceError;
 global.DominosPlaceOrderError=DominosPlaceOrderError;
+global.DominosAddressError=DominosAddressError;
+global.DominosDateError=DominosDateError;
+global.DominosStoreError=DominosStoreError;
+global.DominosProductsError=DominosProductsError;

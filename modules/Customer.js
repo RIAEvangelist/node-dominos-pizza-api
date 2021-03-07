@@ -9,6 +9,7 @@ class Customer extends DominosFormat{
         super();
         this.init=parameters;
         this.address=new Address(parameters.address);
+        this.phone=this.phone.replace(/\-/g,'');
         return this;
     }
 
@@ -17,6 +18,7 @@ class Customer extends DominosFormat{
     email       =''
     address     =new Address
     phone       =''
+    phonePrefix =''
     
 };
 

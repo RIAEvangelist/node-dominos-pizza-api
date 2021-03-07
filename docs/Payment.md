@@ -1,5 +1,8 @@
 Payment
 ====
+
+***NEED TO ADD SUPPORT FOR PAY WITH CASH ON DELIVERY***
+
 This class will initialize a creditcard payment object for an order
 
 If you have cloned this repo, you can run the example with this command:
@@ -15,6 +18,7 @@ Constructor
 |parameters.|type       |required|description|
 |--------   |------     |--------|-------|
 |amount     |number     |no      |amount to pay with the card|
+|tipAmount  |number     |no      |amount of the payment that is a tip|
 |number     |string     |yes     |credit card number sanitized when instantiatied per dominos rules (numbers only)|
 |expiration |string     |yes     |creditcard expiration sanitized when instantiatied per dominos rules (numbers only)|
 |securityCode|string    |yes     |credit card security code|
@@ -28,6 +32,7 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 |member/method  |type  |description|
 |-------------  |------|---      |-------    |
 |amount         |number|amount to pay with the card|
+|tipAmount      |number|amount of the payment that is a tip|
 |number         |string|credit card number sanitized when instantiatied per dominos rules (numbers only|
 |cardType       |string|type of credit card, automatically assigned when instantiated based on the credit card number |
 |expiration     |string|credit card expiration sanitized when instantiatied per dominos rules (numbers only)|
