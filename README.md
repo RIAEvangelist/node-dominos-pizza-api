@@ -614,6 +614,38 @@ const trackingResult=await tracking.byID(storeID,order.iD);
 console.dir(trackingResult,{depth:1});
 
 ```
+---
+
+# Dominos Custom Type Checking
+
+This class extends [`strong-type`](https://github.com/RIAEvangelist/strong-type) to allow strong and weak type checking of dominos specific types, errors and classes. It is used a lot in the `dominos` module to ensure correct types of arguments and errors. The `strong-type` module is really cool. 
+
+See the [DominosTypes.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosTypes.md) for more information.
+
+```js
+
+import {IsDominos,Address} from 'dominos'
+
+isDominos=new IsDominos;
+
+let address='bob';
+
+//address is a string so this will throw an Error
+try{
+    isDominos.address(address);
+}catch(err){
+    console.trace(err);
+}
+
+address=new Address('1 alvarado st, 93940');
+
+//will not throw because this is an Address instance
+isDominos.address(address);
+
+
+```
+
+
 
 ---
 
