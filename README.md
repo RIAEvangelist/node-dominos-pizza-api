@@ -62,7 +62,7 @@ Simply run ` npm test ` and the coverage files will be added to the `./coverage`
 
 ```js
 
-import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
+import {Order,Customer,Item,Payment,NearbyStores} from 'dominos';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
@@ -187,6 +187,52 @@ try{
     console.dir(
         order.placeResponse,
         {depth:5}
+    );
+}
+
+
+```
+
+# Legacy CommonJS support
+
+This is for those who wish to use the `domnios api` in older code bases still using `require`. While node v12+ is still required, see the detailed info and order example in [CommonJS.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/CommonJS.md) for how to include and use the module in your code.
+
+```js
+
+(async () => {
+    const dominos=await import('dominos');
+
+    //importing variables into the global like this just allows us to use the same code
+    //from the ESM implementation for the commonJS implementation
+    //This is the same as an ESM import of
+//import {Address,NearbyStores,Store,Menu,Customer,Item,Image,Order,Payment,Tracking,urls,IsDominos} from 'dominos'
+
+    Object.assign(global,dominos);
+
+    //need to await dominos promise completion
+    //because ES6 is async by nature
+    start();
+})()
+
+function start(){
+    //any of the ESM examples from the other docs will work as is here
+    //because we mimiced an ESM import above.
+     
+    const n='\n';
+    console.log(
+        n,
+        Address,n,
+        NearbyStores,n,
+        Store,n,
+        Menu,n,
+        Customer,n,
+        Item,n,
+        Image,n,
+        Order,n,
+        Payment,n,
+        Tracking,n,
+        urls,n,
+        IsDominos,n
     );
 }
 

@@ -15,7 +15,7 @@ Here is an example of a complete order process, including a single tracking chec
 
 ```js
 
-import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
+import {Order,Customer,Item,Payment,NearbyStores} from 'dominos';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
@@ -427,7 +427,7 @@ Order {
 
 ```js
 
-import {Order,Customer,Item} from '../index.js';
+import {Order,Customer,Item} from 'dominos';
 
 const customer = new Customer(
     {
@@ -545,7 +545,7 @@ Order {
 
 ```js
 
-import {Order,Customer,Item,Payment,NearbyStores} from '../index.js';
+import {Order,Customer,Item,Payment,NearbyStores} from 'dominos';
 
 //extra cheese thin crust pizza
 const pizza=new Item(

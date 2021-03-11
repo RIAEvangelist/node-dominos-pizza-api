@@ -42,7 +42,7 @@ Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-
 
 ```js
 
-import {Payment} from '../index.js';
+import {Payment} from 'dominos';
 
 const myCard=new Payment(
     {
