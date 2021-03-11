@@ -30,7 +30,7 @@ Instance
 
 |member/method|type   |description|
 |-------------|------ |-------    |
-|.menu        |Menu   |parsed and more friendly menu for the store check out the [Dominos Pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md) for more details.|
+|.menu        |Menu   |parsed and more friendly menu for the store check out the [Dominos Pizza Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Menu.md) for more details.|
 |.info        |object |see the detailed store information object below.|
 
 

@@ -199,7 +199,7 @@ try{
 
 The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get hyour country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
 
-See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/InternationalSupport.md)
+See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/InternationalSupport.md)
 
 ### USA
 USA is default so you really dont need to do anything other than `import {urls} from 'dominos';` if you want access to the usa endpoints.
@@ -280,7 +280,7 @@ USA is default so you really dont need to do anything other than `import {urls} 
 
 # Address
 
-See the detailed docs on addresses here : [Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Address.md)
+See the detailed docs on addresses here : [Address.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md)
 
 ```js
 
@@ -340,7 +340,7 @@ See the detailed docs on addresses here : [Address.md](https://github.com/RIAEva
 
 This provides a list of basic info on stores that are nearby an address.
 
-See the detailed docs on finding nearby stores here : [NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/NearbyStores.md)
+See the detailed docs on finding nearby stores here : [NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/NearbyStores.md)
 
 ``` js
 
@@ -367,7 +367,7 @@ See the detailed docs on finding nearby stores here : [NearbyStores.md](https://
 
 This provides a detailed menu for a given store.
 
-See the detailed docs on menus here : [Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Menu.md)
+See the detailed docs on menus here : [Menu.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Menu.md)
 
 ```js
 
@@ -385,7 +385,7 @@ console.dir(menu,{depth:1});
 
 This provides detailed store information.
 
-See the detailed docs on stores here : [Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Store.md)
+See the detailed docs on stores here : [Store.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Store.md)
 
 ```js
 
@@ -403,7 +403,7 @@ See the detailed docs on stores here : [Store.md](https://github.com/RIAEvangeli
 
 Items are used to place orders.
 
-See the detailed docs on items here : [Item.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Item.md)
+See the detailed docs on items here : [Item.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Item.md)
 
 ```js
 import {Item} from 'dominos';
@@ -424,7 +424,7 @@ console.dir(pepperoniPizza);
 
 This creates a customer object for use when making an order.
 
-See the detailed docs on customers here : [Customer.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Customer.md)
+See the detailed docs on customers here : [Customer.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Customer.md)
 
 ```js
 
@@ -451,7 +451,7 @@ The Image class will grab the image for a product code and base 64 encode it. It
 
 ![Pizza image](https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPX.jpg)
 
-See the detailed docs on image here : [Image.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Image.md)
+See the detailed docs on image here : [Image.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Image.md)
 
 ```js
 
@@ -477,7 +477,7 @@ pepperoniPizza.saveSync(pepperoniPizza.base64Image,savePath,productCode+'.jpg');
 
 This class will initialize a creditcard payment object for an order.
 
-See the detailed docs on payment here : [Payment.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Payment.md)
+See the detailed docs on payment here : [Payment.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Payment.md)
 
 
 ```js
@@ -504,7 +504,7 @@ const myCard=new Payment(
 
 ***Finally...*** This class will order you pizza, and other things from the menu.
 
-See the detailed docs on order here : [Order.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Order.md)
+See the detailed docs on order here : [Order.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Order.md)
 
 
 ```js
@@ -583,7 +583,7 @@ This is how you track Pizzas! (and other things)
 
 Rely on the `order.place` response. If the order fails, it will throw a `DominosPlaceOrderError`. Otherwise, your pizza is on the way. It also seems that orders placed via `dominos` module do not show up on the tracking website right now. These orders appear stealth at the moment.
 
-See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Tracking.md)
+See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Tracking.md)
 
 ```js
 
@@ -617,7 +617,7 @@ console.dir(trackingResult,{depth:1});
 
 This class extends [`strong-type`](https://github.com/RIAEvangelist/strong-type) to allow strong and weak type checking of dominos specific types, errors and classes. It is used a lot in the `dominos` module to ensure correct types of arguments and errors. The `strong-type` module is really cool. 
 
-See the [DominosTypes.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosTypes.md) for more information.
+See the [DominosTypes.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosTypes.md) for more information.
 
 ```js
 
@@ -650,7 +650,7 @@ isDominos.address(address);
 
 These custom errors are added to the global object for use in your code and the `dominos` api. You can use them to validate errors or even throw your own if you are making a module ontop of this one.
 
-See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosErrors.md)
+See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosErrors.md)
 
 |error                  |parameters           |description|
 |-----                  |----------           |-----------|

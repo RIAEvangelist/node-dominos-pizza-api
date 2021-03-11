@@ -2,9 +2,9 @@ AmountsBreakdown
 ====
 This is the primary AmountsBreakdown Class used for all things Domnio's.
 
-Really unless you are working on the core of this module you don't need to understand this class as it is not used outside of the internals of the [Order Class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/Order.md) itself.
+Really unless you are working on the core of this module you don't need to understand this class as it is not used outside of the internals of the [Order Class](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Order.md) itself.
 
-extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md)
+extends `DominosFormat` class, see more in [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)
 
 Constructor
 ====
@@ -32,7 +32,7 @@ Constructor
 Instance
 ====
 
-Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/v3.x/docs/DominosFormat.md) as this class extends it.
+Also check the [DominosFormat.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md) as this class extends it.
 
 |member/method|type  |description|
 |-------------|------|-------    |
