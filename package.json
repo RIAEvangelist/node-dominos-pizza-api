@@ -2,7 +2,7 @@
   "name": "dominos",
   "version": "3.0.0",
   "description": "node js API for Domino's pizza",
-  "exports": "index.js",
+  "exports": "./index.js",
   "type": "module",
   "scripts": {
     "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
