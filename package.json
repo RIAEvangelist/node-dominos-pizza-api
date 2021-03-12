@@ -1,6 +1,6 @@
 {
   "name": "dominos",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "node js API for Domino's pizza",
   "exports": "./index.js",
   "type": "module",
