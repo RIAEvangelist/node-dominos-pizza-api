@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
-    "precommit": "echo 'node test/CI.js'",
+    "precommit": "echo node test/CI.js",
     "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
     "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
@@ -123,6 +123,14 @@
     {
       "name": "Matt Steele",
       "url": "https://github.com/mattdsteele"
+    },
+    {
+      "name": "Patrick Collins",
+      "url": "https://github.com/PatrickAlphaC"
+    },
+    {
+      "name": "lastraum",
+      "url": "https://github.com/lastraum"
     }
   ],
   "funding": {
