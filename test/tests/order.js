@@ -7,7 +7,11 @@ import Address from '../../modules/Address.js';
 
 const isDominos=new IsDominos;
 
-const storeID=4337;
+//ca
+const storeID=8244;
+
+//hi
+//const storeID=18042;
 
 const customerObject={
     //this could be an Address instance if you wanted 
@@ -163,7 +167,6 @@ const validateCheesePizza=async function(test){
         
         const order=new Order(customer);
         order.storeID=storeID;
-        order.serviceMethod='Carryout';
         
         order.addItem(cheesePizza);
         
@@ -197,7 +200,6 @@ const priceCheesePizza=async function(test){
         
         const order=new Order(customer);
         order.storeID=storeID;
-        order.serviceMethod='Carryout';
         
         order.addItem(cheesePizza);
         
@@ -256,7 +258,6 @@ const failOrderCheesePizza=async function(test){
 
         const order=new Order(goodCustomer);
         order.storeID=storeID;
-        order.serviceMethod='Carryout';
         
         order.addItem(cheesePizza);
         

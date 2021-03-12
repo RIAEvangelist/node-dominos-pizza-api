@@ -625,11 +625,9 @@ console.dir(order,{depth:5});
 
 This is how you track Pizzas! (and other things)
 
-### TRACKING CURRENTLY REPORTS ABANDONDONED IN JSON DATA EVEN IF ORDER IS ON THE WAY
+You can track its progress, who is working on it, who your delivery person is, and how many stops they have before you using this Class.
 
-Rely on the `order.place` response. If the order fails, it will throw a `DominosPlaceOrderError`. Otherwise, your pizza is on the way. It also seems that orders placed via `dominos` module do not show up on the tracking website right now. These orders appear stealth at the moment.
-
-See the detailed docs on tracking here : [Tracking.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Tracking.md)
+If there are no orders for a given phone number, it will throw a `DominosTrackingError`.
 
 ```js
 
@@ -637,23 +635,8 @@ import {Tracking} from 'dominos';
 
 const tracking=new Tracking();
 
-//track by phone
 const trackingResult=await tracking.byPhone('3108675309');
-console.dir(trackingResult,{depth:1});
 
-//outputs
-Tracking {
-  orders: {
-      //active trackable orders for this phonenumber
-      ...
-  },
-  query: { Phone: '3108675309' },
-  dominosAPIResult: { 'soap:Envelope': [Object] }
-}
-
-
-// by order id
-const trackingResult=await tracking.byID(storeID,order.iD);
 console.dir(trackingResult,{depth:1});
 
 ```
@@ -703,6 +686,7 @@ See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.
 |DominosValidationError |`.validationResponse`|this error is thrown when a dominos validation request fails|
 |DominosPriceError      |`.priceResponse`     |this error is thrown when a dominos price request fails|
 |DominosPlaceOrderError |`.placeOrderResponse`|this error is thrown when a dominos place request fails|
+|DominosTrackingError   |message string       |this error is thrown when no trackable orders are found for a phone number|
 |DominosAddressError    |message string       |this error is thrown when an issue is detected with a dominos address|
 |DominosDateError       |message string       |this error is thrown when an issue is detected with a date being used for a dominos order|
 |DominosStoreError      |message string       |this error is thrown when an issue is detected with a store being used for a dominos order|

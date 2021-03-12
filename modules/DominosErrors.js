@@ -87,6 +87,17 @@ class DominosProductsError extends Error{
     }
 };
 
+class DominosTrackingError extends Error{
+    constructor(message){
+        is.string(message);
+        super();
+
+        this.message='Dominos Tracking Error: '+message;
+
+        return this;
+    }
+};
+
 const createErrorMessage=function(self,response){
     is.object(self);
     is.object(response);
@@ -125,3 +136,4 @@ global.DominosAddressError=DominosAddressError;
 global.DominosDateError=DominosDateError;
 global.DominosStoreError=DominosStoreError;
 global.DominosProductsError=DominosProductsError;
+global.DominosTrackingError=DominosTrackingError;

@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 import urls from './urls.js';
-import {default as xml2js} from 'xml2js';
 
 const post=async function(url, payload) {
     const options = {
@@ -29,9 +28,8 @@ const get = async function(url){
     const options = {
         method:'GET',
         headers: {
-            'Referer': urls.referer,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'accept': 'application/json',
+            'content-type': 'application/json'
         }
     };
 
@@ -47,12 +45,15 @@ const get = async function(url){
     return await res.json();
 }
 
-const getSoap = async function(url){
+const getTracking = async function(url,market='UNITED_STATES'){
     const options = {
-        method:'GET',
-        headers: {
-            'Referer': urls.referer
-        }
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json; charset=utf-8",
+            "dpz-language": "en",
+            "dpz-market": "UNITED_STATES"
+          },
+          "method": "GET"
     };
 
     //console.log(options,url);
@@ -62,18 +63,14 @@ const getSoap = async function(url){
         options
     );
 
-    //console.log(await res.text());
-    
-    const parser = new xml2js.Parser;
-
-    return await xml2js.parseStringPromise(await res.text())
+    return await res.json();
 }
 
-const old={get,getSoap,post}
+const old={get,getTracking,post}
 
 export {
     old as default,
     get,
-    getSoap,
+    getTracking,
     post
 }

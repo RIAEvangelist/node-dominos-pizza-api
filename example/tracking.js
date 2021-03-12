@@ -1,7 +1,11 @@
-import {Tracking} from '../index.js';
+import {Tracking} from 'dominos';
 
 const tracking=new Tracking();
 
-const trackingResult=await tracking.byPhone('3869721922');
+try{
+    const trackingResult=await tracking.byPhone('8318675309');
+}catch(err){
+    console.trace(err);
+}
 
-console.dir(trackingResult,{depth:7});
+console.dir(trackingResult,{depth:8});

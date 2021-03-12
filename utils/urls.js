@@ -3,7 +3,6 @@ import Is from 'strong-type';
 const is=new Is;
 
 const usa={
-  referer : "https://order.dominos.com/en/pages/order/",
   sourceUri : "order.dominos.com",
   location:{
     find:"https://api.dominos.com/store-locator-international-service/findAddress?latitude=${lat}&longitude=${lon}"
@@ -19,7 +18,9 @@ const usa={
     place: "https://order.dominos.com/power/place-order"
   },
   images:"https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/${productCode}.jpg",
-  track: "https://order.dominos.com/orderstorage/GetTrackerData?",
+  
+  trackRoot:'https://tracker.dominos.com/tracker-presentation-service/',
+  track: "v2/orders",
 
   //POST {storeId: "8278"}
   token:"https://order.dominos.com/power/paymentGatewayService/braintree/token",
@@ -42,7 +43,6 @@ const usa={
 
 
 const canada={
-  referer   :"https://order.dominos.ca/en/pages/order/",
   sourceUri :"order.dominos.ca",
   location:{
     find:"https://api.dominos.com/store-locator-international-service/findAddress?latitude=${lat}&longitude=${lon}"
@@ -58,6 +58,8 @@ const canada={
       place   : "https://order.dominos.ca/power/place-order"
   },
   images  : "https://cache.dominos.com/nolo/ca/en/6_44_3/assets/build/market/CA/_en/images/img/products/larges/${itemCode}.jpg",
+  
+  //canada still uses the old method
   track   : "https://order.dominos.ca/orderstorage/GetTrackerData?",
 
 

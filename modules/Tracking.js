@@ -1,45 +1,63 @@
 import Is from "strong-type";
-import { getSoap } from "../utils/api-json.js";
+import { getTracking } from "../utils/api-json.js";
 import urls from "../utils/urls.js";
+import {DominosFormat} from './DominosFormat.js';
 
 const is=new Is;
 
-class Tracking{
+class Tracking extends DominosFormat{
     constructor(){
+        super();
 
         return this;
     }
-    
-    orders={}
-    query={}
-    dominosAPIResult={}
+
+    get dominosPhoneAPIResult(){
+        return this.#dominosPhoneAPIResult;
+    }
+
+    get dominosAPIResult(){
+        return this.#dominosAPIResult;
+    }
+
+    #dominosPhoneAPIResult={}
+    #dominosAPIResult={}
 
     async byPhone(phone) {
         is.string(phone);
     
-        return await this.byURL(`${urls.track}Phone=${phone}`);
-    }
-
-    async byID(storeID, orderKey) {
-    
-        return await this.byURL(`${urls.track}StoreID=${storeID}&OrderKey=${orderKey}`);
-    }
-
-    async byURL(url){
-        is.string(url);
+        const url=`${urls.trackRoot}${urls.track}?phonenumber=${phone}`;
         
         //console.log(url)
 
-        this.dominosAPIResult=await getSoap(url);
+        this.#dominosPhoneAPIResult=await getTracking(url);
+        
+        //console.dir(this.dominosPhoneAPIResult,{depth:10});
+        
+        //Actions is an array should probably loop through
+        //for now it is available on tracking.dominosPhoneAPIResult
+        
+        try{
+            is.object(this.#dominosPhoneAPIResult[0]);
+        }catch(err){
+            throw new DominosTrackingError('No results found;');
+        }
 
+        const trackingURL=`${urls.trackRoot}${this.#dominosPhoneAPIResult[0].Actions.Track}`;
+
+        this.#dominosAPIResult=await getTracking(trackingURL);
+        
+        this.formatted=this.#dominosAPIResult;
         //console.dir(this.dominosAPIResult,{depth:10});
 
-        is.object(this.dominosAPIResult['soap:Envelope']);
-        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body']);
-        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse);
+        return this;
+    }
 
-        this.orders=this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse[0].OrderStatuses;
-        this.query=this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse[0].Query[0];
+    //canada still uses the classic method
+    async byPhoneClassic(phone) {
+        //you will need to parse this
+        //with something like xml2js
+        this.#dominosPhoneAPIResult=await get(`${urls.track}Phone=${phone}`);
         
         return this;
     }

@@ -73,6 +73,10 @@ class IsDominos extends Is{
         return this.instanceCheck(value,DominosPlaceOrderError);
     }
 
+    trackingError(value){
+        return this.instanceCheck(value,DominosTrackingError);
+    }
+
     addressError(value){
         return this.instanceCheck(value,DominosAddressError);
     }

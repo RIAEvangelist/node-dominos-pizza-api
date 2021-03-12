@@ -11,16 +11,17 @@ const runTest=async function(test){
         const tracking=new Tracking();
 
         const trackingResult=await tracking.byPhone('3108675309');
-        
-        isDominos.tracking(tracking);
-        //console.log(tracking)
-        isDominos.object(trackingResult.orders);
-        isDominos.object(trackingResult.query);
-        isDominos.string(trackingResult.query.Phone[0]);
+
+        //should throw before this
+        test.fail();
 
     }catch(err){
-        console.trace(err);
-        test.fail();
+        try{
+            isDominos.trackingError(err);
+        }catch(err){
+            console.trace(err);
+            test.fail();
+        }
     }
     test.pass();
     test.done();

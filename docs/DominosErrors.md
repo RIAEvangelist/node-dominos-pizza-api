@@ -7,6 +7,7 @@ These custom errors are added to the global object for use in your code and the 
 |DominosValidationError |`.validationResponse`|this error is thrown when a dominos validation request fails|
 |DominosPriceError      |`.priceResponse`     |this error is thrown when a dominos price request fails|
 |DominosPlaceOrderError |`.placeOrderResponse`|this error is thrown when a dominos place request fails|
+|DominosTrackingError   |message string       |this error is thrown when no trackable orders are found for a phone number|
 |DominosAddressError    |message string       |this error is thrown when an issue is detected with a dominos address|
 |DominosDateError       |message string       |this error is thrown when an issue is detected with a date being used for a dominos order|
 |DominosStoreError      |message string       |this error is thrown when an issue is detected with a store being used for a dominos order|
@@ -20,6 +21,8 @@ throw new DominosValidationError(order.validationResponse);
 throw new DominosPriceError(order.priceResponse);
 
 throw new DominosPlaceOrderError(order.placeResponse);
+
+throw new DominosTrackingError('No orders found for this phone number.');
 
 throw new DominosAddressError('before you place an order, you must insure `order.address.region` is set');
 
