@@ -62,7 +62,7 @@ Simply run ` npm test ` and the coverage files will be added to the `./coverage`
 
 ```js
 
-import {Order,Customer,Item,Payment,NearbyStores} from 'dominos';
+import {Order,Customer,Item,Payment,NearbyStores,Tracking} from 'dominos';
 
 //extra cheese thin crust pizza
 const pizza=new Item(
@@ -177,6 +177,12 @@ try{
 
     console.log('\n\nPlaced Order\n\n');
     console.dir(order,{depth:3});
+
+    const tracking=new Tracking();
+
+    const trackingResult=await tracking.byPhone(customer.phone);
+
+    console.dir(trackingResult,{depth:1});
 }catch(err){
     console.trace(err);
 
@@ -189,6 +195,8 @@ try{
         {depth:5}
     );
 }
+
+
 
 
 ```
