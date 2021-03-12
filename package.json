@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
-    "precommit": "echo '::::PLEASE MAKE SURE TESTS PASS BY RUNNING::::\n npm test \nOR\n node test/CI.js'",
+    "precommit": "echo '::::PLEASE MAKE SURE TESTS PASS BY RUNNING:::: npm test OR node test/CI.js'",
     "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
     "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
