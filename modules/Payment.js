@@ -13,6 +13,9 @@ class Payment extends DominosFormat{
         if(parameters.amount){
             is.number(parameters.amount)
         }
+        if(parameters.tipAmount){
+            is.number(parameters.tipAmount);
+        }
 
         super();
 
@@ -28,6 +31,8 @@ class Payment extends DominosFormat{
             this.securityCode=parameters.securityCode;
             this.postalCode=parameters.postalCode;
             this.amount=parameters.amount||0;
+            this.tipAmount=parameters.tipAmount||0;
+
         }
 
         return this;
@@ -35,6 +40,7 @@ class Payment extends DominosFormat{
     
     type='CreditCard'
     amount=0
+    tipAmount=0
     number=''
     cardType=''
     expiration=''
