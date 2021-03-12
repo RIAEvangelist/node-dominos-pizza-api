@@ -1,12 +1,12 @@
 {
   "name": "dominos",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "node js API for Domino's pizza",
   "exports": "./index.js",
   "type": "module",
   "scripts": {
     "test": "npm i && c8 -r lcov -r html node test/CI.js && c8 report",
-    "precommit": "echo node test/CI.js",
+    "precommit": "echo '::::PLEASE MAKE SURE TESTS PASS BY RUNNING::::\n npm test \nOR\n node test/CI.js'",
     "coverage": "echo 'See your coverage report at http://localhost:8080' && node-http-server port=8080 root=./coverage/",
     "start": "npm i && node example/commandline-pizza/dominos-commandline-pizza.js"
   },
