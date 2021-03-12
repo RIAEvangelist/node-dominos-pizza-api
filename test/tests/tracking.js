@@ -13,10 +13,10 @@ const runTest=async function(test){
         const trackingResult=await tracking.byPhone('3108675309');
         
         isDominos.tracking(tracking);
-
+        //console.log(tracking)
         isDominos.object(trackingResult.orders);
         isDominos.object(trackingResult.query);
-        isDominos.string(trackingResult.query.Phone);
+        isDominos.string(trackingResult.query.Phone[0]);
 
     }catch(err){
         console.trace(err);

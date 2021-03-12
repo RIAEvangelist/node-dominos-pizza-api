@@ -32,14 +32,14 @@ class Tracking{
 
         this.dominosAPIResult=await getSoap(url);
 
-        //console.log(this.dominosAPIResult);
+        //console.dir(this.dominosAPIResult,{depth:10});
 
         is.object(this.dominosAPIResult['soap:Envelope']);
         is.object(this.dominosAPIResult['soap:Envelope']['soap:Body']);
-        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse);
+        is.object(this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse);
 
-        this.orders=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.OrderStatuses;
-        this.query=this.dominosAPIResult['soap:Envelope']['soap:Body'].GetTrackerDataResponse.Query;
+        this.orders=this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse[0].OrderStatuses;
+        this.query=this.dominosAPIResult['soap:Envelope']['soap:Body'][0].GetTrackerDataResponse[0].Query[0];
         
         return this;
     }

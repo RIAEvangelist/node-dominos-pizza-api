@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import urls from './urls.js';
-import {default as parser} from 'xml2json';
+import {default as xml2js} from 'xml2js';
 
 const post=async function(url, payload) {
     const options = {
@@ -63,16 +63,10 @@ const getSoap = async function(url){
     );
 
     //console.log(await res.text());
+    
+    const parser = new xml2js.Parser;
 
-    return parser.toJson(
-        await res.text(),
-        {
-            coerce: false,
-            sanitize: false,
-            object: true,
-            trim: false
-        }
-    );
+    return await xml2js.parseStringPromise(await res.text())
 }
 
 const old={get,getSoap,post}
