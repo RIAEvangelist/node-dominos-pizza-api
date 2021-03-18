@@ -81,7 +81,7 @@ class Order extends DominosFormat{
     }
 
     addCoupon(couponCode) { 
-        isDominos.string(couponCode);
+        isDominos.object(couponCode);
         
         this.coupons.push(couponCode);
         
@@ -89,7 +89,7 @@ class Order extends DominosFormat{
     }
 
     removeCoupon(couponCode) { 
-        isDominos.string(couponCode);
+        isDominos.object(couponCode);
         
         return this.#remove(couponCode,this.coupons);;
     }

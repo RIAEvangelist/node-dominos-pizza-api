@@ -86,7 +86,7 @@ const addAndRemoveCoupons=function(test){
         test.expects(`Order to add and then remove coupons.`);    
         
         const order=new Order(customer);
-        const coupon='FREE_PIZZA';
+        const coupon={'Code':'FREE_PIZZA'};
 
 
         order.addCoupon(coupon);
