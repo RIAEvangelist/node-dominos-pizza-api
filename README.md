@@ -1,4 +1,4 @@
-# Domino's Pizza API
+# Domino's Pizza API (Unofficial)
 
 This is a node.js API for integrating with the Domino's pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
