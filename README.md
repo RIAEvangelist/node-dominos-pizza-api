@@ -54,7 +54,7 @@ For coverage we are using the amazing `c8` coverage suite. It produces awesom in
 
 Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. You can start a local coverage server to view your results by running `npm run coverage`. This will start a simple [`node-http-server`](https://github.com/RIAEvangelist/node-http-server) for your local coverage directory.
 
-### [See the public c8 & vanilla-test code coverage](https://cdn-p939v.ondigitalocean.app/node-dominos-pizza-api/index.html)
+### [See the public c8 & vanilla-test code coverage](https://cdn-avsja.ondigitalocean.app/node-dominos-pizza-api/index.html)
 
 ---
 
