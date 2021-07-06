@@ -1,6 +1,6 @@
 Order
 ====
-This is the primary Order Class used for ordering Domnio's food!
+This is the primary Order Class used for ordering Domino's food!
 
 If you have cloned this repo, you can run the example with this command:
 `node ./example/order.js`
@@ -195,9 +195,9 @@ Instance Public Fields
 
 |member/method  |type  |default|description|
 |-------------  |------|-------|-----------|
-|.address       |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosFormat.md)||Address for customer|
+|.address       |[Address](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Address.md)||Address for customer|
 |.amounts       |Object||? Not sure, if you figure it out, please contribute to this doc. We are just using what the website uses here. It may be legacy and could be removed.|   
-|.amountsBreakdown|[AmountsBreakdown]()||populated by `order.price`, this is the break down of costs and taxes|
+|.amountsBreakdown|[AmountsBreakdown](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/AmountsBreakdown.md)||populated by `order.price`, this is the break down of costs and taxes|
 |.businessDate  |String||This is the date the order was created at the business.| 
 |.coupons       |Array||This is an array of coupon codes.|
 |.currency      |String||This is the currency for the order, lik `USD` it will be populated by dominos|
