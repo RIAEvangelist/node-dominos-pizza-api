@@ -1,5 +1,7 @@
 # Domino's Pizza API
 
+[![Sponsor RIAEvangelist to help development of node-dominos-pizza-api](https://img.shields.io/static/v1?label=Sponsor%20Me%20On%20Github&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/RIAEvangelist)](https://github.com/sponsors/RIAEvangelist)
+
 This is a node.js API for integrating with the Domino's pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
