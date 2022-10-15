@@ -52,7 +52,7 @@ This will setup everything that is needed to run the tests, install the modules 
 
 # Code Coverage
 
-For coverage we are using the amazing `c8` coverage suite. It produces awesom instanbul style reports as well as lcov and much mmore. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
+For coverage we are using the amazing `c8` coverage suite. It produces awesome instanbul style reports as well as lcov and much more. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
 
 Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. You can start a local coverage server to view your results by running `npm run coverage`. This will start a simple [`node-http-server`](https://github.com/RIAEvangelist/node-http-server) for your local coverage directory.
 
@@ -253,7 +253,7 @@ function start(){
 
 # International Support
 
-The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get hyour country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
+The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get your country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
 
 See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/InternationalSupport.md)
 
