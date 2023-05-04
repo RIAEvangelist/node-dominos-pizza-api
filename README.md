@@ -75,7 +75,7 @@ const pizza=new Item(
             //sauce, whole pizza : normal
             X: {'1/1' : '1'}, 
             //cheese, whole pizza  : double 
-            C: {'1/1' : '2'},
+            C: {'1/1' : '1.5'},
             //pepperoni, whole pizza : double 
             P: {'1/2' : '2'}
         }
@@ -575,7 +575,7 @@ const pizza=new Item(
             //sauce, whole pizza : normal
             X: {'1/1' : '1'}, 
             //cheese, whole pizza  : double 
-            C: {'1/1' : '2'}
+            C: {'1/1' : '1.5'}
         }
     }
 );
