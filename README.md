@@ -205,7 +205,7 @@ try{
 
 # Legacy CommonJS support
 
-This is for those who wish to use the `domnios api` in older code bases still using `require`. While node v12+ is still required, see the detailed info and order example in [CommonJS.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/CommonJS.md) for how to include and use the module in your code.
+This is for those who wish to use the `dominos api` in older code bases still using `require`. While node v12+ is still required, see the detailed info and order example in [CommonJS.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/CommonJS.md) for how to include and use the module in your code.
 
 ```js
 
