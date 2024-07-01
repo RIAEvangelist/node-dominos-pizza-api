@@ -2,7 +2,7 @@
 
 [![Sponsor RIAEvangelist to help development of node-dominos-pizza-api](https://img.shields.io/static/v1?label=Sponsor%20Me%20On%20Github&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/RIAEvangelist)](https://github.com/sponsors/RIAEvangelist)
 
-This is a node.js API for integrating with the Domino's pizza APIs.
+This is a node.js API for integrating with the Domino's Pizza APIs.
 [See the pretty Domino's Pizza API documentation](http://riaevangelist.github.io/node-dominos-pizza-api/)
 
 npm dominos info :  [See npm trends and stats for dominos](http://npm-stat.com/charts.html?package=dominos&author=&from=&to=)  
@@ -18,9 +18,9 @@ Build Info :
 Mac & Linux & Windows : [![Build Status](https://travis-ci.com/RIAEvangelist/node-dominos-pizza-api.svg?branch=v3.x)](https://travis-ci.com/RIAEvangelist/node-dominos-pizza-api?branch=v3.x) 
 ---
 
-This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is a derivative work from Dominos API.
+This work is licenced via the [MIT Licence](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/README.md). It is a derivative work from Dominos API.
 
-# Install the [Dominos](https://www.npmjs.com/package/dominos) pizza api
+# Install the [Dominos](https://www.npmjs.com/package/dominos) Pizza api
 
 
 ` npm i dominos `
@@ -29,7 +29,7 @@ This work is licenced via the [MIT Licence](http://www.dbad-license.org/). It is
 
 
 1. Pull or Fork code.
-2. From the cloned directory run ` npm i ` (this will install required dependancies, depending on your system may require)
+2. From the cloned directory run ` npm i ` (this will install required dependencies, depending on what your system may require)
 3. Be awesome!
 
 
@@ -40,7 +40,7 @@ See the examples directory for simple apps and demonstrations on using the basic
 
 # Testing
 
-For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare bones testing framework, but it works really well and simply with native ES6 and ESM. [vanilla-test on npm](https://www.npmjs.com/package/vanilla-test)
+For testing we have started using the extremely light `vanilla-test` testing suite. It is a pretty bare-bones testing framework, but it works really well and simply with native ES6 and ESM. [vanilla-test on npm](https://www.npmjs.com/package/vanilla-test)
 
 Simply run ` npm test `
 
@@ -52,7 +52,7 @@ This will setup everything that is needed to run the tests, install the modules 
 
 # Code Coverage
 
-For coverage we are using the amazing `c8` coverage suite. It produces awesom instanbul style reports as well as lcov and much mmore. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
+For coverage, we are using the amazing `c8` coverage suite. It produces awesome instanbul style reports as well as lcov and much more. It allows testing of pure ES6 code without transpiling, and does not modify the code at all for coverage. It uses the built in node coverage tools to test the execution directly inside v8 [c8 on npm](https://www.npmjs.com/package/c8)
 
 Simply run ` npm test ` and the coverage files will be added to the `./coverage` directory automatically. You can start a local coverage server to view your results by running `npm run coverage`. This will start a simple [`node-http-server`](https://github.com/RIAEvangelist/node-http-server) for your local coverage directory.
 
@@ -205,7 +205,7 @@ try{
 
 # Legacy CommonJS support
 
-This is for those who wish to use the `domnios api` in older code bases still using `require`. While node v12+ is still required, see the detailed info and order example in [CommonJS.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/CommonJS.md) for how to include and use the module in your code.
+This is for those who wish to use the `dominos api` in older code bases still using `require`. While node v12+ is still required, see the detailed info and order example in [CommonJS.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/CommonJS.md) for how to include and use the module in your code.
 
 ```js
 
@@ -253,12 +253,12 @@ function start(){
 
 # International Support
 
-The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get hyour country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
+The module now supports using multiple sets of endpoints that we have in `./utils/urls.js` or even custom endpoints. However, if you get your country working with custom endpoints, ***PLEASE CONTRIBUTE THEM BACK***! You will get credit as soon as your endpoints are merged back in.
 
 See detailed information on how to use the international endpoints or custom endpoints here : [International Dominos Endpoints and how to use them](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/InternationalSupport.md)
 
 ### USA
-USA is default so you really dont need to do anything other than `import {urls} from 'dominos';` if you want access to the usa endpoints.
+USA is the default so you really don't need to do anything other than `import {urls} from 'dominos';` if you want access to the USA endpoints.
 
 ```js
 
@@ -394,7 +394,7 @@ See the detailed docs on addresses here : [Address.md](https://github.com/RIAEva
 
 # NearbyStores
 
-This provides a list of basic info on stores that are nearby an address.
+This provides a list of basic info on stores that are near an address.
 
 See the detailed docs on finding nearby stores here : [NearbyStores.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/NearbyStores.md)
 
@@ -507,7 +507,7 @@ The Image class will grab the image for a product code and base 64 encode it. It
 
 ![Pizza image](https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPX.jpg)
 
-See the detailed docs on image here : [Image.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Image.md)
+See the detailed docs on the image here : [Image.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Image.md)
 
 ```js
 
@@ -531,7 +531,7 @@ pepperoniPizza.saveSync(pepperoniPizza.base64Image,savePath,productCode+'.jpg');
 
 # Payment
 
-This class will initialize a creditcard payment object for an order.
+This class will initialize a credit card payment object for an order.
 
 See the detailed docs on payment here : [Payment.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/Payment.md)
 
@@ -635,7 +635,7 @@ console.dir(order,{depth:5});
 
 This is how you track Pizzas! (and other things)
 
-You can track its progress, who is working on it, who your delivery person is, and how many stops they have before you using this Class.
+You can track its progress, who is working on it, who your delivery person is, and how many stops they have before you use this Class.
 
 If there are no orders for a given phone number, it will throw a `DominosTrackingError`.
 
@@ -687,7 +687,7 @@ isDominos.address(address);
 
 # Global DominosErrors
 
-These custom errors are added to the global object for use in your code and the `dominos` api. You can use them to validate errors or even throw your own if you are making a module ontop of this one.
+These custom errors are added to the global object for use in your code and the `dominos` API. You can use them to validate errors or even throw your own if you are making a module ontop of this one.
 
 See the detailed docs on DominosErrors here : [DominosErrors.md](https://github.com/RIAEvangelist/node-dominos-pizza-api/blob/master/docs/DominosErrors.md)
 
