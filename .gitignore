@@ -1,2 +1,6 @@
 node_modules
 S_PIZPX.jpg
+
+# Environment and token files (contain sensitive data)
+.env
+.dominos-token

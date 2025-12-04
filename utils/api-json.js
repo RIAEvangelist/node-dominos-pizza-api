@@ -1,13 +1,14 @@
 import fetch from 'node-fetch';
 import urls from './urls.js';
 
-const post=async function(url, payload) {
+const post=async function(url, payload, headers={}) {
     const options = {
         method:'POST',
         headers: {
             'Referer': urls.referer,
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...headers
         },
         body:payload
     };
@@ -24,12 +25,13 @@ const post=async function(url, payload) {
     return await res.json();
 }
 
-const get = async function(url){
+const get = async function(url, headers={}){
     const options = {
         method:'GET',
         headers: {
             'accept': 'application/json',
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            ...headers
         }
     };
 

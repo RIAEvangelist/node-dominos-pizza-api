@@ -12,6 +12,7 @@ import Image from './modules/Image.js';
 import Order from './modules/Order.js';
 import Payment from './modules/Payment.js';
 import Tracking from './modules/Tracking.js';
+import Account from './modules/Account.js';
  
 import urls from './utils/urls.js';
 import IsDominos from './utils/DominosTypes.js';
@@ -30,6 +31,7 @@ const old={
     Order,
     Payment,
     Tracking,
+    Account,
     
     urls,
     IsDominos
@@ -49,6 +51,7 @@ export {
     Order,
     Payment,
     Tracking,
+    Account,
     
     urls,
     IsDominos

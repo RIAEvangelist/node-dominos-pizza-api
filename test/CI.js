@@ -11,6 +11,7 @@ import runItemTest from './tests/item.js';
 import runCustomerTest from './tests/customer.js';
 import runInternationalTest from './tests/international.js';
 import runOrderTest from './tests/order.js';
+import runAccountTest from './tests/account.js';
 
 const test=new VanillaTest;
 
@@ -23,6 +24,7 @@ runPaymentTest(test);
 runItemTest(test);
 runCustomerTest(test);
 runInternationalTest(test);
+await runAccountTest(test);
 
 await runImageTest(test);
 delay(5e3);

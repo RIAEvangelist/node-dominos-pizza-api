@@ -17,6 +17,11 @@ const usa={
     price: "https://order.dominos.com/power/price-order",
     place: "https://order.dominos.com/power/place-order"
   },
+  customer: {
+    create: "https://order.dominos.com/power/customer",
+    login: "https://order.dominos.com/power/login",
+    loyalty: "https://order.dominos.com/power/customer/${customerID}/loyalty"
+  },
   images:"https://cache.dominos.com/olo/6_47_2/assets/build/market/US/_en/images/img/products/larges/${productCode}.jpg",
   
   trackRoot:'https://tracker.dominos.com/tracker-presentation-service/',
